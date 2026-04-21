@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
-import { persistRegisterSession } from '../lib/userSession.js'
+import api from '../lib/axiosInstance';
 import {
   INVALID_EMAIL_MESSAGE,
   PASSWORD_TOO_SHORT_MESSAGE,
@@ -43,7 +43,7 @@ export default function RegisterPage() {
     return emailBad || passBad
   }, [email, password])
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const cleanEmail = sanitizeEmailInput(email)
     setEmail(cleanEmail)
@@ -68,8 +68,22 @@ export default function RegisterPage() {
     setError('')
     setEmailError('')
     setPasswordError('')
-    persistRegisterSession(name, cleanEmail)
-    navigate('/dashboard', { replace: true })
+
+    try {
+      await api.post('/auth/register', {
+        nama_lengkap: name, 
+        email: cleanEmail,
+        password: password,
+        current_level: "Beginner"
+      });
+
+      alert("Registrasi Berhasil! Silakan login untuk melanjutkan.");
+    
+      navigate('/login', { replace: true })
+
+    } catch (err) {
+      setError(err.response?.data?.message || "Terjadi kesalahan pada server saat registrasi.");
+    }
   }
 
   const inputError = (hasErr) =>

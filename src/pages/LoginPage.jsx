@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
-import { persistLoginSession } from '../lib/userSession.js'
+import api from '../lib/axiosInstance';
 import {
   INVALID_EMAIL_MESSAGE,
   PASSWORD_TOO_SHORT_MESSAGE,
@@ -41,10 +41,11 @@ export default function LoginPage() {
     return emailBad || passBad
   }, [email, password])
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const cleanEmail = sanitizeEmailInput(email)
     setEmail(cleanEmail)
+    
     if (!cleanEmail.trim() || !password) {
       setError('Email dan password wajib diisi.')
       return
@@ -59,11 +60,25 @@ export default function LoginPage() {
       setError(PASSWORD_TOO_SHORT_MESSAGE)
       return
     }
+    
     setError('')
     setEmailError('')
     setPasswordError('')
-    persistLoginSession(cleanEmail)
-    navigate('/dashboard', { replace: true })
+
+    try {
+      const response = await api.post('/auth/login', {
+        email: cleanEmail,
+        password: password
+      });
+
+      const token = response.data.token;
+      localStorage.setItem('lumen_token', token);
+
+      navigate('/dashboard', { replace: true })
+      
+    } catch (err) {
+      setError(err.response?.data?.message || "Terjadi kesalahan pada server saat login");
+    }
   }
 
   const inputError = (hasErr) =>
