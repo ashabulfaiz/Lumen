@@ -106,7 +106,7 @@ function ProfileMenu() {
       </button>
       {open && (
         <div
-          className="absolute right-0 z-50 mt-2 min-w-[260px] max-w-[min(20rem,92vw)] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl"
+          className="absolute right-0 z-50 mt-2 min-w-[260px] max-w-[min(20rem,92vw)] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl md:left-full md:right-auto md:bottom-0 md:ml-2 md:mt-0"
           role="menu"
         >
           <div className="flex items-center gap-3 border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white px-3.5 py-3.5">
@@ -156,7 +156,7 @@ function ProfileMenu() {
 export default function DashboardLayout() {
   return (
     <div className="grid min-h-svh grid-cols-1 bg-slate-50 font-sans text-[15px] leading-relaxed text-slate-700 md:grid-cols-[240px_1fr]">
-      <aside className="flex flex-col gap-9 border-b border-slate-200 bg-white px-5 py-7 md:border-b-0 md:border-r">
+      <aside className="relative z-20 flex flex-col gap-9 border-b border-slate-200 bg-white px-5 py-7 md:border-b-0 md:border-r">
         <NavLink to="/dashboard" className="inline-flex items-center gap-2.5 self-start text-inherit no-underline">
           <span className="flex h-7 w-7 text-blue-600" aria-hidden>
             <IconFlame />
@@ -183,14 +183,13 @@ export default function DashboardLayout() {
             ))}
           </ul>
         </nav>
+        <div className="mt-auto pt-4">
+          <ProfileMenu />
+        </div>
       </aside>
 
       <div className="flex min-h-svh min-w-0 flex-col">
-        <header className="flex shrink-0 items-center justify-end border-b border-slate-200 bg-white px-6 py-3 md:px-9">
-          <ProfileMenu />
-        </header>
-
-        <main className="min-w-0 overflow-x-auto px-6 py-8 md:px-9 md:pb-10">
+        <main className="min-w-0 overflow-x-auto px-6 py-8 md:px-9 md:py-10">
           <Outlet />
         </main>
       </div>

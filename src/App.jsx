@@ -3,6 +3,7 @@ import DashboardHome from './components/DashboardHome.jsx'
 import DashboardLayout from './layouts/DashboardLayout.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import LearningPage from './pages/LearningPage.jsx'
+import LearningPathStepPage from './pages/LearningPathStepPage.jsx'
 import HelpPage from './pages/HelpPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import ProgressPage from './pages/ProgressPage.jsx'
@@ -20,6 +21,10 @@ export default function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardHome />} />
           <Route path="/learning" element={<LearningPage />} />
+          <Route path="/learning/introduction" element={<LearningPathStepPage />} />
+          <Route path="/learning/placement" element={<LearningPathStepPage />} />
+          <Route path="/learning/levels" element={<LearningPathStepPage />} />
+          <Route path="/learning/practice" element={<LearningPathStepPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route

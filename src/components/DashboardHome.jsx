@@ -93,7 +93,7 @@ const badgeClass = {
 
 export default function DashboardHome() {
   return (
-    <>
+    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
       <header className="mb-7">
         <h1 className="mb-1.5 text-[28px] font-bold tracking-tight text-slate-900">
           Welcome back, {greetingName()}!
@@ -103,7 +103,7 @@ export default function DashboardHome() {
 
       <div className="mb-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         <section
-          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+          className="rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-sm"
           aria-labelledby="progress-heading"
         >
           <div className="mb-5 flex items-center gap-3">
@@ -117,7 +117,7 @@ export default function DashboardHome() {
             <DonutChart percent={58} strokeColor="#7c3aed" label="Vocabulary" />
             <DonutChart percent={64} strokeColor="#0d9488" label="Listening" />
           </div>
-          <div className="my-6 h-px bg-slate-100" role="presentation" />
+          <div className="my-6 h-px bg-slate-200" role="presentation" />
           <ul className="m-0 space-y-2 p-0 text-sm font-medium text-slate-700">
             <li>127 words in your active sets</li>
             <li>45 lessons completed</li>
@@ -154,7 +154,7 @@ export default function DashboardHome() {
         </section>
       </div>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" aria-labelledby="lessons-heading">
+      <section className="rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-sm" aria-labelledby="lessons-heading">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <IconSparkle className="h-5 w-5 shrink-0 text-blue-600" />
@@ -168,7 +168,7 @@ export default function DashboardHome() {
           {lessons.map((lesson) => (
             <article
               key={lesson.title}
-              className="flex flex-col rounded-xl border border-slate-200 bg-[#fafbfc] p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+              className="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
             >
               <h3 className="mb-2 text-[15px] font-semibold text-slate-900">{lesson.title}</h3>
               <p className="mb-4 flex-1 text-[13px] leading-snug text-slate-600">{lesson.subtitle}</p>
@@ -180,7 +180,7 @@ export default function DashboardHome() {
                   </span>
                 ))}
               </div>
-              <div className="mt-auto flex items-center justify-between border-t border-slate-200 pt-3">
+              <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-3">
                 <span className="inline-flex items-center gap-2 text-[13px] font-medium text-slate-600">
                   <IconClock className="h-4 w-4" />
                   {lesson.duration}
@@ -191,6 +191,6 @@ export default function DashboardHome() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   )
 }

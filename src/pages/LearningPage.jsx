@@ -10,6 +10,7 @@ const pathSteps = [
     description:
       'Short onboarding that explains how the course works, how to track progress, and how to get help when you are stuck.',
     cta: 'Start here',
+    to: '/learning/introduction',
   },
   {
     id: 'placement',
@@ -17,6 +18,7 @@ const pathSteps = [
     description:
       'A quick skills check so we can suggest a starting level. You can skip it and pick a level below that matches your ability.',
     cta: 'Take placement',
+    to: '/learning/placement',
   },
   {
     id: 'level-flow',
@@ -24,6 +26,7 @@ const pathSteps = [
     description:
       'Select Level 1, 2, or 3 based on your skills. You can study every level up to the one you choose; the next level stays locked until you complete your current top level.',
     cta: 'See levels',
+    to: '/learning/levels',
   },
   {
     id: 'quiz',
@@ -31,6 +34,7 @@ const pathSteps = [
     description:
       'Short checks after each unit plus mixed review sets to reinforce what you have learned.',
     cta: 'View practice',
+    to: '/learning/practice',
   },
 ]
 
@@ -144,13 +148,12 @@ export default function LearningPage() {
               <div className="min-w-0 flex-1">
                 <h3 className="mb-1.5 text-base font-semibold text-slate-900">{step.title}</h3>
                 <p className="mb-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
-                <button
-                  type="button"
-                  className="mt-0.5 inline-flex items-center justify-center rounded-[10px] border border-blue-200 bg-blue-50 px-3 py-2 text-[13px] font-bold text-blue-600 transition hover:border-blue-300 hover:bg-blue-100 active:translate-y-px"
-                  onClick={() => jumpTo(step.id === 'level-flow' ? 'levels' : step.id)}
+                <Link
+                  to={step.to}
+                  className="mt-0.5 inline-flex items-center justify-center rounded-[10px] border border-blue-200 bg-blue-50 px-3 py-2 text-[13px] font-bold text-blue-600 no-underline transition hover:border-blue-300 hover:bg-blue-100 active:translate-y-px"
                 >
                   {step.cta}
-                </button>
+                </Link>
               </div>
             </li>
           ))}
