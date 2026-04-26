@@ -1,6 +1,10 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from google import genai
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app) 
@@ -8,11 +12,14 @@ CORS(app)
 # ========================================================
 # 1. INISIALISASI GEMINI
 # ========================================================
-GEMINI_API_KEY = "AIzaSyB7-wYpfxDu8J5Ovj1v8K5idybAY5I63_0"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 try:
+    if not GEMINI_API_KEY:
+        raise ValueError("API Key tidak ditemukan di file .env!")
+        
     gemini_client = genai.Client(api_key=GEMINI_API_KEY)
-    print("🤖 Gemini Client bersiap-siap!")
+    print("🤖 Gemini Client bersiap-siap dengan aman!")
 except Exception as e:
     print(f"⚠️ Gagal inisialisasi Gemini. Error: {e}")
     gemini_client = None
