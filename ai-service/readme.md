@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ### 5. Setup environment variables
 
 Create a `.env` file in this directory and add:
-GEMINI_API_KEY=your_api_key_here
+GROQ_API_KEY=your_api_key_here
 
 ### 6. Run the server
 

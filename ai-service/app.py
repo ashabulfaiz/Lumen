@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from google import genai
+from groq import Groq 
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,33 +9,36 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app) 
 
-# 1. INISIALISASI GEMINI
-
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# ========================================================
+# 1. INISIALISASI GROQ
+# ========================================================
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 try:
-    if not GEMINI_API_KEY:
-        raise ValueError("API Key tidak ditemukan di file .env!")
-        
-    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
-    print("🤖 Gemini Client bersiap-siap dengan aman!")
+    if not GROQ_API_KEY:
+        raise ValueError("API Key Groq tidak ditemukan!")
+    
+    # Inisialisasi client Groq
+    groq_client = Groq(api_key=GROQ_API_KEY)
+    print("🚀 Groq AI siap melesat untuk LUMEN!")
 except Exception as e:
-    print(f"⚠️ Gagal inisialisasi Gemini. Error: {e}")
-    gemini_client = None
+    print(f"⚠️ Gagal koneksi ke Groq. Error: {e}")
+    groq_client = None
 
-# 2. ENDPOINT SEMANTIC (MODE SIMULASI TANPA TENSORFLOW)
-
+# ========================================================
+# 2. ENDPOINT SEMANTIC (SIMULASI)
+# ========================================================
 @app.route('/api/check-semantic', methods=['POST'])
 def check_semantic():
-    data = request.json
     return jsonify({
         "similarity_score": 0.88, 
         "status": "Correct", 
-        "feedback": "Mode Simulasi: API berjalan sempurna!"
+        "feedback": "Koneksi Backend Aman!"
     })
 
-# 3. ENDPOINT CHATBOT HYBRID (GEMINI -> FALLBACK RULE-BASED)
-
+# ========================================================
+# 3. ENDPOINT CHATBOT HYBRID (GROQ -> FALLBACK RULE-BASED)
+# ========================================================
 @app.route('/api/chat', methods=['POST'])
 def chat_assistant():
     data = request.json
@@ -43,43 +46,41 @@ def chat_assistant():
 
     if not user_message:
         return jsonify({"error": "Pesan kosong"}), 400
-    
-    
-    # RENCANA A: COBA GUNAKAN GEMINI API
-    
-    if gemini_client:
+
+    # --------------------------------------------------------
+    # RENCANA A: GUNAKAN GROQ (MODEL LLAMA 3)
+    # --------------------------------------------------------
+    if groq_client:
         try:
-            system_instruction = """
-            Kamu adalah LUMEN-bot, asisten AI di aplikasi belajar bahasa Inggris LUMEN.
-            Jawab singkat, ramah, campur bahasa Indonesia-Inggris, dan fokus pada bahasa Inggris saja.
-            """
-            full_prompt = f"{system_instruction}\n\nPengguna: {user_message}\nLUMEN-bot:"
-            
-            response = gemini_client.models.generate_content(
-                model='gemini-2.0-flash',
-                contents=full_prompt
+            # Menggunakan model Llama-3.3-70b-versatile
+            chat_completion = groq_client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Kamu adalah LUMEN-bot, asisten belajar bahasa Inggris. Jawab singkat, ramah, dan informatif."
+                    },
+                    {
+                        "role": "user",
+                        "content": user_message,
+                    }
+                ],
+                model="llama-3.3-70b-versatile",
             )
-            # Jika berhasil, langsung kirim jawaban Gemini dan hentikan proses di sini
-            return jsonify({"reply": response.text})
+            return jsonify({"reply": chat_completion.choices[0].message.content})
         
         except Exception as e:
-            # Jika kuota habis (429) atau error internet, kita TANGKAP error-nya
-            # dan biarkan program berlanjut ke Rencana B di bawah.
-            print(f"⚠️ Gemini API gagal (kemungkinan kuota habis): {e}")
-            print("🔄 Beralih ke Mode Rule-Based otomatis...")
+            print(f"⚠️ Groq Error: {e}")
+            print("🔄 Beralih ke Mode Rule-Based...")
 
-    # RENCANA B: FALLBACK KE RULE-BASED (JIKA GEMINI GAGAL/HABIS KUOTA)
+    # --------------------------------------------------------
+    # RENCANA B: FALLBACK RULE-BASED (JIKA API ERROR)
+    # --------------------------------------------------------
+    reply = "Maaf, sistem AI sedang sibuk. Tapi aku masih bisa membantu sapaan dasar!"
+    if any(word in user_message for word in ['halo', 'hi', 'hello']):
+        reply = "Halo! Aku LUMEN-bot (Mode Offline). Ada yang bisa dibantu?"
+    elif 'grammar' in user_message:
+        reply = "Grammar adalah pondasi bahasa. Ada topik spesifik yang ingin ditanyakan?"
 
-    reply = "Maaf, AI utamaku sedang kehabisan energi (kuota harian habis). Tapi aku masih bisa menjawab sapaan atau dasar grammar!"
-    
-    if any(word in user_message for word in ['halo', 'hai', 'hello', 'hi']):
-        reply = "Halo! Aku LUMEN-bot (Mode Offline). Ada yang bisa kubantu seputar bahasa Inggris hari ini?"
-    elif any(word in user_message for word in ['bedanya in', 'in on at']):
-        reply = "Singkatnya:\n- **IN**: Untuk ruang (in the box)\n- **ON**: Untuk permukaan/hari (on the table)\n- **AT**: Untuk waktu (at 8 PM)"
-    elif any(word in user_message for word in ['grammar', 'tenses']):
-        reply = "Grammar memang menantang! Pastikan kamu memahami Present Tense dulu ya."
-
-    # Mengembalikan jawaban Rule-Based
     return jsonify({"reply": reply})
 
 if __name__ == '__main__':
