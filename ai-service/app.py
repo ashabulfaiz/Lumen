@@ -9,9 +9,8 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app) 
 
-# ========================================================
 # 1. INISIALISASI GEMINI
-# ========================================================
+
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 try:
@@ -24,9 +23,8 @@ except Exception as e:
     print(f"⚠️ Gagal inisialisasi Gemini. Error: {e}")
     gemini_client = None
 
-# ========================================================
 # 2. ENDPOINT SEMANTIC (MODE SIMULASI TANPA TENSORFLOW)
-# ========================================================
+
 @app.route('/api/check-semantic', methods=['POST'])
 def check_semantic():
     data = request.json
@@ -36,9 +34,8 @@ def check_semantic():
         "feedback": "Mode Simulasi: API berjalan sempurna!"
     })
 
-# ========================================================
 # 3. ENDPOINT CHATBOT HYBRID (GEMINI -> FALLBACK RULE-BASED)
-# ========================================================
+
 @app.route('/api/chat', methods=['POST'])
 def chat_assistant():
     data = request.json
@@ -46,11 +43,11 @@ def chat_assistant():
 
     if not user_message:
         return jsonify({"error": "Pesan kosong"}), 400
-
-    # --------------------------------------------------------
+    
+    
     # RENCANA A: COBA GUNAKAN GEMINI API
-    # --------------------------------------------------------
-    if gemini_client and GEMINI_API_KEY != "AIzaSyB7-wYpfxDu8J5Ovj1v8K5idybAY5I63_":
+    
+    if gemini_client:
         try:
             system_instruction = """
             Kamu adalah LUMEN-bot, asisten AI di aplikasi belajar bahasa Inggris LUMEN.
@@ -71,9 +68,8 @@ def chat_assistant():
             print(f"⚠️ Gemini API gagal (kemungkinan kuota habis): {e}")
             print("🔄 Beralih ke Mode Rule-Based otomatis...")
 
-    # --------------------------------------------------------
     # RENCANA B: FALLBACK KE RULE-BASED (JIKA GEMINI GAGAL/HABIS KUOTA)
-    # --------------------------------------------------------
+
     reply = "Maaf, AI utamaku sedang kehabisan energi (kuota harian habis). Tapi aku masih bisa menjawab sapaan atau dasar grammar!"
     
     if any(word in user_message for word in ['halo', 'hai', 'hello', 'hi']):
