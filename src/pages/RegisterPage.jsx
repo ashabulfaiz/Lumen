@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
 import api from '../lib/axiosInstance';
+import { persistRegisterSession } from '../lib/userSession.js'
 import {
   INVALID_EMAIL_MESSAGE,
   PASSWORD_TOO_SHORT_MESSAGE,
@@ -77,6 +78,7 @@ export default function RegisterPage() {
         current_level: "Beginner"
       });
 
+      persistRegisterSession(name, cleanEmail)
       alert("Registrasi Berhasil! Silakan login untuk melanjutkan.");
     
       navigate('/login', { replace: true })

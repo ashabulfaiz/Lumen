@@ -1,38 +1,9 @@
-import { LEARNING_PROGRESS_KEY, levelTracks, unitsByLevel } from '../data/learningData.js'
+import { levelTracks, learningLevels } from '../data/learningData.js'
 
-function loadLearningUnlock() {
-  try {
-    const raw = localStorage.getItem(LEARNING_PROGRESS_KEY)
-    if (!raw) return { chosenLevel: null, highestUnlocked: 1 }
-    const data = JSON.parse(raw)
-    const chosenLevel = typeof data?.chosenLevel === 'number' ? data.chosenLevel : null
-    const highestUnlocked = typeof data?.highestUnlocked === 'number' ? data.highestUnlocked : 1
-    return {
-      chosenLevel: chosenLevel != null && chosenLevel >= 1 && chosenLevel <= 3 ? chosenLevel : null,
-      highestUnlocked: highestUnlocked >= 1 && highestUnlocked <= 3 ? highestUnlocked : 1,
-    }
-  } catch {
-    return { chosenLevel: null, highestUnlocked: 1 }
-  }
-}
-
-function unitPercent({ levelNum, unitIndex, unlocked }) {
-  if (!unlocked.chosenLevel) return 0
-  if (levelNum < unlocked.highestUnlocked) return 100
-  if (levelNum > unlocked.highestUnlocked) return 0
-
-  const pattern = [60, 20, 0, 0]
-  return pattern[unitIndex] ?? 0
-}
-
-function statusFor(percent) {
-  if (percent >= 100) return { label: 'Completed', variant: 'done' }
-  if (percent <= 0) return { label: 'Not started', variant: 'todo' }
-  return { label: 'In progress', variant: 'doing' }
-}
-
-function formatUpdated(date) {
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(date)
+function percentFromStatus(status) {
+  if (status === 'completed') return 100
+  if (status === 'available') return 40
+  return 0
 }
 
 const barTone = {
@@ -48,42 +19,49 @@ const pillTone = {
 }
 
 export default function ProgressPage() {
-  const lastUpdated = formatUpdated(new Date())
-  const unlocked = loadLearningUnlock()
-
   return (
     <div className="mx-auto max-w-[980px] font-sans">
-      <header className="mb-5 flex flex-col gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-start md:justify-between">
+      <header className="mb-5 rounded-2xl border border-slate-200 bg-white px-5 py-4">
         <div>
           <h1 className="mb-1.5 text-xl font-extrabold text-slate-900">Course Progress</h1>
           <p className="m-0 text-[13px] text-slate-600">Your learning progress throughout the program.</p>
         </div>
-        <div className="text-[12px] text-slate-400 md:pt-1.5">Last updated: {lastUpdated}</div>
       </header>
 
       <div className="flex flex-col gap-5" aria-label="Course progress by level">
-        {levelTracks.map((level) => {
-          const units = unitsByLevel[level.num] ?? []
+        {levelTracks.map((track) => {
+          const slug = track.title.toLowerCase()
+          const level = learningLevels[slug]
+          if (!level) return null
+
+          const lessons = level.lessons ?? []
           return (
-            <section key={level.num}>
+            <section key={track.num}>
               <div className="mb-2.5 px-0.5">
                 <h2 className="mb-1 text-[15px] font-extrabold text-slate-900">{level.title}</h2>
-                <p className="m-0 text-[13px] leading-snug text-slate-600">{level.summary}</p>
+                <p className="m-0 text-[13px] leading-snug text-slate-600">{level.description}</p>
               </div>
 
               <div
                 className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
                 aria-label={`${level.title} progress list`}
               >
-                {units.map((u, idx) => {
-                  const percent = unitPercent({ levelNum: level.num, unitIndex: idx, unlocked })
-                  const status = statusFor(percent)
+                {lessons.map((lesson) => {
+                  const percent = percentFromStatus(lesson.status)
+                  const status =
+                    lesson.status === 'completed'
+                      ? { label: 'Completed', variant: 'done' }
+                      : lesson.status === 'available'
+                        ? { label: 'In progress', variant: 'doing' }
+                        : { label: 'Locked', variant: 'todo' }
                   return (
-                    <article key={`${level.title}-${u.title}`} className="border-b border-slate-100 px-5 py-4 last:border-b-0">
+                    <article key={`${level.title}-${lesson.id}`} className="border-b border-slate-100 px-5 py-4 last:border-b-0">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="min-w-0 flex-1">
-                          <h3 className="mb-1 text-sm font-semibold text-slate-900">{u.title}</h3>
-                          <p className="-mt-0.5 mb-0 max-w-[70ch] text-[13px] leading-relaxed text-slate-600">{u.subtitle}</p>
+                          <h3 className="mb-1 text-sm font-semibold text-slate-900">{lesson.title}</h3>
+                          <p className="-mt-0.5 mb-0 max-w-[70ch] text-[13px] leading-relaxed text-slate-600">
+                            {lesson.description}
+                          </p>
                         </div>
                         <div className="flex shrink-0 items-center gap-3" aria-label={`${percent}%`}>
                           <span className="min-w-[42px] text-right text-xs font-bold text-slate-800">{percent}%</span>

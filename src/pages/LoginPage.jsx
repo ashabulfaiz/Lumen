@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
 import api from '../lib/axiosInstance';
+import { persistLoginSession } from '../lib/userSession.js'
 import {
   INVALID_EMAIL_MESSAGE,
   PASSWORD_TOO_SHORT_MESSAGE,
@@ -73,6 +74,7 @@ export default function LoginPage() {
 
       const token = response.data.token;
       localStorage.setItem('lumen_token', token);
+      persistLoginSession(cleanEmail)
 
       navigate('/dashboard', { replace: true })
       

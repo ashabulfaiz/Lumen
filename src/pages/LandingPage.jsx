@@ -31,18 +31,18 @@ export default function LandingPage() {
         <section>
           <p className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-blue-600">English learning platform</p>
           <h1 className="mb-4 text-3xl font-bold leading-tight tracking-tight text-slate-900 md:text-4xl">
-            Learn English with a clear path, measurable progress, and practice that sticks.
+            Learn English with a clear path and measurable progress.
           </h1>
           <p className="mb-8 max-w-[52ch] text-[17px] leading-relaxed text-slate-600">
             Create an account, follow structured units in English only, and track your growth on the dashboard — from
-            introduction and placement to quizzes and certification.
+            introduction and placement to certification.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               to="/register"
               className="rounded-xl bg-blue-600 px-6 py-3 text-[15px] font-semibold text-white no-underline hover:bg-blue-700"
             >
-              Start for free
+              Start learning
             </Link>
             <Link
               to="/login"
@@ -61,8 +61,8 @@ export default function LandingPage() {
             <li className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
               <h3 className="mb-2.5 text-base font-semibold text-slate-900">Structured learning</h3>
               <p className="m-0 text-sm leading-relaxed text-slate-600">
-                Introduction, optional placement, level-based modules, and quizzes — every step is about English skills,
-                not other languages.
+                Introduction, optional placement, and level-based modules — every step is about English skills, not other
+                languages.
               </p>
             </li>
             <li className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">

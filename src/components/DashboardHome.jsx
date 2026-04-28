@@ -19,7 +19,7 @@ function greetingName() {
 const lessons = [
   {
     title: 'Present tense in context',
-    subtitle: 'Practice forms and time expressions in short dialogues',
+    subtitle: 'Use forms and time expressions in short dialogues',
     duration: '15 min',
     badges: [
       { text: 'AI pick', variant: 'ai' },
@@ -113,9 +113,9 @@ export default function DashboardHome() {
             </h2>
           </div>
           <div className="flex flex-wrap justify-center gap-8 py-2 md:justify-between">
-            <DonutChart percent={72} strokeColor="#2563eb" label="Grammar" />
-            <DonutChart percent={58} strokeColor="#7c3aed" label="Vocabulary" />
-            <DonutChart percent={64} strokeColor="#0d9488" label="Listening" />
+            <DonutChart percent={72} strokeColor="#2563eb" label="Beginner" />
+            <DonutChart percent={58} strokeColor="#7c3aed" label="Intermediate" />
+            <DonutChart percent={64} strokeColor="#0d9488" label="Advanced" />
           </div>
           <div className="my-6 h-px bg-slate-200" role="presentation" />
           <ul className="m-0 space-y-2 p-0 text-sm font-medium text-slate-700">
