@@ -43,26 +43,25 @@ def check_semantic():
 def chat_assistant():
     data = request.json
     user_message = data.get('message', '').lower()
+    
+    # 1. TANGKAP PILIHAN BAHASA DARI REACT (Default: id)
+    bot_language = data.get('language', 'id') 
 
     if not user_message:
         return jsonify({"error": "Pesan kosong"}), 400
 
-    # --------------------------------------------------------
-    # RENCANA A: GUNAKAN GROQ (MODEL LLAMA 3)
-    # --------------------------------------------------------
     if groq_client:
         try:
-            # Menggunakan model Llama-3.3-70b-versatile
+            # 2. UBAH KEPRIBADIAN BOT SECARA DINAMIS
+            if bot_language == 'en':
+                system_instruction = "You are LUMEN-bot, a Native English Tutor. You MUST reply STRICTLY in English. Be friendly, helpful, and concise."
+            else:
+                system_instruction = "Kamu adalah LUMEN-bot, asisten belajar bahasa Inggris. Jawab singkat dan ramah menggunakan bahasa Indonesia atau campur."
+
             chat_completion = groq_client.chat.completions.create(
                 messages=[
-                    {
-                        "role": "system",
-                        "content": "Kamu adalah LUMEN-bot, asisten belajar bahasa Inggris. Jawab singkat, ramah, dan informatif."
-                    },
-                    {
-                        "role": "user",
-                        "content": user_message,
-                    }
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": user_message}
                 ],
                 model="llama-3.3-70b-versatile",
             )
@@ -70,17 +69,9 @@ def chat_assistant():
         
         except Exception as e:
             print(f"⚠️ Groq Error: {e}")
-            print("🔄 Beralih ke Mode Rule-Based...")
 
-    # --------------------------------------------------------
-    # RENCANA B: FALLBACK RULE-BASED (JIKA API ERROR)
-    # --------------------------------------------------------
-    reply = "Maaf, sistem AI sedang sibuk. Tapi aku masih bisa membantu sapaan dasar!"
-    if any(word in user_message for word in ['halo', 'hi', 'hello']):
-        reply = "Halo! Aku LUMEN-bot (Mode Offline). Ada yang bisa dibantu?"
-    elif 'grammar' in user_message:
-        reply = "Grammar adalah pondasi bahasa. Ada topik spesifik yang ingin ditanyakan?"
-
+    # Fallback Rule-based (sesuaikan juga bahasanya)
+    reply = "Maaf, sistem AI sedang sibuk." if bot_language == 'id' else "Sorry, the AI system is currently busy."
     return jsonify({"reply": reply})
 
 if __name__ == '__main__':
