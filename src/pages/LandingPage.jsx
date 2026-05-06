@@ -1,12 +1,46 @@
 import { Link } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
+import { useEffect } from 'react'
 
 export default function LandingPage() {
+  // Efek untuk smooth scrolling dengan offset header
+  useEffect(() => {
+    const handleNavClick = (e) => {
+      // Pastikan yang diklik adalah link anchor (dimulai dengan #)
+      const target = e.target.closest('a[href^="#"]');
+      if (!target) return;
+
+      e.preventDefault();
+      const id = target.getAttribute('href');
+      const element = document.querySelector(id);
+      const header = document.querySelector('header');
+
+      if (element && header) {
+        const headerHeight = header.offsetHeight;
+        // Hitung posisi elemen, kurangi tinggi header agar tidak tertutup
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    // Pasang event listener ke document
+    document.addEventListener('click', handleNavClick);
+
+    // Bersihkan event listener saat komponen unmount
+    return () => document.removeEventListener('click', handleNavClick);
+  }, []);
+
   return (
-    <div className="min-h-svh flex-col bg-white font-sans text-slate-600 selection:bg-indigo-200 selection:text-indigo-800 overflow-x-hidden scroll-smooth">
+    <div className="min-h-svh flex-col bg-white font-sans text-slate-600 selection:bg-indigo-200 selection:text-indigo-800 overflow-x-hidden">
       
       {/* ================= 0. HEADER ================= */}
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md transition-all shadow-sm">
+      {/* fixed top-0 w-full membuat header tetap menempel di atas */}
+      <header className="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md transition-all shadow-sm">
         <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4 md:px-12">
           <Link to="/" className="inline-flex items-center gap-3 no-underline text-inherit group">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 text-white shadow-md transition-transform group-hover:scale-105">
@@ -33,7 +67,8 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <main className="relative z-10 w-full flex flex-col">
+      {/* Tambahkan padding-top agar konten pertama tidak tertutup header yang fixed */}
+      <main className="relative z-10 w-full flex flex-col pt-[72px]">
 
         {/* ================= 1. WHAT IS LUMEN (Background Putih Bersih) ================= */}
         <section id="about" className="relative w-full bg-white py-16 md:py-28 overflow-hidden">
