@@ -24,7 +24,7 @@ const stepContentByPath = {
   '/learning/placement': {
     title: 'Placement Test',
     description:
-      'Take a quick placement to estimate your starting level. If you skip it, you can still choose the level manually on the next step.',
+      'Kerjakan 10 soal untuk mengukur kemampuan awal kamu. Hasilnya akan menampilkan score dan rekomendasi level belajar.',
     points: [
       'Assessment is short and practical.',
       'Result gives a recommended starting level.',
@@ -49,15 +49,16 @@ export default function LearningPathStepPage() {
   const navigate = useNavigate()
   const content = stepContentByPath[pathname] ?? stepContentByPath['/learning/introduction']
   const isLevelChooserPage = pathname === '/learning/levels'
-  const [{ chosenLevel, highestUnlocked }, setProgress] = useState(initialProgressState)
+  const isPlacementPage = pathname === '/learning/placement'
+  const [{ chosenLevel, highestUnlocked, placementCompleted }, setProgress] = useState(initialProgressState)
 
   useEffect(() => {
     if (!isLevelChooserPage || chosenLevel == null) return
-    saveLearningProgress(chosenLevel, highestUnlocked)
-  }, [chosenLevel, highestUnlocked, isLevelChooserPage])
+    saveLearningProgress(chosenLevel, highestUnlocked, placementCompleted)
+  }, [chosenLevel, highestUnlocked, placementCompleted, isLevelChooserPage])
 
   const pickLevel = (n) => {
-    if (n > highestUnlocked) return
+    if (!placementCompleted || n > highestUnlocked) return
     setProgress((prev) => ({ ...prev, chosenLevel: n }))
     navigate(getLevelPath(n))
   }
@@ -68,7 +69,7 @@ export default function LearningPathStepPage() {
     }))
   const resetProgress = () => {
     clearLearningProgress()
-    setProgress({ chosenLevel: null, highestUnlocked: 1 })
+    setProgress({ chosenLevel: null, highestUnlocked: 1, placementCompleted: false })
   }
 
   const topActiveLevel = highestUnlocked
@@ -91,7 +92,7 @@ export default function LearningPathStepPage() {
   }, [chosenLevel, highestUnlocked, levelName])
 
   return (
-    <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
+    <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
       <p className="mb-2 text-xs font-bold uppercase tracking-widest text-blue-600">Learning path</p>
       <h1 className="mb-3 text-[26px] font-bold tracking-tight text-slate-900">{content.title}</h1>
       <p className="mb-6 text-[15px] leading-relaxed text-slate-600">{content.description}</p>
@@ -111,21 +112,19 @@ export default function LearningPathStepPage() {
 
           <div className="grid gap-4 lg:grid-cols-3" role="group" aria-label="Select starting level">
             {levelTracks.map((level) => {
-              const selected = chosenLevel === level.num
-              const isLocked = level.num > highestUnlocked
+              const isLocked = !placementCompleted || level.num > highestUnlocked
+              const selected = !isLocked && chosenLevel === level.num
               return (
                 <button
                   key={level.num}
                   type="button"
-                  className={`rounded-2xl border px-5 py-4 text-left transition ${
-                    isLocked
+                  className={`rounded-2xl border px-5 py-4 text-left transition ${isLocked
                       ? 'cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400 opacity-70'
-                      : ''
-                  } ${
-                    selected
+                      : 'cursor-pointer'
+                    } ${selected
                       ? 'border-blue-500 bg-blue-50 shadow-[0_0_0_1px_rgba(59,130,246,0.2)]'
                       : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white'
-                  }`}
+                    }`}
                   onClick={() => pickLevel(level.num)}
                   aria-pressed={selected}
                   disabled={isLocked}
@@ -152,7 +151,7 @@ export default function LearningPathStepPage() {
               </p>
               <button
                 type="button"
-                className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+                className="cursor-pointer rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
                 onClick={completeCurrentTop}
               >
                 Mark {levelName(topActiveLevel)} complete
@@ -162,11 +161,96 @@ export default function LearningPathStepPage() {
 
           <button
             type="button"
-            className="mt-5 text-sm text-slate-400 underline-offset-2 hover:text-slate-600"
+            className="mt-5 cursor-pointer text-sm text-slate-400 underline-offset-2 hover:text-slate-600"
             onClick={resetProgress}
           >
             Reset level choice &amp; progress
           </button>
+        </section>
+      ) : isPlacementPage ? (
+        <section className="mb-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="grid gap-3 md:grid-cols-3">
+            <div className="flex items-center gap-3 rounded-xl p-3">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 text-blue-600">◷</span>
+              <div>
+                <p className="text-[15px] font-medium text-slate-800">Duration</p>
+                <p className="text-xs text-slate-500">~10-15 minutes</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl p-3">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 text-violet-600">⎔</span>
+              <div>
+                <p className="text-[15px] font-medium text-slate-800">Questions</p>
+                <p className="text-xs text-slate-500">10 questions</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl p-3">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">◎</span>
+              <div>
+                <p className="text-[15px] font-medium text-slate-800">Level Assessment</p>
+                <p className="text-xs text-slate-500">Beginner to Advanced</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-5 rounded-xl bg-slate-50 p-5">
+            <h2 className="mb-4 text-[28px] font-bold tracking-tight text-slate-900">What You&apos;ll Get</h2>
+            <ul className="m-0 list-none space-y-3 p-0 text-[15px] text-slate-600">
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 text-slate-400">›</span>
+                <span>
+                  Questions covering vocabulary, grammar, and reading comprehension to measure your language skills
+                  comprehensively
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 text-slate-400">›</span>
+                <span>
+                  Automatic learning level recommendations based on your score to start learning from the right point
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 text-slate-400">›</span>
+                <span>
+                  Complete this assessment to unlock your personalized learning path and access all course materials
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            {placementCompleted ? (
+              <>
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-2 rounded-xl bg-slate-100 px-6 py-3 text-base font-semibold text-slate-400 cursor-not-allowed"
+                  disabled
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  Completed
+                </button>
+                <button
+                  type="button"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-blue-600 bg-white px-6 py-[10px] text-base font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50"
+                  onClick={() => navigate('/learning/placement/test')}
+                >
+                  Review Result
+                  <span aria-hidden>›</span>
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                onClick={() => navigate('/learning/placement/test')}
+              >
+                Start Placement Test
+                <span aria-hidden>›</span>
+              </button>
+            )}
+          </div>
         </section>
       ) : (
         <ul className="mb-7 space-y-2 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-sm">
@@ -176,29 +260,43 @@ export default function LearningPathStepPage() {
         </ul>
       )}
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className={`flex items-center justify-between gap-4 ${isPlacementPage ? 'flex-wrap pt-1' : 'flex-wrap'}`}>
         <Link
-          to="/learning"
-          className="inline-flex rounded-xl border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 no-underline transition hover:bg-slate-50"
+          to={isPlacementPage ? '/learning/introduction' : '/learning'}
+          className={`inline-flex cursor-pointer items-center gap-2 rounded-xl ${isPlacementPage
+              ? 'rounded-2xl border-2 border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 no-underline transition hover:bg-slate-50'
+              : 'border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 no-underline transition hover:bg-slate-50'
+            }`}
         >
-          Back to learning page
+          {isPlacementPage ? (
+            content.prevLabel || 'Previous'
+          ) : (
+            'Back to learning page'
+          )}
         </Link>
-        {content.prevPath && (
+        {content.prevPath && !isPlacementPage && (
           <Link
             to={content.prevPath}
-            className="inline-flex rounded-xl border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 no-underline transition hover:bg-slate-50"
+            className="inline-flex cursor-pointer rounded-xl border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 no-underline transition hover:bg-slate-50"
           >
             {content.prevLabel || 'Previous'}
           </Link>
         )}
-        {content.nextPath && (
+        {isPlacementPage ? (
           <Link
-            to={content.nextPath}
-            className="inline-flex rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-blue-700"
+            to="/learning/levels"
+            className="inline-flex cursor-pointer items-center rounded-2xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white no-underline shadow-sm transition hover:bg-blue-700"
           >
             {content.nextLabel || 'Next'}
           </Link>
-        )}
+        ) : content.nextPath ? (
+          <Link
+            to={content.nextPath}
+            className="inline-flex cursor-pointer rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-blue-700"
+          >
+            {content.nextLabel || 'Next'}
+          </Link>
+        ) : null}
       </div>
     </div>
   )
@@ -213,5 +311,6 @@ function initialProgressState() {
   return {
     chosenLevel: safeChosenLevel,
     highestUnlocked: safeHighestUnlocked,
+    placementCompleted: !!saved?.placementCompleted,
   }
 }

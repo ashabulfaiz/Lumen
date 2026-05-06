@@ -1,6 +1,6 @@
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import { IconBook, IconStar, IconPlay, IconLock, IconClock } from '../components/Icons.jsx'
-import { getLevelPath, levelNumberBySlug, loadLearningProgress } from '../data/learningData.js'
+import { getLevelPath, levelNumberBySlug, loadLearningProgress, getLessonsWithStatus } from '../data/learningData.js'
 
 const LEVELS = {
   beginner: {
@@ -166,12 +166,13 @@ export default function LevelDetailPage() {
   }
 
   const level = LEVELS[slug] || LEVELS.beginner
-  const lessons = level.lessons
   const theme = level.theme
 
+  const lessons = getLessonsWithStatus(slug, progress)
+
   const totalLessons = lessons.length
-  const completedLessons = lessons.filter((l) => l.status === 'completed').length
-  const progressPercent = totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0
+  const completedCount = lessons.filter((l) => l.status === 'completed').length
+  const progressPercent = totalLessons ? Math.round((completedCount / totalLessons) * 100) : 0
   const totalMinutes = lessons.reduce((acc, l) => acc + (Number.parseInt(l.duration, 10) || 0), 0)
 
   return (
@@ -188,7 +189,7 @@ export default function LevelDetailPage() {
             <div className={`mt-5 flex flex-wrap items-center gap-6 text-sm font-medium ${theme.statText}`}>
               <div className="flex items-center gap-2">
                 <IconBook className="h-[18px] w-[18px]" />
-                {completedLessons} / {totalLessons} Lessons
+                {completedCount} / {totalLessons} Lessons
               </div>
               <div className={`flex items-center gap-2 ${theme.statTextMuted}`}>
                 <IconClock className="h-[18px] w-[18px]" />
@@ -251,9 +252,9 @@ export default function LevelDetailPage() {
                 {isLocked && <span className="font-bold text-slate-400">Locked</span>}
               </div>
               
-              {isAvailable && (
-                <Link to="#" className="absolute inset-0 rounded-2xl ring-blue-500 focus-visible:outline-none focus-visible:ring-2">
-                  <span className="sr-only">Start {lesson.title}</span>
+              {(isAvailable || isCompleted) && (
+                <Link to={`/learning/${slug}/lesson/${lesson.id}`} className="absolute inset-0 rounded-2xl ring-blue-500 focus-visible:outline-none focus-visible:ring-2">
+                  <span className="sr-only">{isCompleted ? 'Review' : 'Start'} {lesson.title}</span>
                 </Link>
               )}
             </div>

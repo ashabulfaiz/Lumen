@@ -25,7 +25,7 @@ const sidebarLinks = [
   { to: '/certification', id: 'certification', label: 'Certification' },
 ]
 
-function SidebarItem({ item, highestUnlocked }) {
+function SidebarItem({ item, highestUnlocked, placementCompleted }) {
   const hasChildren = !!item.children
   const location = useLocation()
   const [open, setOpen] = useState(() => location.pathname.startsWith(item.to))
@@ -66,9 +66,11 @@ function SidebarItem({ item, highestUnlocked }) {
       </div>
       {hasChildren && open && (
         <ul className="mt-1.5 flex list-none flex-col gap-2 pl-9 pr-2 pb-1">
-          {item.children.map((child) => (
+          {item.children.map((child) => {
+            const isLocked = !placementCompleted || child.num > highestUnlocked;
+            return (
             <li key={child.to}>
-              {child.num <= highestUnlocked ? (
+              {!isLocked ? (
                 <NavLink
                   to={child.to}
                   className={({ isActive }) =>
@@ -88,7 +90,7 @@ function SidebarItem({ item, highestUnlocked }) {
                 </span>
               )}
             </li>
-          ))}
+          )})}
         </ul>
       )}
     </li>
@@ -111,8 +113,8 @@ export default function DashboardLayout() {
   }, [])
 
   return (
-    <div className="grid min-h-svh grid-cols-1 bg-slate-50 font-sans text-[17px] leading-relaxed text-slate-700 md:grid-cols-[320px_1fr]">
-      <aside className="relative z-20 flex flex-col gap-11 border-b border-slate-200 bg-white px-7 py-9 md:border-b-0 md:border-r">
+    <div className="grid min-h-svh grid-cols-1 bg-slate-50 font-sans text-[17px] leading-relaxed text-slate-700 md:h-svh md:grid-cols-[260px_1fr] md:overflow-hidden">
+      <aside className="relative z-20 flex flex-col gap-11 border-b border-slate-200 bg-white px-7 py-9 md:border-b-0 md:border-r md:overflow-y-auto">
         <NavLink to="/dashboard" className="inline-flex items-center gap-2.5 self-start text-inherit no-underline">
           <span className="flex h-9 w-9 text-blue-600" aria-hidden>
             <IconFlame className="h-9 w-9" />
@@ -122,7 +124,7 @@ export default function DashboardLayout() {
         <nav aria-label="App navigation">
           <ul className="flex list-none flex-col gap-1 p-0 md:flex-col">
             {sidebarLinks.map((item) => (
-              <SidebarItem key={item.to} item={item} highestUnlocked={progress.highestUnlocked} />
+              <SidebarItem key={item.to} item={item} highestUnlocked={progress.highestUnlocked} placementCompleted={progress.placementCompleted} />
             ))}
           </ul>
         </nav>
@@ -131,7 +133,7 @@ export default function DashboardLayout() {
         </div>
       </aside>
 
-      <div className="flex min-h-svh min-w-0 flex-col">
+      <div className="flex min-h-svh min-w-0 flex-col md:h-svh md:overflow-y-auto">
         <main className="min-w-0 overflow-x-auto px-6 py-8 md:px-9 md:py-10">
           <Outlet />
         </main>

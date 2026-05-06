@@ -119,34 +119,52 @@ export function getLevelPath(level) {
 
 export function loadLearningProgress() {
   if (typeof window === 'undefined') {
-    return { chosenLevel: null, highestUnlocked: 1 }
+    return { chosenLevel: null, highestUnlocked: 1, placementCompleted: false, completedLessons: [] }
   }
 
   try {
     const raw = localStorage.getItem(LEARNING_PROGRESS_KEY)
-    if (!raw) return { chosenLevel: null, highestUnlocked: 1 }
+    if (!raw) return { chosenLevel: null, highestUnlocked: 1, placementCompleted: false, completedLessons: [] }
 
     const data = JSON.parse(raw)
     const chosenLevel = typeof data?.chosenLevel === 'number' ? data.chosenLevel : null
     const highestUnlocked = typeof data?.highestUnlocked === 'number' ? data.highestUnlocked : 1
+    const placementCompleted = !!data?.placementCompleted
+    const completedLessons = Array.isArray(data?.completedLessons) ? data.completedLessons : []
 
     return {
-      chosenLevel: chosenLevel != null && chosenLevel >= 1 && chosenLevel <= 3 ? chosenLevel : null,
+      chosenLevel: placementCompleted && chosenLevel != null && chosenLevel >= 1 && chosenLevel <= 3 ? chosenLevel : null,
       highestUnlocked: highestUnlocked >= 1 && highestUnlocked <= 3 ? highestUnlocked : 1,
+      placementCompleted,
+      completedLessons,
     }
   } catch {
-    return { chosenLevel: null, highestUnlocked: 1 }
+    return { chosenLevel: null, highestUnlocked: 1, placementCompleted: false, completedLessons: [] }
   }
 }
 
-export function saveLearningProgress(chosenLevel, highestUnlocked) {
+export function saveLearningProgress(chosenLevel, highestUnlocked, placementCompleted = false, completedLessons) {
   if (typeof window === 'undefined') return
 
+  if (!completedLessons) {
+    const existing = loadLearningProgress()
+    completedLessons = existing.completedLessons || []
+  }
+
   try {
-    localStorage.setItem(LEARNING_PROGRESS_KEY, JSON.stringify({ chosenLevel, highestUnlocked }))
+    localStorage.setItem(LEARNING_PROGRESS_KEY, JSON.stringify({ chosenLevel, highestUnlocked, placementCompleted, completedLessons }))
     window.dispatchEvent(new CustomEvent(LEARNING_PROGRESS_EVENT))
   } catch {
     /* ignore */
+  }
+}
+
+export function markLessonCompleted(levelSlug, lessonId) {
+  const progress = loadLearningProgress()
+  const lessonKey = `${levelSlug}-${lessonId}`
+  if (!progress.completedLessons.includes(lessonKey)) {
+    progress.completedLessons.push(lessonKey)
+    saveLearningProgress(progress.chosenLevel, progress.highestUnlocked, progress.placementCompleted, progress.completedLessons)
   }
 }
 
@@ -155,9 +173,40 @@ export function clearLearningProgress() {
 
   try {
     localStorage.removeItem(LEARNING_PROGRESS_KEY)
+    localStorage.removeItem('lumen_placement_result')
     window.dispatchEvent(new CustomEvent(LEARNING_PROGRESS_EVENT))
   } catch {
     /* ignore */
   }
+}
+
+export function getLessonsWithStatus(slug, progress) {
+  const level = learningLevels[slug]
+  if (!level) return []
+  
+  if (!progress) {
+    progress = loadLearningProgress()
+  }
+
+  return level.lessons.map((lesson, index) => {
+    const lessonKey = `${slug}-${lesson.id}`
+    const isCompleted = progress.completedLessons.includes(lessonKey)
+    let computedStatus = 'locked'
+    
+    if (isCompleted) {
+      computedStatus = 'completed'
+    } else {
+      if (index === 0) {
+        computedStatus = 'available'
+      } else {
+        const prevLessonKey = `${slug}-${level.lessons[index - 1].id}`
+        if (progress.completedLessons.includes(prevLessonKey)) {
+          computedStatus = 'available'
+        }
+      }
+    }
+
+    return { ...lesson, status: computedStatus }
+  })
 }
 

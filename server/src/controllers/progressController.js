@@ -12,7 +12,7 @@ const markLessonComplete = async (req, res) => {
 
         // Cek apakah sudah pernah dicatat sebelumnya
         const [existing] = await db.query(
-            'SELECT * FROM user_progress WHERE user_id = ? AND lesson_id = ?', 
+            'SELECT * FROM user_progress WHERE user_id = ? AND lesson_id = ?',
             [userId, lesson_id]
         );
 

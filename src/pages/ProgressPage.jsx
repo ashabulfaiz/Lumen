@@ -1,8 +1,11 @@
-import { levelTracks, learningLevels } from '../data/learningData.js'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { levelTracks, getLessonsWithStatus, loadLearningProgress, LEARNING_PROGRESS_EVENT } from '../data/learningData.js'
+import { IconCheckCircle, IconClock, IconLock, IconChevronDown } from '../components/Icons.jsx'
+
 
 function percentFromStatus(status) {
   if (status === 'completed') return 100
-  if (status === 'available') return 40
   return 0
 }
 
@@ -19,69 +22,161 @@ const pillTone = {
 }
 
 export default function ProgressPage() {
+  const navigate = useNavigate()
+  const [expandedLevels, setExpandedLevels] = useState({})
+  const [progress, setProgress] = useState(loadLearningProgress())
+
+  useEffect(() => {
+    const handleProgress = () => setProgress(loadLearningProgress())
+    window.addEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
+    return () => window.removeEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
+  }, [])
+
+  const toggleLevel = (trackNum) => {
+    setExpandedLevels(prev => ({
+      ...prev,
+      [trackNum]: !prev[trackNum]
+    }))
+  }
+
+  const INITIAL_VISIBLE_LESSONS = 3
+
   return (
     <div className="mx-auto max-w-[980px] font-sans">
-      <header className="mb-5 rounded-2xl border border-slate-200 bg-white px-5 py-4">
+      <header className="mb-6 px-1">
         <div>
-          <h1 className="mb-1.5 text-xl font-extrabold text-slate-900">Course Progress</h1>
-          <p className="m-0 text-[13px] text-slate-600">Your learning progress throughout the program.</p>
+          <h1 className="mb-1.5 text-2xl font-bold text-slate-900">Course Progress</h1>
+          <p className="m-0 text-[15px] text-slate-600">Your learning progress throughout the program.</p>
         </div>
       </header>
 
       <div className="flex flex-col gap-5" aria-label="Course progress by level">
         {levelTracks.map((track) => {
           const slug = track.title.toLowerCase()
-          const level = learningLevels[slug]
-          if (!level) return null
+          const isLevelLocked = track.num > (progress?.highestUnlocked ?? 1)
+          const baseLessons = getLessonsWithStatus(slug, progress)
+          if (!baseLessons.length) return null
+          const lessons = isLevelLocked ? baseLessons.map((l) => ({ ...l, status: 'locked' })) : baseLessons
+          const isExpanded = expandedLevels[track.num]
+          const visibleLessons = isExpanded ? lessons : lessons.slice(0, INITIAL_VISIBLE_LESSONS)
+          const hasMore = lessons.length > INITIAL_VISIBLE_LESSONS
 
-          const lessons = level.lessons ?? []
           return (
-            <section key={track.num}>
-              <div className="mb-2.5 px-0.5">
-                <h2 className="mb-1 text-[15px] font-extrabold text-slate-900">{level.title}</h2>
-                <p className="m-0 text-[13px] leading-snug text-slate-600">{level.description}</p>
+            <section
+              key={track.num}
+              className={`overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm ${
+                isLevelLocked ? 'opacity-70' : ''
+              }`}
+            >
+              <div className="border-b border-slate-100 p-6 md:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h2 className="mb-1.5 text-[22px] font-bold text-slate-900">{track.title}</h2>
+                  {isLevelLocked && (
+                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[12px] font-semibold text-slate-500">
+                      Locked
+                    </span>
+                  )}
+                </div>
+                <p className="m-0 text-[15px] text-slate-500">{track.summary}</p>
+                {isLevelLocked && (
+                  <p className="mt-2 text-[13px] font-medium text-slate-500">
+                    Complete your current level to unlock this track.
+                  </p>
+                )}
               </div>
 
               <div
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
-                aria-label={`${level.title} progress list`}
+                className="flex flex-col"
+                aria-label={`${track.title} progress list`}
               >
-                {lessons.map((lesson) => {
+                {visibleLessons.map((lesson) => {
                   const percent = percentFromStatus(lesson.status)
-                  const status =
-                    lesson.status === 'completed'
-                      ? { label: 'Completed', variant: 'done' }
+                  const isLocked = lesson.status === 'locked'
+                  const isCompleted = lesson.status === 'completed'
+                  const statusInfo =
+                    isCompleted
+                      ? { label: 'Completed', variant: 'done', icon: IconCheckCircle }
                       : lesson.status === 'available'
-                        ? { label: 'In progress', variant: 'doing' }
-                        : { label: 'Locked', variant: 'todo' }
+                        ? { label: 'In progress', variant: 'doing', icon: IconClock }
+                        : { label: 'Locked', variant: 'todo', icon: IconLock }
+
+                  const StatusIcon = statusInfo.icon
+
                   return (
-                    <article key={`${level.title}-${lesson.id}`} className="border-b border-slate-100 px-5 py-4 last:border-b-0">
-                      <div className="flex flex-wrap items-start justify-between gap-3">
-                        <div className="min-w-0 flex-1">
-                          <h3 className="mb-1 text-sm font-semibold text-slate-900">{lesson.title}</h3>
-                          <p className="-mt-0.5 mb-0 max-w-[70ch] text-[13px] leading-relaxed text-slate-600">
-                            {lesson.description}
-                          </p>
+                    <article
+                      key={`${track.title}-${lesson.id}`}
+                      className="border-b border-slate-100 p-6 md:px-8 md:py-6 last:border-b-0"
+                    >
+                      <button
+                        type="button"
+                        disabled={isLocked}
+                        aria-disabled={isLocked}
+                        onClick={() => {
+                          if (isLocked) return
+                          const levelSlug = track.title.toLowerCase()
+                          navigate(`/learning/${levelSlug}/lesson/${lesson.id}`)
+                        }}
+                        className={[
+                          'w-full rounded-2xl text-left outline-none transition',
+                          'cursor-pointer',
+                          'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+                          'disabled:cursor-not-allowed disabled:opacity-70',
+                          isCompleted ? 'hover:bg-green-50/60' : 'hover:bg-slate-50',
+                        ].join(' ')}
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-4">
+                          <div className="min-w-0 flex-1">
+                            <h3 className="mb-1 text-[16px] font-bold text-slate-900">{lesson.title}</h3>
+                            <p className="mb-0 text-[14px] text-slate-500">{lesson.description}</p>
+                          </div>
+
+                          <div className="flex shrink-0 items-center gap-4" aria-label={`${percent}%`}>
+                            <span className="min-w-[42px] text-right text-[14px] font-semibold text-slate-800">{percent}%</span>
+                            <span
+                              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-medium ${pillTone[statusInfo.variant]}`}
+                            >
+                              <StatusIcon className="h-3.5 w-3.5" />
+                              {statusInfo.label}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex shrink-0 items-center gap-3" aria-label={`${percent}%`}>
-                          <span className="min-w-[42px] text-right text-xs font-bold text-slate-800">{percent}%</span>
-                          <span
-                            className={`rounded-[10px] border px-3 py-1.5 text-[11px] font-bold ${pillTone[status.variant]}`}
-                          >
-                            {status.label}
-                          </span>
+
+                        <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100" role="presentation">
+                          <div
+                            className={`h-full rounded-full transition-[width] ${barTone[statusInfo.variant]}`}
+                            style={{ width: `${Math.min(100, Math.max(0, percent))}%` }}
+                          />
                         </div>
-                      </div>
-                      <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200" role="presentation">
-                        <div
-                          className={`h-full rounded-full transition-[width] ${barTone[status.variant]}`}
-                          style={{ width: `${Math.min(100, Math.max(0, percent))}%` }}
-                        />
-                      </div>
+                      </button>
                     </article>
                   )
                 })}
               </div>
+
+              {hasMore && (
+                <div className="flex justify-center border-t border-slate-100 p-5">
+                  <button
+                    type="button"
+                    aria-expanded={!!isExpanded}
+                    onClick={() => {
+                      if (isLevelLocked) return
+                      toggleLevel(track.num)
+                    }}
+                    disabled={isLevelLocked}
+                    className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold transition-colors ${
+                      isLevelLocked
+                        ? 'cursor-not-allowed bg-slate-50 text-slate-400'
+                        : `cursor-pointer ${isExpanded
+                            ? 'text-blue-600 hover:bg-blue-50 hover:text-blue-700'
+                            : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                          }`
+                    }`}
+                  >
+                    {isExpanded ? 'Show less' : 'Show all courses'}
+                    <IconChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
+              )}
             </section>
           )
         })}

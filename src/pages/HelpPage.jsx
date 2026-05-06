@@ -107,7 +107,7 @@ export default function HelpPage() {
 
             <button
               onClick={() => setLanguage('id')}
-              className={`px-3 py-1.5 text-[11px] font-bold rounded-md transition-all duration-200 ${
+              className={`cursor-pointer px-3 py-1.5 text-[11px] font-bold rounded-md transition-all duration-200 ${
                 language === 'id' 
                   ? 'bg-white text-blue-600 shadow-sm' 
                   : 'text-slate-400 hover:text-slate-600'
@@ -117,7 +117,7 @@ export default function HelpPage() {
             </button>
             <button
               onClick={() => setLanguage('en')}
-              className={`px-3 py-1.5 text-[11px] font-bold rounded-md transition-all duration-200 ${
+              className={`cursor-pointer px-3 py-1.5 text-[11px] font-bold rounded-md transition-all duration-200 ${
                 language === 'en' 
                   ? 'bg-white text-blue-600 shadow-sm' 
                   : 'text-slate-400 hover:text-slate-600'
@@ -135,7 +135,7 @@ export default function HelpPage() {
             localStorage.removeItem(STORAGE_KEY); 
             setMessages([]); 
           }}
-          className="shrink-0 mt-2 sm:mt-0 rounded-xl border-2 border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors"
+          className="shrink-0 mt-2 sm:mt-0 cursor-pointer rounded-xl border-2 border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors"
         >
           Clear messages
         </button>
@@ -168,7 +168,7 @@ export default function HelpPage() {
                         
                         <button 
                           onClick={() => handleToggleSpeak(m.text, idx)}
-                          className={`group/btn flex items-center transition-colors ${isCurrentlySpeaking ? 'text-red-500' : 'text-slate-400 hover:text-blue-600'}`}
+                          className={`group/btn flex cursor-pointer items-center transition-colors ${isCurrentlySpeaking ? 'text-red-500' : 'text-slate-400 hover:text-blue-600'}`}
                         >
                           {isCurrentlySpeaking ? (
                             <>
@@ -185,7 +185,7 @@ export default function HelpPage() {
 
                         <button 
                           onClick={() => handleCopy(m.text, idx)}
-                          className="group/btn flex items-center transition-colors text-slate-400 hover:text-blue-600"
+                          className="group/btn flex cursor-pointer items-center transition-colors text-slate-400 hover:text-blue-600"
                         >
                           {copiedIndex === idx ? (
                             <>
@@ -224,7 +224,7 @@ export default function HelpPage() {
             placeholder="Ask LUMEN"
             disabled={isLoading}
           />
-          <button type="submit" disabled={!value.trim() || isLoading} className="rounded-xl bg-blue-600 px-6 py-3 text-[14px] font-bold text-white hover:bg-blue-700 disabled:bg-slate-300 transition-colors">
+          <button type="submit" disabled={!value.trim() || isLoading} className="cursor-pointer rounded-xl bg-blue-600 px-6 py-3 text-[14px] font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 transition-colors">
             Send
           </button>
         </form>

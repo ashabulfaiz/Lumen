@@ -6,10 +6,12 @@ import LearningPage from './pages/LearningPage.jsx'
 import LearningPathStepPage from './pages/LearningPathStepPage.jsx'
 import HelpPage from './pages/HelpPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
+import PlacementTestPage from './pages/PlacementTestPage.jsx'
 import ProgressPage from './pages/ProgressPage.jsx'
 import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LevelDetailPage from './pages/LevelDetailPage.jsx'
+import LessonPage from './pages/LessonPage.jsx'
 
 export default function App() {
   return (
@@ -25,8 +27,10 @@ export default function App() {
           <Route path="/learning/beginner" element={<LevelDetailPage />} />
           <Route path="/learning/intermediate" element={<LevelDetailPage />} />
           <Route path="/learning/advanced" element={<LevelDetailPage />} />
+          <Route path="/learning/:level/lesson/:lessonId" element={<LessonPage />} />
           <Route path="/learning/introduction" element={<LearningPathStepPage />} />
           <Route path="/learning/placement" element={<LearningPathStepPage />} />
+          <Route path="/learning/placement/test" element={<PlacementTestPage />} />
           <Route path="/learning/levels" element={<LearningPathStepPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/help" element={<HelpPage />} />

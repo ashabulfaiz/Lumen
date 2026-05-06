@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   IconTrendUp,
   IconSparkle,
@@ -8,7 +9,19 @@ import {
   IconFlame,
 } from './Icons.jsx'
 import { readDisplayName, readUsername } from '../lib/userSession.js'
+import { getLessonsWithStatus, loadLearningProgress, LEARNING_PROGRESS_EVENT } from '../data/learningData.js'
 
+function percentFromStatus(status) {
+  if (status === 'completed') return 100
+  return 0
+}
+
+function calculateLevelProgress(levelKey, progress) {
+  const lessons = getLessonsWithStatus(levelKey, progress)
+  if (lessons.length === 0) return 0
+  const total = lessons.reduce((acc, lesson) => acc + percentFromStatus(lesson.status), 0)
+  return Math.round(total / lessons.length)
+}
 function greetingName() {
   const full = readDisplayName()
   if (full) return full.split(/\s+/)[0]
@@ -43,7 +56,7 @@ const lessons = [
   },
 ]
 
-function DonutChart({ percent, strokeColor, label }) {
+function DonutChart({ percent, strokeColor, label, customText }) {
   const size = 112
   const stroke = 10
   const r = (size - stroke) / 2
@@ -76,7 +89,7 @@ function DonutChart({ percent, strokeColor, label }) {
         />
       </svg>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-lg font-bold text-slate-900">{percent}%</span>
+        <span className="text-lg font-bold text-slate-900">{customText || `${percent}%`}</span>
         <span className="max-w-[5.5rem] text-center text-xs font-semibold text-slate-600">{label}</span>
       </div>
     </div>
@@ -92,6 +105,36 @@ const badgeClass = {
 }
 
 export default function DashboardHome() {
+  const [placementData, setPlacementData] = useState(null)
+  const [progress, setProgress] = useState(loadLearningProgress())
+
+  useEffect(() => {
+    const handleProgress = () => setProgress(loadLearningProgress())
+    window.addEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
+
+    try {
+      const savedData = localStorage.getItem('lumen_placement_result')
+      if (savedData) {
+        const parsed = JSON.parse(savedData)
+        if (parsed.result) {
+          setPlacementData(parsed.result)
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+
+    return () => window.removeEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
+  }, [])
+
+  const levelName = placementData
+    ? placementData.recommendedLevel === 3
+      ? 'Advanced'
+      : placementData.recommendedLevel === 2
+      ? 'Intermediate'
+      : 'Beginner'
+    : ''
+
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
       <header className="mb-7">
@@ -113,10 +156,18 @@ export default function DashboardHome() {
             </h2>
           </div>
           <div className="flex flex-wrap justify-center gap-8 py-2 md:justify-between">
-            <DonutChart percent={72} strokeColor="#2563eb" label="Beginner" />
-            <DonutChart percent={58} strokeColor="#7c3aed" label="Intermediate" />
-            <DonutChart percent={64} strokeColor="#0d9488" label="Advanced" />
+            <DonutChart 
+              percent={placementData ? placementData.score : 0} 
+              strokeColor="#ea580c" 
+              label="Placement" 
+              customText={`${Math.round((placementData?.score || 0) / 10)}/10`}
+            />
+            <DonutChart percent={calculateLevelProgress('beginner', progress)} strokeColor="#2563eb" label="Beginner" />
+            <DonutChart percent={calculateLevelProgress('intermediate', progress)} strokeColor="#7c3aed" label="Intermediate" />
+            <DonutChart percent={calculateLevelProgress('advanced', progress)} strokeColor="#0d9488" label="Advanced" />
           </div>
+
+
           <div className="my-6 h-px bg-slate-200" role="presentation" />
           <ul className="m-0 space-y-2 p-0 text-sm font-medium text-slate-700">
             <li>127 words in your active sets</li>

@@ -5,12 +5,12 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-svh flex-col bg-slate-50 font-sans text-slate-700">
       <header className="flex items-center justify-between border-b border-slate-200 bg-white px-7 py-5">
-        <Link to="/" className="inline-flex items-center gap-2.5 no-underline text-inherit">
+        <div className="inline-flex items-center gap-2.5 text-inherit cursor-default select-none">
           <span className="flex h-7 w-7 text-blue-600" aria-hidden>
             <IconFlame />
           </span>
           <span className="text-lg font-bold tracking-wide text-slate-900">LUMEN</span>
-        </Link>
+        </div>
         <nav className="flex items-center gap-2.5" aria-label="Account">
           <Link
             to="/login"

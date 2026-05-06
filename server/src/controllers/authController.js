@@ -68,15 +68,15 @@ const login = async (req, res) => {
 
         // 3. Cocokkan password yang diketik dengan password_hash di database
         const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-        
+
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Password salah!" });
         }
 
         // 4. Buat Token (JWT)
         const token = jwt.sign(
-            { id: user.id, email: user.email, role: user.role, level: user.current_level }, 
-            process.env.JWT_SECRET, 
+            { id: user.id, email: user.email, role: user.role, level: user.current_level },
+            process.env.JWT_SECRET,
             { expiresIn: '1d' } // Token berlaku selama 1 hari
         );
 
