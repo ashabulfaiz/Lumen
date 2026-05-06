@@ -422,8 +422,8 @@ export default function LandingPage() {
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
                     <div>
-                      <p className="text-slate-800 font-bold text-[16px] m-0">Ziddan Azzahra</p>
-                      <p className="text-[14px] text-slate-600 m-0 mt-0.5">Lead Developer & Visionary</p>
+                      <p className="text-slate-800 font-bold text-[16px] m-0">Dicoding Indonesia</p>
+                      <p className="text-[14px] text-slate-600 m-0 mt-0.5">contact@dicoding.com</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-5 bg-slate-50 p-4 rounded-2xl border border-slate-200">
