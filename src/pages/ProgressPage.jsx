@@ -11,13 +11,13 @@ function percentFromStatus(status) {
 
 const barTone = {
   done: 'bg-green-600',
-  doing: 'bg-blue-500',
+  doing: 'bg-indigo-500',
   todo: 'bg-slate-300',
 }
 
 const pillTone = {
   done: 'border-green-200 bg-green-50 text-green-700',
-  doing: 'border-blue-200 bg-blue-50 text-blue-700',
+  doing: 'border-indigo-200 bg-indigo-50 text-indigo-700',
   todo: 'border-slate-200 bg-slate-50 text-slate-600',
 }
 
@@ -119,7 +119,7 @@ export default function ProgressPage() {
                         className={[
                           'w-full rounded-2xl text-left outline-none transition',
                           'cursor-pointer',
-                          'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+                          'focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2',
                           'disabled:cursor-not-allowed disabled:opacity-70',
                           isCompleted ? 'hover:bg-green-50/60' : 'hover:bg-slate-50',
                         ].join(' ')}
@@ -167,7 +167,7 @@ export default function ProgressPage() {
                       isLevelLocked
                         ? 'cursor-not-allowed bg-slate-50 text-slate-400'
                         : `cursor-pointer ${isExpanded
-                            ? 'text-blue-600 hover:bg-blue-50 hover:text-blue-700'
+                            ? 'text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700'
                             : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                           }`
                     }`}

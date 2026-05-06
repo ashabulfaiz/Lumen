@@ -8,6 +8,14 @@ import {
   loadLearningProgress,
 } from '../data/learningData.js'
 
+/** Landing-aligned tokens (indigo / cyan) */
+const brandGradient = 'bg-gradient-to-br from-indigo-500 to-cyan-500'
+const navActive = 'bg-indigo-50 text-indigo-600'
+const navInactive = 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+const navChildActive = 'bg-indigo-50 text-indigo-600'
+const navChildInactive = 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2'
+
 const sidebarLinks = [
   { to: '/dashboard', id: 'dashboard', label: 'Dashboard' },
   {
@@ -43,8 +51,7 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
           to={item.to}
           end={item.to === '/dashboard' || hasChildren}
           className={({ isActive }) =>
-            `flex flex-1 items-center gap-4 rounded-2xl px-5 py-4 text-[16px] font-semibold no-underline transition-colors ${isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-            }`
+            `flex flex-1 items-center gap-4 rounded-2xl px-5 py-4 text-[16px] font-semibold no-underline transition-colors ${focusRing} ${isActive ? navActive : navInactive}`
           }
         >
           <IconNav name={item.id} className="h-6 w-6 shrink-0" />
@@ -53,7 +60,7 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
         {hasChildren && (
           <button
             type="button"
-            className="absolute right-2 rounded-xl p-2.5 text-slate-400 transition-colors hover:text-slate-600"
+            className={`absolute right-2 cursor-pointer rounded-xl p-2.5 text-slate-400 transition-colors hover:text-indigo-600 ${focusRing}`}
             onClick={(e) => {
               e.preventDefault()
               setOpen(!open)
@@ -74,8 +81,8 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
                 <NavLink
                   to={child.to}
                   className={({ isActive }) =>
-                    `block w-full rounded-2xl px-5 py-3.5 text-[16px] font-semibold no-underline transition-colors ${
-                      isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
+                    `block w-full rounded-2xl px-5 py-3.5 text-[16px] font-semibold no-underline transition-colors ${focusRing} ${
+                      isActive ? navChildActive : navChildInactive
                     }`
                   }
                 >
@@ -83,7 +90,7 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
                 </NavLink>
               ) : (
                 <span
-                  className="block w-full cursor-not-allowed rounded-2xl px-5 py-3.5 text-[16px] font-semibold text-slate-300"
+                  className="block w-full cursor-not-allowed rounded-2xl px-5 py-3.5 text-[16px] font-semibold text-slate-300/90"
                   aria-disabled="true"
                 >
                   {child.label}
@@ -113,13 +120,19 @@ export default function DashboardLayout() {
   }, [])
 
   return (
-    <div className="grid min-h-svh grid-cols-1 bg-slate-50 font-sans text-[17px] leading-relaxed text-slate-700 md:h-svh md:grid-cols-[260px_1fr] md:overflow-hidden">
-      <aside className="relative z-20 flex flex-col gap-11 border-b border-slate-200 bg-white px-7 py-9 md:border-b-0 md:border-r md:overflow-y-auto">
-        <NavLink to="/dashboard" className="inline-flex items-center gap-2.5 self-start text-inherit no-underline">
-          <span className="flex h-9 w-9 text-blue-600" aria-hidden>
-            <IconFlame className="h-9 w-9" />
+    <div className="grid min-h-svh grid-cols-1 bg-slate-50 font-sans text-[17px] leading-relaxed text-slate-700 selection:bg-indigo-200 selection:text-indigo-800 md:h-svh md:grid-cols-[260px_1fr] md:overflow-hidden">
+      <aside className="relative z-20 flex flex-col gap-11 border-b border-slate-200 bg-gradient-to-b from-indigo-50/50 via-white to-white px-7 py-9 shadow-sm md:border-b-0 md:border-r md:overflow-y-auto">
+        <NavLink
+          to="/dashboard"
+          className={`inline-flex items-center gap-3 self-start text-inherit no-underline ${focusRing} rounded-xl`}
+        >
+          <span
+            className={`flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-md ${brandGradient}`}
+            aria-hidden
+          >
+            <IconFlame className="h-6 w-6" />
           </span>
-          <span className="text-2xl font-bold tracking-wide text-slate-900">LUMEN</span>
+          <span className="text-2xl font-black tracking-tight text-slate-800">LUMEN</span>
         </NavLink>
         <nav aria-label="App navigation">
           <ul className="flex list-none flex-col gap-1 p-0 md:flex-col">

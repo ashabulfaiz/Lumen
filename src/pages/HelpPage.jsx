@@ -109,7 +109,7 @@ export default function HelpPage() {
               onClick={() => setLanguage('id')}
               className={`cursor-pointer px-3 py-1.5 text-[11px] font-bold rounded-md transition-all duration-200 ${
                 language === 'id' 
-                  ? 'bg-white text-blue-600 shadow-sm' 
+                  ? 'bg-white text-indigo-600 shadow-sm' 
                   : 'text-slate-400 hover:text-slate-600'
               }`}
             >
@@ -119,7 +119,7 @@ export default function HelpPage() {
               onClick={() => setLanguage('en')}
               className={`cursor-pointer px-3 py-1.5 text-[11px] font-bold rounded-md transition-all duration-200 ${
                 language === 'en' 
-                  ? 'bg-white text-blue-600 shadow-sm' 
+                  ? 'bg-white text-indigo-600 shadow-sm' 
                   : 'text-slate-400 hover:text-slate-600'
               }`}
             >
@@ -135,7 +135,7 @@ export default function HelpPage() {
             localStorage.removeItem(STORAGE_KEY); 
             setMessages([]); 
           }}
-          className="shrink-0 mt-2 sm:mt-0 cursor-pointer rounded-xl border-2 border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors"
+          className="shrink-0 mt-2 sm:mt-0 cursor-pointer rounded-xl border-2 border-indigo-200 bg-white px-4 py-2 text-sm font-semibold text-indigo-600 transition-colors hover:bg-indigo-50"
         >
           Clear messages
         </button>
@@ -157,7 +157,7 @@ export default function HelpPage() {
 
             return (
               <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`group/bubble relative max-w-[85%] rounded-2xl border px-4 py-3 ${m.role === 'user' ? 'border-blue-300 bg-blue-100' : 'border-slate-200 bg-white'}`}>
+                <div className={`group/bubble relative max-w-[85%] rounded-2xl border px-4 py-3 ${m.role === 'user' ? 'border-indigo-300 bg-indigo-100' : 'border-slate-200 bg-white'}`}>
                   <p className="m-0 text-[14px] whitespace-pre-wrap text-slate-800 leading-relaxed">{m.text}</p>
                   
                   <div className="mt-2 flex items-center justify-between gap-4">
@@ -168,7 +168,7 @@ export default function HelpPage() {
                         
                         <button 
                           onClick={() => handleToggleSpeak(m.text, idx)}
-                          className={`group/btn flex cursor-pointer items-center transition-colors ${isCurrentlySpeaking ? 'text-red-500' : 'text-slate-400 hover:text-blue-600'}`}
+                          className={`group/btn flex cursor-pointer items-center transition-colors ${isCurrentlySpeaking ? 'text-red-500' : 'text-slate-400 hover:text-indigo-600'}`}
                         >
                           {isCurrentlySpeaking ? (
                             <>
@@ -185,7 +185,7 @@ export default function HelpPage() {
 
                         <button 
                           onClick={() => handleCopy(m.text, idx)}
-                          className="group/btn flex cursor-pointer items-center transition-colors text-slate-400 hover:text-blue-600"
+                          className="group/btn flex cursor-pointer items-center transition-colors text-slate-400 hover:text-indigo-600"
                         >
                           {copiedIndex === idx ? (
                             <>
@@ -218,13 +218,13 @@ export default function HelpPage() {
 
         <form className="flex gap-2.5 border-t border-slate-200 bg-white p-4" onSubmit={e => { e.preventDefault(); send(value); }}>
           <input
-            className="min-w-0 flex-1 rounded-xl border border-slate-300 px-4 py-3 text-[14px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+            className="min-w-0 flex-1 rounded-xl border border-slate-300 px-4 py-3 text-[14px] outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Ask LUMEN"
             disabled={isLoading}
           />
-          <button type="submit" disabled={!value.trim() || isLoading} className="cursor-pointer rounded-xl bg-blue-600 px-6 py-3 text-[14px] font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 transition-colors">
+          <button type="submit" disabled={!value.trim() || isLoading} className="cursor-pointer rounded-xl bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-md shadow-indigo-200 transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300">
             Send
           </button>
         </form>

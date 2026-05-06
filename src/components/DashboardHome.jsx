@@ -11,6 +11,18 @@ import {
 import { readDisplayName, readUsername } from '../lib/userSession.js'
 import { getLessonsWithStatus, loadLearningProgress, LEARNING_PROGRESS_EVENT } from '../data/learningData.js'
 
+/** Landing-aligned tokens */
+const cardShell = 'rounded-[2rem] border border-slate-200 bg-white shadow-md'
+const sectionMuted = 'rounded-[2rem] border border-indigo-100/80 bg-gradient-to-br from-indigo-50/60 to-white p-6 shadow-sm'
+
+const badgeClass = {
+  ai: 'inline-flex items-center gap-1 rounded-xl border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-[11px] font-semibold text-indigo-600',
+  beginner:
+    'inline-flex items-center gap-1 rounded-xl border border-emerald-100 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700',
+  intermediate:
+    'inline-flex items-center gap-1 rounded-xl border border-amber-100 bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-700',
+}
+
 function percentFromStatus(status) {
   if (status === 'completed') return 100
   return 0
@@ -96,14 +108,6 @@ function DonutChart({ percent, strokeColor, label, customText }) {
   )
 }
 
-const badgeClass = {
-  ai: 'inline-flex items-center gap-1 rounded-lg bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-600',
-  beginner:
-    'inline-flex items-center gap-1 rounded-lg bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700',
-  intermediate:
-    'inline-flex items-center gap-1 rounded-lg bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-700',
-}
-
 export default function DashboardHome() {
   const [placementData, setPlacementData] = useState(null)
   const [progress, setProgress] = useState(loadLearningProgress())
@@ -127,31 +131,30 @@ export default function DashboardHome() {
     return () => window.removeEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
   }, [])
 
-  const levelName = placementData
-    ? placementData.recommendedLevel === 3
-      ? 'Advanced'
-      : placementData.recommendedLevel === 2
-      ? 'Intermediate'
-      : 'Beginner'
-    : ''
-
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+    <div className={`${cardShell} p-6 md:p-8`}>
       <header className="mb-7">
-        <h1 className="mb-1.5 text-[28px] font-bold tracking-tight text-slate-900">
-          Welcome back, {greetingName()}!
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 shadow-sm">
+          <span className="flex h-2 w-2 rounded-full bg-indigo-500" aria-hidden />
+          <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600">Your dashboard</span>
+        </div>
+        <h1 className="mb-1.5 text-[28px] font-black tracking-tight text-slate-800 md:text-[32px]">
+          Welcome back,{' '}
+          <span className="text-slate-800">{greetingName()}</span>
+          !
         </h1>
-        <p className="text-slate-600">Keep building your English — one focused session at a time.</p>
+        <p className="text-[15px] leading-relaxed text-slate-600">
+          Keep building your English — one focused session at a time.
+        </p>
       </header>
 
       <div className="mb-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <section
-          className="rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-sm"
-          aria-labelledby="progress-heading"
-        >
+        <section className={sectionMuted} aria-labelledby="progress-heading">
           <div className="mb-5 flex items-center gap-3">
-            <IconTrendUp className="h-6 w-6 shrink-0 text-blue-600" />
-            <h2 id="progress-heading" className="text-lg font-semibold text-slate-900">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-indigo-100 bg-white text-indigo-600 shadow-sm">
+              <IconTrendUp className="h-6 w-6 shrink-0" />
+            </span>
+            <h2 id="progress-heading" className="text-lg font-bold text-slate-900">
               Progress overview
             </h2>
           </div>
@@ -162,13 +165,13 @@ export default function DashboardHome() {
               label="Placement" 
               customText={`${Math.round((placementData?.score || 0) / 10)}/10`}
             />
-            <DonutChart percent={calculateLevelProgress('beginner', progress)} strokeColor="#2563eb" label="Beginner" />
+            <DonutChart percent={calculateLevelProgress('beginner', progress)} strokeColor="#6366f1" label="Beginner" />
             <DonutChart percent={calculateLevelProgress('intermediate', progress)} strokeColor="#7c3aed" label="Intermediate" />
-            <DonutChart percent={calculateLevelProgress('advanced', progress)} strokeColor="#0d9488" label="Advanced" />
+            <DonutChart percent={calculateLevelProgress('advanced', progress)} strokeColor="#06b6d4" label="Advanced" />
           </div>
 
 
-          <div className="my-6 h-px bg-slate-200" role="presentation" />
+          <div className="my-6 h-px bg-slate-200/80" role="presentation" />
           <ul className="m-0 space-y-2 p-0 text-sm font-medium text-slate-700">
             <li>127 words in your active sets</li>
             <li>45 lessons completed</li>
@@ -177,14 +180,14 @@ export default function DashboardHome() {
         </section>
 
         <section
-          className="rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 to-white p-6 shadow-sm"
+          className="rounded-[2rem] border border-orange-200/80 bg-gradient-to-br from-orange-50 to-white p-6 shadow-md"
           aria-labelledby="streak-heading"
         >
           <div className="mb-5 flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-100 text-orange-600" aria-hidden>
               <IconFlame />
             </span>
-            <h2 id="streak-heading" className="text-lg font-semibold text-slate-900">
+            <h2 id="streak-heading" className="text-lg font-bold text-slate-900">
               Daily streak
             </h2>
           </div>
@@ -205,21 +208,22 @@ export default function DashboardHome() {
         </section>
       </div>
 
-      <section className="rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-sm" aria-labelledby="lessons-heading">
+      <section className={sectionMuted} aria-labelledby="lessons-heading">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <IconSparkle className="h-5 w-5 shrink-0 text-blue-600" />
-            <h2 id="lessons-heading" className="text-lg font-semibold text-slate-900">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-indigo-100 bg-white text-indigo-600 shadow-sm">
+              <IconSparkle className="h-5 w-5 shrink-0" />
+            </span>
+            <h2 id="lessons-heading" className="text-lg font-bold text-slate-900">
               Recommended lessons
             </h2>
           </div>
-          <span className="text-xs font-medium text-slate-500">Powered by your study patterns</span>
         </div>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {lessons.map((lesson) => (
             <article
               key={lesson.title}
-              className="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
+              className="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
             >
               <h3 className="mb-2 text-[15px] font-semibold text-slate-900">{lesson.title}</h3>
               <p className="mb-4 flex-1 text-[13px] leading-snug text-slate-600">{lesson.subtitle}</p>
@@ -236,7 +240,7 @@ export default function DashboardHome() {
                   <IconClock className="h-4 w-4" />
                   {lesson.duration}
                 </span>
-                <IconChevronRight className="h-5 w-5 text-slate-300" />
+                <IconChevronRight className="h-5 w-5 text-indigo-200" />
               </div>
             </article>
           ))}

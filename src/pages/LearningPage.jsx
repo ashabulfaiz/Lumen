@@ -31,7 +31,7 @@ export default function LearningPage() {
   return (
     <div className="mx-auto max-w-[880px] pb-12 pt-2 font-sans">
       <header className="mb-9">
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-blue-600">General English</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-600">General English</p>
         <h1 className="mb-3 text-[clamp(1.5rem,3vw,1.875rem)] font-bold tracking-tight text-slate-900">
           Your learning path
         </h1>
@@ -54,7 +54,7 @@ export default function LearningPage() {
             >
               <div className="flex gap-4 py-4 pl-4 pr-4">
                 <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-blue-50 text-sm font-bold text-blue-600"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-indigo-50 text-sm font-bold text-indigo-600"
                   aria-hidden
                 >
                   {index + 1}
@@ -64,7 +64,7 @@ export default function LearningPage() {
                   <p className="mb-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
                   <Link
                     to={step.to}
-                    className="mt-0.5 inline-flex items-center justify-center rounded-[10px] border border-blue-200 bg-blue-50 px-3 py-2 text-[13px] font-bold text-blue-600 no-underline transition hover:border-blue-300 hover:bg-blue-100 active:translate-y-px"
+                    className="mt-0.5 inline-flex cursor-pointer items-center justify-center rounded-[10px] border border-indigo-200 bg-indigo-50 px-3 py-2 text-[13px] font-bold text-indigo-600 no-underline transition hover:border-indigo-300 hover:bg-indigo-100 active:translate-y-px"
                   >
                     {step.cta}
                   </Link>
@@ -78,7 +78,7 @@ export default function LearningPage() {
       <p className="mt-8">
         <Link
           to="/dashboard"
-          className="inline-flex rounded-xl border-2 border-blue-200 bg-white px-5 py-2.5 text-sm font-semibold text-blue-600 hover:bg-blue-50"
+          className="inline-flex cursor-pointer rounded-xl border-2 border-indigo-200 bg-white px-5 py-2.5 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50"
         >
           Back to dashboard
         </Link>

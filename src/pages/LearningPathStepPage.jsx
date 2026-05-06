@@ -93,7 +93,7 @@ export default function LearningPathStepPage() {
 
   return (
     <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
-      <p className="mb-2 text-xs font-bold uppercase tracking-widest text-blue-600">Learning path</p>
+      <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-600">Learning path</p>
       <h1 className="mb-3 text-[26px] font-bold tracking-tight text-slate-900">{content.title}</h1>
       <p className="mb-6 text-[15px] leading-relaxed text-slate-600">{content.description}</p>
 
@@ -122,7 +122,7 @@ export default function LearningPathStepPage() {
                       ? 'cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400 opacity-70'
                       : 'cursor-pointer'
                     } ${selected
-                      ? 'border-blue-500 bg-blue-50 shadow-[0_0_0_1px_rgba(59,130,246,0.2)]'
+                      ? 'border-indigo-500 bg-indigo-50 shadow-[0_0_0_1px_rgba(99,102,241,0.22)]'
                       : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white'
                     }`}
                   onClick={() => pickLevel(level.num)}
@@ -151,7 +151,7 @@ export default function LearningPathStepPage() {
               </p>
               <button
                 type="button"
-                className="cursor-pointer rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+                className="cursor-pointer rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
                 onClick={completeCurrentTop}
               >
                 Mark {levelName(topActiveLevel)} complete
@@ -171,7 +171,7 @@ export default function LearningPathStepPage() {
         <section className="mb-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <div className="grid gap-3 md:grid-cols-3">
             <div className="flex items-center gap-3 rounded-xl p-3">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 text-blue-600">◷</span>
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600">◷</span>
               <div>
                 <p className="text-[15px] font-medium text-slate-800">Duration</p>
                 <p className="text-xs text-slate-500">~10-15 minutes</p>
@@ -233,7 +233,7 @@ export default function LearningPathStepPage() {
                 </button>
                 <button
                   type="button"
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-blue-600 bg-white px-6 py-[10px] text-base font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-indigo-600 bg-white px-6 py-[10px] text-base font-semibold text-indigo-600 shadow-sm transition hover:bg-indigo-50"
                   onClick={() => navigate('/learning/placement/test')}
                 >
                   Review Result
@@ -243,7 +243,7 @@ export default function LearningPathStepPage() {
             ) : (
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
                 onClick={() => navigate('/learning/placement/test')}
               >
                 Start Placement Test
@@ -285,14 +285,14 @@ export default function LearningPathStepPage() {
         {isPlacementPage ? (
           <Link
             to="/learning/levels"
-            className="inline-flex cursor-pointer items-center rounded-2xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white no-underline shadow-sm transition hover:bg-blue-700"
+            className="inline-flex cursor-pointer items-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white no-underline shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
           >
             {content.nextLabel || 'Next'}
           </Link>
         ) : content.nextPath ? (
           <Link
             to={content.nextPath}
-            className="inline-flex cursor-pointer rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-blue-700"
+            className="inline-flex cursor-pointer rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
           >
             {content.nextLabel || 'Next'}
           </Link>

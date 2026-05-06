@@ -7,7 +7,7 @@ export default function PlaceholderPage({ title, description }) {
       <p className="mb-6 text-[15px] leading-relaxed text-slate-600">{description}</p>
       <Link
         to="/dashboard"
-        className="inline-flex rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+        className="inline-flex cursor-pointer rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
       >
         Back to dashboard
       </Link>

@@ -64,13 +64,13 @@ const LEVELS = {
     title: 'Intermediate',
     description: 'Master the essentials and build your foundation',
     theme: {
-      shellBorder: 'border-blue-200',
-      shellBg: 'bg-blue-50/60',
-      badgeBg: 'bg-blue-600',
+      shellBorder: 'border-indigo-200',
+      shellBg: 'bg-indigo-50/60',
+      badgeBg: 'bg-indigo-600',
       badgeText: 'text-white',
-      statText: 'text-blue-800',
-      statTextMuted: 'text-blue-700',
-      progressBg: 'bg-blue-600',
+      statText: 'text-indigo-800',
+      statTextMuted: 'text-indigo-700',
+      progressBg: 'bg-indigo-600',
     },
     lessons: [
       {
@@ -222,7 +222,7 @@ export default function LevelDetailPage() {
               className={`group relative flex flex-col rounded-2xl border bg-white p-5 transition-shadow ${
                 isCompleted ? 'border-green-200 shadow-[0_2px_10px_-4px_rgba(16,185,129,0.15)]' :
                 isLocked ? 'border-slate-100 opacity-80' :
-                'border-slate-200 shadow-sm hover:border-blue-200 hover:shadow-md'
+                'border-slate-200 shadow-sm hover:border-indigo-200 hover:shadow-md'
               }`}
             >
               <div className="mb-4 flex items-start justify-between gap-3">
@@ -230,7 +230,7 @@ export default function LevelDetailPage() {
                   className={`flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full ${
                     isCompleted ? 'bg-[#10b981] text-white' :
                     isLocked ? 'bg-slate-100 text-[#f59e0b]' :
-                    'bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-600'
+                    'bg-slate-100 text-slate-600 group-hover:bg-indigo-50 group-hover:text-indigo-600'
                   }`}
                 >
                   {isCompleted && <IconStar className="h-5 w-5" />}
@@ -253,7 +253,7 @@ export default function LevelDetailPage() {
               </div>
               
               {(isAvailable || isCompleted) && (
-                <Link to={`/learning/${slug}/lesson/${lesson.id}`} className="absolute inset-0 rounded-2xl ring-blue-500 focus-visible:outline-none focus-visible:ring-2">
+                <Link to={`/learning/${slug}/lesson/${lesson.id}`} className="absolute inset-0 rounded-2xl ring-indigo-500 focus-visible:outline-none focus-visible:ring-2">
                   <span className="sr-only">{isCompleted ? 'Review' : 'Start'} {lesson.title}</span>
                 </Link>
               )}

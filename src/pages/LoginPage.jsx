@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
-import api from '../lib/axiosInstance';
+import api from '../lib/axiosInstance'
 import { persistLoginSession } from '../lib/userSession.js'
 import {
   INVALID_EMAIL_MESSAGE,
@@ -46,7 +46,7 @@ export default function LoginPage() {
     e.preventDefault()
     const cleanEmail = sanitizeEmailInput(email)
     setEmail(cleanEmail)
-    
+
     if (!cleanEmail.trim() || !password) {
       setError('Email dan password wajib diisi.')
       return
@@ -61,7 +61,7 @@ export default function LoginPage() {
       setError(PASSWORD_TOO_SHORT_MESSAGE)
       return
     }
-    
+
     setError('')
     setEmailError('')
     setPasswordError('')
@@ -69,34 +69,35 @@ export default function LoginPage() {
     try {
       const response = await api.post('/auth/login', {
         email: cleanEmail,
-        password: password
-      });
+        password,
+      })
 
-      const token = response.data.token;
-      localStorage.setItem('lumen_token', token);
+      const token = response.data.token
+      localStorage.setItem('lumen_token', token)
       persistLoginSession(cleanEmail)
-
       navigate('/dashboard', { replace: true })
-      
     } catch (err) {
-      setError(err.response?.data?.message || "Terjadi kesalahan pada server saat login");
+      setError(err.response?.data?.message || 'Terjadi kesalahan pada server saat login')
     }
   }
 
   const inputError = (hasErr) =>
     hasErr
       ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
-      : 'border-slate-200 focus:border-blue-400 focus:ring-blue-200'
+      : 'border-slate-200 focus:border-indigo-400 focus:ring-indigo-200'
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-slate-50 px-5 py-12 font-sans">
-      <Link to="/" className="mb-5 max-w-[420px] self-start text-sm text-slate-600 no-underline hover:text-blue-600 md:mx-auto md:w-full">
+      <Link
+        to="/"
+        className="mb-5 max-w-[420px] self-start text-sm text-slate-600 no-underline hover:text-indigo-600 md:mx-auto md:w-full"
+      >
         ← Back to home
       </Link>
 
       <div className="w-full max-w-[420px] rounded-2xl border border-slate-200 bg-white p-8 shadow-lg">
         <div className="mb-5 flex items-center gap-2.5">
-          <span className="flex h-8 w-8 text-blue-600" aria-hidden>
+          <span className="flex h-8 w-8 text-indigo-600" aria-hidden>
             <IconFlame />
           </span>
           <span className="text-[17px] font-bold tracking-wide text-slate-900">LUMEN</span>
@@ -106,10 +107,14 @@ export default function LoginPage() {
 
         <form className="flex flex-col gap-1.5" onSubmit={handleSubmit} noValidate>
           {error && (
-            <p className="mb-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700" role="alert">
+            <p
+              className="mb-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
+              role="alert"
+            >
               {error}
             </p>
           )}
+
           <label className="mt-2 text-[13px] font-semibold text-slate-600 first:mt-0" htmlFor="login-email">
             Email
           </label>
@@ -122,7 +127,9 @@ export default function LoginPage() {
             spellCheck={false}
             aria-invalid={emailError ? 'true' : 'false'}
             aria-describedby={emailError ? 'login-email-hint' : undefined}
-            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!emailError)}`}
+            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(
+              !!emailError,
+            )}`}
             value={email}
             onChange={(e) => {
               applyEmail(e.target.value)
@@ -146,7 +153,9 @@ export default function LoginPage() {
             autoComplete="current-password"
             aria-invalid={passwordError ? 'true' : 'false'}
             aria-describedby={passwordError ? 'login-password-hint' : undefined}
-            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!passwordError)}`}
+            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(
+              !!passwordError,
+            )}`}
             value={password}
             onChange={(e) => {
               applyPassword(e.target.value)
@@ -163,7 +172,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={submitBlocked}
-            className="mt-5 w-full cursor-pointer rounded-xl bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-5 w-full cursor-pointer rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Log in
           </button>
@@ -171,7 +180,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-slate-600">
           No account yet?{' '}
-          <Link to="/register" className="font-semibold text-blue-600 no-underline hover:underline">
+          <Link to="/register" className="font-semibold text-indigo-600 no-underline hover:underline">
             Sign up
           </Link>
         </p>

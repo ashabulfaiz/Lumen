@@ -308,7 +308,7 @@ export default function LessonPage() {
                       </div>
 
                       {(s.sampleAnswer || s.tips) && (
-                        <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50 px-5 py-4 text-[15px] leading-relaxed text-slate-700">
+                        <div className="mt-4 rounded-xl border border-indigo-100 bg-indigo-50 px-5 py-4 text-[15px] leading-relaxed text-slate-700">
                           {s.tips ? (
                             <p className="m-0">
                               <span className="font-bold text-slate-900">Tip:</span> {s.tips}
@@ -404,7 +404,7 @@ export default function LessonPage() {
                       })}
                     </div>
 
-                    <div className="mt-5 rounded-xl border border-blue-100 bg-blue-50 px-5 py-4 text-[15px] leading-relaxed text-slate-700">
+                    <div className="mt-5 rounded-xl border border-indigo-100 bg-indigo-50 px-5 py-4 text-[15px] leading-relaxed text-slate-700">
                       <span className="font-bold text-slate-900">Explanation:</span> {s.explanation}
                     </div>
                   </div>
@@ -434,7 +434,7 @@ export default function LessonPage() {
           {questions.length > 0 && (
             <div className="mt-6 rounded-2xl bg-slate-50 p-5">
               <p className="text-sm font-medium uppercase tracking-wide text-slate-500">Quiz Score</p>
-              <p className="mt-1 text-4xl font-bold text-blue-600">{Math.round((correctAnswers / questions.length) * 100)}%</p>
+              <p className="mt-1 text-4xl font-bold text-indigo-600">{Math.round((correctAnswers / questions.length) * 100)}%</p>
               <p className="mt-2 text-sm text-slate-600">
                 Correct answers: {correctAnswers} of {questions.length}
               </p>
@@ -442,7 +442,7 @@ export default function LessonPage() {
               <div className="mt-5 border-t border-slate-200 pt-5">
                 <button
                   type="button"
-                  className="flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border-2 border-blue-600 bg-white px-4 py-3 text-[15px] font-bold text-blue-600 transition hover:bg-blue-50"
+                  className="flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border-2 border-indigo-600 bg-white px-4 py-3 text-[15px] font-bold text-indigo-600 transition hover:bg-indigo-50"
                   onClick={() => setShowReview(true)}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -471,8 +471,8 @@ export default function LessonPage() {
               type="button"
               className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition ${
                 nextLessonId
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                  ? 'cursor-pointer bg-indigo-600 text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700'
+                  : 'cursor-not-allowed bg-slate-100 text-slate-400'
               }`}
               onClick={() => {
                 if (!nextLessonId) return
@@ -502,7 +502,7 @@ export default function LessonPage() {
           </div>
           <div className="h-1.5 w-full rounded-full bg-slate-200">
             <div
-              className="h-1.5 rounded-full bg-blue-600 transition-all duration-300"
+              className="h-1.5 rounded-full bg-indigo-600 transition-all duration-300"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -517,7 +517,7 @@ export default function LessonPage() {
           <div className="py-4 space-y-4">
             <p className="text-[16px] leading-relaxed text-slate-800 font-semibold">{step.prompt}</p>
             <textarea
-              className="min-h-[140px] w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] leading-relaxed text-slate-900 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
+              className="min-h-[140px] w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] leading-relaxed text-slate-900 outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200"
               value={typeof selectedOption === 'string' ? selectedOption : ''}
               onChange={(e) => handleEssayChange(e.target.value)}
               placeholder="Type your answer here..."
@@ -550,13 +550,13 @@ export default function LessonPage() {
                     type="button"
                     onClick={() => handleSelect(option)}
                     className={`w-full rounded-xl border px-4 py-3 text-left transition ${selected
-                      ? 'border-blue-500 bg-blue-50 shadow-[0_0_0_1px_rgba(59,130,246,0.2)]'
+                      ? 'border-indigo-500 bg-indigo-50 shadow-[0_0_0_1px_rgba(99,102,241,0.22)]'
                       : 'border-slate-200 bg-white hover:border-slate-300'
                       }`}
                   >
                     <span className="inline-flex items-center gap-3 text-slate-800">
                       <span
-                        className={`inline-flex h-5 w-5 items-center justify-center rounded-full border ${selected ? 'border-blue-600 bg-blue-50 text-blue-600' : 'border-slate-400 bg-white text-transparent'
+                        className={`inline-flex h-5 w-5 items-center justify-center rounded-full border ${selected ? 'border-indigo-600 bg-indigo-50 text-indigo-600' : 'border-slate-400 bg-white text-transparent'
                           }`}
                         aria-hidden
                       >
@@ -579,7 +579,7 @@ export default function LessonPage() {
               type="button"
               className={[
                 'inline-flex items-center gap-2 rounded-xl px-2 py-1 text-sm font-medium transition',
-                'outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+                'outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2',
                 'cursor-pointer',
                 isFirstStep ? 'text-slate-600 hover:text-slate-900' : 'text-slate-600 hover:text-slate-900',
               ].join(' ')}
@@ -596,7 +596,7 @@ export default function LessonPage() {
                 return (
                   <span
                     key={item.id}
-                    className={`h-1.5 w-1.5 rounded-full ${active ? 'bg-blue-600' : answered ? 'bg-blue-300' : 'bg-slate-300'
+                    className={`h-1.5 w-1.5 rounded-full ${active ? 'bg-indigo-600' : answered ? 'bg-indigo-300' : 'bg-slate-300'
                       }`}
                     aria-hidden
                   />
@@ -608,9 +608,9 @@ export default function LessonPage() {
               type="button"
               className={[
                 'inline-flex items-center gap-2 rounded-xl px-3 py-1.5 text-sm font-semibold transition',
-                'outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+                'outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2',
                 canProceed
-                  ? 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-700'
+                  ? 'cursor-pointer bg-indigo-600 text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 active:bg-indigo-700'
                   : 'cursor-not-allowed bg-slate-100 text-slate-400',
               ].join(' ')}
               onClick={handleNext}
