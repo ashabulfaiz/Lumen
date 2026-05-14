@@ -1,74 +1,98 @@
 const db = require('../config/database');
 
-// 1. Mencatat bahwa sebuah materi (lesson) sudah selesai dibaca/ditonton
 const markLessonComplete = async (req, res) => {
     try {
-        const userId = req.user.id; // Didapat dari verifyToken
+        const userId = req.user.id;
         const { lesson_id } = req.body;
 
         if (!lesson_id) {
-            return res.status(400).json({ message: "ID Lesson wajib dikirim!" });
+            return res.status(400).json({ message: "Lesson ID must be sent!" });
         }
 
-        // Cek apakah sudah pernah dicatat sebelumnya
         const [existing] = await db.query(
             'SELECT * FROM user_progress WHERE user_id = ? AND lesson_id = ?',
             [userId, lesson_id]
         );
 
         if (existing.length > 0) {
-            // Jika sudah ada, update last_accessed dan pastikan is_completed = true
             await db.query(
                 'UPDATE user_progress SET is_completed = true, last_accessed = CURRENT_TIMESTAMP WHERE id = ?',
                 [existing[0].id]
             );
         } else {
-            // Jika belum ada, buat record baru
             await db.query(
                 'INSERT INTO user_progress (user_id, lesson_id, is_completed) VALUES (?, ?, true)',
                 [userId, lesson_id]
             );
         }
 
-        res.status(200).json({ status: "success", message: "Progres materi berhasil dicatat!" });
+        res.status(200).json({ status: "success", message: "Material progress successfully recorded!" });
     } catch (error) {
-        res.status(500).json({ message: "Gagal mencatat progres materi", error: error.message });
+        res.status(500).json({ message: "Failed to record material progress", error: error.message });
     }
 };
 
-// 2. Mengirim dan menyimpan nilai kuis
 const submitQuizScore = async (req, res) => {
     try {
         const userId = req.user.id;
-        const { quiz_id, skor, waktu_pengerjaan } = req.body;
+        const { lessonId, score, answers } = req.body;
 
-        if (!quiz_id || skor === undefined || waktu_pengerjaan === undefined) {
-            return res.status(400).json({ message: "Data kuis tidak lengkap!" });
+        if (!lessonId) {
+            return res.status(400).json({ message: "Lesson ID must be sent!" });
+        }
+
+        let quizId = null;
+        const [existingQuiz] = await db.query('SELECT id FROM quizzes WHERE lesson_id = ?', [lessonId]);
+        
+        if (existingQuiz.length > 0) {
+            quizId = existingQuiz[0].id;
+        } else {
+            const [newQuiz] = await db.query(
+                'INSERT INTO quizzes (lesson_id, judul_quiz) VALUES (?, ?)', 
+                [lessonId, `Quiz for Lesson ${lessonId}`]
+            );
+            quizId = newQuiz.insertId;
         }
 
         await db.query(
-            'INSERT INTO quiz_scores (user_id, quiz_id, skor, waktu_pengerjaan) VALUES (?, ?, ?, ?)',
-            [userId, quiz_id, skor, waktu_pengerjaan]
+            'INSERT INTO quiz_scores (user_id, quiz_type, quiz_id, skor) VALUES (?, "module", ?, ?)',
+            [userId, quizId, score]
         );
 
-        res.status(201).json({ status: "success", message: "Nilai kuis berhasil disimpan! AI sedang menganalisis..." });
+        if (answers && Object.keys(answers).length > 0) {
+            const detailValues = Object.entries(answers).map(([questionCode, answerText]) => {
+                return [userId, null, null, answerText]; 
+            });
+
+            await db.query(
+                'INSERT INTO user_answers (user_id, placement_question_id, question_id, jawaban_teks) VALUES ?',
+                [detailValues]
+            );
+        }
+
+        const [existingProgress] = await db.query('SELECT id FROM user_progress WHERE user_id = ? AND lesson_id = ?', [userId, lessonId]);
+        if (existingProgress.length > 0) {
+            await db.query('UPDATE user_progress SET is_completed = true, last_accessed = CURRENT_TIMESTAMP WHERE id = ?', [existingProgress[0].id]);
+        } else {
+            await db.query('INSERT INTO user_progress (user_id, lesson_id, is_completed) VALUES (?, ?, true)', [userId, lessonId]);
+        }
+
+        res.status(201).json({ status: "success", message: "Quiz and essay scores successfully saved to the database!" });
     } catch (error) {
-        res.status(500).json({ message: "Gagal menyimpan nilai kuis", error: error.message });
+        console.error("Error submitting quiz:", error);
+        res.status(500).json({ message: "Failed to save quiz scores", error: error.message });
     }
 };
 
-// 3. Mengambil statistik user untuk halaman Dashboard frontend
 const getDashboardStats = async (req, res) => {
     try {
         const userId = req.user.id;
 
-        // Hitung total materi yang sudah diselesaikan
         const [progressCount] = await db.query(
             'SELECT COUNT(*) as total_completed FROM user_progress WHERE user_id = ? AND is_completed = true',
             [userId]
         );
 
-        // Ambil nilai rata-rata kuis
         const [scoreStats] = await db.query(
             'SELECT AVG(skor) as rata_rata_skor, COUNT(*) as total_kuis FROM quiz_scores WHERE user_id = ?',
             [userId]
@@ -83,8 +107,35 @@ const getDashboardStats = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({ message: "Gagal mengambil data dashboard", error: error.message });
+        console.error("Error fetching dashboard stats:", error);
+        res.status(500).json({ message: "Failed to fetch dashboard data", error: error.message });
     }
 };
 
-module.exports = { markLessonComplete, submitQuizScore, getDashboardStats };
+const getUserProgress = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const [users] = await db.query('SELECT current_level, is_onboarding_complete FROM users WHERE id = ?', [userId]);
+        
+        if (users.length === 0) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        
+        const user = users[0];
+        const [completedLessons] = await db.query('SELECT lesson_id FROM user_progress WHERE user_id = ? AND is_completed = true', [userId]);
+
+        res.status(200).json({
+            status: "success",
+            data: {
+                current_level: user.current_level,
+                is_onboarding_complete: user.is_onboarding_complete,
+                completed_lesson_ids: completedLessons.map(row => row.lesson_id)
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching user progress:", error);
+        res.status(500).json({ message: "Failed to fetch user progress", error: error.message });
+    }
+};
+
+module.exports = { markLessonComplete, submitQuizScore, getDashboardStats, getUserProgress };

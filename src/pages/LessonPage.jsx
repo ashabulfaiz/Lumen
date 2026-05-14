@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { learningLevels, markLessonCompleted } from '../data/learningData.js'
+import api from '../lib/axiosInstance'
 
 const lessonPacks = {
   beginner: {
@@ -230,10 +231,29 @@ export default function LessonPage() {
     setSelectedOptions((prev) => ({ ...prev, [step.id]: text }))
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!canProceed) return
+
     if (isLastStep) {
       setIsFinished(true)
+      
+      const questionsOnly = steps.filter(s => s.type === 'question')
+      const correctAnswers = questionsOnly.reduce((total, q) => {
+        return selectedOptions[q.id] === q.answer ? total + 1 : total
+      }, 0)
+      const score = questionsOnly.length > 0 ? Math.round((correctAnswers / questionsOnly.length) * 100) : 0
+
+      try {
+        await api.post('/progress/submit-quiz', {
+          lessonId: lessonId,
+          score: score,
+          answers: selectedOptions
+        })
+        console.log("✅ Kuis dan Essay berhasil disimpan ke Database!")
+      } catch (error) {
+        console.error("❌ Gagal menyimpan kuis ke database:", error)
+      }
+
       markLessonCompleted(level, lessonId)
       return
     }

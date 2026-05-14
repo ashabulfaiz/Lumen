@@ -1,3 +1,4 @@
+import api from '../lib/axiosInstance';
 export const LEARNING_PROGRESS_KEY = 'lumen_learning_progress'
 export const LEARNING_PROGRESS_EVENT = 'lumen-learning-progress-changed'
 
@@ -208,5 +209,34 @@ export function getLessonsWithStatus(slug, progress) {
 
     return { ...lesson, status: computedStatus }
   })
+}
+
+export async function syncLearningProgressFromDB() {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const token = localStorage.getItem('lumen_token');
+    if (!token) return;
+
+    const response = await api.get('/progress/my-progress');
+    const dbData = response.data.data;
+
+    const levelMap = { 'Beginner': 1, 'Intermediate': 2, 'Advanced': 3 };
+    const dbHighestUnlocked = levelMap[dbData.current_level] || 1;
+    const isPlacementCompleted = Boolean(dbData.is_onboarding_complete);
+
+    const localProgress = loadLearningProgress();
+
+    saveLearningProgress(
+      localProgress.chosenLevel || dbHighestUnlocked,
+      dbHighestUnlocked, 
+      isPlacementCompleted,
+      localProgress.completedLessons
+    );
+
+    console.log("✅ Progress successfully synced from Database!");
+  } catch (error) {
+    console.error("❌ Failed to sync data from DB:", error);
+  }
 }
 

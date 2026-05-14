@@ -8,6 +8,7 @@ const { errorHandler } = require('./src/middlewares/errorHandler');
 const progressRoutes = require('./src/routes/progressRoutes');
 const helpRoutes = require('./src/routes/helpRoutes');
 const certificateRoutes = require('./src/routes/certificateRoutes');
+const placementRoutes = require('./src/routes/placementRoutes');
 
 const app = express();
 
@@ -44,7 +45,7 @@ app.use('/api/learn', learningRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/help', helpRoutes);
 app.use('/api/certificates', certificateRoutes);
-
+app.use('/api/placement', placementRoutes);
 
 app.use((req, res, next) => {
     const error = new Error(`Route tidak ditemukan - ${req.originalUrl}`);

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { IconFlame } from '../components/Icons.jsx'
 import api from '../lib/axiosInstance'
 import { persistRegisterSession } from '../lib/userSession.js'
@@ -50,7 +51,7 @@ export default function RegisterPage() {
     setEmail(cleanEmail)
 
     if (!name.trim() || !cleanEmail.trim() || !password) {
-      setError('Nama, email, dan password wajib diisi.')
+      setError('Name, email, and password are required.')
       return
     }
     if (!isValidEmail(cleanEmail)) {
@@ -64,7 +65,7 @@ export default function RegisterPage() {
       return
     }
     if (password !== confirm) {
-      setError('Konfirmasi password tidak cocok.')
+      setError('Password confirmation does not match.')
       return
     }
 
@@ -81,10 +82,24 @@ export default function RegisterPage() {
       })
 
       persistRegisterSession(name, cleanEmail)
-      alert('Registrasi Berhasil! Silakan login untuk melanjutkan.')
+            
+      await Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'Please login to start learning.',
+        confirmButtonColor: '#4f46e5',
+        confirmButtonText: 'OK, Login Now',
+        customClass: {
+          popup: 'rounded-2xl font-sans',
+          confirmButton: 'rounded-xl px-6 py-2.5 text-sm font-semibold shadow-md'
+        }
+      })
+
       navigate('/login', { replace: true })
+      
     } catch (err) {
-      setError(err.response?.data?.message || 'Terjadi kesalahan pada server saat registrasi.')
+      console.error("Detail Error:", err);
+      setError(err.response?.data?.message || 'An error occurred on the server during registration.')
     }
   }
 

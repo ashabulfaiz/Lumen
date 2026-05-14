@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { levelTracks, getLessonsWithStatus, loadLearningProgress, LEARNING_PROGRESS_EVENT } from '../data/learningData.js'
+import { levelTracks, getLessonsWithStatus, loadLearningProgress, LEARNING_PROGRESS_EVENT, syncLearningProgressFromDB } from '../data/learningData.js'
 import { IconCheckCircle, IconClock, IconLock, IconChevronDown } from '../components/Icons.jsx'
 
 
@@ -27,6 +27,7 @@ export default function ProgressPage() {
   const [progress, setProgress] = useState(loadLearningProgress())
 
   useEffect(() => {
+    syncLearningProgressFromDB();
     const handleProgress = () => setProgress(loadLearningProgress())
     window.addEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
     return () => window.removeEventListener(LEARNING_PROGRESS_EVENT, handleProgress)

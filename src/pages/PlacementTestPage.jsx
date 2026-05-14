@@ -1,21 +1,26 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import api from '../lib/axiosInstance'
 
-const placementQuestions = [
-  { id: 1, prompt: 'What is the past tense of "go"?', options: ['goed', 'went', 'gone', 'going'], answer: 'went', explanation: '"Went" is the irregular past tense form of the verb "go".' },
-  { id: 2, prompt: 'Choose the correct sentence.', options: ['She do her homework.', 'She does her homework.', 'She doing her homework.', 'She done her homework.'], answer: 'She does her homework.', explanation: 'For third-person singular subjects (he/she/it) in the present simple tense, we use "does".' },
-  { id: 3, prompt: 'Which word is a synonym of "rapid"?', options: ['Slow', 'Fast', 'Late', 'Heavy'], answer: 'Fast', explanation: '"Rapid" means happening in a short time or at a great rate, which is synonymous with "fast".' },
-  { id: 4, prompt: 'Fill in the blank: They ___ to school every day.', options: ['go', 'goes', 'going', 'gone'], answer: 'go', explanation: 'With the pronoun "they", the base form of the verb "go" is used in the present simple tense.' },
-  { id: 5, prompt: 'Which one is a noun?', options: ['Beautiful', 'Run', 'Happiness', 'Quickly'], answer: 'Happiness', explanation: '"Happiness" is a state of being, making it a noun. The others are an adjective, verb, and adverb.' },
-  { id: 6, prompt: 'Choose the best response: "How are you?"', options: ['I am fine, thank you.', 'I am in the class.', 'I was yesterday.', 'I have a book.'], answer: 'I am fine, thank you.', explanation: 'This is the standard polite response to an inquiry about one\'s well-being.' },
-  { id: 7, prompt: 'Pick the correct preposition: "She is interested ___ music."', options: ['at', 'in', 'on', 'to'], answer: 'in', explanation: 'The adjective "interested" is always followed by the preposition "in".' },
-  { id: 8, prompt: 'What is the opposite of "difficult"?', options: ['Hard', 'Simple', 'Complex', 'Strong'], answer: 'Simple', explanation: '"Simple" means easily understood or done, which is the direct opposite of "difficult".' },
-  { id: 9, prompt: 'Which sentence uses the future tense?', options: ['I eat breakfast.', 'I ate breakfast.', 'I am eating breakfast.', 'I will eat breakfast.'], answer: 'I will eat breakfast.', explanation: 'The auxiliary verb "will" indicates an action that will happen in the future.' },
-  { id: 10, prompt: 'Choose the correct article: "___ apple a day keeps the doctor away."', options: ['A', 'An', 'The', 'No article'], answer: 'An', explanation: 'We use "an" before singular countable nouns that begin with a vowel sound.' },
-]
+// const placementQuestions = [
+//   { id: 1, prompt: 'What is the past tense of "go"?', options: ['goed', 'went', 'gone', 'going'], answer: 'went', explanation: '"Went" is the irregular past tense form of the verb "go".' },
+//   { id: 2, prompt: 'Choose the correct sentence.', options: ['She do her homework.', 'She does her homework.', 'She doing her homework.', 'She done her homework.'], answer: 'She does her homework.', explanation: 'For third-person singular subjects (he/she/it) in the present simple tense, we use "does".' },
+//   { id: 3, prompt: 'Which word is a synonym of "rapid"?', options: ['Slow', 'Fast', 'Late', 'Heavy'], answer: 'Fast', explanation: '"Rapid" means happening in a short time or at a great rate, which is synonymous with "fast".' },
+//   { id: 4, prompt: 'Fill in the blank: They ___ to school every day.', options: ['go', 'goes', 'going', 'gone'], answer: 'go', explanation: 'With the pronoun "they", the base form of the verb "go" is used in the present simple tense.' },
+//   { id: 5, prompt: 'Which one is a noun?', options: ['Beautiful', 'Run', 'Happiness', 'Quickly'], answer: 'Happiness', explanation: '"Happiness" is a state of being, making it a noun. The others are an adjective, verb, and adverb.' },
+//   { id: 6, prompt: 'Choose the best response: "How are you?"', options: ['I am fine, thank you.', 'I am in the class.', 'I was yesterday.', 'I have a book.'], answer: 'I am fine, thank you.', explanation: 'This is the standard polite response to an inquiry about one\'s well-being.' },
+//   { id: 7, prompt: 'Pick the correct preposition: "She is interested ___ music."', options: ['at', 'in', 'on', 'to'], answer: 'in', explanation: 'The adjective "interested" is always followed by the preposition "in".' },
+//   { id: 8, prompt: 'What is the opposite of "difficult"?', options: ['Hard', 'Simple', 'Complex', 'Strong'], answer: 'Simple', explanation: '"Simple" means easily understood or done, which is the direct opposite of "difficult".' },
+//   { id: 9, prompt: 'Which sentence uses the future tense?', options: ['I eat breakfast.', 'I ate breakfast.', 'I am eating breakfast.', 'I will eat breakfast.'], answer: 'I will eat breakfast.', explanation: 'The auxiliary verb "will" indicates an action that will happen in the future.' },
+//   { id: 10, prompt: 'Choose the correct article: "___ apple a day keeps the doctor away."', options: ['A', 'An', 'The', 'No article'], answer: 'An', explanation: 'We use "an" before singular countable nouns that begin with a vowel sound.' },
+// ]
 
 export default function PlacementTestPage() {
   const navigate = useNavigate()
+  
+  const [placementQuestions, setPlacementQuestions] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const [savedData] = useState(() => {
@@ -31,21 +36,56 @@ export default function PlacementTestPage() {
   const [result, setResult] = useState(savedData?.result || null)
   const [showReview, setShowReview] = useState(false)
 
-  const question = placementQuestions[currentIndex]
-  const totalQuestions = placementQuestions.length
-  const progressPercentage = ((currentIndex + 1) / totalQuestions) * 100
-  const selectedOption = selectedOptions[question.id]
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await api.get('/placement/questions');
+        setPlacementQuestions(response.data.data);
+      } catch (error) {
+        console.error("Gagal mengambil soal placement dari database:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchQuestions();
+  }, []);
 
-  const isLastQuestion = currentIndex === totalQuestions - 1
-  const nextLabel = isLastQuestion ? 'Finish' : 'Next'
+  const question = placementQuestions[currentIndex];
+  const selectedOption = question ? selectedOptions[question.id] : null;
+  const canProceed = useMemo(() => selectedOption != null, [selectedOption]);
+  
+  const totalQuestions = placementQuestions.length;
+  const progressPercentage = totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;
+  const isLastQuestion = currentIndex === totalQuestions - 1;
+  const nextLabel = isLastQuestion ? 'Finish' : 'Next';
 
-  const canProceed = useMemo(() => selectedOption != null, [selectedOption])
+  if (isLoading) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center font-sans">
+        <div className="text-center">
+          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-slate-200 border-t-indigo-600"></div>
+          <p className="text-[15px] font-semibold text-slate-600">Loading exam questions...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!placementQuestions || placementQuestions.length === 0) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center font-sans text-center">
+        <p className="mb-4 text-lg font-bold text-slate-800">Exam questions not available in the database.</p>
+        <button onClick={() => navigate('/learning/introduction')} className="rounded-xl bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-700">
+          Back
+        </button>
+      </div>
+    )
+  }
 
   const handleSelect = (option) => {
     setSelectedOptions((prev) => ({ ...prev, [question.id]: option }))
   }
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!canProceed) return
     if (isLastQuestion) {
       const correctAnswers = placementQuestions.reduce((total, item) => {
@@ -66,7 +106,18 @@ export default function PlacementTestPage() {
           selectedOptions
         }))
       } catch (e) {
-        console.error('Failed to save placement result:', e)
+        console.error('Failed to save placement result locally:', e)
+      }
+
+      try {
+        await api.post('/placement/save-result', {
+            score: score,
+            recommendedLevel: recommendedLevel,
+            answers: selectedOptions
+        });
+        console.log("✅ Placement results successfully sent to the database!");
+      } catch (error) {
+        console.error("❌ Failed to send placement results to the database:", error);
       }
 
       import('../data/learningData.js').then(({ loadLearningProgress, saveLearningProgress }) => {
@@ -91,8 +142,8 @@ export default function PlacementTestPage() {
   if (result) {
     if (showReview) {
       return (
-        <div className="mx-auto max-w-4xl px-4 py-8 font-sans space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="mx-auto max-w-4xl px-4 py-8 space-y-6 font-sans">
+          <section className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center md:p-8">
             <div>
               <h1 className="text-[28px] font-bold tracking-tight text-slate-900">Review Your Answers</h1>
               <p className="mt-2 text-[16px] text-slate-600">
@@ -101,7 +152,7 @@ export default function PlacementTestPage() {
             </div>
             <button
               type="button"
-              className="cursor-pointer rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 shrink-0"
+              className="shrink-0 cursor-pointer rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
               onClick={() => setShowReview(false)}
             >
               Back to Placement Test
@@ -155,7 +206,7 @@ export default function PlacementTestPage() {
                         borderClass = "border-2 border-emerald-500 bg-white"
                         textClass = "text-emerald-800 font-medium"
                         rightIcon = (
-                          <div className="text-emerald-500 shrink-0">
+                          <div className="shrink-0 text-emerald-500">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
                               <circle cx="12" cy="12" r="10" />
                               <path d="M9 12l2 2 4-4" />
@@ -166,7 +217,7 @@ export default function PlacementTestPage() {
                         borderClass = "border-2 border-red-500 bg-white"
                         textClass = "text-slate-900"
                         rightIcon = (
-                          <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex shrink-0 items-center gap-2">
                             <span className="text-[13px] font-medium text-slate-500">Your answer</span>
                             <div className="text-red-500">
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
@@ -196,7 +247,7 @@ export default function PlacementTestPage() {
             })}
           </div>
 
-          <div className="text-center pt-4">
+          <div className="pt-4 text-center">
             <button
               type="button"
               className="rounded-xl border-2 border-slate-200 bg-white px-8 py-3 text-[15px] font-semibold text-slate-700 transition hover:bg-slate-50"
@@ -210,7 +261,6 @@ export default function PlacementTestPage() {
     }
 
     const levelName = result.recommendedLevel === 3 ? 'Advanced' : result.recommendedLevel === 2 ? 'Intermediate' : 'Beginner'
-    const levelSlug = result.recommendedLevel === 3 ? 'advanced' : result.recommendedLevel === 2 ? 'intermediate' : 'beginner'
 
     return (
       <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
@@ -253,13 +303,6 @@ export default function PlacementTestPage() {
             >
               Back to Placement Test
             </button>
-            {/* <button
-              type="button"
-              className="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
-              onClick={() => navigate(`/learning/${levelSlug}`)}
-            >
-              Continue to {levelName}
-            </button> */}
           </div>
         </section>
       </div>
