@@ -26,3 +26,9 @@ dist-ssr
 # Backend ignores
 server/node_modules
 server/.env
+
+# AI sentence service ignores
+ai-sentence/.venv/
+ai-sentence/env/
+ai-sentence/grammar_corrector/
+ai-sentence/.env

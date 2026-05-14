@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { learningLevels, markLessonCompleted } from '../data/learningData.js'
 
@@ -181,18 +181,31 @@ export default function LessonPage() {
   const [selectedOptions, setSelectedOptions] = useState({})
   const [isFinished, setIsFinished] = useState(false)
   const [showReview, setShowReview] = useState(false)
+  const [submittedEssay, setSubmittedEssay] = useState({})
+  const [grammarResults, setGrammarResults] = useState({})
+  const [grammarLoading, setGrammarLoading] = useState(false)
+  const [grammarError, setGrammarError] = useState(null)
+  const assistTimeout = useRef(null)
+  const GRAMMAR_API_BASE_URL = import.meta.env.VITE_GRAMMAR_API_URL?.replace(/\/$/, '') || 'http://localhost:5002'
+  const GRAMMAR_API_URL = `${GRAMMAR_API_BASE_URL}/check-grammar`
 
   const steps = useMemo(() => getLessonContent(level, lessonId), [level, lessonId])
   const step = steps[currentIndex]
   const totalSteps = steps.length
   const progressPercentage = ((currentIndex + 1) / totalSteps) * 100
   const selectedOption = selectedOptions[step.id]
+  const grammarResult = grammarResults[step.id] || null
+  const isEssaySubmitted = !!submittedEssay[step.id]
 
   useEffect(() => {
     setCurrentIndex(0)
     setSelectedOptions({})
     setIsFinished(false)
     setShowReview(false)
+    setSubmittedEssay({})
+    setGrammarResults({})
+    setGrammarError(null)
+    setGrammarLoading(false)
   }, [level, lessonId])
 
   const isFirstStep = currentIndex === 0
@@ -216,9 +229,9 @@ export default function LessonPage() {
 
   const canProceed = useMemo(() => {
     if (step.type === 'info') return true
-    if (step.type === 'essay') return typeof selectedOption === 'string' && selectedOption.trim().length > 0
+    if (step.type === 'essay') return isEssaySubmitted
     return selectedOption != null
-  }, [step, selectedOption])
+  }, [step, selectedOption, isEssaySubmitted])
 
   const handleSelect = (option) => {
     if (step.type !== 'question') return
@@ -228,6 +241,112 @@ export default function LessonPage() {
   const handleEssayChange = (text) => {
     if (step.type !== 'essay') return
     setSelectedOptions((prev) => ({ ...prev, [step.id]: text }))
+    setSubmittedEssay((prev) => ({ ...prev, [step.id]: false }))
+    setGrammarResults((prev) => {
+      const next = { ...prev }
+      delete next[step.id]
+      return next
+    })
+    setGrammarError(null)
+  }
+
+  const handleSubmitEssay = () => {
+    if (step.type !== 'essay') return
+
+    const sentence = String(selectedOptions[step.id] || '').trim()
+    if (!sentence) {
+      setGrammarError('Please write your answer first before submitting.')
+      return
+    }
+
+    setSubmittedEssay((prev) => ({ ...prev, [step.id]: true }))
+    setGrammarError(null)
+
+    if (!grammarResults[step.id]) {
+      runGrammarAssist(step.id, sentence)
+    }
+  }
+
+  const runGrammarAssist = async (stepId, sentence) => {
+    setGrammarLoading(true)
+    setGrammarError(null)
+
+    try {
+      const response = await fetch(GRAMMAR_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sentence }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Grammar service error')
+      }
+
+      const data = await response.json()
+      setGrammarResults((prev) => ({ ...prev, [stepId]: data }))
+    } catch (error) {
+      setGrammarError(`Unable to load grammar assist. Make sure the grammar service is running at ${GRAMMAR_API_URL}. If you use the ai-sentence API, run: python ai-sentence/app.py`)
+    } finally {
+      setGrammarLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (step.type !== 'essay') return
+    const sentence = String(selectedOptions[step.id] || '').trim()
+    if (!sentence) {
+      return
+    }
+
+    if (assistTimeout.current) {
+      clearTimeout(assistTimeout.current)
+    }
+
+    assistTimeout.current = window.setTimeout(() => {
+      runGrammarAssist(step.id, sentence)
+    }, 650)
+
+    return () => {
+      if (assistTimeout.current) {
+        clearTimeout(assistTimeout.current)
+      }
+    }
+  }, [selectedOption, step.id, step.type])
+
+  const handleCheckGrammar = async () => {
+    if (step.type !== 'essay') return
+    if (!isEssaySubmitted) {
+      setGrammarError('Submit your answer first before checking grammar.')
+      return
+    }
+
+    const sentence = String(selectedOptions[step.id] || '').trim()
+    if (!sentence) {
+      setGrammarError('Please write your answer first before checking grammar.')
+      return
+    }
+
+    setGrammarLoading(true)
+    setGrammarError(null)
+
+    try {
+      const response = await fetch(GRAMMAR_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sentence }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Grammar service error')
+      }
+
+      const data = await response.json()
+      setGrammarResults((prev) => ({ ...prev, [step.id]: data }))
+    } catch (error) {
+      setGrammarError(`Unable to check grammar. Make sure the grammar service is running at ${GRAMMAR_API_URL}. If you use the ai-sentence API, run: python ai-sentence/app.py`)
+    } finally {
+      setGrammarLoading(false)
+    }
   }
 
   const handleNext = () => {
@@ -306,6 +425,32 @@ export default function LessonPage() {
                           {userText || '—'}
                         </p>
                       </div>
+
+                      {grammarResults[s.id] ? (
+                        <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+                          <p className="mb-3 font-semibold text-slate-900">Grammar review</p>
+                          <div className="grid gap-3 sm:grid-cols-2">
+                            <div>
+                              <p className="font-medium text-slate-800">Score</p>
+                              <p>{grammarResults[s.id].grammar_score}</p>
+                            </div>
+                            <div>
+                              <p className="font-medium text-slate-800">Writing level</p>
+                              <p>{grammarResults[s.id].writing_level}</p>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <p className="font-medium text-slate-800">Corrected sentence</p>
+                            <p className="whitespace-pre-wrap text-slate-900">{grammarResults[s.id].corrected_sentence}</p>
+                          </div>
+                          <div className="mt-3">
+                            <p className="font-medium text-slate-800">Feedback</p>
+                            <p className="whitespace-pre-wrap text-slate-900">{grammarResults[s.id].feedback}</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="mt-4 text-sm text-slate-500">No grammar review available for this answer yet.</p>
+                      )}
 
                       {(s.sampleAnswer || s.tips) && (
                         <div className="mt-4 rounded-xl border border-indigo-100 bg-indigo-50 px-5 py-4 text-[15px] leading-relaxed text-slate-700">
@@ -522,6 +667,55 @@ export default function LessonPage() {
               onChange={(e) => handleEssayChange(e.target.value)}
               placeholder="Type your answer here..."
             />
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
+              <p className="font-semibold text-slate-900">How grammar assist works</p>
+              <p className="mt-2 text-slate-600">
+                While you type, AI grammar assist suggests a corrected example and tips without showing score. Submit your answer to lock it in, then refresh the grammar tips if needed. Final review will show score, corrected sentence, feedback, and writing level.
+              </p>
+            </div>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                type="button"
+                onClick={handleSubmitEssay}
+                className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600"
+                disabled={String(selectedOption || '').trim().length === 0}
+              >
+                Submit Answer
+              </button>
+              <button
+                type="button"
+                onClick={handleCheckGrammar}
+                disabled={grammarLoading || !isEssaySubmitted}
+                className={`inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition ${grammarLoading || !isEssaySubmitted ? 'cursor-not-allowed bg-slate-300 text-slate-600' : 'bg-emerald-600 text-white hover:bg-emerald-700'}`}
+              >
+                {grammarLoading ? 'Refreshing tips...' : 'Refresh grammar tips'}
+              </button>
+            </div>
+            {grammarError && <p className="text-sm text-red-600">{grammarError}</p>}
+            {grammarLoading && <p className="mt-3 text-sm text-slate-500">Realtime grammar assist is checking your sentence...</p>}
+            {grammarResult && (
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+                <p className="mb-2 font-semibold text-slate-900">Realtime writing tip</p>
+                {grammarResult.corrected_sentence ? (
+                  <div className="mb-3">
+                    <p className="font-medium text-slate-800">Corrected example</p>
+                    <p className="whitespace-pre-wrap text-slate-900">{grammarResult.corrected_sentence}</p>
+                  </div>
+                ) : null}
+                {grammarResult.example_sentence ? (
+                  <div className="mb-3">
+                    <p className="font-medium text-slate-800">Example</p>
+                    <p className="whitespace-pre-wrap text-slate-900">{grammarResult.example_sentence}</p>
+                  </div>
+                ) : null}
+                {grammarResult.feedback ? (
+                  <div>
+                    <p className="font-medium text-slate-800">Tip</p>
+                    <p className="whitespace-pre-wrap text-slate-900">{grammarResult.feedback}</p>
+                  </div>
+                ) : null}
+              </div>
+            )}
             {(step.tips || step.sampleAnswer) && (
               <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[13px] text-slate-600">
                 {step.tips ? (
