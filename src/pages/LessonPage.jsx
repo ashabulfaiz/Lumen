@@ -257,8 +257,9 @@ export default function LessonPage() {
   const [selectedOptions, setSelectedOptions] = useState({})
   const [isFinished, setIsFinished] = useState(false)
   const [showReview, setShowReview] = useState(false)
-  const [submittedEssay, setSubmittedEssay] = useState({})
   const [grammarResults, setGrammarResults] = useState({})
+  const [grammarReviewResults, setGrammarReviewResults] = useState({})
+  const [grammarReviewLoading, setGrammarReviewLoading] = useState(false)
   const [grammarLoading, setGrammarLoading] = useState(false)
   const [grammarError, setGrammarError] = useState(null)
   const assistTimeout = useRef(null)
@@ -271,15 +272,23 @@ export default function LessonPage() {
   const progressPercentage = ((currentIndex + 1) / totalSteps) * 100
   const selectedOption = selectedOptions[step.id]
   const grammarResult = grammarResults[step.id] || null
-  const isEssaySubmitted = !!submittedEssay[step.id]
+
+  const questions = useMemo(() => steps.filter((s) => s.type === 'question'), [steps])
+  const essays = useMemo(() => steps.filter((s) => s.type === 'essay'), [steps])
+  const correctAnswers = useMemo(
+    () =>
+      questions.reduce((total, q) => (selectedOptions[q.id] === q.answer ? total + 1 : total), 0),
+    [questions, selectedOptions],
+  )
 
   useEffect(() => {
     setCurrentIndex(0)
     setSelectedOptions({})
     setIsFinished(false)
     setShowReview(false)
-    setSubmittedEssay({})
     setGrammarResults({})
+    setGrammarReviewResults({})
+    setGrammarReviewLoading(false)
     setGrammarError(null)
     setGrammarLoading(false)
   }, [level, lessonId])
@@ -305,9 +314,9 @@ export default function LessonPage() {
 
   const canProceed = useMemo(() => {
     if (step.type === 'info') return true
-    if (step.type === 'essay') return isEssaySubmitted
+    if (step.type === 'essay') return String(selectedOption || '').trim().length > 0
     return selectedOption != null
-  }, [step, selectedOption, isEssaySubmitted])
+  }, [step, selectedOption])
 
   const handleSelect = (option) => {
     if (step.type !== 'question') return
@@ -317,28 +326,12 @@ export default function LessonPage() {
   const handleEssayChange = (text) => {
     if (step.type !== 'essay') return
     setSelectedOptions((prev) => ({ ...prev, [step.id]: text }))
-    setSubmittedEssay((prev) => ({ ...prev, [step.id]: false }))
     setGrammarResults((prev) => {
       const next = { ...prev }
       delete next[step.id]
       return next
     })
     setGrammarError(null)
-  }
-
-  const handleSubmitEssay = () => {
-    if (step.type !== 'essay') return
-
-    const sentence = String(selectedOptions[step.id] || '').trim()
-    if (!sentence) {
-      setGrammarError('Please write your answer first before submitting.')
-      return
-    }
-
-    setSubmittedEssay((prev) => ({ ...prev, [step.id]: true }))
-    setGrammarError(null)
-
-    runGrammarAssist(step.id, sentence, 'grade')
   }
 
   const runGrammarAssist = async (stepId, sentence, mode = 'assist') => {
@@ -377,7 +370,7 @@ export default function LessonPage() {
     }
 
     assistTimeout.current = window.setTimeout(() => {
-      runGrammarAssist(step.id, sentence)
+      runGrammarAssist(step.id, sentence, 'assist')
     }, 650)
 
     return () => {
@@ -389,19 +382,68 @@ export default function LessonPage() {
 
   const handleCheckGrammar = async () => {
     if (step.type !== 'essay') return
-    if (!isEssaySubmitted) {
-      setGrammarError('Submit your answer first before checking grammar.')
-      return
-    }
 
     const sentence = String(selectedOptions[step.id] || '').trim()
     if (!sentence) {
-      setGrammarError('Please write your answer first before checking grammar.')
+      setGrammarError('Please write your answer first before refreshing tips.')
       return
     }
 
-    runGrammarAssist(step.id, sentence, 'grade')
+    runGrammarAssist(step.id, sentence, 'assist')
   }
+
+  useEffect(() => {
+    if (!showReview || !isFinished || essays.length === 0) return
+
+    let cancelled = false
+
+    const loadReviewGrammar = async () => {
+      setGrammarReviewLoading(true)
+      const updates = {}
+
+      for (const e of essays) {
+        const text = String(selectedOptions[e.id] || '').trim()
+        if (!text) {
+          updates[e.id] = null
+          continue
+        }
+        try {
+          const response = await fetch(GRAMMAR_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sentence: text, mode: 'grade' }),
+          })
+          const data = await response.json()
+          if (cancelled) return
+          if (!response.ok || data.status === 'error') {
+            updates[e.id] = {
+              status: 'error',
+              message: data.message || 'Grammar service error',
+            }
+          } else {
+            updates[e.id] = data
+          }
+        } catch {
+          if (cancelled) return
+          updates[e.id] = {
+            status: 'error',
+            message: `Unable to load grammar review. Make sure the grammar service is running at ${GRAMMAR_API_URL}.`,
+          }
+        }
+      }
+
+      if (!cancelled) {
+        setGrammarReviewResults(updates)
+        setGrammarReviewLoading(false)
+      }
+    }
+
+    loadReviewGrammar()
+    return () => {
+      cancelled = true
+      setGrammarReviewLoading(false)
+    }
+  }, [showReview, isFinished, essays, selectedOptions, GRAMMAR_API_URL])
 
   const handleNext = () => {
     if (!canProceed) return
@@ -420,12 +462,6 @@ export default function LessonPage() {
     }
     setCurrentIndex((prev) => prev - 1)
   }
-
-  const questions = steps.filter(s => s.type === 'question')
-  const essays = steps.filter(s => s.type === 'essay')
-  const correctAnswers = questions.reduce((total, q) => {
-    return selectedOptions[q.id] === q.answer ? total + 1 : total
-  }, 0)
 
   if (isFinished) {
     if (showReview) {
@@ -480,13 +516,15 @@ export default function LessonPage() {
                         </p>
                       </div>
 
-                      {grammarResults[s.id] ? (
+                      {!userText ? null : grammarReviewLoading ? (
+                        <p className="mt-4 text-sm text-slate-500">Loading grammar score…</p>
+                      ) : grammarReviewResults[s.id] ? (
                         <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-                          <p className="mb-3 font-semibold text-slate-900">Grammar review</p>
-                          <GrammarReviewCard result={grammarResults[s.id]} showScore />
+                          <p className="mb-3 font-semibold text-slate-900">Grammar review (score)</p>
+                          <GrammarReviewCard result={grammarReviewResults[s.id]} showScore />
                         </div>
                       ) : (
-                        <p className="mt-4 text-sm text-slate-500">No grammar review available for this answer yet.</p>
+                        <p className="mt-4 text-sm text-slate-500">No grammar review available for this answer.</p>
                       )}
 
                       {(s.sampleAnswer || s.tips) && (
@@ -707,41 +745,27 @@ export default function LessonPage() {
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
               <p className="font-semibold text-slate-900">How grammar assist works</p>
               <p className="mt-2 text-slate-600">
-                While you type, AI grammar assist suggests a corrected example and tips without showing score. Submit your answer to lock it in, then refresh the grammar tips if needed. Final review will show score, corrected sentence, feedback, and writing level.
+                While you type, you only get writing tips (corrected example, what to fix, feedback) — no score. After you finish the lesson, open <span className="font-medium text-slate-800">Review Your Answers</span> to see acceptability score and full grammar review for each essay.
               </p>
             </div>
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                type="button"
-                onClick={handleSubmitEssay}
-                className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600"
-                disabled={String(selectedOption || '').trim().length === 0}
-              >
-                Submit Answer
-              </button>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
               <button
                 type="button"
                 onClick={handleCheckGrammar}
-                disabled={grammarLoading || !isEssaySubmitted}
-                className={`inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition ${grammarLoading || !isEssaySubmitted ? 'cursor-not-allowed bg-slate-300 text-slate-600' : 'bg-emerald-600 text-white hover:bg-emerald-700'}`}
+                disabled={grammarLoading || String(selectedOption || '').trim().length === 0}
+                className={`inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition ${grammarLoading || String(selectedOption || '').trim().length === 0 ? 'cursor-not-allowed bg-slate-300 text-slate-600' : 'bg-emerald-600 text-white hover:bg-emerald-700'}`}
               >
-                {grammarLoading ? 'Refreshing tips...' : 'Refresh grammar tips'}
+                {grammarLoading ? 'Refreshing tips...' : 'Refresh writing tips'}
               </button>
             </div>
             {grammarError && <p className="text-sm text-red-600">{grammarError}</p>}
-            {grammarLoading && <p className="mt-3 text-sm text-slate-500">Realtime grammar assist is checking your sentence...</p>}
-            {grammarResult && !isEssaySubmitted && (
+            {grammarLoading && <p className="mt-3 text-sm text-slate-500">Checking your sentence for tips…</p>}
+            {grammarResult ? (
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
                 <p className="mb-2 font-semibold text-slate-900">Realtime writing tip</p>
                 <GrammarReviewCard result={grammarResult} />
               </div>
-            )}
-            {grammarResult && isEssaySubmitted && (
-              <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-slate-700">
-                <p className="mb-2 font-semibold text-slate-900">Grammar result</p>
-                <GrammarReviewCard result={grammarResult} showScore />
-              </div>
-            )}
+            ) : null}
             {(step.tips || step.sampleAnswer) && (
               <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[13px] text-slate-600">
                 {step.tips ? (
