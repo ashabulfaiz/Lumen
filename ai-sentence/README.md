@@ -5,9 +5,10 @@ Folder `ai-sentence` contains a Flask API for grammar scoring and correction usi
 ## Files
 
 - `app.py` - Flask API entrypoint, exposes `/check-grammar` endpoint
-- `grammar_model.py` - Grammar correction pipeline
-- `prepare_grammar_models.py` - Script to download and setup the corrector model locally
+- `grammar_model.py` - Grammar acceptability and correction pipeline
+- `prepare_grammar_models.py` - Script to download and setup the CoLA classifier and JFLEG corrector locally
 - `requirements.txt` - Python dependencies
+- `grammar_classifier/` - Local CoLA classifier model (auto-generated, not in git)
 - `grammar_corrector/` - Local correction model (auto-generated, not in git)
 
 ## Setup
@@ -38,10 +39,9 @@ python prepare_grammar_models.py
 ```
 
 This will:
-- Download the grammar classifier model
-- Download the T5 corrector model
-- Create `grammar_classifier/` directory
-- Generate `grammar_classifier_meta.json`
+- Download a CoLA classifier model
+- Download a T5 grammar correction model
+- Create `grammar_classifier/` and `grammar_corrector/` directories
 
 > **Important:** The first run may take 2-5 minutes depending on your internet speed.
 
@@ -69,7 +69,7 @@ The Flask app listens on:
 **Response:**
 ```json
 {
-  "status": "ungrammatical",
+  "status": "unacceptable",
   "input_sentence": "She go to school.",
   "grammar_score": 0.2345,
   "corrected_sentence": "She goes to school.",
@@ -78,8 +78,7 @@ The Flask app listens on:
   "writing_quality": "Bagus",
   "feedback": "Grammar berhasil diperbaiki ke bentuk yang lebih natural.",
   "original_score": 0.2345,
-  "corrected_score": 0.9876,
-  "example_sentence": "She goes to school every day."
+  "corrected_score": 0.9876
 }
 ```
 
