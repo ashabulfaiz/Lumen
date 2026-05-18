@@ -2,6 +2,82 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { learningLevels, markLessonCompleted } from '../data/learningData.js'
 
+function GrammarErrorList({ errors }) {
+  if (!Array.isArray(errors) || errors.length === 0) return null
+  return (
+    <ul className="mt-3 list-disc space-y-2 pl-5">
+      {errors.map((err, idx) => (
+        <li key={`${err.type}-${idx}`} className="text-slate-800">
+          {err.message}
+          {err.original_span ? (
+            <span className="mt-1 block text-xs text-slate-500">
+              &quot;{err.original_span}&quot;
+              {err.corrected_span ? ` → "${err.corrected_span}"` : ''}
+            </span>
+          ) : null}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function GrammarReviewCard({ result, showScore = false }) {
+  if (!result || result.status === 'error') {
+    return (
+      <p className="text-sm text-red-600">
+        {result?.message || 'Grammar review unavailable.'}
+      </p>
+    )
+  }
+
+  const score = result.acceptability_score ?? result.grammar_score
+  const acceptableLabel =
+    result.is_acceptable === true
+      ? 'Acceptable'
+      : result.is_acceptable === false
+        ? 'Needs work'
+        : null
+
+  return (
+    <>
+      {showScore && score != null ? (
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div>
+            <p className="font-medium text-slate-800">Acceptability score</p>
+            <p>{score}</p>
+          </div>
+          <div>
+            <p className="font-medium text-slate-800">Verdict</p>
+            <p>{acceptableLabel ?? '—'}</p>
+          </div>
+          <div>
+            <p className="font-medium text-slate-800">Writing level</p>
+            <p>{result.writing_level ?? '—'}</p>
+          </div>
+        </div>
+      ) : null}
+      {result.corrected_sentence ? (
+        <div className={showScore ? 'mt-3' : ''}>
+          <p className="font-medium text-slate-800">Corrected sentence</p>
+          <p className="whitespace-pre-wrap text-slate-900">{result.corrected_sentence}</p>
+        </div>
+      ) : null}
+      {result.errors?.length > 0 ? (
+        <div className="mt-3">
+          <p className="font-medium text-slate-800">What to fix</p>
+          <GrammarErrorList errors={result.errors} />
+        </div>
+      ) : null}
+      {result.feedback ? (
+        <div className="mt-3">
+          <p className="font-medium text-slate-800">Feedback</p>
+          <p className="whitespace-pre-wrap text-slate-900">{result.feedback}</p>
+        </div>
+      ) : null}
+    </>
+  )
+}
+
 const lessonPacks = {
   beginner: {
     title: 'Core basics',
@@ -262,12 +338,10 @@ export default function LessonPage() {
     setSubmittedEssay((prev) => ({ ...prev, [step.id]: true }))
     setGrammarError(null)
 
-    if (!grammarResults[step.id]) {
-      runGrammarAssist(step.id, sentence)
-    }
+    runGrammarAssist(step.id, sentence, 'grade')
   }
 
-  const runGrammarAssist = async (stepId, sentence) => {
+  const runGrammarAssist = async (stepId, sentence, mode = 'assist') => {
     setGrammarLoading(true)
     setGrammarError(null)
 
@@ -275,14 +349,14 @@ export default function LessonPage() {
       const response = await fetch(GRAMMAR_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sentence }),
+        body: JSON.stringify({ sentence, mode }),
       })
 
-      if (!response.ok) {
-        throw new Error('Grammar service error')
+      const data = await response.json()
+      if (!response.ok || data.status === 'error') {
+        throw new Error(data.message || 'Grammar service error')
       }
 
-      const data = await response.json()
       setGrammarResults((prev) => ({ ...prev, [stepId]: data }))
     } catch (error) {
       setGrammarError(`Unable to load grammar assist. Make sure the grammar service is running at ${GRAMMAR_API_URL}. If you use the ai-sentence API, run: python ai-sentence/app.py`)
@@ -326,27 +400,7 @@ export default function LessonPage() {
       return
     }
 
-    setGrammarLoading(true)
-    setGrammarError(null)
-
-    try {
-      const response = await fetch(GRAMMAR_API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sentence }),
-      })
-
-      if (!response.ok) {
-        throw new Error('Grammar service error')
-      }
-
-      const data = await response.json()
-      setGrammarResults((prev) => ({ ...prev, [step.id]: data }))
-    } catch (error) {
-      setGrammarError(`Unable to check grammar. Make sure the grammar service is running at ${GRAMMAR_API_URL}. If you use the ai-sentence API, run: python ai-sentence/app.py`)
-    } finally {
-      setGrammarLoading(false)
-    }
+    runGrammarAssist(step.id, sentence, 'grade')
   }
 
   const handleNext = () => {
@@ -429,24 +483,7 @@ export default function LessonPage() {
                       {grammarResults[s.id] ? (
                         <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
                           <p className="mb-3 font-semibold text-slate-900">Grammar review</p>
-                          <div className="grid gap-3 sm:grid-cols-2">
-                            <div>
-                              <p className="font-medium text-slate-800">Score</p>
-                              <p>{grammarResults[s.id].grammar_score}</p>
-                            </div>
-                            <div>
-                              <p className="font-medium text-slate-800">Writing level</p>
-                              <p>{grammarResults[s.id].writing_level}</p>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <p className="font-medium text-slate-800">Corrected sentence</p>
-                            <p className="whitespace-pre-wrap text-slate-900">{grammarResults[s.id].corrected_sentence}</p>
-                          </div>
-                          <div className="mt-3">
-                            <p className="font-medium text-slate-800">Feedback</p>
-                            <p className="whitespace-pre-wrap text-slate-900">{grammarResults[s.id].feedback}</p>
-                          </div>
+                          <GrammarReviewCard result={grammarResults[s.id]} showScore />
                         </div>
                       ) : (
                         <p className="mt-4 text-sm text-slate-500">No grammar review available for this answer yet.</p>
@@ -693,27 +730,16 @@ export default function LessonPage() {
             </div>
             {grammarError && <p className="text-sm text-red-600">{grammarError}</p>}
             {grammarLoading && <p className="mt-3 text-sm text-slate-500">Realtime grammar assist is checking your sentence...</p>}
-            {grammarResult && (
+            {grammarResult && !isEssaySubmitted && (
               <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
                 <p className="mb-2 font-semibold text-slate-900">Realtime writing tip</p>
-                {grammarResult.corrected_sentence ? (
-                  <div className="mb-3">
-                    <p className="font-medium text-slate-800">Corrected example</p>
-                    <p className="whitespace-pre-wrap text-slate-900">{grammarResult.corrected_sentence}</p>
-                  </div>
-                ) : null}
-                {grammarResult.example_sentence ? (
-                  <div className="mb-3">
-                    <p className="font-medium text-slate-800">Example</p>
-                    <p className="whitespace-pre-wrap text-slate-900">{grammarResult.example_sentence}</p>
-                  </div>
-                ) : null}
-                {grammarResult.feedback ? (
-                  <div>
-                    <p className="font-medium text-slate-800">Tip</p>
-                    <p className="whitespace-pre-wrap text-slate-900">{grammarResult.feedback}</p>
-                  </div>
-                ) : null}
+                <GrammarReviewCard result={grammarResult} />
+              </div>
+            )}
+            {grammarResult && isEssaySubmitted && (
+              <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-slate-700">
+                <p className="mb-2 font-semibold text-slate-900">Grammar result</p>
+                <GrammarReviewCard result={grammarResult} showScore />
               </div>
             )}
             {(step.tips || step.sampleAnswer) && (

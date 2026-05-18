@@ -59,28 +59,50 @@ The Flask app listens on:
 
 ### POST `/check-grammar`
 
-**Request:**
+**Request (full grading — CoLA + correction + diff):**
 ```json
 {
-  "sentence": "She go to school."
+  "sentence": "She go to school.",
+  "mode": "grade"
 }
 ```
 
-**Response:**
+**Request (assist only — correction + errors, no score):**
+```json
+{
+  "sentence": "She go to school.",
+  "mode": "assist"
+}
+```
+
+**Response (`mode: grade`):**
 ```json
 {
   "status": "unacceptable",
   "input_sentence": "She go to school.",
+  "acceptability_score": 0.2345,
+  "is_acceptable": false,
   "grammar_score": 0.2345,
   "corrected_sentence": "She goes to school.",
-  "confidence": 0.9876,
+  "errors": [
+    {
+      "type": "replacement",
+      "grammar_category": "verb_form",
+      "original_span": "go",
+      "corrected_span": "goes",
+      "message": "Change 'go' to 'goes'.",
+      "highlight": { "start": 4, "end": 6, "text": "go" }
+    }
+  ],
+  "has_grammar_errors": true,
+  "feedback": "Suggested fix: Change 'go' to 'goes'.",
   "writing_level": "Good",
-  "writing_quality": "Bagus",
-  "feedback": "Grammar berhasil diperbaiki ke bentuk yang lebih natural.",
   "original_score": 0.2345,
   "corrected_score": 0.9876
 }
 ```
+
+Pipeline: **CoLA** (acceptability score) → **T5 corrector** (fixed sentence) → **diff** (error spans + feedback).
 
 ### Testing with cURL
 
