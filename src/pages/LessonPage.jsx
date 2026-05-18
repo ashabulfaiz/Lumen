@@ -43,7 +43,7 @@ function GrammarReviewCard({ result, showScore = false }) {
       {showScore && score != null ? (
         <div className="grid gap-3 sm:grid-cols-3">
           <div>
-            <p className="font-medium text-slate-800">Acceptability score</p>
+            <p className="font-medium text-slate-800">Score</p>
             <p>{score}</p>
           </div>
           <div>
