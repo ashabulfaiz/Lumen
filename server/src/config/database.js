@@ -1,18 +1,16 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// Membuat connection pool
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     waitForConnections: true,
-    connectionLimit: 10, // Maksimal 10 koneksi bersamaan
+    connectionLimit: 10,
     queueLimit: 0
 });
 
-// Mengetes koneksi saat file ini dipanggil
 pool.getConnection()
     .then(conn => {
         console.log("✅ Terhubung ke database MySQL (LUMEN)!");

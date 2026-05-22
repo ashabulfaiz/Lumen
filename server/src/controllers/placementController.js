@@ -1,8 +1,8 @@
-const db = require('../config/database');
+const PlacementModel = require('../models/PlacementModel');
 
 const getPlacementQuestions = async (req, res) => {
     try {
-        const [questions] = await db.query('SELECT * FROM placement_questions');
+        const questions = await PlacementModel.getAllQuestions();
         
         const formattedQuestions = questions.map(q => ({
             id: q.id,
@@ -32,36 +32,22 @@ const savePlacementResult = async (req, res) => {
         }
 
         let determinedLevel = 'Beginner';
-        if (recommendedLevel === 3) {
-            determinedLevel = 'Advanced';
-        } else if (recommendedLevel === 2) {
-            determinedLevel = 'Intermediate';
-        }
+        if (recommendedLevel === 3) determinedLevel = 'Advanced';
+        else if (recommendedLevel === 2) determinedLevel = 'Intermediate';
 
-        await db.query(
-            'UPDATE users SET current_level = ?, is_onboarding_complete = true WHERE id = ?',
-            [determinedLevel, userId]
-        );
-
-        await db.query(
-            'INSERT INTO quiz_scores (user_id, quiz_type, skor) VALUES (?, "placement", ?)',
-            [userId, score]
-        );
+        await PlacementModel.updateUserLevel(userId, determinedLevel);
+        await PlacementModel.savePlacementScore(userId, score);
 
         if (answers && Object.keys(answers).length > 0) {
             const detailValues = Object.entries(answers).map(([qId, choice]) => {
                 return [userId, qId, choice]; 
             });
-
-            await db.query(
-                'INSERT INTO user_answers (user_id, placement_question_id, jawaban_teks) VALUES ?', 
-                [detailValues]
-            );
+            await PlacementModel.saveUserAnswers(detailValues);
         }
 
         res.status(200).json({
             status: "success",
-            message: "Placement Test results and answer details have been saved successfully..",
+            message: "Placement Test results and answer details have been saved successfully.",
             data: {
                 level_baru: determinedLevel,
                 skor_tersimpan: score
@@ -70,11 +56,7 @@ const savePlacementResult = async (req, res) => {
 
     } catch (error) {
         console.error("Error saving placement results:", error);
-        res.status(500).json({ 
-            status: "error", 
-            message: "An internal server error occurred.", 
-            error: error.message 
-        });
+        res.status(500).json({ status: "error", message: "An internal server error occurred." });
     }
 };
 

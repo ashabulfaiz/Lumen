@@ -1,265 +1,262 @@
-import { Link, Navigate, useLocation } from 'react-router-dom'
-import { IconBook, IconStar, IconPlay, IconLock, IconClock } from '../components/Icons.jsx'
-import { getLevelPath, levelNumberBySlug, loadLearningProgress, getLessonsWithStatus } from '../data/learningData.js'
+import { useEffect, useState, useMemo } from 'react'
+import { Link, useLocation, Navigate } from 'react-router-dom'
+import { IconBook, IconPlay, IconLock, IconClock, IconCheckCircle, IconArrowRight, IconCollection } from '../components/Icons.jsx'
+import api from '../lib/axiosInstance'
 
-const LEVELS = {
+const LEVEL_THEMES = {
   beginner: {
     title: 'Beginner',
     description: 'Master the essentials and build your foundation',
-    theme: {
-      shellBorder: 'border-emerald-200',
-      shellBg: 'bg-[#f4fbf4]',
-      badgeBg: 'bg-[#10b981]',
-      badgeText: 'text-white',
-      statText: 'text-emerald-800',
-      statTextMuted: 'text-emerald-700',
-      progressBg: 'bg-[#10b981]',
-    },
-    lessons: [
-      {
-        id: 1,
-        title: 'Alphabet & Pronunciation',
-        description: 'Learn the English alphabet and basic sounds',
-        duration: '15 min',
-        status: 'completed',
-      },
-      {
-        id: 2,
-        title: 'Common Greetings',
-        description: 'Master essential greetings and introductions',
-        duration: '12 min',
-        status: 'completed',
-      },
-      {
-        id: 3,
-        title: 'Numbers 1-100',
-        description: 'Count and use numbers in everyday situations',
-        duration: '18 min',
-        status: 'available',
-      },
-      {
-        id: 4,
-        title: 'Basic Verbs',
-        description: 'Learn the most common English verbs',
-        duration: '20 min',
-        status: 'available',
-      },
-      {
-        id: 5,
-        title: 'Colors & Objects',
-        description: 'Describe things around you with colors',
-        duration: '15 min',
-        status: 'locked',
-      },
-      {
-        id: 6,
-        title: 'Family Members',
-        description: 'Talk about your family in English',
-        duration: '16 min',
-        status: 'locked',
-      },
-    ],
+    levelId: 1,
+    shellBorder: 'border-emerald-200',
+    shellBg: 'bg-[#f4fbf4]',
+    badgeBg: 'bg-[#10b981]',
+    badgeText: 'text-white',
+    statText: 'text-emerald-800',
+    progressBg: 'bg-[#10b981]',
+    cardHover: 'hover:border-emerald-300',
   },
   intermediate: {
     title: 'Intermediate',
-    description: 'Master the essentials and build your foundation',
-    theme: {
-      shellBorder: 'border-indigo-200',
-      shellBg: 'bg-indigo-50/60',
-      badgeBg: 'bg-indigo-600',
-      badgeText: 'text-white',
-      statText: 'text-indigo-800',
-      statTextMuted: 'text-indigo-700',
-      progressBg: 'bg-indigo-600',
-    },
-    lessons: [
-      {
-        id: 1,
-        title: 'Present Tense Conjugation',
-        description: 'Master regular verb conjugations',
-        duration: '25 min',
-        status: 'available',
-      },
-      {
-        id: 2,
-        title: 'Irregular Verbs',
-        description: 'Learn common irregular verb patterns',
-        duration: '30 min',
-        status: 'available',
-      },
-      {
-        id: 3,
-        title: 'Past Tense (Preterite)',
-        description: 'Talk about completed past actions',
-        duration: '28 min',
-        status: 'locked',
-      },
-      {
-        id: 4,
-        title: 'Direct & Indirect Objects',
-        description: 'Use pronouns effectively',
-        duration: '22 min',
-        status: 'locked',
-      },
-      {
-        id: 5,
-        title: 'Making Comparisons',
-        description: 'Compare things using more, menos, tan',
-        duration: '20 min',
-        status: 'locked',
-      },
-      {
-        id: 6,
-        title: 'Future Tense',
-        description: 'Express plans and predictions',
-        duration: '24 min',
-        status: 'locked',
-      },
-    ],
+    description: 'Expand your vocabulary and master complex structures',
+    levelId: 2,
+    shellBorder: 'border-blue-200',
+    shellBg: 'bg-[#f4f8fb]',
+    badgeBg: 'bg-[#3b82f6]',
+    badgeText: 'text-white',
+    statText: 'text-blue-800',
+    progressBg: 'bg-[#3b82f6]',
+    cardHover: 'hover:border-blue-300',
   },
   advanced: {
     title: 'Advanced',
-    description: 'Sharpen fluency with complex grammar and discussion skills',
-    theme: {
-      shellBorder: 'border-violet-200',
-      shellBg: 'bg-violet-50/60',
-      badgeBg: 'bg-violet-600',
-      badgeText: 'text-white',
-      statText: 'text-violet-800',
-      statTextMuted: 'text-violet-700',
-      progressBg: 'bg-violet-600',
-    },
-    lessons: [
-      {
-        id: 1,
-        title: 'Complex sentences',
-        description: 'Use relative clauses and connectors naturally',
-        duration: '26 min',
-        status: 'available',
-      },
-      {
-        id: 2,
-        title: 'Nuanced tenses',
-        description: 'Perfect tenses and time expressions in context',
-        duration: '32 min',
-        status: 'locked',
-      },
-      {
-        id: 3,
-        title: 'Discussion skills',
-        description: 'Agree, disagree, and clarify with confidence',
-        duration: '24 min',
-        status: 'locked',
-      },
-    ],
+    description: 'Achieve fluency and understand subtle nuances',
+    levelId: 3,
+    shellBorder: 'border-purple-200',
+    shellBg: 'bg-[#fbf4fb]',
+    badgeBg: 'bg-[#a855f7]',
+    badgeText: 'text-white',
+    statText: 'text-purple-800',
+    progressBg: 'bg-[#a855f7]',
+    cardHover: 'hover:border-purple-300',
   },
 }
 
 export default function LevelDetailPage() {
-  const location = useLocation()
-  const slug = String(location.pathname.split('/').filter(Boolean).slice(-1)[0] || 'beginner')
-  const progress = loadLearningProgress()
-  const levelNumber = levelNumberBySlug[slug] ?? 1
+  const { pathname } = useLocation()
+  const slug = pathname.split('/').pop()
+  
+  const themeConfig = LEVEL_THEMES[slug]
 
-  if (levelNumber > progress.highestUnlocked) {
-    return <Navigate to={getLevelPath(progress.highestUnlocked)} replace />
+  const [courses, setCourses] = useState([])
+  const [completedLessonIds, setCompletedLessonIds] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!themeConfig) return
+      setLoading(true)
+      try {
+        const courseResponse = await api.get(`/learning/courses/${themeConfig.levelId}`)
+        const fetchedCourses = courseResponse.data.data
+
+        const coursesWithLessons = await Promise.all(
+          fetchedCourses.map(async (course) => {
+            const lessonResponse = await api.get(`/learning/lessons/${course.id}`)
+            return { ...course, lessons: lessonResponse.data.data }
+          })
+        )
+        setCourses(coursesWithLessons)
+
+        const progressResponse = await api.get(`/progress/completed/${themeConfig.levelId}`)
+        setCompletedLessonIds(progressResponse.data.data || [])
+
+      } catch (error) {
+        console.error("Failed to load data from the database:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [slug, themeConfig])
+
+  const allLessonsFlat = useMemo(() => {
+    return courses.flatMap(c => c.lessons)
+  }, [courses])
+
+  const getLessonStatus = (lessonId) => {
+    const isCompleted = completedLessonIds.includes(lessonId)
+    const currentIndex = allLessonsFlat.findIndex(l => l.id === lessonId)
+    
+    let isAvailable = false
+    
+    if (currentIndex === 0) {
+        isAvailable = true 
+    } else if (isCompleted) {
+        isAvailable = true 
+    } else {
+        const previousLesson = allLessonsFlat[currentIndex - 1]
+        if (previousLesson && completedLessonIds.includes(previousLesson.id)) {
+            isAvailable = true
+        }
+    }
+
+    return {
+        isCompleted,
+        isAvailable,
+        isLocked: !isAvailable
+    }
   }
 
-  const level = LEVELS[slug] || LEVELS.beginner
-  const theme = level.theme
+  if (!themeConfig) return <Navigate to="/learning" replace />
 
-  const lessons = getLessonsWithStatus(slug, progress)
-
-  const totalLessons = lessons.length
-  const completedCount = lessons.filter((l) => l.status === 'completed').length
-  const progressPercent = totalLessons ? Math.round((completedCount / totalLessons) * 100) : 0
-  const totalMinutes = lessons.reduce((acc, l) => acc + (Number.parseInt(l.duration, 10) || 0), 0)
+  if (loading) {
+    return (
+      <div className="flex h-64 items-center justify-center">
+        <p className="text-lg font-medium text-slate-500">Syncing learning progress data...</p>
+      </div>
+    )
+  }
 
   return (
-    <div className="mx-auto max-w-[1000px] pb-12 pt-2 font-sans">
-      <div className={`mb-8 overflow-hidden rounded-2xl border p-6 shadow-sm ${theme.shellBorder} ${theme.shellBg}`}>
-        <div className="flex items-start gap-5">
-          <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full shadow-sm ${theme.badgeBg} ${theme.badgeText}`}>
-            <IconBook className="h-8 w-8" />
-          </div>
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold text-slate-900">{level.title}</h1>
-            <p className="mt-1 text-[15px] text-slate-600">{level.description}</p>
-            
-            <div className={`mt-5 flex flex-wrap items-center gap-6 text-sm font-medium ${theme.statText}`}>
-              <div className="flex items-center gap-2">
-                <IconBook className="h-[18px] w-[18px]" />
-                {completedCount} / {totalLessons} Lessons
-              </div>
-              <div className={`flex items-center gap-2 ${theme.statTextMuted}`}>
-                <IconClock className="h-[18px] w-[18px]" />
-                ~{totalMinutes} minutes total
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <div className="relative h-[8px] w-full overflow-hidden rounded-full bg-slate-200/80">
-                <div
-                  className={`absolute left-0 top-0 h-full rounded-full transition-all duration-500 ${theme.progressBg}`}
-                  style={{ width: `${progressPercent}%` }}
-                />
-              </div>
-              <p className="mt-2.5 text-[11px] font-medium text-slate-500">{progressPercent}% Complete</p>
-            </div>
-          </div>
+    <div className="mx-auto max-w-5xl px-4 py-8 font-sans space-y-8">
+      {/* HEADER LEVEL */}
+      <header className={`rounded-3xl border-2 ${themeConfig.shellBorder} ${themeConfig.shellBg} p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6`}>
+        <div className="space-y-2">
+          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold tracking-wide uppercase ${themeConfig.badgeBg} ${themeConfig.badgeText}`}>
+            {themeConfig.title} Level
+          </span>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">
+            {themeConfig.title} Curriculum
+          </h1>
+          <p className="text-sm md:text-base text-slate-600 max-w-xl">
+            {themeConfig.description}
+          </p>
         </div>
-      </div>
+      </header>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {lessons.map((lesson) => {
-          const isCompleted = lesson.status === 'completed'
-          const isLocked = lesson.status === 'locked'
-          const isAvailable = lesson.status === 'available'
-
-          return (
-            <div
-              key={lesson.id}
-              className={`group relative flex flex-col rounded-2xl border bg-white p-5 transition-shadow ${
-                isCompleted ? 'border-green-200 shadow-[0_2px_10px_-4px_rgba(16,185,129,0.15)]' :
-                isLocked ? 'border-slate-100 opacity-80' :
-                'border-slate-200 shadow-sm hover:border-indigo-200 hover:shadow-md'
-              }`}
-            >
-              <div className="mb-4 flex items-start justify-between gap-3">
-                <div
-                  className={`flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full ${
-                    isCompleted ? 'bg-[#10b981] text-white' :
-                    isLocked ? 'bg-slate-100 text-[#f59e0b]' :
-                    'bg-slate-100 text-slate-600 group-hover:bg-indigo-50 group-hover:text-indigo-600'
-                  }`}
-                >
-                  {isCompleted && <IconStar className="h-5 w-5" />}
-                  {isAvailable && <IconPlay className="h-5 w-5 translate-x-[1px]" />}
-                  {isLocked && <IconLock className="h-4 w-4 text-orange-300" />}
-                </div>
-                <span className="text-[11px] font-bold text-slate-400">Lesson {lesson.id}</span>
+      {/* CONTAINER KURSUS YANG SUDAH DIPISAH */}
+      <div className="space-y-8">
+        
+        {courses.map((course) => (
+          <section 
+            key={course.id} 
+            className={`rounded-3xl border-2 ${themeConfig.shellBorder} bg-white p-6 md:p-8 shadow-sm space-y-8`}
+          >
+            
+            {/* Header Course / Topik */}
+            <div className="flex items-start gap-4 border-b border-slate-100 pb-5">
+              <div className={`p-2.5 rounded-xl bg-slate-50 border border-slate-200 ${themeConfig.statText}`}>
+                <IconCollection className="h-6 w-6" />
               </div>
-
-              <h3 className="mb-1.5 text-[15px] font-bold text-slate-900">{lesson.title}</h3>
-              <p className="mb-5 flex-1 text-[13px] leading-relaxed text-slate-500">{lesson.description}</p>
-
-              <div className="flex items-center justify-between border-t border-slate-100 pt-4 text-[13px] font-medium">
-                <div className="flex items-center gap-1.5 text-slate-400">
-                  <IconClock className="h-4 w-4" />
-                  {lesson.duration}
-                </div>
-                {isCompleted && <span className="font-bold text-[#10b981]">Completed</span>}
-                {isLocked && <span className="font-bold text-slate-400">Locked</span>}
+              <div className="flex-1">
+                <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">{course.judul_course}</h2>
+                <p className="text-sm text-slate-600 mt-1 max-w-2xl">{course.deskripsi}</p>
               </div>
-              
-              {(isAvailable || isCompleted) && (
-                <Link to={`/learning/${slug}/lesson/${lesson.id}`} className="absolute inset-0 rounded-2xl ring-indigo-500 focus-visible:outline-none focus-visible:ring-2">
-                  <span className="sr-only">{isCompleted ? 'Review' : 'Start'} {lesson.title}</span>
-                </Link>
-              )}
             </div>
-          )
-        })}
+
+            {/* Grid Kartu Modul */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {course.lessons && course.lessons.map((lesson, index) => {
+                const status = getLessonStatus(lesson.id);
+                const stepNum = index + 1; 
+
+                return (
+                  <div 
+                    key={lesson.id} 
+                    className={`relative flex flex-col justify-between rounded-2xl border-2 p-6 transition-all duration-300 ${
+                      status.isCompleted ? 'bg-emerald-50/30 border-emerald-100' :
+                      status.isAvailable ? `bg-white border-slate-200 hover:-translate-y-1 hover:shadow-lg ${themeConfig.cardHover}` : 
+                      'bg-slate-50 border-slate-100 opacity-70 grayscale-[20%]'
+                    }`}
+                  >
+                    
+                    {/* Bagian Atas Kartu (Header & Konten) */}
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`text-xs font-bold uppercase tracking-wider ${
+                           status.isCompleted ? 'text-emerald-600' : 
+                           status.isAvailable ? themeConfig.statText : 
+                           'text-slate-400'
+                        }`}>
+                          Modul {stepNum}
+                        </span>
+                        
+                        {/* Status Badges */}
+                        <div className="flex items-center gap-2">
+                          {status.isCompleted && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-bold text-emerald-700">
+                              <IconCheckCircle className="h-3 w-3" /> COMPLETED
+                            </span>
+                          )}
+                          {status.isLocked && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-600">
+                              <IconLock className="h-3 w-3" /> LOCKED
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-slate-900 mb-3 leading-tight">
+                        {lesson.judul_lesson}
+                      </h3>
+                      
+                      {/* Konten dengan line-clamp agar tinggi card konsisten */}
+                      <div 
+                        className="text-sm leading-relaxed text-slate-600 line-clamp-3 mb-6"
+                        dangerouslySetInnerHTML={{ __html: lesson.konten_teks }}
+                      />
+                    </div>
+
+                    {/* Bagian Bawah Kartu (Waktu & Tombol Aksi) */}
+                    <div className="mt-auto pt-5 border-t border-slate-100/80 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                        <IconClock className="h-4 w-4" />
+                        15 minutes
+                      </div>
+
+                      <div className="flex justify-end">
+                        {status.isAvailable && !status.isCompleted && (
+                          <Link 
+                            to={`/learning/${slug}/lesson/${lesson.id}`}
+                            className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition-colors ${themeConfig.badgeBg} ${themeConfig.badgeText} shadow-sm hover:opacity-90`}
+                          >
+                            Get Started
+                            <IconArrowRight className="h-3 w-3" />
+                          </Link>
+                        )}
+                        
+                        {status.isCompleted && (
+                          <Link 
+                            to={`/learning/${slug}/lesson/${lesson.id}`}
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
+                          >
+                            Review Material <IconArrowRight className="h-3 w-3" />
+                          </Link>
+                        )}
+
+                        {status.isLocked && (
+                          <span className="text-xs font-medium text-slate-400">
+                            Complete the previous module to unlock
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                  </div>
+                )
+              })}
+            </div>
+          </section>
+        ))}
+
+        {courses.length === 0 && (
+          <div className="py-16 text-center border-2 border-dashed border-slate-200 rounded-3xl bg-white">
+            <p className="text-sm font-medium text-slate-500">No curriculum has been added for this level yet.</p>
+          </div>
+        )}
+
       </div>
     </div>
   )

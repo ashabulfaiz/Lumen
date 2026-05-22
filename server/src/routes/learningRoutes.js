@@ -9,7 +9,6 @@ const {
 
 const { verifyToken } = require('../middlewares/authMiddleware');
 
-// Daftar endpoint API untuk Pembelajaran
 router.get('/languages', verifyToken, getLanguages);
 router.get('/levels/:language_id', verifyToken, getLevelsByLanguage);
 router.get('/courses/:level_id', verifyToken, getCoursesByLevel);

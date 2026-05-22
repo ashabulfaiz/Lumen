@@ -87,7 +87,6 @@ async function setupDatabase() {
         `);
 
         // --- 5. STRUKTUR KUIS BARU (QUIZ -> QUESTIONS -> OPTIONS) ---
-        // Wadah Kuis per Lesson
         await connection.query(`
             CREATE TABLE IF NOT EXISTS quizzes (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -97,26 +96,17 @@ async function setupDatabase() {
             )
         `);
 
-        // Daftar Soal (Mendukung PG dan Essay)
+        // 5. TABEL QUESTIONS
         await connection.query(`
             CREATE TABLE IF NOT EXISTS questions (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 quiz_id INT,
+                ds_question_id VARCHAR(100),
                 pertanyaan TEXT NOT NULL,
+                jawaban_benar VARCHAR(255) NOT NULL,
                 tipe_soal ENUM('multiple_choice', 'essay') DEFAULT 'multiple_choice',
                 urutan INT,
                 FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
-            )
-        `);
-
-        // Pilihan Jawaban (Hanya terisi jika tipe_soal = 'multiple_choice')
-        await connection.query(`
-            CREATE TABLE IF NOT EXISTS question_options (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                question_id INT,
-                teks_pilihan VARCHAR(255) NOT NULL,
-                is_correct BOOLEAN DEFAULT FALSE,
-                FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
             )
         `);
 
@@ -183,6 +173,18 @@ async function setupDatabase() {
                 issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, 
                 FOREIGN KEY (level_id) REFERENCES levels(id) ON DELETE CASCADE
+            )
+        `);
+
+        await connection.query(`
+            CREATE TABLE IF NOT EXISTS grammar_correction_histories (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT,
+                original_input TEXT NOT NULL,
+                corrected_output TEXT NOT NULL,
+                error_details JSON, /* Menyimpan detail salahnya dimana saja dalam bentuk JSON */
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             )
         `);
 
