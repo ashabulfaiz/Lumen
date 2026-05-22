@@ -19,6 +19,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+import json
 
 # Import services DS
 from services.performance_service import get_performance
@@ -146,7 +147,28 @@ def full_report(user_id):
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-
+# ================================================================
+# 5. ENDPOINT DATASET KUIS (DIBUTUHKAN OLEH BACKEND NODE.JS)
+# ================================================================
+@app.route('/api/ds/quiz/<string:level>', methods=['GET'])
+def get_quiz(level):
+    """
+    Endpoint untuk mengambil soal kuis berdasarkan level (Beginner, Intermediate, Advanced).
+    Membaca langsung dari file dataset JSON.
+    """
+    try:
+        file_path = f"{level}.json"
+        
+        if not os.path.exists(file_path):
+            return jsonify({"status": "error", "message": f"Dataset kuis untuk level '{level}' tidak ditemukan."}), 404
+            
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            
+        return jsonify({"status": "success", "data": data})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+    
 # ================================================================
 # ENTRY POINT
 # ================================================================

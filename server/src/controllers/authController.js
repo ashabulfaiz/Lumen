@@ -1,51 +1,40 @@
-const db = require('../config/database');
+const AuthModel = require('../models/AuthModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
     try {
-        // 1. Tangkap data dari body request (dikirim oleh frontend/Postman)
         const { nama_lengkap, email, password, current_level } = req.body;
 
-        // 2. Validasi sederhana: Pastikan data penting tidak kosong
         if (!nama_lengkap || !email || !password) {
             return res.status(400).json({ message: "Nama, email, dan password wajib diisi!" });
         }
 
-        // 3. Cek apakah email sudah terdaftar di database
-        const [existingUser] = await db.query('SELECT email FROM users WHERE email = ?', [email]);
-        if (existingUser.length > 0) {
+        const existingUser = await AuthModel.findUserByEmail(email);
+        if (existingUser) {
             return res.status(400).json({ message: "Email sudah terdaftar, silakan gunakan email lain." });
         }
 
-        // 4. Acak (Hash) Password menggunakan bcrypt
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-
-        // 5. Set level default jika tidak dipilih
         const level = current_level || 'Beginner';
+        const role = 'student';
+        const result = await AuthModel.createUser(nama_lengkap, email, hashedPassword, level, role);
 
-        // 6. Simpan data ke tabel users
-        const [result] = await db.query(
-            'INSERT INTO users (nama_lengkap, email, password_hash, current_level, role) VALUES (?, ?, ?, ?, ?)',
-            [nama_lengkap, email, hashedPassword, level, 'student']
-        );
-
-        // 7. Berikan respons sukses
         res.status(201).json({
             status: "success",
-            message: "Registrasi berhasil!",
+            message: "Registrasi berhasil! Silakan login.",
             data: {
                 id: result.insertId,
-                nama_lengkap,
-                email,
-                current_level: level
+                nama_lengkap: nama_lengkap,
+                email: email,
+                current_level: level,
+                role: role
             }
         });
 
     } catch (error) {
-        console.error("❌ Error pada fitur Register:", error);
-        res.status(500).json({ message: "Terjadi kesalahan internal pada server." });
+        res.status(500).json({ message: "Terjadi kesalahan pada server.", error: error.message });
     }
 };
 
@@ -53,34 +42,26 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // 1. Validasi input
         if (!email || !password) {
             return res.status(400).json({ message: "Email dan password wajib diisi!" });
         }
 
-        // 2. Cari user berdasarkan email
-        const [users] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
-        const user = users[0]; // Ambil data user pertama
-
+        const user = await AuthModel.findUserByEmail(email);
         if (!user) {
             return res.status(401).json({ message: "Email tidak ditemukan." });
         }
 
-        // 3. Cocokkan password yang diketik dengan password_hash di database
         const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Password salah!" });
         }
 
-        // 4. Buat Token (JWT)
         const token = jwt.sign(
             { id: user.id, email: user.email, role: user.role, level: user.current_level },
             process.env.JWT_SECRET,
-            { expiresIn: '1d' } // Token berlaku selama 1 hari
+            { expiresIn: '1d' }
         );
 
-        // 5. Berikan respons sukses beserta token
         res.status(200).json({
             status: "success",
             message: "Login berhasil!",
@@ -95,8 +76,7 @@ const login = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Error pada fitur Login:", error);
-        res.status(500).json({ message: "Terjadi kesalahan internal pada server." });
+        res.status(500).json({ message: "Terjadi kesalahan saat login.", error: error.message });
     }
 };
 

@@ -4,8 +4,7 @@ const { claimCertificate, getMyCertificates } = require('../controllers/certific
 const { verifyToken } = require('../middlewares/authMiddleware');
 
 router.use(verifyToken);
-
-router.post('/claim', claimCertificate); // Tombol klaim sertifikat
-router.get('/', getMyCertificates);      // Daftar sertifikat saya
+router.post('/claim', claimCertificate); 
+router.get('/', getMyCertificates);
 
 module.exports = router;

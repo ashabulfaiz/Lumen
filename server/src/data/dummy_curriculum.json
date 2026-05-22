@@ -1,0 +1,43 @@
+[
+  {
+    "nama_level": "Beginner",
+    "kode_level": "BGN",
+    "courses": [
+      {
+        "judul_course": "Dasar-Dasar Grammar Bahasa Inggris",
+        "deskripsi": "Modul ini membahas aturan paling dasar dalam pembentukan kalimat bahasa Inggris, cocok untuk pemula.",
+        "urutan": 1,
+        "lessons": [
+          {
+            "judul_lesson": "Penggunaan Article (A, An, The)",
+            "konten_teks": "<p><b>Article</b> adalah kata yang digunakan untuk memodifikasi noun (kata benda). Terdapat dua jenis article: Definite (The) dan Indefinite (A/An). <i>A</i> digunakan sebelum kata benda berawalan suara konsonan, sedangkan <i>An</i> digunakan sebelum suara vokal.</p><p>Contoh: <i>A car, An apple, The sun.</i></p>",
+            "video_url": "https://www.youtube.com/watch?v=dummy1",
+            "urutan": 1,
+            "kuis_topik_id": "Article Or No Article" 
+          },
+          {
+            "judul_lesson": "Pengenalan Subject & Pronoun",
+            "konten_teks": "<p><b>Pronoun</b> (kata ganti) digunakan untuk menggantikan noun agar tidak terjadi pengulangan kata. Contoh pronoun dasar adalah I, You, They, We, He, She, It.</p>",
+            "video_url": "https://www.youtube.com/watch?v=dummy2",
+            "urutan": 2,
+            "kuis_topik_id": "Pronouns Basics"
+          }
+        ]
+      },
+      {
+        "judul_course": "Vocabulary Sehari-hari",
+        "deskripsi": "Kumpulan kosakata yang paling sering digunakan dalam percakapan sehari-hari.",
+        "urutan": 2,
+        "lessons": [
+          {
+            "judul_lesson": "Greeting & Introduction",
+            "konten_teks": "<p>Cara menyapa dalam bahasa Inggris: <i>Hello, Good morning, How are you?</i> Cara memperkenalkan diri: <i>My name is..., I am from...</i></p>",
+            "video_url": "https://www.youtube.com/watch?v=dummy3",
+            "urutan": 1,
+            "kuis_topik_id": "Greetings 101"
+          }
+        ]
+      }
+    ]
+  }
+]

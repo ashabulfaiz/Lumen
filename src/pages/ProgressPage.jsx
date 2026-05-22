@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { levelTracks, getLessonsWithStatus, loadLearningProgress, LEARNING_PROGRESS_EVENT, syncLearningProgressFromDB } from '../data/learningData.js'
 import { IconCheckCircle, IconClock, IconLock, IconChevronDown } from '../components/Icons.jsx'
+import api from '../lib/axiosInstance'
 
+const LEVEL_TRACKS = [
+  { num: 1, slug: 'beginner', title: 'Beginner', summary: 'Master the essentials and build your foundation' },
+  { num: 2, slug: 'intermediate', title: 'Intermediate', summary: 'Expand your vocabulary and master complex structures' },
+  { num: 3, slug: 'advanced', title: 'Advanced', summary: 'Achieve fluency and understand subtle nuances' }
+]
 
 function percentFromStatus(status) {
   if (status === 'completed') return 100
@@ -21,17 +26,100 @@ const pillTone = {
   todo: 'border-slate-200 bg-slate-50 text-slate-600',
 }
 
+const stripHtml = (html) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>?/gm, '');
+}
+
 export default function ProgressPage() {
   const navigate = useNavigate()
   const [expandedLevels, setExpandedLevels] = useState({})
-  const [progress, setProgress] = useState(loadLearningProgress())
+  
+  const [tracks, setTracks] = useState([])
+  const [completedLessonIds, setCompletedLessonIds] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    syncLearningProgressFromDB();
-    const handleProgress = () => setProgress(loadLearningProgress())
-    window.addEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
-    return () => window.removeEventListener(LEARNING_PROGRESS_EVENT, handleProgress)
+    const fetchAllData = async () => {
+      setLoading(true)
+      try {
+        const fetchedTracks = []
+        let fetchedCompletedIds = []
+
+        await Promise.all(LEVEL_TRACKS.map(async (track) => {
+            const coursesRes = await api.get(`/learning/courses/${track.num}`)
+            const courses = coursesRes.data.data || []
+            let trackLessons = []
+            for (const course of courses) {
+                const lessonsRes = await api.get(`/learning/lessons/${course.id}`)
+                trackLessons.push(...(lessonsRes.data.data || []))
+            }
+            
+            fetchedTracks.push({ ...track, lessons: trackLessons })
+
+            try {
+                const progRes = await api.get(`/progress/completed/${track.num}`)
+                if (progRes.data.data) {
+                    fetchedCompletedIds.push(...progRes.data.data)
+                }
+            } catch (e) {
+                console.error(`Gagal memuat progres level ${track.num}`, e)
+            }
+        }))
+
+        fetchedTracks.sort((a, b) => a.num - b.num)
+
+        setTracks(fetchedTracks)
+        setCompletedLessonIds(fetchedCompletedIds)
+      } catch (error) {
+        console.error("Gagal memuat data dari database:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchAllData()
   }, [])
+
+  const processedData = useMemo(() => {
+    if (tracks.length === 0) return { highestUnlockedLevel: 1, processedTracks: [] }
+
+    const allLessonsFlat = tracks.flatMap(t => t.lessons)
+    let highestUnlockedLevel = 1
+
+    const processedTracks = tracks.map((track) => {
+        const lessonsWithStatus = track.lessons.map((lesson) => {
+            const globalIndex = allLessonsFlat.findIndex(l => l.id === lesson.id)
+            const isCompleted = completedLessonIds.includes(lesson.id)
+            
+            let isAvailable = false
+            if (globalIndex === 0) {
+                isAvailable = true 
+            } else if (isCompleted) {
+                isAvailable = true 
+            } else {
+                const prevLesson = allLessonsFlat[globalIndex - 1]
+                if (prevLesson && completedLessonIds.includes(prevLesson.id)) {
+                    isAvailable = true
+                }
+            }
+
+            if (isAvailable || isCompleted) {
+                highestUnlockedLevel = Math.max(highestUnlockedLevel, track.num)
+            }
+
+            return {
+                ...lesson,
+                status: isCompleted ? 'completed' : (isAvailable ? 'available' : 'locked')
+            }
+        })
+
+        return { ...track, lessons: lessonsWithStatus }
+    })
+
+    return { highestUnlockedLevel, processedTracks }
+  }, [tracks, completedLessonIds])
+
 
   const toggleLevel = (trackNum) => {
     setExpandedLevels(prev => ({
@@ -41,6 +129,15 @@ export default function ProgressPage() {
   }
 
   const INITIAL_VISIBLE_LESSONS = 3
+  const { highestUnlockedLevel, processedTracks } = processedData
+
+  if (loading) {
+    return (
+      <div className="flex h-64 items-center justify-center">
+        <p className="text-lg font-medium text-slate-500">Memuat progres belajar Anda...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="mx-auto max-w-[980px] font-sans">
@@ -52,12 +149,15 @@ export default function ProgressPage() {
       </header>
 
       <div className="flex flex-col gap-5" aria-label="Course progress by level">
-        {levelTracks.map((track) => {
-          const slug = track.title.toLowerCase()
-          const isLevelLocked = track.num > (progress?.highestUnlocked ?? 1)
-          const baseLessons = getLessonsWithStatus(slug, progress)
+        {processedTracks.map((track) => {
+          const isLevelLocked = track.num > highestUnlockedLevel
+          const baseLessons = track.lessons
+
           if (!baseLessons.length) return null
-          const lessons = isLevelLocked ? baseLessons.map((l) => ({ ...l, status: 'locked' })) : baseLessons
+          const lessons = isLevelLocked 
+              ? baseLessons.map((l) => ({ ...l, status: 'locked' })) 
+              : baseLessons
+
           const isExpanded = expandedLevels[track.num]
           const visibleLessons = isExpanded ? lessons : lessons.slice(0, INITIAL_VISIBLE_LESSONS)
           const hasMore = lessons.length > INITIAL_VISIBLE_LESSONS
@@ -86,14 +186,12 @@ export default function ProgressPage() {
                 )}
               </div>
 
-              <div
-                className="flex flex-col"
-                aria-label={`${track.title} progress list`}
-              >
+              <div className="flex flex-col" aria-label={`${track.title} progress list`}>
                 {visibleLessons.map((lesson) => {
                   const percent = percentFromStatus(lesson.status)
                   const isLocked = lesson.status === 'locked'
                   const isCompleted = lesson.status === 'completed'
+                  
                   const statusInfo =
                     isCompleted
                       ? { label: 'Completed', variant: 'done', icon: IconCheckCircle }
@@ -105,7 +203,7 @@ export default function ProgressPage() {
 
                   return (
                     <article
-                      key={`${track.title}-${lesson.id}`}
+                      key={`${track.slug}-${lesson.id}`}
                       className="border-b border-slate-100 p-6 md:px-8 md:py-6 last:border-b-0"
                     >
                       <button
@@ -114,8 +212,7 @@ export default function ProgressPage() {
                         aria-disabled={isLocked}
                         onClick={() => {
                           if (isLocked) return
-                          const levelSlug = track.title.toLowerCase()
-                          navigate(`/learning/${levelSlug}/lesson/${lesson.id}`)
+                          navigate(`/learning/${track.slug}/lesson/${lesson.id}`)
                         }}
                         className={[
                           'w-full rounded-2xl text-left outline-none transition',
@@ -127,8 +224,10 @@ export default function ProgressPage() {
                       >
                         <div className="flex flex-wrap items-center justify-between gap-4">
                           <div className="min-w-0 flex-1">
-                            <h3 className="mb-1 text-[16px] font-bold text-slate-900">{lesson.title}</h3>
-                            <p className="mb-0 text-[14px] text-slate-500">{lesson.description}</p>
+                            <h3 className="mb-1 text-[16px] font-bold text-slate-900">{lesson.judul_lesson}</h3>
+                            <p className="mb-0 text-[14px] text-slate-500 line-clamp-1">
+                                {stripHtml(lesson.konten_teks) || 'Materi pembelajaran modul ini.'}
+                            </p>
                           </div>
 
                           <div className="flex shrink-0 items-center gap-4" aria-label={`${percent}%`}>

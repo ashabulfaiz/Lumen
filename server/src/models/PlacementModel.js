@@ -1,0 +1,34 @@
+const db = require('../config/database');
+
+class PlacementModel {
+    static async getAllQuestions() {
+        const [rows] = await db.query('SELECT * FROM placement_questions');
+        return rows;
+    }
+
+    static async updateUserLevel(userId, level) {
+        const [result] = await db.query(
+            'UPDATE users SET current_level = ?, is_onboarding_complete = true WHERE id = ?',
+            [level, userId]
+        );
+        return result;
+    }
+
+    static async savePlacementScore(userId, score) {
+        const [result] = await db.query(
+            'INSERT INTO quiz_scores (user_id, quiz_type, skor) VALUES (?, "placement", ?)',
+            [userId, score]
+        );
+        return result;
+    }
+
+    static async saveUserAnswers(detailValues) {
+        const [result] = await db.query(
+            'INSERT INTO user_answers (user_id, placement_question_id, jawaban_teks) VALUES ?', 
+            [detailValues]
+        );
+        return result;
+    }
+}
+
+module.exports = PlacementModel;
