@@ -25,7 +25,7 @@ function greetingName() {
   const full = readDisplayName()
   if (full) return full.split(/\s+/)[0]
   const u = readUsername()
-  return u || 'Students'
+  return u || 'Student'
 }
 
 const stripHtml = (html) => {
@@ -80,14 +80,20 @@ export default function DashboardHome() {
   const [progressStats, setProgressStats] = useState({ 1: 0, 2: 0, 3: 0 })
   const [totalLessonsCompleted, setTotalLessonsCompleted] = useState(0)
   const [recommendedLessons, setRecommendedLessons] = useState([])
+  
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false)
 
   useEffect(() => {
+    let hasPlacement = false
     try {
       const savedData = localStorage.getItem('lumen_placement_result')
       if (savedData) {
         const parsed = JSON.parse(savedData)
-        if (parsed.result) 
+        if (parsed.result) {
           setPlacementData(parsed.result)
+          hasPlacement = true
+          setIsOnboardingComplete(true)
+        }
       }
     } catch { /* ignore */ }
 
@@ -97,6 +103,7 @@ export default function DashboardHome() {
         let tempTotalCompleted = 0
         let tempProgressStats = { 1: 0, 2: 0, 3: 0 }
         let availableLessonsPool = []
+        let fallbackLessonsPool = []
 
         await Promise.all(LEVEL_TRACKS.map(async (track) => {
           const coursesRes = await api.get(`/learning/courses/${track.id}`)
@@ -106,7 +113,16 @@ export default function DashboardHome() {
           for (const course of courses) {
             const lessonsRes = await api.get(`/learning/lessons/${course.id}`)
             const lessons = lessonsRes.data.data || []
-            trackLessons.push(...lessons.map(l => ({ ...l, levelSlug: track.slug, levelLabel: track.label, badgeBg: track.badgeBg })))
+            trackLessons.push(...lessons.map(l => ({ 
+              ...l, 
+              levelSlug: track.slug, 
+              levelLabel: track.label, 
+              badgeBg: track.badgeBg 
+            })))
+          }
+
+          if (track.id === 1) {
+            fallbackLessonsPool = [...trackLessons]
           }
 
           let completedIds = []
@@ -144,9 +160,15 @@ export default function DashboardHome() {
 
         setProgressStats(tempProgressStats)
         setTotalLessonsCompleted(tempTotalCompleted)
-        setRecommendedLessons(availableLessonsPool.slice(0, 3))
+
+        if (hasPlacement) {
+          setRecommendedLessons(availableLessonsPool.slice(0, 3))
+        } else {
+          setRecommendedLessons(fallbackLessonsPool.slice(0, 3))
+        }
+
       } catch (error) {
-        console.error("Dashboard data synchronization failed:", error)
+        console.error("Failed to synchronize dashboard data:", error)
       } finally {
         setLoading(false)
       }
@@ -178,7 +200,10 @@ export default function DashboardHome() {
           </span>!
         </h1>
         <p className="text-[16px] leading-relaxed text-slate-600 max-w-2xl">
-          Continue improving your English skills. Every small session brings you closer to fluency.
+          {!isOnboardingComplete 
+            ? 'Let\'s get started with your learning journey by completing the onboarding steps and taking the initial assessment.'
+            : 'Keep improving your English skills. Every small session brings you closer to fluency.'
+          }
         </p>
       </header>
 
@@ -198,7 +223,7 @@ export default function DashboardHome() {
               percent={placementData ? placementData.score : 0} 
               strokeColor="#ea580c" 
               label="Placement" 
-              customText={`${Math.round((placementData?.score || 0) / 10)}/10`}
+              customText={placementData ? `${Math.round(placementData.score / 10)}/10` : '0/10'}
             />
             {LEVEL_TRACKS.map(track => (
               <DonutChart 
@@ -215,16 +240,16 @@ export default function DashboardHome() {
           <ul className="grid grid-cols-2 gap-4 m-0 p-0 text-sm font-medium text-slate-700">
             <li className="flex flex-col p-3 rounded-xl bg-white border border-slate-100 shadow-sm">
               <span className="text-2xl font-black text-indigo-600 mb-1">{totalLessonsCompleted}</span>
-              <span className="text-slate-500 text-xs uppercase tracking-wide">Modules Completed</span>
+              <span className="text-slate-500 text-xs uppercase tracking-wide">Lessons Completed</span>
             </li>
             <li className="flex flex-col p-3 rounded-xl bg-white border border-slate-100 shadow-sm">
-              <span className="text-2xl font-black text-emerald-600 mb-1">{totalLessonsCompleted * 15} <span className="text-sm">mnt</span></span>
-              <span className="text-slate-500 text-xs uppercase tracking-wide">Learning Time</span>
+              <span className="text-2xl font-black text-emerald-600 mb-1">{totalLessonsCompleted * 15} <span className="text-sm">mins</span></span>
+              <span className="text-slate-500 text-xs uppercase tracking-wide">Study Time</span>
             </li>
           </ul>
         </section>
 
-        {/* DAILY STREAK (Statik untuk visual/gamifikasi) */}
+        {/* DAILY STREAK */}
         <section
           className="rounded-[2rem] border border-orange-200/80 bg-gradient-to-br from-orange-50 to-white p-6 shadow-md flex flex-col justify-between"
           aria-labelledby="streak-heading"
@@ -240,18 +265,22 @@ export default function DashboardHome() {
             </div>
             <div className="mb-6 grid grid-cols-2 gap-4">
               <div className="bg-white p-3 rounded-xl border border-orange-100/50 shadow-sm text-center">
-                <span className="block text-4xl font-black tracking-tight text-orange-600 mb-1">12</span>
+                <span className="block text-4xl font-black tracking-tight text-orange-600 mb-1">
+                  {isOnboardingComplete ? '1' : '0'}
+                </span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Current</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-orange-100/50 shadow-sm text-center opacity-80">
-                <span className="block text-4xl font-black tracking-tight text-slate-400 mb-1">28</span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Best</span>
+                <span className="block text-4xl font-black tracking-tight text-slate-400 mb-1">
+                  {isOnboardingComplete ? '1' : '0'}
+                </span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Highest</span>
               </div>
             </div>
           </div>
           <p className="m-0 flex items-center gap-2 text-sm font-medium text-orange-800 bg-orange-100/50 p-3 rounded-xl">
             <IconCalendar className="h-5 w-5 shrink-0 text-orange-600" />
-            Study today to keep your streak alive!
+            {!isOnboardingComplete ? 'Take the test to start your first streak!' : 'Study today to maintain your streak!'}
           </p>
         </section>
       </div>
@@ -264,51 +293,74 @@ export default function DashboardHome() {
               <IconSparkle className="h-6 w-6 shrink-0" />
             </span>
             <h2 id="lessons-heading" className="text-xl font-extrabold text-slate-900 tracking-tight">
-              Recommended Lessons
+              {!isOnboardingComplete ? 'Recommended Content for You' : 'Recommended Lessons'}
             </h2>
           </div>
         </div>
         
+        {!isOnboardingComplete && (
+          <div className="mb-5 p-4 rounded-2xl border border-amber-200 bg-amber-50/60 text-sm text-amber-900 flex flex-wrap items-center justify-between gap-3">
+            <p className="m-0 font-medium">
+              🔒 You are in review mode. Please complete the <strong>Placement Test</strong> before starting the lessons.
+            </p>
+            <Link 
+              to="/learning" 
+              className="inline-flex items-center gap-1 bg-amber-600 text-white px-3 py-1.5 rounded-xl font-bold text-xs hover:bg-amber-700 transition"
+            >
+              Start Onboarding
+            </Link>
+          </div>
+        )}
+
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {recommendedLessons.length > 0 ? (
-            recommendedLessons.map((lesson) => (
-              <Link
-                key={lesson.id}
-                to={`/learning/${lesson.levelSlug}/lesson/${lesson.id}`}
-                className="group flex flex-col justify-between rounded-2xl border-2 border-slate-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-100"
-              >
-                <div>
-                  <h3 className="mb-2 text-lg font-bold text-slate-900 leading-tight group-hover:text-indigo-600 transition-colors">
-                    {lesson.judul_lesson}
-                  </h3>
-                  <p className="mb-5 text-[13px] leading-relaxed text-slate-600 line-clamp-2">
-                    {stripHtml(lesson.konten_teks) || 'Materi pembelajaran modul ini siap untuk dipelajari.'}
-                  </p>
-                </div>
-                
-                <div className="mt-auto">
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-600">
-                      <IconStar className="h-3 w-3" /> AI Pick
-                    </span>
-                    <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${lesson.badgeBg}`}>
-                      {lesson.levelLabel}
-                    </span>
+            recommendedLessons.map((lesson) => {
+              const targetUrl = isOnboardingComplete 
+                ? `/learning/${lesson.levelSlug}/lesson/${lesson.id}` 
+                : `/learning`;
+
+              return (
+                <Link
+                  key={lesson.id}
+                  to={targetUrl}
+                  className="group flex flex-col justify-between rounded-2xl border-2 border-slate-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-100"
+                >
+                  <div>
+                    <h3 className="mb-2 text-lg font-bold text-slate-900 leading-tight group-hover:text-indigo-600 transition-colors">
+                      {lesson.judul_lesson}
+                    </h3>
+                    <p className="mb-5 text-[13px] leading-relaxed text-slate-600 line-clamp-2">
+                      {stripHtml(lesson.konten_teks) || 'Materi pembelajaran modul ini siap untuk dipelajari.'}
+                    </p>
                   </div>
-                  <div className="flex items-center justify-between border-t border-slate-100 pt-4">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                      <IconClock className="h-4 w-4" /> 15 minutes
-                    </span>
-                    <span className="flex items-center gap-1 text-xs font-bold text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                      Start <IconChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
+                  
+                  <div className="mt-auto">
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-600">
+                        <IconStar className="h-3 w-3" /> {!isOnboardingComplete ? 'Trending' : 'AI Pick'}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${lesson.badgeBg}`}>
+                        {lesson.levelLabel}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between border-t border-slate-100 pt-4">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                        <IconClock className="h-4 w-4" /> 15 minutes
+                      </span>
+                      <span className="flex items-center gap-1 text-xs font-bold text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                        {!isOnboardingComplete ? 'Start Onboarding' : 'Begin'}{' '}
+                        <IconChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))
+                </Link>
+              );
+            })
           ) : (
             <div className="col-span-full rounded-2xl border-2 border-dashed border-slate-200 py-10 text-center">
-              <p className="text-sm font-medium text-slate-500">Wow, that's great! You've completed all the available material.</p>
+              <p className="text-sm font-medium text-slate-500">
+                No learning materials available in the database.
+              </p>
             </div>
           )}
         </div>
