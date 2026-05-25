@@ -12,6 +12,7 @@ import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LevelDetailPage from './pages/LevelDetailPage.jsx'
 import LessonPage from './pages/LessonPage.jsx'
+import CertificatePage from './pages/CertificatePage.jsx'
 
 export default function App() {
   return (
@@ -34,15 +35,7 @@ export default function App() {
           <Route path="/learning/levels" element={<LearningPathStepPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/help" element={<HelpPage />} />
-          <Route
-            path="/certification"
-            element={
-              <PlaceholderPage
-                title="Certification"
-                description="Earn a certificate after finishing a level or passing a final assessment."
-              />
-            }
-          />
+          <Route path="/certification" element={<CertificatePage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

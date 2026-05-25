@@ -61,9 +61,14 @@ const submitQuiz = async (req, res) => {
 
         for (let answer of user_answers) {
             const dbQuestion = await QuizModel.getCorrectAnswer(answer.question_id);
-            if (dbQuestion && dbQuestion.jawaban_benar === answer.jawaban) {
+            const isCorrect = dbQuestion && dbQuestion.jawaban_benar === answer.jawaban;
+            
+            if (isCorrect) {
                 correctCount++;
             }
+
+            // Save individual answer to user_answers table
+            await QuizModel.saveUserAnswer(userId, answer.question_id, answer.jawaban, isCorrect);
         }
 
         const finalScore = (correctCount / totalQuestions) * 100;
@@ -85,4 +90,24 @@ const submitQuiz = async (req, res) => {
     }
 };
 
-module.exports = { generateQuiz, submitQuiz };
+const getQuizReview = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const quizId = parseInt(req.params.quizId);
+
+        if (!quizId) {
+            return res.status(400).json({ message: "quiz_id wajib disertakan!" });
+        }
+
+        const answers = await QuizModel.getUserAnswers(userId, quizId);
+        res.status(200).json({
+            status: "success",
+            data: answers
+        });
+    } catch (error) {
+        console.error("Error retrieving quiz review:", error);
+        res.status(500).json({ message: "Gagal mengambil data review kuis.", error: error.message });
+    }
+};
+
+module.exports = { generateQuiz, submitQuiz, getQuizReview };

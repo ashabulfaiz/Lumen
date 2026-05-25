@@ -11,7 +11,8 @@ async function setupDatabase() {
             password: process.env.DB_PASSWORD,
         });
 
-        await connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`);
+        await connection.query(`DROP DATABASE IF EXISTS ${process.env.DB_NAME};`);
+        await connection.query(`CREATE DATABASE ${process.env.DB_NAME};`);
         await connection.query(`USE ${process.env.DB_NAME};`);
 
         // --- 1. TABEL USERS ---

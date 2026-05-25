@@ -17,15 +17,17 @@ export default function LessonPage() {
   const [judulKuis, setJudulKuis] = useState('') // ✨ State baru untuk Judul Materi Dinamis
   const [loading, setLoading] = useState(true)
   const [submitResult, setSubmitResult] = useState(null)
+  const [savedAnswers, setSavedAnswers] = useState(null)
+  const [isFinishedMode, setIsFinishedMode] = useState(false)
 
   // 1. FETCH DATA KUIS DARI BACKEND
   useEffect(() => {
     const fetchQuiz = async () => {
       setLoading(true)
       try {
-        // Pemetaan topik kuis sementara mengikuti klik materi user
         let topik = "Article Or No Article"; 
-        if (level === "beginner" && lessonId === "2") topik = "Pronouns Basics";
+        if (level === "beginner" && lessonId === "2") topik = "Pronoun Case";
+        if (level === "beginner" && lessonId === "3") topik = "To Be Or To Have";
 
         const formattedLevel = level.charAt(0).toUpperCase() + level.slice(1);
 
@@ -40,6 +42,17 @@ export default function LessonPage() {
         setQuizData(data.soal);
         setJudulKuis(data.judul_kuis); // ✨ Tangkap judul materi asli dari dataset DS!
 
+        // Ambil review jawaban jika kuis pernah dikerjakan sebelumnya
+        try {
+          const reviewRes = await api.get(`/quiz/review/${data.quiz_id}`);
+          if (reviewRes.data.data && reviewRes.data.data.length > 0) {
+            setSavedAnswers(reviewRes.data.data);
+            setIsFinishedMode(true);
+          }
+        } catch (err) {
+          console.error("Gagal mengambil review kuis:", err);
+        }
+
       } catch (error) {
         console.error("Gagal mengambil kuis:", error)
       } finally {
@@ -53,6 +66,8 @@ export default function LessonPage() {
     setIsFinished(false)
     setSubmitResult(null)
     setJudulKuis('') // Reset judul saat berpindah materi
+    setSavedAnswers(null)
+    setIsFinishedMode(false)
   }, [level, lessonId])
 
   // 2. UBAH FORMAT DATA API AGAR COCOK DENGAN UI
@@ -145,12 +160,157 @@ export default function LessonPage() {
     setCurrentIndex((prev) => prev - 1)
   }
 
+  const handleRetake = () => {
+    setIsFinishedMode(false)
+    setIsFinished(false)
+    setSavedAnswers(null)
+    setCurrentIndex(0)
+    setSelectedOptions({})
+    setSubmitResult(null)
+  }
+
+  const reviewScoreInfo = useMemo(() => {
+    if (!savedAnswers || savedAnswers.length === 0) return null;
+    const correctCount = savedAnswers.filter(a => a.is_correct).length;
+    const total = savedAnswers.length;
+    const score = Math.round((correctCount / total) * 100);
+    return { correctCount, total, score };
+  }, [savedAnswers]);
+
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
         <p className="text-lg font-medium text-slate-500">Memuat Kuis dari Server AI...</p>
       </div>
     )
+  }
+
+  if (isFinishedMode && savedAnswers) {
+    const info = reviewScoreInfo || { correctCount: 0, total: 0, score: 0 };
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-8 space-y-6 font-sans">
+        <section className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center md:p-8">
+          <div>
+            <h1 className="text-[28px] font-bold tracking-tight text-slate-900">Review Your Answers</h1>
+            <p className="mt-2 text-[16px] text-slate-600">
+              You got <span className="font-bold text-slate-900">{info.correctCount}</span> out of <span className="font-bold text-slate-900">{info.total}</span> questions correct (Score: <span className="font-bold text-indigo-600">{info.score}</span>)
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              className="shrink-0 cursor-pointer rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              onClick={() => navigate(`/learning/${level}`)}
+            >
+              Back to course
+            </button>
+            <button
+              type="button"
+              className="shrink-0 cursor-pointer rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-700"
+              onClick={handleRetake}
+            >
+              Retake Quiz
+            </button>
+          </div>
+        </section>
+
+        <div className="space-y-6">
+          {quizData.map((q, i) => {
+            const answerDetail = savedAnswers.find(a => a.question_id === q.question_id);
+            const userAns = answerDetail ? answerDetail.jawaban_teks : null;
+            const isCorrect = answerDetail ? !!answerDetail.is_correct : false;
+            const correctAnswer = answerDetail ? answerDetail.jawaban_benar : null;
+
+            return (
+              <div key={q.question_id} className={`rounded-2xl border-2 bg-white p-5 sm:p-6 ${isCorrect ? 'border-emerald-200' : 'border-red-200'}`}>
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    {isCorrect ? (
+                      <div className="text-emerald-500">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M9 12l2 2 4-4" />
+                        </svg>
+                      </div>
+                    ) : (
+                      <div className="text-red-500">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="15" y1="9" x2="9" y2="15" />
+                          <line x1="9" y1="9" x2="15" y2="15" />
+                        </svg>
+                      </div>
+                    )}
+                    <h3 className="text-[17px] font-bold text-slate-900">Question {i + 1}</h3>
+                  </div>
+                  <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${isCorrect ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-500'}`}>
+                    {isCorrect ? 'Correct' : 'Incorrect'}
+                  </span>
+                </div>
+
+                <p className="mb-5 text-[15px] text-slate-700">{q.pertanyaan}</p>
+
+                <div className="space-y-3">
+                  {q.pilihan.map((opt) => {
+                    const isSelected = userAns === opt;
+                    const isRightAnswer = correctAnswer === opt;
+
+                    let borderClass = "border border-slate-200";
+                    let textClass = "text-slate-700";
+                    let rightIcon = null;
+
+                    if (isRightAnswer) {
+                      borderClass = "border-2 border-emerald-500 bg-white";
+                      textClass = "text-emerald-800 font-medium";
+                      rightIcon = (
+                        <div className="shrink-0 text-emerald-500">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9 12l2 2 4-4" />
+                          </svg>
+                        </div>
+                      );
+                    } else if (isSelected && !isRightAnswer) {
+                      borderClass = "border-2 border-red-500 bg-white";
+                      textClass = "text-slate-900";
+                      rightIcon = (
+                        <div className="flex shrink-0 items-center gap-2">
+                          <span className="text-[13px] font-medium text-slate-500">Your answer</span>
+                          <div className="text-red-500">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="15" y1="9" x2="9" y2="15" />
+                              <line x1="9" y1="9" x2="15" y2="15" />
+                            </svg>
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div key={opt} className={`flex min-h-[52px] items-center justify-between gap-4 rounded-xl px-4 py-3 ${borderClass}`}>
+                        <span className={`text-[15px] ${textClass}`}>{opt}</span>
+                        {rightIcon}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="pt-4 text-center">
+          <button
+            type="button"
+            className="rounded-xl border-2 border-slate-200 bg-white px-8 py-3 text-[15px] font-semibold text-slate-700 transition hover:bg-slate-50"
+            onClick={() => navigate(`/learning/${level}`)}
+          >
+            Done Reviewing
+          </button>
+        </div>
+      </div>
+    );
   }
 
   if (isFinished && submitResult) {
@@ -175,6 +335,24 @@ export default function LessonPage() {
               onClick={() => navigate(`/learning/${level}`)}
             >
               Back to {level.charAt(0).toUpperCase() + level.slice(1)}
+            </button>
+
+            <button
+              type="button"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-indigo-600 bg-white px-5 py-2.5 text-sm font-bold text-indigo-600 transition hover:bg-indigo-50"
+              onClick={async () => {
+                try {
+                  const reviewRes = await api.get(`/quiz/review/${quizId}`);
+                  if (reviewRes.data.data && reviewRes.data.data.length > 0) {
+                    setSavedAnswers(reviewRes.data.data);
+                    setIsFinishedMode(true);
+                  }
+                } catch (err) {
+                  console.error("Gagal mengambil review kuis:", err);
+                }
+              }}
+            >
+              Review Your Answers
             </button>
 
             <button
