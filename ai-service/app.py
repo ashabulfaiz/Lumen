@@ -74,5 +74,49 @@ def chat_assistant():
     reply = "Maaf, sistem AI sedang sibuk." if bot_language == 'id' else "Sorry, the AI system is currently busy."
     return jsonify({"reply": reply})
 
+# ========================================================
+# 新 (TAMBAHAN) ENDPOINT GRAMMAR CORRECTION 
+# ========================================================
+@app.route('/api/ai/correct', methods=['POST'])
+def ai_correct():
+    data = request.json
+    text = data.get('text', '')
+
+    if not text:
+        return jsonify({"error": "Teks tidak boleh kosong"}), 400
+
+    if groq_client:
+        try:
+            system_instruction = (
+                "You are an English Grammar Correction expert. Analyze the user's input. "
+                "Provide the fully corrected sentence in the 'corrected' field. "
+                "In the 'matches' field, provide an array of objects detailing the errors. Each object must contain: "
+                "'message' (explanation of error), 'replacements' (array of suggestions), 'offset' (character start index), "
+                "and 'length' (length of wrong word). Return the response strictly as a JSON object, no markdown."
+            )
+            
+            chat_completion = groq_client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": text}
+                ],
+                model="llama-3.3-70b-versatile",
+                response_format={"type": "json_object"}
+            )
+            
+            import json
+            result = json.loads(chat_completion.choices[0].message.content)
+            return jsonify(result)
+            
+        except Exception as e:
+            print(f"⚠️ Groq Grammar Error: {e}")
+            return jsonify({"error": "Gagal memproses AI", "details": str(e)}), 500
+
+    # Fallback jika Groq mati
+    return jsonify({
+        "corrected": text,
+        "matches": []
+    })
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

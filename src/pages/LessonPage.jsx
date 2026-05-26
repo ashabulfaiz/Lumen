@@ -40,7 +40,7 @@ export default function LessonPage() {
         const data = response.data.data;
         setQuizId(data.quiz_id);
         setQuizData(data.soal);
-        setJudulKuis(data.judul_kuis); // ✨ Tangkap judul materi asli dari dataset DS!
+        setJudulKuis(data.judul_kuis);
 
         // Ambil review jawaban jika kuis pernah dikerjakan sebelumnya
         try {
@@ -372,8 +372,27 @@ export default function LessonPage() {
       </div>
     )
   }
-
-  if (!step) return null;
+  
+  if (!step) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-20 text-center font-sans">
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
+          
+          <h2 className="text-2xl font-bold text-slate-900">Oops! Content Unavailable</h2>
+          <p className="mt-3 max-w-md text-slate-500 leading-relaxed">
+            We apologize, but we're having trouble loading your quiz right now. Please make sure your internet connection is stable, and try again in a few moments.
+          </p>
+          
+          <button
+            onClick={() => navigate(`/learning/${level}`)}
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Back to Curriculum
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 font-sans">

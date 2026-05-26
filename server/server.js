@@ -10,6 +10,7 @@ const helpRoutes = require('./src/routes/helpRoutes');
 const certificateRoutes = require('./src/routes/certificateRoutes');
 const placementRoutes = require('./src/routes/placementRoutes');
 const quizRoutes = require('./src/routes/quizRoutes');
+const grammarRoutes = require('./src/routes/grammarRoutes');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/api/help', helpRoutes);
 app.use('/api/certificates', certificateRoutes);
 app.use('/api/placement', placementRoutes);
 app.use('/api/quiz', quizRoutes);
+app.use('/api/grammar', grammarRoutes);
 
 app.use((req, res, next) => {
     const error = new Error(`Route tidak ditemukan - ${req.originalUrl}`);
