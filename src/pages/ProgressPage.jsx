@@ -139,6 +139,27 @@ export default function ProgressPage() {
     )
   }
 
+  const hasAnyLessons = processedTracks.some((t) => t.lessons.length > 0)
+
+  if (!hasAnyLessons) {
+    return (
+      <div className="mx-auto max-w-[980px] font-sans">
+        <header className="mb-6 px-1">
+          <h1 className="mb-1.5 text-2xl font-bold text-slate-900">Course Progress</h1>
+          <p className="m-0 text-[15px] text-slate-600">Your learning progress throughout the program.</p>
+        </header>
+        <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-white px-6 py-16 text-center">
+          <p className="text-sm font-medium text-slate-600">
+            Belum ada materi kurikulum di database.
+          </p>
+          <p className="mt-2 text-sm text-slate-500">
+            Jalankan di terminal: <code className="rounded bg-slate-100 px-2 py-0.5">cd server && npm run seed</code>
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="mx-auto max-w-[980px] font-sans">
       <header className="mb-6 px-1">

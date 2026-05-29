@@ -66,7 +66,8 @@ export default function HelpPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5001/api/chat', {
+      const aiBase = import.meta.env.VITE_AI_CHAT_URL?.replace(/\/$/, '') || 'http://localhost:5001'
+      const response = await fetch(`${aiBase}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: trimmed, language: language }),

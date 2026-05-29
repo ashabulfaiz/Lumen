@@ -1,0 +1,119 @@
+{
+  "evaluated_at": "2026-05-29T14:13:18.830642+00:00",
+  "model_path": "/Users/zacky/dicoding/Lumen/ai/grammar/models/grammar_acceptability.keras",
+  "thresholds": {
+    "min_accuracy": 0.85,
+    "max_mae": 0.02
+  },
+  "splits": [
+    {
+      "dataset": "cola+jfleg",
+      "split": "train",
+      "samples": 2940,
+      "accuracy": 0.9857,
+      "mae": 0.0148,
+      "meets_min_accuracy": true,
+      "meets_max_mae": true,
+      "rubric_passed": true,
+      "by_source": {
+        "cola": {
+          "count": 1680,
+          "accuracy": 1.0,
+          "mae": 0.003644960932433605
+        },
+        "jfleg_corrected": {
+          "count": 630,
+          "accuracy": 1.0,
+          "mae": 0.018895382061600685
+        },
+        "jfleg_flawed": {
+          "count": 630,
+          "accuracy": 0.9333333333333333,
+          "mae": 0.040558185428380966
+        }
+      }
+    },
+    {
+      "dataset": "cola+jfleg",
+      "split": "val",
+      "samples": 630,
+      "accuracy": 0.9841,
+      "mae": 0.0164,
+      "meets_min_accuracy": true,
+      "meets_max_mae": true,
+      "rubric_passed": true,
+      "by_source": {
+        "cola": {
+          "count": 360,
+          "accuracy": 1.0,
+          "mae": 0.003841692116111517
+        },
+        "jfleg_corrected": {
+          "count": 135,
+          "accuracy": 1.0,
+          "mae": 0.02018113248050213
+        },
+        "jfleg_flawed": {
+          "count": 135,
+          "accuracy": 0.9259259259259259,
+          "mae": 0.046199411153793335
+        }
+      }
+    },
+    {
+      "dataset": "cola+jfleg",
+      "split": "test",
+      "samples": 630,
+      "accuracy": 0.9873,
+      "mae": 0.014,
+      "meets_min_accuracy": true,
+      "meets_max_mae": true,
+      "rubric_passed": true,
+      "by_source": {
+        "cola": {
+          "count": 360,
+          "accuracy": 1.0,
+          "mae": 0.00393361272290349
+        },
+        "jfleg_corrected": {
+          "count": 135,
+          "accuracy": 1.0,
+          "mae": 0.01715882681310177
+        },
+        "jfleg_flawed": {
+          "count": 135,
+          "accuracy": 0.9407407407407408,
+          "mae": 0.03787332400679588
+        }
+      }
+    }
+  ],
+  "primary": {
+    "dataset": "cola+jfleg",
+    "split": "test",
+    "samples": 630,
+    "accuracy": 0.9873,
+    "mae": 0.014,
+    "meets_min_accuracy": true,
+    "meets_max_mae": true,
+    "rubric_passed": true,
+    "by_source": {
+      "cola": {
+        "count": 360,
+        "accuracy": 1.0,
+        "mae": 0.00393361272290349
+      },
+      "jfleg_corrected": {
+        "count": 135,
+        "accuracy": 1.0,
+        "mae": 0.01715882681310177
+      },
+      "jfleg_flawed": {
+        "count": 135,
+        "accuracy": 0.9407407407407408,
+        "mae": 0.03787332400679588
+      }
+    }
+  },
+  "rubric_passed": true
+}

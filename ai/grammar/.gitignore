@@ -1,0 +1,16 @@
+.env
+.venv/
+env/
+__pycache__/
+*.py[cod]
+.Python
+
+models/*.keras
+models/saved_model/
+models/checkpoints/
+models/vocabulary.json
+models/vectorizer_config.json
+
+# Commit reports/ (metrics, tensorboard sample, training history)
+# reports/evaluation_metrics.json
+# reports/tensorboard/

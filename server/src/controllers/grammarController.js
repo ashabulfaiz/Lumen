@@ -1,28 +1,31 @@
 const axios = require('axios');
 const GrammarModel = require('../models/GrammarModel');
 
+const AI_CHAT_URL = process.env.AI_CHAT_URL || 'http://127.0.0.1:5001';
+
 const checkGrammar = async (req, res) => {
     try {
         const userId = req.user.id;
         const { text } = req.body;
 
         if (!text || text.trim() === '') {
-            return res.status(400).json({ 
-                status: 'error', 
-                message: 'Teks input kalimat tidak boleh kosong!' 
+            return res.status(400).json({
+                status: 'error',
+                message: 'Teks input kalimat tidak boleh kosong!',
             });
         }
 
         let aiResponse;
         try {
-            aiResponse = await axios.post('http://localhost:5001/correct', {
-                text: text
+            aiResponse = await axios.post(`${AI_CHAT_URL}/api/ai/correct`, {
+                text,
             });
         } catch (aiError) {
-            console.error("AI Service Error:", aiError.message);
+            console.error('AI Service Error:', aiError.message);
             return res.status(502).json({
                 status: 'error',
-                message: 'Gagal terhubung dengan Layanan AI Koreksi. Pastikan AI Service berjalan.'
+                message:
+                    'Gagal terhubung dengan Layanan AI Koreksi. Pastikan AI Chat berjalan (cd ai && ./start.sh).',
             });
         }
 
@@ -35,20 +38,19 @@ const checkGrammar = async (req, res) => {
             data: {
                 original_text: text,
                 corrected_text: corrected,
-                error_details: matches
-            }
+                error_details: matches,
+            },
         });
-
     } catch (error) {
-        console.error("Error pada grammarController:", error);
-        res.status(500).json({ 
+        console.error('Error pada grammarController:', error);
+        res.status(500).json({
             status: 'error',
-            message: 'Terjadi kesalahan internal pada server Node.js.', 
-            error: error.message 
+            message: 'Terjadi kesalahan internal pada server Node.js.',
+            error: error.message,
         });
     }
 };
 
 module.exports = {
-    checkGrammar
+    checkGrammar,
 };

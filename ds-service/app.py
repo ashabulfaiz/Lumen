@@ -2,7 +2,7 @@
 app.py — LUMEN Data Science Service
 =====================================
 Flask microservice untuk kebutuhan Data Science tim LUMEN.
-Berjalan di port 5002, terpisah dari ai-service (port 5001).
+Berjalan di port 5002, terpisah dari ai/chat (port 5001) dan ai/grammar (port 5003).
 
 Endpoint:
   GET  /api/ds/health                    → Health check

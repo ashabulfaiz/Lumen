@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+require('../config/loadEnv');
 
 const verifyToken = (req, res, next) => {
     // 1. Ambil token dari header request (biasanya formatnya "Bearer <token>")

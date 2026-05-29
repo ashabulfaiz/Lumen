@@ -34,7 +34,17 @@ const register = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({ message: "Terjadi kesalahan pada server.", error: error.message });
+        console.error('Register error:', error.message);
+        const hint =
+            error.code === 'ER_NO_DB_ERROR' || error.message?.includes('No database selected')
+                ? 'Database belum dipilih. Pastikan DB_NAME=lumen di server/.env lalu restart server.'
+                : error.code === 'ECONNREFUSED'
+                  ? 'MySQL tidak berjalan. Nyalakan MySQL lalu jalankan: node src/config/setup_db.js'
+                  : null;
+        res.status(500).json({
+            message: hint || 'Terjadi kesalahan pada server.',
+            error: error.message,
+        });
     }
 };
 

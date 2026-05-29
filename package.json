@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:server": "npm --prefix server run start",
+    "dev:ai": "cd ai && ./start.sh",
+    "dev:ds": "cd ds-service && python app.py",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

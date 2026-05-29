@@ -5,36 +5,97 @@
     "courses": [
       {
         "judul_course": "Basic English Grammar",
-        "deskripsi": "This module covers the most fundamental rules for forming English sentences, perfect for beginners.",
+        "deskripsi": "Fundamental rules for forming English sentences.",
         "urutan": 1,
         "lessons": [
           {
             "judul_lesson": "Using Articles (A, An, The)",
-            "konten_teks": "<p>An <b>Article</b> is a word used to modify a noun. There are two types of articles: Definite (The) and Indefinite (A/An). <i>A</i> is used before a noun starting with a consonant sound, while <i>An</i> is used before a vowel sound.</p><p>Examples: <i>A car, An apple, The sun.</i></p>",
-            "video_url": "https://www.youtube.com/watch?v=dummy1",
+            "konten_teks": "<p>Learn when to use <b>a</b>, <b>an</b>, and <b>the</b> before nouns.</p>",
+            "video_url": null,
             "urutan": 1,
-            "kuis_topik_id": "Article Or No Article" 
+            "kuis_topik_id": "Article Or No Article"
           },
           {
             "judul_lesson": "Introduction to Subjects & Pronouns",
-            "konten_teks": "<p>A <b>Pronoun</b> is used to replace a noun to avoid word repetition. Examples of basic pronouns are I, You, They, We, He, She, It.</p>",
-            "video_url": "https://www.youtube.com/watch?v=dummy2",
+            "konten_teks": "<p>Replace nouns with pronouns: I, you, he, she, it, we, they.</p>",
+            "video_url": null,
             "urutan": 2,
-            "kuis_topik_id": "Pronouns Basics"
+            "kuis_topik_id": "Pronoun Case"
+          },
+          {
+            "judul_lesson": "To Be and To Have",
+            "konten_teks": "<p>Use <i>am/is/are</i> and <i>have/has</i> in simple sentences.</p>",
+            "video_url": null,
+            "urutan": 3,
+            "kuis_topik_id": "To Be Or To Have"
           }
         ]
       },
       {
         "judul_course": "Daily Vocabulary",
-        "deskripsi": "A collection of the most commonly used vocabulary in everyday conversations.",
+        "deskripsi": "Common words for everyday conversations.",
         "urutan": 2,
         "lessons": [
           {
             "judul_lesson": "Greetings & Introductions",
-            "konten_teks": "<p>How to greet someone in English: <i>Hello, Good morning, How are you?</i> How to introduce yourself: <i>My name is..., I am from...</i></p>",
-            "video_url": "https://www.youtube.com/watch?v=dummy3",
+            "konten_teks": "<p>Say hello, introduce yourself, and ask how someone is doing.</p>",
+            "video_url": null,
             "urutan": 1,
-            "kuis_topik_id": "Greetings 101"
+            "kuis_topik_id": "Article Or No Article"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "nama_level": "Intermediate",
+    "kode_level": "INT",
+    "courses": [
+      {
+        "judul_course": "Reading & Listening",
+        "deskripsi": "Short texts and conversations with comprehension tasks.",
+        "urutan": 1,
+        "lessons": [
+          {
+            "judul_lesson": "Reading Short Texts",
+            "konten_teks": "<p>Practice skimming and finding key details in short passages.</p>",
+            "video_url": null,
+            "urutan": 1,
+            "kuis_topik_id": "Article Or No Article"
+          },
+          {
+            "judul_lesson": "Listening for Gist",
+            "konten_teks": "<p>Understand the main idea in announcements and dialogues.</p>",
+            "video_url": null,
+            "urutan": 2,
+            "kuis_topik_id": "Pronoun Case"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "nama_level": "Advanced",
+    "kode_level": "ADV",
+    "courses": [
+      {
+        "judul_course": "Fluency & Discussion",
+        "deskripsi": "Longer passages, nuanced grammar, and discussion skills.",
+        "urutan": 1,
+        "lessons": [
+          {
+            "judul_lesson": "Opinion Essays & Linking Words",
+            "konten_teks": "<p>Structure arguments with connectors and clear tone.</p>",
+            "video_url": null,
+            "urutan": 1,
+            "kuis_topik_id": "Article Or No Article"
+          },
+          {
+            "judul_lesson": "Real-world Dialogues",
+            "konten_teks": "<p>Follow fast speech, fillers, and implied meaning.</p>",
+            "video_url": null,
+            "urutan": 2,
+            "kuis_topik_id": "Pronoun Case"
           }
         ]
       }

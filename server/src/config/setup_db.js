@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('./loadEnv');
 const mysql = require('mysql2/promise');
 
 async function setupDatabase() {
@@ -190,7 +190,7 @@ async function setupDatabase() {
         `);
 
         await connection.query(`INSERT IGNORE INTO languages (id, nama_bahasa, kode_iso) VALUES (1, 'English', 'EN')`);
-        
+
         await connection.query(`
             INSERT IGNORE INTO placement_questions (id, language_id, pertanyaan, pilihan_a, pilihan_b, pilihan_c, pilihan_d, jawaban_benar) VALUES
             (1, 1, 'What is the past tense of "go"?', 'goed', 'went', 'gone', 'going', 'went'),
@@ -205,8 +205,12 @@ async function setupDatabase() {
             (10, 1, 'What does "break the ice" mean?', 'To freeze water', 'To start a conversation in a tense situation', 'To destroy something cold', 'To be very angry', 'To start a conversation in a tense situation')
         `);
 
-        console.log("✅ Migrasi Database LUMEN Berhasil!.");
         await connection.end();
+
+        const { seedCurriculum } = require('./seeder');
+        await seedCurriculum();
+
+        console.log("✅ Migrasi Database LUMEN Berhasil!.");
 
     } catch (error) {
         console.error("❌ Error:", error);
