@@ -42,7 +42,7 @@ export default function PlacementTestPage() {
         const response = await api.get('/placement/questions');
         setPlacementQuestions(response.data.data);
       } catch (error) {
-        console.error("Gagal mengambil soal placement dari database:", error);
+        console.error("Failed to fetch placement questions from the database:", error);
       } finally {
         setIsLoading(false);
       }
@@ -61,10 +61,18 @@ export default function PlacementTestPage() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center font-sans">
-        <div className="text-center">
-          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-slate-200 border-t-indigo-600"></div>
-          <p className="text-[15px] font-semibold text-slate-600">Loading exam questions...</p>
+      <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
+        <div className="flex min-h-[400px] flex-col items-center justify-center rounded-[2rem] border border-slate-200 bg-white p-12 text-center shadow-sm">
+          <div className="relative mb-6">
+            <div className="absolute inset-0 animate-ping rounded-full bg-indigo-200 opacity-60 duration-1000"></div>
+            <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 shadow-inner">
+              <svg className="h-8 w-8 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            </div>
+          </div>
+          <h2 className="text-[20px] font-bold tracking-tight text-slate-900">Setting up assessment...</h2>
+          <p className="mt-2.5 max-w-sm text-[15px] leading-relaxed text-slate-500">
+            Curating questions to find your perfect starting level.
+          </p>
         </div>
       </div>
     )

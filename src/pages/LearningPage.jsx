@@ -30,59 +30,61 @@ const pathSteps = [
 export default function LearningPage() {
   return (
     <div className="mx-auto max-w-[880px] pb-12 pt-2 font-sans">
-      <header className="mb-9">
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-600">General English</p>
-        <h1 className="mb-3 text-[clamp(1.5rem,3vw,1.875rem)] font-bold tracking-tight text-slate-900">
-          Your learning path
-        </h1>
-        <p className="max-w-prose text-base leading-relaxed text-slate-600">
-          LUMEN is built for English only: every unit and recommendation focuses on real-world English skills — not other
-          languages.
-        </p>
-      </header>
+      <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+        <header className="mb-9">
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-600">General English</p>
+          <h1 className="mb-3 text-[clamp(1.5rem,3vw,1.875rem)] font-bold tracking-tight text-slate-900">
+            Your learning path
+          </h1>
+          <p className="max-w-prose text-base leading-relaxed text-slate-600">
+            LUMEN is built for English only: every unit and recommendation focuses on real-world English skills — not other
+            languages.
+          </p>
+        </header>
 
-      <section className="mb-10" aria-labelledby="path-heading">
-        <h2 id="path-heading" className="mb-4 text-lg font-bold text-slate-900">
-          How the course flows
-        </h2>
-        <ol className="m-0 flex list-none flex-col gap-3.5 p-0">
-          {pathSteps.map((step, index) => (
-            <li
-              key={step.id}
-              id={step.id}
-              className="scroll-mt-6 rounded-xl border border-slate-200 bg-white shadow-sm"
-            >
-              <div className="flex gap-4 py-4 pl-4 pr-4">
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-indigo-50 text-sm font-bold text-indigo-600"
-                  aria-hidden
-                >
-                  {index + 1}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <h3 className="mb-1.5 text-base font-semibold text-slate-900">{step.title}</h3>
-                  <p className="mb-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
-                  <Link
-                    to={step.to}
-                    className="mt-0.5 inline-flex cursor-pointer items-center justify-center rounded-[10px] border border-indigo-200 bg-indigo-50 px-3 py-2 text-[13px] font-bold text-indigo-600 no-underline transition hover:border-indigo-300 hover:bg-indigo-100 active:translate-y-px"
+        <section className="mb-10" aria-labelledby="path-heading">
+          <h2 id="path-heading" className="mb-4 text-lg font-bold text-slate-900">
+            How the course flows
+          </h2>
+          <ol className="m-0 flex list-none flex-col gap-3.5 p-0">
+            {pathSteps.map((step, index) => (
+              <li
+                key={step.id}
+                id={step.id}
+                className="scroll-mt-6 rounded-xl border border-slate-200 bg-white shadow-sm"
+              >
+                <div className="flex gap-4 py-4 pl-4 pr-4">
+                  <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-indigo-50 text-sm font-bold text-indigo-600"
+                    aria-hidden
                   >
-                    {step.cta}
-                  </Link>
+                    {index + 1}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1.5 text-base font-semibold text-slate-900">{step.title}</h3>
+                    <p className="mb-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
+                    <Link
+                      to={step.to}
+                      className="mt-0.5 inline-flex cursor-pointer items-center justify-center rounded-[10px] border border-indigo-200 bg-indigo-50 px-3 py-2 text-[13px] font-bold text-indigo-600 no-underline transition hover:border-indigo-300 hover:bg-indigo-100 active:translate-y-px"
+                    >
+                      {step.cta}
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      <p className="mt-8">
-        <Link
-          to="/dashboard"
-          className="inline-flex cursor-pointer rounded-xl border-2 border-indigo-200 bg-white px-5 py-2.5 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50"
-        >
-          Back to dashboard
-        </Link>
-      </p>
+        <p className="mt-8">
+          <Link
+            to="/dashboard"
+            className="inline-flex cursor-pointer rounded-xl border-2 border-indigo-200 bg-white px-5 py-2.5 text-sm font-semibold text-indigo-600 transition hover:bg-indigo-50"
+          >
+            Back to dashboard
+          </Link>
+        </p>
+      </div>
     </div>
   )
 }
