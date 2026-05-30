@@ -11,7 +11,7 @@ export default function CertificatePage() {
   const [claimedCertificates, setClaimedCertificates] = useState([])
   const [levelProgress, setLevelProgress] = useState({})
   const [loading, setLoading] = useState(true)
-  const [activeCert, setActiveCert] = useState(null) // Untuk preview sertifikat modal
+  const [activeCert, setActiveCert] = useState(null)
 
   const levels = [
     { id: 1, slug: 'beginner', title: 'Beginner' },
@@ -22,11 +22,9 @@ export default function CertificatePage() {
   const fetchCertificatesAndProgress = async () => {
     setLoading(true)
     try {
-      // 1. Fetch claimed certificates
       const certRes = await api.get('/certificates')
       setClaimedCertificates(certRes.data.data || [])
 
-      // 2. Fetch progress for each level
       const progressData = {}
       for (const lvl of levels) {
         try {
@@ -65,13 +63,13 @@ export default function CertificatePage() {
             isEligible
           }
         } catch (err) {
-          console.error(`Gagal memuat progres level ${lvl.title}:`, err)
+          console.error(`Failed to load level progress ${lvl.title}:`, err)
           progressData[lvl.id] = { completed: 0, total: 0, percentage: 0, isEligible: false }
         }
       }
       setLevelProgress(progressData)
     } catch (error) {
-      console.error('Gagal mengambil data sertifikat:', error)
+      console.error('Failed to retrieve certificate data:', error)
     } finally {
       setLoading(false)
     }
@@ -84,8 +82,8 @@ export default function CertificatePage() {
   const handleClaimCertificate = async (levelId, levelTitle) => {
     try {
       Swal.fire({
-        title: 'Mempersiapkan Sertifikat...',
-        text: 'Harap tunggu sebentar.',
+        title: 'Preparing Certificate...',
+        text: 'Please wait a moment.',
         allowOutsideClick: false,
         didOpen: () => {
           Swal.showLoading()
@@ -96,19 +94,19 @@ export default function CertificatePage() {
       
       Swal.fire({
         icon: 'success',
-        title: 'Selamat!',
-        text: `Sertifikat untuk level ${levelTitle} berhasil diklaim.`,
+        title: 'Congratulations!',
+        text: `Certificate for level ${levelTitle} has been successfully claimed.`,
         confirmButtonColor: '#4f46e5',
-        confirmButtonText: 'Bagus!'
+        confirmButtonText: 'Great!'
       })
 
       fetchCertificatesAndProgress()
     } catch (error) {
-      console.error('Gagal klaim sertifikat:', error)
-      const errMsg = error.response?.data?.message || 'Gagal menerbitkan sertifikat. Pastikan Anda telah lulus semua kuis dengan nilai >= 70.'
+      console.error('Failed to claim certificate:', error)
+      const errMsg = error.response?.data?.message || 'Failed to issue certificate. Please ensure you have passed all quizzes with a score of >= 70.'
       Swal.fire({
         icon: 'error',
-        title: 'Klaim Gagal',
+        title: 'Claim Failed',
         text: errMsg,
         confirmButtonColor: '#ef4444'
       })
@@ -129,8 +127,8 @@ export default function CertificatePage() {
 
     // Tampilkan loading spinner
     Swal.fire({
-      title: 'Mempersiapkan PDF...',
-      text: 'Harap tunggu, sertifikat Anda sedang diunduh.',
+      title: 'Preparing PDF...',
+      text: 'Please wait, your certificate is being downloaded.',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading()
@@ -141,7 +139,7 @@ export default function CertificatePage() {
       const html2pdf = (await importtml('html2pdf.js')).default
       const opt = {
         margin:       0,
-        filename:     `Sertifikat_${activeCert.levelTitle}_${user?.name || 'Lumen'}.pdf`,
+        filename:     `Certificate_${activeCert.levelTitle}_${user?.name || 'Lumen'}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { 
           scale: 2, 
@@ -159,12 +157,12 @@ export default function CertificatePage() {
       await html2pdf().set(opt).from(element).save()
       Swal.close()
     } catch (error) {
-      console.error('Gagal membuat PDF:', error)
+      console.error('Failed to create PDF:', error)
       Swal.close()
       Swal.fire({
         icon: 'error',
-        title: 'Unduh Gagal',
-        text: 'Terjadi kesalahan saat mengekspor PDF. Silakan hubungi admin atau coba cetak manual.',
+        title: 'Download Failed',
+        text: 'An error occurred while exporting the PDF. Please contact the administrator or try printing manually.',
         confirmButtonColor: '#ef4444'
       })
     } finally {
@@ -176,7 +174,7 @@ export default function CertificatePage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center font-sans">
-        <p className="text-lg font-medium text-slate-500">Sinkronisasi data sertifikat...</p>
+        <p className="text-lg font-medium text-slate-500">Syncing certificate data...</p>
       </div>
     )
   }
@@ -262,7 +260,7 @@ export default function CertificatePage() {
           Certifications
         </h1>
         <p className="max-w-prose text-base leading-relaxed text-slate-600">
-          Klaim sertifikat resmi Anda setelah berhasil menyelesaikan seluruh modul pembelajaran dan kuis untuk masing-masing tingkatan level kelas.
+          Claim your official certificate after successfully completing all learning modules and quizzes for each level.
         </p>
       </header>
 
@@ -302,7 +300,7 @@ export default function CertificatePage() {
                   )}
                 </div>
                 <p className="mt-1.5 text-sm text-slate-500">
-                  Sertifikat resmi kompetensi bahasa Inggris tingkat {lvl.title} dari LUMEN Academy.
+                  Official English proficiency certificate for {lvl.title} level from LUMEN Academy.
                 </p>
               </div>
 
@@ -313,14 +311,14 @@ export default function CertificatePage() {
                 <div className="flex-1 min-w-0">
                   {claimed ? (
                     <div className="text-sm font-semibold text-slate-700">
-                      Sertifikat terbit: <span className="font-mono text-xs text-indigo-600 bg-indigo-50 border border-indigo-100 rounded px-2 py-0.5 ml-1">{claimed.certificate_code}</span>
+                      Certificate issued: <span className="font-mono text-xs text-indigo-600 bg-indigo-50 border border-indigo-100 rounded px-2 py-0.5 ml-1">{claimed.certificate_code}</span>
                     </div>
                   ) : prog.total === 0 ? (
-                    <span className="text-sm text-slate-500 font-medium">Materi kurikulum level ini sedang disiapkan.</span>
+                    <span className="text-sm text-slate-500 font-medium">Curriculum materials for this level are currently being prepared.</span>
                   ) : (
                     <div className="space-y-1.5 max-w-xs">
                       <div className="flex justify-between text-xs font-semibold text-slate-500">
-                        <span>Progres Modul:</span>
+                        <span>Module Progress:</span>
                         <span>{prog.completed} / {prog.total} ({prog.percentage}%)</span>
                       </div>
                       <div className="h-1.5 w-full rounded-full bg-slate-100">
@@ -341,7 +339,7 @@ export default function CertificatePage() {
                       className="cursor-pointer rounded-[10px] border border-indigo-200 bg-indigo-50 px-4 py-2 text-[13px] font-bold text-indigo-600 transition hover:border-indigo-300 hover:bg-indigo-100 active:translate-y-px"
                       onClick={() => setActiveCert({ ...claimed, levelTitle: lvl.title })}
                     >
-                      Lihat Sertifikat
+                      View Certificate
                     </button>
                   ) : prog.total === 0 ? (
                     <button
@@ -356,7 +354,7 @@ export default function CertificatePage() {
                       className="cursor-pointer rounded-[10px] border border-indigo-600 bg-indigo-600 px-4 py-2 text-[13px] font-bold text-white transition hover:bg-indigo-700 active:translate-y-px"
                       onClick={() => handleClaimCertificate(lvl.id, lvl.title)}
                     >
-                      Klaim Sertifikat
+                      Claim Certificate
                     </button>
                   ) : (
                     <button
@@ -400,9 +398,9 @@ export default function CertificatePage() {
 
             {/* Header Modal */}
             <div className="text-left border-b border-slate-100 pb-4">
-              <h2 className="text-lg font-bold text-slate-950">Sertifikat Kelulusan</h2>
+              <h2 className="text-lg font-bold text-slate-950">Completion Certificate</h2>
               <p className="text-sm text-slate-500 mt-0.5">
-                Sertifikat resmi kelulusan level <strong>{activeCert.levelTitle}</strong>.
+                Official completion certificate for level <strong>{activeCert.levelTitle}</strong>.
               </p>
             </div>
 
@@ -492,10 +490,10 @@ export default function CertificatePage() {
                 {/* Certificate Header */}
                 <div className="text-center mt-8 z-10">
                   <h1 className="text-[56px] font-bold tracking-[0.2em] text-[#0c2b5c] font-cinzel leading-none">
-                    SERTIFIKAT
+                    COMPLETION CERTIFICATE
                   </h1>
                   <p className="text-[14px] font-bold tracking-[0.25em] text-[#7c7c7c] font-montserrat mt-6">
-                    DIBERIKAN KEPADA:
+                    AWARDED TO:
                   </p>
                 </div>
 
@@ -509,13 +507,13 @@ export default function CertificatePage() {
                 {/* Course Completion Details */}
                 <div className="text-center max-w-[770px] mx-auto space-y-2 z-10">
                   <p className="text-[#5c5c5c] text-[17px] font-medium leading-relaxed font-montserrat">
-                    Atas keberhasilannya menyelesaikan program kelas pembelajaran bahasa Inggris tingkat
+                    In recognition of their successful completion of the {activeCert.levelTitle} level English learning program
                   </p>
                   <p className="text-[#0c2b5c] text-[21px] font-bold tracking-[0.1em] font-montserrat">
                     {activeCert.levelTitle.toUpperCase()} LEVEL
                   </p>
                   <p className="text-[#5c5c5c] text-[16.5px] font-medium font-montserrat">
-                    pada tanggal {new Date(activeCert.issued_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })} di LUMEN Academy.
+                    on {new Date(activeCert.issued_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })} at LUMEN Academy.
                   </p>
                 </div>
 
@@ -540,14 +538,14 @@ export default function CertificatePage() {
                 className="w-full sm:w-auto cursor-pointer rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 onClick={() => setActiveCert(null)}
               >
-                Tutup
+                Close
               </button>
               <button
                 type="button"
                 className="w-full sm:w-auto cursor-pointer rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-700 transition flex items-center justify-center gap-2"
                 onClick={handleDownloadPDF}
               >
-                <Download className="h-4 w-4" /> Cetak / Unduh PDF
+                <Download className="h-4 w-4" /> Print / Download PDF
               </button>
             </div>
           </div>

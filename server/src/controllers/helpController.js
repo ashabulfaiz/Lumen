@@ -1,27 +1,37 @@
-const HelpModel = require('../models/HelpModel');
-
 const sendChatMessage = async (req, res) => {
     try {
         const userId = req.user.id; 
-        const { pesan_user } = req.body;
+        const { pesan_user, language = 'id' } = req.body; 
 
         if (!pesan_user) {
-            return res.status(400).json({ message: "Pesan tidak boleh kosong!" });
+            return res.status(400).json({ message: "The message cannot be empty!" });
         }
 
-        const respons_ai = `LUMEN AI menjawab: "Saya mengerti maksud Anda terkait '${pesan_user}'. Sistem AI asli sedang dalam tahap integrasi."`;
+        let respons_ai = "";
+
+        try {
+            const aiResponse = await axios.post('http://localhost:5001/api/chat', {
+                message: pesan_user,
+                language: language
+            });
+            respons_ai = aiResponse.data.reply;
+        } catch (aiError) {
+            console.error("AI Chat Service Error:", aiError.message);
+            respons_ai = "Sorry, LUMEN-bot is currently experiencing network connectivity issues. Please try again later.";
+        }
+
         await HelpModel.saveChatHistory(userId, pesan_user, respons_ai);
 
         res.status(200).json({
             status: "success",
-            message: "Pesan berhasil diproses",
+            message: "Message processed successfully",
             data: {
                 pesan_user,
                 respons_ai
             }
         });
     } catch (error) {
-        res.status(500).json({ message: "Gagal memproses pesan AI", error: error.message });
+        res.status(500).json({ message: "Failed to process AI message", error: error.message });
     }
 };
 
@@ -35,7 +45,7 @@ const getChatHistory = async (req, res) => {
             data: history
         });
     } catch (error) {
-        res.status(500).json({ message: "Gagal mengambil riwayat chat", error: error.message });
+        res.status(500).json({ message: "Failed to retrieve chat history", error: error.message });
     }
 };
 

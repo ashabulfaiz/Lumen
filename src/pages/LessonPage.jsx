@@ -10,17 +10,18 @@ export default function LessonPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedOptions, setSelectedOptions] = useState({})
   const [isFinished, setIsFinished] = useState(false)
+
+  const [aiFeedbacks, setAiFeedbacks] = useState({})
+  const [isCheckingGrammar, setIsCheckingGrammar] = useState(false)
   
-  // State untuk menampung data dari Backend
   const [quizData, setQuizData] = useState([])
   const [quizId, setQuizId] = useState(null)
-  const [judulKuis, setJudulKuis] = useState('') // ✨ State baru untuk Judul Materi Dinamis
+  const [judulKuis, setJudulKuis] = useState('') 
   const [loading, setLoading] = useState(true)
   const [submitResult, setSubmitResult] = useState(null)
   const [savedAnswers, setSavedAnswers] = useState(null)
   const [isFinishedMode, setIsFinishedMode] = useState(false)
 
-  // 1. FETCH DATA KUIS DARI BACKEND
   useEffect(() => {
     const fetchQuiz = async () => {
       setLoading(true)
@@ -42,7 +43,6 @@ export default function LessonPage() {
         setQuizData(data.soal);
         setJudulKuis(data.judul_kuis);
 
-        // Ambil review jawaban jika kuis pernah dikerjakan sebelumnya
         try {
           const reviewRes = await api.get(`/quiz/review/${data.quiz_id}`);
           if (reviewRes.data.data && reviewRes.data.data.length > 0) {
@@ -65,18 +65,17 @@ export default function LessonPage() {
     setSelectedOptions({})
     setIsFinished(false)
     setSubmitResult(null)
-    setJudulKuis('') // Reset judul saat berpindah materi
+    setJudulKuis('')
     setSavedAnswers(null)
     setIsFinishedMode(false)
   }, [level, lessonId])
 
-  // 2. UBAH FORMAT DATA API AGAR COCOK DENGAN UI
   const steps = useMemo(() => {
     if (quizData.length === 0) return []
 
     const dynamicSteps = quizData.map((q) => ({
       id: q.question_id,
-      type: 'question',
+      type: q.pilihan && q.pilihan.length > 0 ? 'question' : 'essay',
       prompt: q.pertanyaan,
       options: q.pilihan,
     }))
@@ -85,7 +84,7 @@ export default function LessonPage() {
       {
         id: 'intro',
         type: 'info',
-        title: judulKuis || `${level.charAt(0).toUpperCase() + level.slice(1)} — Lesson ${lessonId}`, // ✨ Gunakan judul dinamis
+        title: judulKuis || `${level.charAt(0).toUpperCase() + level.slice(1)} — Lesson ${lessonId}`,
         content: "Jawablah pertanyaan berikut dengan teliti. Nilai akan dihitung langsung oleh sistem AI kami.",
       },
       ...dynamicSteps
@@ -116,14 +115,41 @@ export default function LessonPage() {
 
   const canProceed = useMemo(() => {
     if (!step) return false;
-    if (step.type === 'info') return true
-    return selectedOption != null
+    if (step.type === 'info') return true;
+    if (step.type === 'essay') {
+      return selectedOption && selectedOption.trim().length > 0;
+    }
+    
+    return selectedOption != null;
   }, [step, selectedOption])
 
   const handleSelect = (option) => {
-    if (step.type !== 'question') return
+    if (step.type !== 'question' && step.type !== 'essay') return
+    
     setSelectedOptions((prev) => ({ ...prev, [step.id]: option }))
   }
+
+  const handleCheckGrammar = async () => {
+    if (!selectedOption || selectedOption.trim() === '') return;
+
+    setIsCheckingGrammar(true);
+    try {
+      const response = await api.post('/grammar/check', {
+        text: selectedOption
+      });
+
+      setAiFeedbacks((prev) => ({
+        ...prev,
+        [step.id]: response.data.data
+      }));
+      
+    } catch (error) {
+      console.error("Gagal mengoreksi grammar dengan AI:", error);
+      alert("Gagal terhubung ke AI. Silakan coba lagi.");
+    } finally {
+      setIsCheckingGrammar(false);
+    }
+  };
 
   const handleNext = async () => {
     if (!canProceed) return
@@ -179,8 +205,27 @@ export default function LessonPage() {
 
   if (loading) {
     return (
-      <div className="flex h-64 items-center justify-center">
-        <p className="text-lg font-medium text-slate-500">Memuat Kuis dari Server AI...</p>
+      <div className="mx-auto max-w-3xl px-4 py-20 font-sans">
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-indigo-50 bg-gradient-to-b from-white to-indigo-50/50 p-12 text-center shadow-sm">
+          
+          <div className="relative mb-6">
+            <div className="absolute inset-0 animate-ping rounded-full bg-indigo-200 opacity-60 duration-1000"></div>
+            <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 shadow-inner">
+              <svg className="h-8 w-8 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <h2 className="text-[22px] font-bold tracking-tight text-slate-900">
+            Preparing your lesson...
+          </h2>
+          <p className="mt-2.5 max-w-sm text-[15px] leading-relaxed text-slate-500">
+            We are crafting the best learning materials for you. Hang tight, this will only take a moment!
+          </p>
+
+        </div>
       </div>
     )
   }
@@ -399,7 +444,6 @@ export default function LessonPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
         <div className="mb-6">
           <div className="mb-2 flex items-center justify-between gap-4">
-            {/* ✨ Judul Atas Sekarang Berubah Otomatis Mengikuti Materi */}
             <h1 className="text-[20px] sm:text-[24px] font-bold tracking-tight text-slate-900">
               {judulKuis || `${level} - Lesson ${lessonId}`}
             </h1>
@@ -419,6 +463,83 @@ export default function LessonPage() {
           <div className="py-4 space-y-4">
             <h2 className="text-xl font-bold text-slate-900">{step.title}</h2>
             <p className="text-[16px] leading-relaxed text-slate-700">{step.content}</p>
+          </div>
+        ) : step.type === 'essay' ? (
+          <div className="py-4">
+            <p className="mb-5 text-xl font-semibold text-slate-900">{step.prompt}</p>
+            
+            <textarea
+              className="w-full min-h-[160px] rounded-xl border border-slate-300 bg-white p-4 text-[15px] text-slate-800 shadow-sm transition-all placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+              placeholder="Type your English answer here..."
+              value={selectedOptions[step.id] || ''}
+              onChange={(e) => handleSelect(e.target.value)}
+              disabled={isCheckingGrammar}
+            />
+
+            <div className="mt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={handleCheckGrammar}
+                disabled={isCheckingGrammar || !selectedOptions[step.id]}
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {isCheckingGrammar ? (
+                  <>
+                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    AI Checking...
+                  </>
+                ) : (
+                  '✨ Check Grammar'
+                )}
+              </button>
+            </div>
+
+            {aiFeedbacks[step.id] && (
+              <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/50 p-5 shadow-sm">
+                <h4 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-indigo-900">
+                  <span className="text-indigo-600">🤖 AI Feedback</span>
+                </h4>
+                
+                <div className="mb-4 rounded-xl bg-white p-4 shadow-sm border border-slate-100">
+                  <p className="text-xs font-semibold text-slate-400 uppercase mb-1">Corrected Sentence</p>
+                  <p className="text-[15px] font-medium text-emerald-700">
+                    {aiFeedbacks[step.id].corrected_text}
+                  </p>
+                </div>
+
+                {aiFeedbacks[step.id].error_details && aiFeedbacks[step.id].error_details.length > 0 ? (
+                  <div className="space-y-3">
+                    <p className="text-xs font-semibold text-slate-500 uppercase mb-2">Errors Detected</p>
+                    {aiFeedbacks[step.id].error_details.map((err, idx) => (
+                      <div key={idx} className="rounded-xl border border-red-100 bg-white p-4 shadow-sm relative overflow-hidden">
+                        <div className="absolute left-0 top-0 h-full w-1 bg-red-400"></div>
+                        <p className="text-[14px] text-slate-700 mb-2">
+                          <span className="font-semibold text-red-600">Issue:</span> {err.message}
+                        </p>
+                        {err.replacements && err.replacements.length > 0 && (
+                          <p className="text-[14px] text-slate-700">
+                            <span className="font-semibold text-emerald-600">Suggestion:</span> Change to <span className="inline-block rounded-md bg-emerald-100 px-2 py-0.5 font-bold text-emerald-700">{err.replacements.join(', ')}</span>
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-4">
+                    <p className="text-sm font-medium text-emerald-700 flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                      Great job! No grammar issues found in your sentence.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         ) : (
           <div className="py-4">

@@ -15,7 +15,7 @@ const checkGrammar = async (req, res) => {
 
         let aiResponse;
         try {
-            aiResponse = await axios.post('http://localhost:5001/correct', {
+            aiResponse = await axios.post('http://localhost:5001/api/ai/correct', {
                 text: text
             });
         } catch (aiError) {
