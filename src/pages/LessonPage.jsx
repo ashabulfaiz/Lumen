@@ -26,8 +26,18 @@ export default function LessonPage() {
       setLoading(true)
       try {
         let topik = "Article Or No Article"; 
-        if (level === "beginner" && lessonId === "2") topik = "Pronoun Case";
-        if (level === "beginner" && lessonId === "3") topik = "To Be Or To Have";
+        if (level === "beginner") {
+          if (lessonId === "1") topik = "Article Or No Article";
+          if (lessonId === "2") topik = "Pronoun Case";
+          if (lessonId === "3") topik = "To Be Or To Have";
+          if (lessonId === "4") topik = "To Be Present Negative Sentences";
+        } else if (level === "intermediate") {
+          if (lessonId === "5") topik = "Mixed Verb Tenses";
+          if (lessonId === "6") topik = "Mixed Modals Should, Can, Must";
+        } else if (level === "advanced") {
+          if (lessonId === "7") topik = "Conjunctive Adverbs";
+          if (lessonId === "8") topik = "The Second Conditional";
+        }
 
         const formattedLevel = level.charAt(0).toUpperCase() + level.slice(1);
 

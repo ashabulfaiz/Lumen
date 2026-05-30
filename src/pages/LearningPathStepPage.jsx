@@ -12,11 +12,11 @@ const stepContentByPath = {
   '/learning/introduction': {
     title: 'Introduction',
     description:
-      'Welcome to LUMEN learning flow. This short onboarding explains how units work, where to monitor your progress, and how to stay consistent each day.',
-    points: [
-      'Follow unit order from the level you unlock.',
-      'Check dashboard metrics to monitor your improvement.',
-      'Use help resources whenever a topic feels difficult.',
+      'Selamat datang di LUMEN. Berikut adalah gambaran singkat materi pembelajaran yang akan Anda pelajari:',
+    materials: [
+      { level: 'Beginner', desc: 'Tata bahasa (grammar) dasar dan kosakata sehari-hari', badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-100' },
+      { level: 'Intermediate', desc: 'Pemahaman membaca (reading) dan mendengarkan (listening)', badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-100' },
+      { level: 'Advanced', desc: 'Penulisan esai opini dan percakapan tingkat lanjut', badgeClass: 'bg-purple-50 text-purple-700 border-purple-100' },
     ],
     nextPath: '/learning/placement',
     nextLabel: 'Next: Placement Test',
@@ -50,6 +50,7 @@ export default function LearningPathStepPage() {
   const content = stepContentByPath[pathname] ?? stepContentByPath['/learning/introduction']
   const isLevelChooserPage = pathname === '/learning/levels'
   const isPlacementPage = pathname === '/learning/placement'
+  const isIntroPage = pathname === '/learning/introduction'
   const [{ chosenLevel, highestUnlocked, placementCompleted }, setProgress] = useState(initialProgressState)
 
   useEffect(() => {
@@ -92,10 +93,14 @@ export default function LearningPathStepPage() {
   }, [chosenLevel, highestUnlocked, levelName])
 
   return (
-    <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
-      <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-600">Learning path</p>
-      <h1 className="mb-3 text-[26px] font-bold tracking-tight text-slate-900">{content.title}</h1>
-      <p className="mb-6 text-[15px] leading-relaxed text-slate-600">{content.description}</p>
+    <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage ? 'max-w-5xl' : isIntroPage ? 'max-w-4xl' : 'max-w-2xl'}`}>
+      {!isIntroPage && (
+        <>
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-600">Learning path</p>
+          <h1 className="mb-3 text-[26px] font-bold tracking-tight text-slate-900">{content.title}</h1>
+          <p className="mb-6 text-[15px] leading-relaxed text-slate-600">{content.description}</p>
+        </>
+      )}
 
       {isLevelChooserPage ? (
         <section
@@ -253,11 +258,65 @@ export default function LearningPathStepPage() {
           </div>
         </section>
       ) : (
-        <ul className="mb-7 space-y-2 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-sm">
-          {content.points.map((point) => (
-            <li key={point}>- {point}</li>
-          ))}
-        </ul>
+        <section className="mb-7 rounded-[2rem] bg-white border border-slate-200 p-6 text-slate-700 shadow-sm md:p-10 font-sans">
+          <h2 className="mb-6 text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+            Memulai Pembelajaran Bahasa Inggris bersama LUMEN
+          </h2>
+          
+          <div className="space-y-5 text-sm leading-relaxed text-slate-600 md:text-[15px]">
+            <p>
+              Selamat datang di LUMEN! Kami hadir untuk menemani perjalanan Anda dalam menguasai bahasa Inggris dengan cara yang menyenangkan, terarah, dan adaptif.
+            </p>
+            <p>
+              Di era globalisasi saat ini, kemampuan berkomunikasi dalam bahasa Inggris bukan lagi sekadar nilai tambah, melainkan kebutuhan mendasar. Baik untuk kebutuhan akademis, pengembangan karir, maupun interaksi sehari-hari, bahasa Inggris membuka gerbang ke berbagai peluang global tanpa batas.
+            </p>
+            <p>
+              LUMEN membantu Anda menguasai tata bahasa (grammar), memperluas kosakata (vocabulary), hingga melatih kelancaran berbicara melalui modul pembelajaran yang terstruktur. Didukung oleh teknologi kecerdasan buatan (AI Tutor), Anda akan mendapatkan umpan balik langsung secara instan dan personal.
+            </p>
+            <p>
+              Apakah Anda siap untuk meningkatkan kemampuan bahasa Inggris Anda secara terstruktur dan percaya diri?
+            </p>
+            <p>
+              Nah, kali ini kita akan belajar secara bertahap materi-materi tata bahasa dari tingkat dasar hingga tingkat mahir yang kami ambil secara representatif dari database kurikulum LUMEN:
+            </p>
+            
+            <div className="my-6 rounded-xl bg-slate-50 border border-slate-200 p-5 space-y-4">
+              <div>
+                <span className="inline-block rounded-md bg-emerald-50 px-2 py-0.5 text-xs font-bold text-emerald-700 border border-emerald-200/60 mb-2">
+                  Beginner
+                </span>
+                <p className="text-slate-600 text-xs md:text-sm m-0">
+                  Fokus pada pemahaman **Articles** (seperti <em>Article or No Article</em>, <em>Indefinite Articles A/An</em>, dan <em>Articles with Geographic Names</em>) untuk membangun fondasi kalimat yang tepat.
+                </p>
+              </div>
+              <div className="border-t border-slate-200/80 my-3"></div>
+              <div>
+                <span className="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-xs font-bold text-blue-700 border border-blue-200/60 mb-2">
+                  Intermediate
+                </span>
+                <p className="text-slate-600 text-xs md:text-sm m-0">
+                  Mempelajari **Irregular Verbs** (kata kerja tidak beraturan pada <em>Past Tenses</em>) serta penggunaan kata bantu **Mixed Modals** seperti <em>Should, Can</em>, dan <em>Must</em> dalam percakapan sehari-hari.
+                </p>
+              </div>
+              <div className="border-t border-slate-200/80 my-3"></div>
+              <div>
+                <span className="inline-block rounded-md bg-purple-50 px-2 py-0.5 text-xs font-bold text-purple-700 border border-purple-200/60 mb-2">
+                  Advanced
+                </span>
+                <p className="text-slate-600 text-xs md:text-sm m-0">
+                  Menguasai kalimat pengandaian tingkat lanjut seperti **Conditionals** (<em>First, Second, & Third Conditional</em>) serta pembagian **Transitive & Intransitive Verbs** untuk ekspresi yang lebih bervariasi.
+                </p>
+              </div>
+            </div>
+
+            <p>
+              Keren kan materinya? Tujuan akhir dari materi ini adalah untuk memahami bagaimana menentukan kebutuhan pembelajaran bahasa Anda dan menguasai spesifikasi kompetensi tata bahasa sebagai fondasi karir Anda di era global. Jadi tunggu apalagi.
+            </p>
+            <p className="font-bold text-slate-800 text-[16px] mt-6">
+              Yuk, kita mulai belajar.
+            </p>
+          </div>
+        </section>
       )}
 
       <div className={`flex items-center justify-between gap-4 ${isPlacementPage ? 'flex-wrap pt-1' : 'flex-wrap'}`}>

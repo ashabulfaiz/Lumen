@@ -11,10 +11,11 @@ class CertificateModel {
 
     static async countPassedCourses(userId, levelId) {
         const [rows] = await db.query(`
-            SELECT COUNT(DISTINCT q.course_id) as total_lulus
+            SELECT COUNT(DISTINCT l.course_id) as total_lulus
             FROM quiz_scores qs
             JOIN quizzes q ON qs.quiz_id = q.id
-            JOIN courses c ON q.course_id = c.id
+            JOIN lessons l ON q.lesson_id = l.id
+            JOIN courses c ON l.course_id = c.id
             WHERE qs.user_id = ? AND c.level_id = ? AND qs.skor >= 70
         `, [userId, levelId]);
         return rows[0].total_lulus;
