@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { IconFlame } from '../components/Icons.jsx'
 import api from '../lib/axiosInstance'
-import { persistLoginSession } from '../lib/userSession.js'
 import {
   INVALID_EMAIL_MESSAGE,
   PASSWORD_TOO_SHORT_MESSAGE,
@@ -12,7 +11,6 @@ import {
 } from '../lib/validateEmail.js'
 
 export default function LoginPage() {
-  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -48,7 +46,7 @@ export default function LoginPage() {
     setEmail(cleanEmail)
 
     if (!cleanEmail.trim() || !password) {
-      setError('Email dan password wajib diisi.')
+      setError('Email and password are required')
       return
     }
     if (!isValidEmail(cleanEmail)) {
@@ -72,12 +70,12 @@ export default function LoginPage() {
         password,
       })
 
-      const token = response.data.token
-      localStorage.setItem('lumen_token', token)
-      persistLoginSession(cleanEmail)
-      navigate('/dashboard', { replace: true })
+      localStorage.clear();
+      localStorage.setItem('lumen_token', response.data.token);
+      
+      window.location.href = '/dashboard';
     } catch (err) {
-      setError(err.response?.data?.message || 'Terjadi kesalahan pada server saat login')
+      setError(err.response?.data?.message || 'An error occurred on the server while logging in')
     }
   }
 
@@ -88,18 +86,13 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-slate-50 px-5 py-12 font-sans">
-      <Link
-        to="/"
-        className="mb-5 max-w-[420px] self-start text-sm text-slate-600 no-underline hover:text-indigo-600 md:mx-auto md:w-full"
-      >
+      <Link to="/" className="mb-5 max-w-[420px] self-start text-sm text-slate-600 no-underline hover:text-indigo-600 md:mx-auto md:w-full">
         ← Back to home
       </Link>
 
       <div className="w-full max-w-[420px] rounded-2xl border border-slate-200 bg-white p-8 shadow-lg">
         <div className="mb-5 flex items-center gap-2.5">
-          <span className="flex h-8 w-8 text-indigo-600" aria-hidden>
-            <IconFlame />
-          </span>
+          <span className="flex h-8 w-8 text-indigo-600" aria-hidden><IconFlame /></span>
           <span className="text-[17px] font-bold tracking-wide text-slate-900">LUMEN</span>
         </div>
         <h1 className="mb-1.5 text-2xl font-bold text-slate-900">Log in</h1>
@@ -107,71 +100,37 @@ export default function LoginPage() {
 
         <form className="flex flex-col gap-1.5" onSubmit={handleSubmit} noValidate>
           {error && (
-            <p
-              className="mb-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700"
-              role="alert"
-            >
+            <p className="mb-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-[13px] text-red-700" role="alert">
               {error}
             </p>
           )}
 
-          <label className="mt-2 text-[13px] font-semibold text-slate-600 first:mt-0" htmlFor="login-email">
-            Email
-          </label>
+          <label className="mt-2 text-[13px] font-semibold text-slate-600 first:mt-0" htmlFor="login-email">Email</label>
           <input
-            id="login-email"
-            name="email"
-            type="text"
-            inputMode="email"
-            autoComplete="email"
-            spellCheck={false}
+            id="login-email" name="email" type="text" inputMode="email" autoComplete="email" spellCheck={false}
             aria-invalid={emailError ? 'true' : 'false'}
             aria-describedby={emailError ? 'login-email-hint' : undefined}
-            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(
-              !!emailError,
-            )}`}
+            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!emailError)}`}
             value={email}
-            onChange={(e) => {
-              applyEmail(e.target.value)
-              if (error) setError('')
-            }}
+            onChange={(e) => { applyEmail(e.target.value); if (error) setError(''); }}
             placeholder="nama@gmail.com"
           />
-          {emailError ? (
-            <p id="login-email-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">
-              {emailError}
-            </p>
-          ) : null}
+          {emailError && <p id="login-email-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">{emailError}</p>}
 
-          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="login-password">
-            Password
-          </label>
+          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="login-password">Password</label>
           <input
-            id="login-password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
+            id="login-password" name="password" type="password" autoComplete="current-password"
             aria-invalid={passwordError ? 'true' : 'false'}
             aria-describedby={passwordError ? 'login-password-hint' : undefined}
-            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(
-              !!passwordError,
-            )}`}
+            className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!passwordError)}`}
             value={password}
-            onChange={(e) => {
-              applyPassword(e.target.value)
-              if (error) setError('')
-            }}
-            placeholder="Minimal 6 karakter"
+            onChange={(e) => { applyPassword(e.target.value); if (error) setError(''); }}
+            placeholder="At least 6 characters"
           />
-          {passwordError ? (
-            <p id="login-password-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">
-              {passwordError}
-            </p>
-          ) : null}
+          {passwordError && <p id="login-password-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">{passwordError}</p>}
 
           <button
-            type="submit"
-            disabled={submitBlocked}
+            type="submit" disabled={submitBlocked}
             className="mt-5 w-full cursor-pointer rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Log in
@@ -179,10 +138,7 @@ export default function LoginPage() {
         </form>
 
         <p className="mt-6 text-center text-sm text-slate-600">
-          No account yet?{' '}
-          <Link to="/register" className="font-semibold text-indigo-600 no-underline hover:underline">
-            Sign up
-          </Link>
+          No account yet? <Link to="/register" className="font-semibold text-indigo-600 no-underline hover:underline">Sign up</Link>
         </p>
       </div>
     </div>

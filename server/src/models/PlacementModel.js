@@ -1,8 +1,17 @@
 const db = require('../config/database');
 
 class PlacementModel {
-    static async getAllQuestions() {
-        const [rows] = await db.query('SELECT * FROM placement_questions');
+    static async getRandomQuestions() {
+        const [rows] = await db.query(`
+            SELECT * FROM (
+                (SELECT * FROM placement_questions WHERE id BETWEEN 1 AND 33 ORDER BY RAND() LIMIT 5)
+                UNION ALL
+                (SELECT * FROM placement_questions WHERE id BETWEEN 34 AND 66 ORDER BY RAND() LIMIT 5)
+                UNION ALL
+                (SELECT * FROM placement_questions WHERE id BETWEEN 67 AND 100 ORDER BY RAND() LIMIT 5)
+            ) AS combined_questions
+            ORDER BY RAND();
+        `);
         return rows;
     }
 

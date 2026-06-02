@@ -9,7 +9,7 @@ import {
   IconStar,
   IconFlame,
 } from './Icons.jsx'
-import { readDisplayName, readUsername } from '../lib/userSession.js'
+import { useUser } from '../lib/useUser.jsx'
 import api from '../lib/axiosInstance'
 
 const cardShell = 'rounded-[2rem] border border-slate-200 bg-white shadow-sm'
@@ -20,13 +20,6 @@ const LEVEL_TRACKS = [
   { id: 2, slug: 'intermediate', label: 'Intermediate', color: '#7c3aed', badgeBg: 'bg-purple-50 text-purple-700 border-purple-100' },
   { id: 3, slug: 'advanced', label: 'Advanced', color: '#06b6d4', badgeBg: 'bg-cyan-50 text-cyan-700 border-cyan-100' }
 ]
-
-function greetingName() {
-  const full = readDisplayName()
-  if (full) return full.split(/\s+/)[0]
-  const u = readUsername()
-  return u || 'Student'
-}
 
 const stripHtml = (html) => {
   if (!html) return '';
@@ -54,15 +47,8 @@ function DonutChart({ percent, strokeColor, label, customText }) {
       >
         <circle cx={cx} cy={cy} r={r} stroke="#f1f5f9" strokeWidth={stroke} fill="none" />
         <circle
-          cx={cx}
-          cy={cy}
-          r={r}
-          stroke={strokeColor}
-          strokeWidth={stroke}
-          fill="none"
-          strokeLinecap="round"
-          strokeDasharray={`${dash} ${c}`}
-          transform={`rotate(-90 ${cx} ${cy})`}
+          cx={cx} cy={cy} r={r} stroke={strokeColor} strokeWidth={stroke}
+          fill="none" strokeLinecap="round" strokeDasharray={`${dash} ${c}`} transform={`rotate(-90 ${cx} ${cy})`}
           className="transition-all duration-1000 ease-out"
         />
       </svg>
@@ -75,12 +61,14 @@ function DonutChart({ percent, strokeColor, label, customText }) {
 }
 
 export default function DashboardHome() {
+  const { user } = useUser();
+  const firstName = user?.name?.split(/\s+/)[0] || 'Student';
+
   const [placementData, setPlacementData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [progressStats, setProgressStats] = useState({ 1: 0, 2: 0, 3: 0 })
   const [totalLessonsCompleted, setTotalLessonsCompleted] = useState(0)
   const [recommendedLessons, setRecommendedLessons] = useState([])
-  
   const [isOnboardingComplete, setIsOnboardingComplete] = useState(false)
 
   useEffect(() => {
@@ -114,16 +102,11 @@ export default function DashboardHome() {
             const lessonsRes = await api.get(`/learning/lessons/${course.id}`)
             const lessons = lessonsRes.data.data || []
             trackLessons.push(...lessons.map(l => ({ 
-              ...l, 
-              levelSlug: track.slug, 
-              levelLabel: track.label, 
-              badgeBg: track.badgeBg 
+              ...l, levelSlug: track.slug, levelLabel: track.label, badgeBg: track.badgeBg 
             })))
           }
 
-          if (track.id === 1) {
-            fallbackLessonsPool = [...trackLessons]
-          }
+          if (track.id === 1) fallbackLessonsPool = [...trackLessons]
 
           let completedIds = []
           try {
@@ -134,38 +117,20 @@ export default function DashboardHome() {
           }
 
           tempTotalCompleted += completedIds.length
-
-          if (trackLessons.length > 0) {
-            tempProgressStats[track.id] = Math.round((completedIds.length / trackLessons.length) * 100)
-          } else {
-            tempProgressStats[track.id] = 0
-          }
+          tempProgressStats[track.id] = trackLessons.length > 0 
+            ? Math.round((completedIds.length / trackLessons.length) * 100) 
+            : 0
 
           trackLessons.forEach((lesson, index) => {
             const isCompleted = completedIds.includes(lesson.id)
-            let isAvailable = false
-
-            if (index === 0) {
-              isAvailable = true
-            } else {
-              const prev = trackLessons[index - 1]
-              if (completedIds.includes(prev.id)) isAvailable = true
-            }
-
-            if (isAvailable && !isCompleted) {
-              availableLessonsPool.push(lesson)
-            }
+            let isAvailable = index === 0 || completedIds.includes(trackLessons[index - 1].id)
+            if (isAvailable && !isCompleted) availableLessonsPool.push(lesson)
           })
         }))
 
         setProgressStats(tempProgressStats)
         setTotalLessonsCompleted(tempTotalCompleted)
-
-        if (hasPlacement) {
-          setRecommendedLessons(availableLessonsPool.slice(0, 3))
-        } else {
-          setRecommendedLessons(fallbackLessonsPool.slice(0, 3))
-        }
+        setRecommendedLessons(hasPlacement ? availableLessonsPool.slice(0, 3) : fallbackLessonsPool.slice(0, 3))
 
       } catch (error) {
         console.error("Failed to synchronize dashboard data:", error)
@@ -202,10 +167,7 @@ export default function DashboardHome() {
           <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600">Overview Panel</span>
         </div>
         <h1 className="mb-2 text-[28px] font-black tracking-tight text-slate-900 md:text-[34px]">
-          Welcome back,{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-            {greetingName()}
-          </span>!
+          Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">{firstName}</span>!
         </h1>
         <p className="text-[16px] leading-relaxed text-slate-600 max-w-2xl">
           {!isOnboardingComplete 
@@ -221,25 +183,16 @@ export default function DashboardHome() {
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-indigo-100 bg-white text-indigo-600 shadow-sm">
               <IconTrendUp className="h-6 w-6 shrink-0" />
             </span>
-            <h2 id="progress-heading" className="text-xl font-extrabold text-slate-900 tracking-tight">
-              Progress Summary
-            </h2>
+            <h2 id="progress-heading" className="text-xl font-extrabold text-slate-900 tracking-tight">Progress Summary</h2>
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 py-4 md:justify-around rounded-2xl bg-white/50 p-4 border border-white/60">
             <DonutChart 
-              percent={placementData ? placementData.score : 0} 
-              strokeColor="#ea580c" 
-              label="Placement" 
+              percent={placementData ? placementData.score : 0} strokeColor="#ea580c" label="Placement" 
               customText={placementData ? `${Math.round(placementData.score / 10)}/10` : '0/10'}
             />
             {LEVEL_TRACKS.map(track => (
-              <DonutChart 
-                key={track.id}
-                percent={progressStats[track.id] || 0} 
-                strokeColor={track.color} 
-                label={track.label} 
-              />
+              <DonutChart key={track.id} percent={progressStats[track.id] || 0} strokeColor={track.color} label={track.label} />
             ))}
           </div>
 
@@ -258,30 +211,21 @@ export default function DashboardHome() {
         </section>
 
         {/* DAILY STREAK */}
-        <section
-          className="rounded-[2rem] border border-orange-200/80 bg-gradient-to-br from-orange-50 to-white p-6 shadow-md flex flex-col justify-between"
-          aria-labelledby="streak-heading"
-        >
+        <section className="rounded-[2rem] border border-orange-200/80 bg-gradient-to-br from-orange-50 to-white p-6 shadow-md flex flex-col justify-between" aria-labelledby="streak-heading">
           <div>
             <div className="mb-6 flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-orange-600 shadow-sm">
                 <IconFlame className="h-6 w-6" />
               </span>
-              <h2 id="streak-heading" className="text-xl font-extrabold text-slate-900 tracking-tight">
-                Daily Streak
-              </h2>
+              <h2 id="streak-heading" className="text-xl font-extrabold text-slate-900 tracking-tight">Daily Streak</h2>
             </div>
             <div className="mb-6 grid grid-cols-2 gap-4">
               <div className="bg-white p-3 rounded-xl border border-orange-100/50 shadow-sm text-center">
-                <span className="block text-4xl font-black tracking-tight text-orange-600 mb-1">
-                  {isOnboardingComplete ? '1' : '0'}
-                </span>
+                <span className="block text-4xl font-black tracking-tight text-orange-600 mb-1">{isOnboardingComplete ? '1' : '0'}</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Current</span>
               </div>
               <div className="bg-white p-3 rounded-xl border border-orange-100/50 shadow-sm text-center opacity-80">
-                <span className="block text-4xl font-black tracking-tight text-slate-400 mb-1">
-                  {isOnboardingComplete ? '1' : '0'}
-                </span>
+                <span className="block text-4xl font-black tracking-tight text-slate-400 mb-1">{isOnboardingComplete ? '1' : '0'}</span>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">Highest</span>
               </div>
             </div>
@@ -308,13 +252,8 @@ export default function DashboardHome() {
         
         {!isOnboardingComplete && (
           <div className="mb-5 p-4 rounded-2xl border border-amber-200 bg-amber-50/60 text-sm text-amber-900 flex flex-wrap items-center justify-between gap-3">
-            <p className="m-0 font-medium">
-              🔒 You are in review mode. Please complete the <strong>Placement Test</strong> before starting the lessons.
-            </p>
-            <Link 
-              to="/learning" 
-              className="inline-flex items-center gap-1 bg-amber-600 text-white px-3 py-1.5 rounded-xl font-bold text-xs hover:bg-amber-700 transition"
-            >
+            <p className="m-0 font-medium">🔒 You are in review mode. Please complete the <strong>Placement Test</strong> before starting.</p>
+            <Link to="/learning" className="inline-flex items-center gap-1 bg-amber-600 text-white px-3 py-1.5 rounded-xl font-bold text-xs hover:bg-amber-700 transition">
               Start Onboarding
             </Link>
           </div>
@@ -323,14 +262,11 @@ export default function DashboardHome() {
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {recommendedLessons.length > 0 ? (
             recommendedLessons.map((lesson) => {
-              const targetUrl = isOnboardingComplete 
-                ? `/learning/${lesson.levelSlug}/lesson/${lesson.id}` 
-                : `/learning`;
+              const targetUrl = isOnboardingComplete ? `/learning/${lesson.levelSlug}/lesson/${lesson.id}` : `/learning`;
 
               return (
                 <Link
-                  key={lesson.id}
-                  to={targetUrl}
+                  key={lesson.id} to={targetUrl}
                   className="group flex flex-col justify-between rounded-2xl border-2 border-slate-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-100"
                 >
                   <div>
@@ -356,7 +292,7 @@ export default function DashboardHome() {
                         <IconClock className="h-4 w-4" /> 15 minutes
                       </span>
                       <span className="flex items-center gap-1 text-xs font-bold text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                        {!isOnboardingComplete ? 'Start Onboarding' : 'Begin'}{' '}
+                        {!isOnboardingComplete ? 'Start' : 'Begin'}{' '}
                         <IconChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>
@@ -366,9 +302,7 @@ export default function DashboardHome() {
             })
           ) : (
             <div className="col-span-full rounded-2xl border-2 border-dashed border-slate-200 py-10 text-center">
-              <p className="text-sm font-medium text-slate-500">
-                No learning materials available in the database.
-              </p>
+              <p className="text-sm font-medium text-slate-500">No learning materials available.</p>
             </div>
           )}
         </div>

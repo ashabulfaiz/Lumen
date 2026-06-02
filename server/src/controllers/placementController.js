@@ -2,7 +2,7 @@ const PlacementModel = require('../models/PlacementModel');
 
 const getPlacementQuestions = async (req, res) => {
     try {
-        const questions = await PlacementModel.getAllQuestions();
+        const questions = await PlacementModel.getRandomQuestions();
         
         const formattedQuestions = questions.map(q => ({
             id: q.id,

@@ -7,12 +7,12 @@ const register = async (req, res) => {
         const { nama_lengkap, email, password, current_level } = req.body;
 
         if (!nama_lengkap || !email || !password) {
-            return res.status(400).json({ message: "Nama, email, dan password wajib diisi!" });
+            return res.status(400).json({ message: "Name, email, and password are required!" });
         }
 
         const existingUser = await AuthModel.findUserByEmail(email);
         if (existingUser) {
-            return res.status(400).json({ message: "Email sudah terdaftar, silakan gunakan email lain." });
+            return res.status(400).json({ message: "Email is already registered, please use another email." });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -23,7 +23,7 @@ const register = async (req, res) => {
 
         res.status(201).json({
             status: "success",
-            message: "Registrasi berhasil! Silakan login.",
+            message: "Registration successful! Please login.",
             data: {
                 id: result.insertId,
                 nama_lengkap: nama_lengkap,
@@ -34,7 +34,7 @@ const register = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({ message: "Terjadi kesalahan pada server.", error: error.message });
+        res.status(500).json({ message: "An error occurred on the server.", error: error.message });
     }
 };
 
@@ -43,17 +43,17 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.status(400).json({ message: "Email dan password wajib diisi!" });
+            return res.status(400).json({ message: "Email and password are required!" });
         }
 
         const user = await AuthModel.findUserByEmail(email);
         if (!user) {
-            return res.status(401).json({ message: "Email tidak ditemukan." });
+            return res.status(401).json({ message: "Email not found." });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password_hash);
         if (!isPasswordValid) {
-            return res.status(401).json({ message: "Password salah!" });
+            return res.status(401).json({ message: "Invalid password." });
         }
 
         const token = jwt.sign(
@@ -64,7 +64,7 @@ const login = async (req, res) => {
 
         res.status(200).json({
             status: "success",
-            message: "Login berhasil!",
+            message: "Login successful!",
             token: token,
             data: {
                 id: user.id,
@@ -76,8 +76,23 @@ const login = async (req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({ message: "Terjadi kesalahan saat login.", error: error.message });
+        res.status(500).json({ message: "An error occurred while logging in.", error: error.message });
     }
 };
 
-module.exports = { register, login };
+const getMe = async (req, res) => {
+    try {
+        const user = await AuthModel.findUserByEmail(req.user.email);
+        if (!user) {
+            return res.status(404).json({ message: "Account not found. It might have been deleted." });
+        }
+        res.status(200).json({
+            status: "success",
+            data: { id: user.id, nama_lengkap: user.nama_lengkap, email: user.email, role: user.role }
+        });
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred on the server.", error: error.message });
+    }
+};
+
+module.exports = { register, login, getMe };

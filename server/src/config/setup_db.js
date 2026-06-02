@@ -59,7 +59,6 @@ async function setupDatabase() {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 language_id INT,
                 nama_level VARCHAR(50) NOT NULL,
-                urutan INT,
                 FOREIGN KEY (language_id) REFERENCES languages(id) ON DELETE CASCADE
             )
         `);
@@ -80,8 +79,7 @@ async function setupDatabase() {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 course_id INT,
                 judul_lesson VARCHAR(255) NOT NULL,
-                konten_teks TEXT,   /* <--- INI ADALAH ISI MATERI */
-                video_url VARCHAR(255),
+                konten_teks TEXT,
                 urutan INT,
                 FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
             )
@@ -102,7 +100,6 @@ async function setupDatabase() {
             CREATE TABLE IF NOT EXISTS questions (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 quiz_id INT,
-                ds_question_id VARCHAR(100),
                 pertanyaan TEXT NOT NULL,
                 jawaban_benar VARCHAR(255) NOT NULL,
                 tipe_soal ENUM('multiple_choice', 'essay') DEFAULT 'multiple_choice',
@@ -125,7 +122,7 @@ async function setupDatabase() {
             )
         `);
 
-        // Tabel ini dirancang untuk menerima huruf opsi (A,B,C,D) ATAUPUN teks essay panjang
+        // 7. TABEL USER ANSWERS (untuk menyimpan jawaban user, terutama untuk soal essay yang butuh koreksi grammar dari AI LUMEN)
         await connection.query(`
             CREATE TABLE IF NOT EXISTS user_answers (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -134,7 +131,6 @@ async function setupDatabase() {
                 question_id INT NULL,
                 jawaban_teks TEXT, /* <--- Diubah jadi TEXT agar muat menampung essay */
                 is_correct BOOLEAN NULL,
-                ai_feedback TEXT NULL, /* <--- Menyimpan koreksi grammar dari AI LUMEN */
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                 FOREIGN KEY (placement_question_id) REFERENCES placement_questions(id) ON DELETE CASCADE,
                 FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
@@ -187,22 +183,6 @@ async function setupDatabase() {
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             )
-        `);
-
-        await connection.query(`INSERT IGNORE INTO languages (id, nama_bahasa, kode_iso) VALUES (1, 'English', 'EN')`);
-        
-        await connection.query(`
-            INSERT IGNORE INTO placement_questions (id, language_id, pertanyaan, pilihan_a, pilihan_b, pilihan_c, pilihan_d, jawaban_benar) VALUES
-            (1, 1, 'What is the past tense of "go"?', 'goed', 'went', 'gone', 'going', 'went'),
-            (2, 1, 'Choose the correct sentence.', 'She do her homework.', 'She does her homework.', 'She doing her homework.', 'She done her homework.', 'She does her homework.'),
-            (3, 1, 'Which word is a synonym of "rapid"?', 'Slow', 'Fast', 'Late', 'Heavy', 'Fast'),
-            (4, 1, 'Fill in the blank: They ___ to school every day.', 'go', 'goes', 'going', 'gone', 'go'),
-            (5, 1, 'Which one is a noun?', 'Beautiful', 'Run', 'Happiness', 'Quickly', 'Happiness'),
-            (6, 1, 'What is the comparative form of "good"?', 'Gooder', 'More good', 'Best', 'Better', 'Better'),
-            (7, 1, 'Identify the adverb in this sentence: He speaks English fluently.', 'He', 'speaks', 'English', 'fluently', 'fluently'),
-            (8, 1, 'Complete the sentence: I have been living here ___ 2015.', 'since', 'for', 'in', 'at', 'since'),
-            (9, 1, 'Choose the passive voice form of: "They built this house in 1990."', 'This house built them in 1990.', 'This house was built in 1990.', 'In 1990 they were building this house.', 'This house is built in 1990.', 'This house was built in 1990.'),
-            (10, 1, 'What does "break the ice" mean?', 'To freeze water', 'To start a conversation in a tense situation', 'To destroy something cold', 'To be very angry', 'To start a conversation in a tense situation')
         `);
 
         console.log("✅ Migrasi Database LUMEN Berhasil!.");

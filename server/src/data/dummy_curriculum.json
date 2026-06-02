@@ -1,7 +1,6 @@
 [
   {
     "nama_level": "Beginner",
-    "kode_level": "BGN",
     "courses": [
       {
         "judul_course": "Basic English Grammar",
@@ -11,30 +10,12 @@
           {
             "judul_lesson": "Using Articles (A, An, The)",
             "konten_teks": "<p>An <b>Article</b> is a word used to modify a noun. There are two types of articles: Definite (The) and Indefinite (A/An). <i>A</i> is used before a noun starting with a consonant sound, while <i>An</i> is used before a vowel sound.</p><p>Examples: <i>A car, An apple, The sun.</i></p>",
-            "video_url": "https://www.youtube.com/watch?v=dummy1",
-            "urutan": 1,
             "kuis_topik_id": "Article Or No Article" 
           },
           {
             "judul_lesson": "Introduction to Subjects & Pronouns",
             "konten_teks": "<p>A <b>Pronoun</b> is used to replace a noun to avoid word repetition. Examples of basic pronouns are I, You, They, We, He, She, It.</p>",
-            "video_url": "https://www.youtube.com/watch?v=dummy2",
-            "urutan": 2,
             "kuis_topik_id": "Pronouns Basics"
-          }
-        ]
-      },
-      {
-        "judul_course": "Daily Vocabulary",
-        "deskripsi": "A collection of the most commonly used vocabulary in everyday conversations.",
-        "urutan": 2,
-        "lessons": [
-          {
-            "judul_lesson": "Greetings & Introductions",
-            "konten_teks": "<p>How to greet someone in English: <i>Hello, Good morning, How are you?</i> How to introduce yourself: <i>My name is..., I am from...</i></p>",
-            "video_url": "https://www.youtube.com/watch?v=dummy3",
-            "urutan": 1,
-            "kuis_topik_id": "Greetings 101"
           }
         ]
       }

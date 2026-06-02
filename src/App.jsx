@@ -13,6 +13,7 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import LevelDetailPage from './pages/LevelDetailPage.jsx'
 import LessonPage from './pages/LessonPage.jsx'
 import CertificatePage from './pages/CertificatePage.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 export default function App() {
   return (
@@ -21,22 +22,25 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/sertifikasi" element={<Navigate to="/certification" replace />} />
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<DashboardHome />} />
-          <Route path="/learning" element={<LearningPage />} />
-          <Route path="/learning/beginner" element={<LevelDetailPage />} />
-          <Route path="/learning/intermediate" element={<LevelDetailPage />} />
-          <Route path="/learning/advanced" element={<LevelDetailPage />} />
-          <Route path="/learning/:level/lesson/:lessonId" element={<LessonPage />} />
-          <Route path="/learning/introduction" element={<LearningPathStepPage />} />
-          <Route path="/learning/placement" element={<LearningPathStepPage />} />
-          <Route path="/learning/placement/test" element={<PlacementTestPage />} />
-          <Route path="/learning/levels" element={<LearningPathStepPage />} />
-          <Route path="/progress" element={<ProgressPage />} />
-          <Route path="/help" element={<HelpPage />} />
-          <Route path="/certification" element={<CertificatePage />} />
+        
+        <Route element={<ProtectedRoute />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<DashboardHome />} />
+            <Route path="/learning" element={<LearningPage />} />
+            <Route path="/learning/beginner" element={<LevelDetailPage />} />
+            <Route path="/learning/intermediate" element={<LevelDetailPage />} />
+            <Route path="/learning/advanced" element={<LevelDetailPage />} />
+            <Route path="/learning/:level/lesson/:lessonId" element={<LessonPage />} />
+            <Route path="/learning/introduction" element={<LearningPathStepPage />} />
+            <Route path="/learning/placement" element={<LearningPathStepPage />} />
+            <Route path="/learning/placement/test" element={<PlacementTestPage />} />
+            <Route path="/learning/levels" element={<LearningPathStepPage />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="/certification" element={<CertificatePage />} />
+          </Route>
         </Route>
+        
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -95,15 +95,22 @@ export default function PlacementTestPage() {
 
   const handleNext = async () => {
     if (!canProceed) return
+    
     if (isLastQuestion) {
       const correctAnswers = placementQuestions.reduce((total, item) => {
         return selectedOptions[item.id] === item.answer ? total + 1 : total
       }, 0)
+      
       const score = Math.round((correctAnswers / totalQuestions) * 100)
 
-      let recommendedLevel = 1
-      if (correctAnswers >= 9) recommendedLevel = 3
-      else if (correctAnswers >= 6) recommendedLevel = 2
+      let recommendedLevel = 1 // Default: Beginner
+      if (correctAnswers >= 12) {
+          // Benar 12 - 15 (80% - 100%) -> Advanced
+          recommendedLevel = 3 
+      } else if (correctAnswers >= 7) {
+          // Benar 7 - 11 (46% - 73%) -> Intermediate
+          recommendedLevel = 2 
+      }
 
       const testResult = { correctAnswers, score, recommendedLevel }
       setResult(testResult)
@@ -123,9 +130,9 @@ export default function PlacementTestPage() {
             recommendedLevel: recommendedLevel,
             answers: selectedOptions
         });
-        console.log("✅ Placement results successfully sent to the database!");
+        console.log("Placement results successfully sent to the database!");
       } catch (error) {
-        console.error("❌ Failed to send placement results to the database:", error);
+        console.error("Failed to send placement results to the database:", error);
       }
 
       import('../data/learningData.js').then(({ loadLearningProgress, saveLearningProgress }) => {

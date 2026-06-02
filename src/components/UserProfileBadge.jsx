@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { Camera, ChevronUp, LogOut, User as UserIcon } from 'lucide-react'
-import { LS_AVATAR, clearUserSession } from '../lib/userSession.js'
-import { useUser } from '../lib/useUser.js'
+import { useUser } from '../lib/useUser.jsx'
 
 export default function UserProfileBadge({ onLogout }) {
   const { user, loading } = useUser()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const ref = useRef(null)
   const inputRef = useRef(null)
+  
+  // Perbaikan 1: Gunakan string langsung, bukan LS_AVATAR
   const [avatar, setAvatar] = useState(() => {
     try {
-      return localStorage.getItem(LS_AVATAR) || ''
+      return localStorage.getItem('lumen_profile_avatar') || ''
     } catch {
       return ''
     }
@@ -46,7 +47,8 @@ export default function UserProfileBadge({ onLogout }) {
     try {
       const dataUrl = await readAsDataUrl(file)
       setAvatar(dataUrl)
-      localStorage.setItem(LS_AVATAR, dataUrl)
+      // Perbaikan 2: Gunakan string 'lumen_profile_avatar'
+      localStorage.setItem('lumen_profile_avatar', dataUrl)
     } catch {
       /* ignore */
     } finally {
@@ -54,11 +56,14 @@ export default function UserProfileBadge({ onLogout }) {
     }
   }
 
-  function logout() {
+  // Perbaikan 3: Rombak total fungsi logout agar tidak pakai clearUserSession
+  function logout(e) {
+    if (e) e.preventDefault();
     setIsMenuOpen(false)
-    clearUserSession()
+    localStorage.clear() // Bumihanguskan semua localStorage (termasuk token)
     setAvatar('')
-    onLogout?.()
+    if (onLogout) onLogout()
+    window.location.href = '/login' // Refresh paksa ke halaman login
   }
 
   return (
@@ -84,7 +89,7 @@ export default function UserProfileBadge({ onLogout }) {
         onClick={() => setIsMenuOpen((v) => !v)}
       >
         <span className="relative shrink-0" aria-hidden>
-          <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-blue-600 text-white shadow-sm">
+          <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-indigo-600 text-white shadow-sm">
             {avatar ? (
               <img src={avatar} alt="" className="h-full w-full object-cover" />
             ) : (
@@ -92,7 +97,7 @@ export default function UserProfileBadge({ onLogout }) {
             )}
           </span>
           <span
-            className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border border-white bg-blue-600 text-white shadow-sm transition hover:bg-blue-700"
+            className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border border-white bg-indigo-600 text-white shadow-sm transition hover:bg-indigo-700"
             aria-label="Change profile photo"
             role="button"
             tabIndex={0}
@@ -146,4 +151,3 @@ export default function UserProfileBadge({ onLogout }) {
     </div>
   )
 }
-

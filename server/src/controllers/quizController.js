@@ -7,7 +7,7 @@ const generateQuiz = async (req, res) => {
         const { level_name, lesson_id, kategori_topik } = req.body; 
 
         if (!level_name || !lesson_id || !kategori_topik) {
-            return res.status(400).json({ message: "level_name, lesson_id, dan kategori_topik wajib diisi!" });
+            return res.status(400).json({ message: "level_name, lesson_id, and topic_category are required fields!" });
         }
 
         const dsUrl = `http://127.0.0.1:5002/api/ds/quiz/${level_name}`;
@@ -17,7 +17,7 @@ const generateQuiz = async (req, res) => {
         const targetTopic = allTopics.find(t => t.kategori_topik === kategori_topik);
 
         if (!targetTopic) {
-            return res.status(404).json({ message: "Topik kuis tidak ditemukan di dataset." });
+            return res.status(404).json({ message: "Topic not found in the dataset." });
         }
 
         const quizId = await QuizModel.getOrCreateQuiz(lesson_id, targetTopic.judul_asli);
@@ -36,7 +36,7 @@ const generateQuiz = async (req, res) => {
 
         res.status(200).json({
             status: "success",
-            message: "Berhasil menyiapkan kuis.",
+            message: "Successfully prepared the quiz.",
             data: {
                 quiz_id: quizId,
                 judul_kuis: targetTopic.judul_asli,
@@ -46,8 +46,8 @@ const generateQuiz = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Error mengambil kuis dari Data Science:", error);
-        res.status(500).json({ message: "Terjadi kesalahan saat meng-generate kuis.", error: error.message });
+        console.error("Error fetching quiz from Data Science:", error);
+        res.status(500).json({ message: "An error occurred while generating the quiz.", error: error.message });
     }
 };
 
@@ -67,7 +67,6 @@ const submitQuiz = async (req, res) => {
                 correctCount++;
             }
 
-            // Save individual answer to user_answers table
             await QuizModel.saveUserAnswer(userId, answer.question_id, answer.jawaban, isCorrect);
         }
 
@@ -77,16 +76,16 @@ const submitQuiz = async (req, res) => {
 
         res.status(200).json({
             status: "success",
-            message: "Kuis berhasil disubmit dan dinilai.",
+            message: "Quiz submitted and graded successfully.",
             data: {
-                jawaban_benar: correctCount,
-                total_soal: totalQuestions,
-                skor_akhir: finalScore.toFixed(2)
+                correct_answers: correctCount,
+                total_questions: totalQuestions,
+                final_score: finalScore.toFixed(2)
             }
         });
 
     } catch (error) {
-        res.status(500).json({ message: "Gagal memproses hasil kuis.", error: error.message });
+        res.status(500).json({ message: "Failed to process quiz results.", error: error.message });
     }
 };
 
@@ -96,7 +95,7 @@ const getQuizReview = async (req, res) => {
         const quizId = parseInt(req.params.quizId);
 
         if (!quizId) {
-            return res.status(400).json({ message: "quiz_id wajib disertakan!" });
+            return res.status(400).json({ message: "quiz_id is required!" });
         }
 
         const answers = await QuizModel.getUserAnswers(userId, quizId);
@@ -106,7 +105,7 @@ const getQuizReview = async (req, res) => {
         });
     } catch (error) {
         console.error("Error retrieving quiz review:", error);
-        res.status(500).json({ message: "Gagal mengambil data review kuis.", error: error.message });
+        res.status(500).json({ message: "Failed to retrieve quiz review.", error: error.message });
     }
 };
 

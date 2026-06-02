@@ -1,3 +1,6 @@
+const HelpModel = require('../models/HelpModel');
+const axios = require('axios');
+
 const sendChatMessage = async (req, res) => {
     try {
         const userId = req.user.id; 

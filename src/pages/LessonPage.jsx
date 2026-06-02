@@ -50,11 +50,11 @@ export default function LessonPage() {
             setIsFinishedMode(true);
           }
         } catch (err) {
-          console.error("Gagal mengambil review kuis:", err);
+          console.error("Failed to load the quiz review:", err);
         }
 
       } catch (error) {
-        console.error("Gagal mengambil kuis:", error)
+        console.error("Failed to fetch the quiz:", error)
       } finally {
         setLoading(false)
       }
@@ -85,7 +85,7 @@ export default function LessonPage() {
         id: 'intro',
         type: 'info',
         title: judulKuis || `${level.charAt(0).toUpperCase() + level.slice(1)} — Lesson ${lessonId}`,
-        content: "Jawablah pertanyaan berikut dengan teliti. Nilai akan dihitung langsung oleh sistem AI kami.",
+        content: "Welcome to the final quiz for this unit! This quiz is designed to test your understanding of the concepts you’ve learned. Each question will provide new insights, so be sure to read carefully and answer to the best of your ability. Don’t worry about the results—what matters most is the process of learning and understanding the material. Good luck!",
       },
       ...dynamicSteps
     ]
@@ -96,7 +96,6 @@ export default function LessonPage() {
   const progressPercentage = totalSteps > 0 ? ((currentIndex + 1) / totalSteps) * 100 : 0
   const selectedOption = step ? selectedOptions[step.id] : null
 
-  // Navigasi Antar Lesson
   const isFirstStep = currentIndex === 0
   const nextLessonId = useMemo(() => {
     const current = Number(lessonId)
@@ -144,8 +143,8 @@ export default function LessonPage() {
       }));
       
     } catch (error) {
-      console.error("Gagal mengoreksi grammar dengan AI:", error);
-      alert("Gagal terhubung ke AI. Silakan coba lagi.");
+      console.error("Failed to check grammar with AI:", error);
+      alert("Failed to connect to AI. Please try again.");
     } finally {
       setIsCheckingGrammar(false);
     }
@@ -170,8 +169,8 @@ export default function LessonPage() {
         setIsFinished(true);
         markLessonCompleted(level, lessonId);
       } catch (error) {
-        console.error("Gagal submit ke database:", error);
-        alert("Gagal mengirim jawaban. Coba lagi.");
+        console.error("Failed to submit to database:", error);
+        alert("Failed to submit answers. Please try again.");
       }
       return
     }
@@ -363,13 +362,13 @@ export default function LessonPage() {
       <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h1 className="text-[30px] font-bold tracking-tight text-slate-900">Lesson Completed!</h1>
-          <p className="mt-2 text-slate-600">Kerja bagus telah menyelesaikan materi ini.</p>
+          <p className="mt-2 text-slate-600">Great job! You have successfully completed this lesson.</p>
 
           <div className="mt-6 rounded-2xl bg-slate-50 p-5 text-center">
             <p className="text-sm font-medium uppercase tracking-wide text-slate-500">{judulKuis}</p>
             <p className="mt-1 text-5xl font-bold text-indigo-600">{submitResult.skor_akhir}</p>
             <p className="mt-3 text-sm text-slate-600">
-              Jawaban Benar: <span className="font-bold">{submitResult.jawaban_benar}</span> dari {submitResult.total_soal} soal
+              Correct Answers: <span className="font-bold">{submitResult.jawaban_benar}</span> out of {submitResult.total_soal} questions
             </p>
           </div>
 
@@ -393,7 +392,7 @@ export default function LessonPage() {
                     setIsFinishedMode(true);
                   }
                 } catch (err) {
-                  console.error("Gagal mengambil review kuis:", err);
+                  console.error("Failed to fetch the quiz review:", err);
                 }
               }}
             >

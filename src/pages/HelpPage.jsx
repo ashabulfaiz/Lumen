@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import api from '../lib/axiosInstance'
 
 const STORAGE_KEY = 'lumen_help_chat'
 
@@ -66,20 +67,21 @@ export default function HelpPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5001/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed, language: language }),
+      const response = await api.post('/help/chat', {
+        pesan_user: trimmed,
+        language: language
       })
-      const data = await response.json()
       
+      const responsAi = response.data.data.respons_ai
+
       setTimeout(() => { 
-        setMessages(prev => [...prev, { role: 'assistant', text: data.reply || data.error, at: Date.now() }])
+        setMessages(prev => [...prev, { role: 'assistant', text: responsAi, at: Date.now() }])
         setIsLoading(false)
       }, 800)
       
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', text: "Maaf, server AI sedang offline.", at: Date.now() }])
+      console.error("Chat Error:", error);
+      setMessages(prev => [...prev, { role: 'assistant', text: "Maaf, sistem AI sedang sibuk atau terjadi kesalahan.", at: Date.now() }])
       setIsLoading(false)
     }
   }
@@ -101,7 +103,7 @@ export default function HelpPage() {
               
               {/* Tooltip */}
               <div className="absolute -right-2 top-1/2 z-10 translate-x-full -translate-y-1/2 whitespace-nowrap rounded-md bg-slate-800 px-2.5 py-1 text-[10px] font-medium text-white opacity-0 transition-all duration-300 group-hover:translate-x-[calc(100%+6px)] group-hover:opacity-100 pointer-events-none shadow-md">
-                Pilih bahasa bot
+                Select bot language
                 {/* Segitiga kecil penunjuk ke kiri */}
                 <div className="absolute left-0 top-1/2 -ml-1 -translate-y-1/2 border-[4px] border-transparent border-r-slate-800"></div>
               </div>

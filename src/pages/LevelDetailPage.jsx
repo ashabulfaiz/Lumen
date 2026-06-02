@@ -238,14 +238,15 @@ export default function LevelDetailPage() {
                           </Link>
                         )}
                         
-                        {status.isCompleted && (
+                        {/* {status.isCompleted && (
                           <Link 
                             to={`/learning/${slug}/lesson/${lesson.id}`}
+                            state={{ autoReview: true }}
                             className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
                           >
                             Review Material <IconArrowRight className="h-3 w-3" />
                           </Link>
-                        )}
+                        )} */}
 
                         {status.isLocked && (
                           <span className="text-xs font-medium text-slate-400">
