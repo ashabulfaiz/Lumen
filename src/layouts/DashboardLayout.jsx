@@ -74,7 +74,7 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
       {hasChildren && open && (
         <ul className="mt-1.5 flex list-none flex-col gap-2 pl-9 pr-2 pb-1">
           {item.children.map((child) => {
-            const isLocked = !placementCompleted || child.num > highestUnlocked;
+            const isLocked = !placementCompleted;
             return (
             <li key={child.to}>
               {!isLocked ? (

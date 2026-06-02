@@ -47,7 +47,7 @@ export default function ProgressPage() {
         let fetchedCompletedIds = []
 
         await Promise.all(LEVEL_TRACKS.map(async (track) => {
-            const coursesRes = await api.get(`/learning/courses/${track.num}`)
+            const coursesRes = await api.get(`/learning/courses/${track.slug}`)
             const courses = coursesRes.data.data || []
             let trackLessons = []
             for (const course of courses) {
@@ -58,7 +58,7 @@ export default function ProgressPage() {
             fetchedTracks.push({ ...track, lessons: trackLessons })
 
             try {
-                const progRes = await api.get(`/progress/completed/${track.num}`)
+                const progRes = await api.get(`/progress/completed/${track.slug}`)
                 if (progRes.data.data) {
                     fetchedCompletedIds.push(...progRes.data.data)
                 }
@@ -165,7 +165,17 @@ export default function ProgressPage() {
             const isLevelLocked = track.num > highestUnlockedLevel
             const baseLessons = track.lessons
 
-            if (!baseLessons.length) return null
+            if (!baseLessons.length) {
+              return (
+                <section
+                  key={track.num}
+                  className="overflow-hidden rounded-[20px] border border-dashed border-slate-200 bg-slate-50 p-8 text-center"
+                >
+                  <h2 className="text-lg font-bold text-slate-800">{track.title}</h2>
+                  <p className="mt-2 text-sm text-slate-500">No modules loaded yet for this level.</p>
+                </section>
+              )
+            }
             const lessons = isLevelLocked 
                 ? baseLessons.map((l) => ({ ...l, status: 'locked' })) 
                 : baseLessons

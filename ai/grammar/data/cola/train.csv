@@ -1,0 +1,1681 @@
+sentence,label,acceptability_score,difficulty
+Children should eats healthy food err66-8.,0,0.11,beginner
+They has been study English err53-1.,0,0.09,beginner
+The train arrive at station in schedule err53-13.,0,0.12,beginner
+They has been study English err65-1.,0,0.09,beginner
+He play piano beautiful err70-2.,0,0.14,beginner
+She speaks three languages fluently ref79-7.,1,0.95,advanced
+He works as a software engineer in Jakarta ref21-10.,1,0.95,advanced
+We will visit the museum tomorrow ref0-4.,1,0.95,advanced
+The students complete their homework on time yesterday err48-5.,0,0.12,beginner
+Children should eat healthy food every day ref29-9.,1,0.95,advanced
+The meeting was postponed until next Monday ref17-8.,1,0.95,advanced
+We will visit the museum tomorrow ref29-4.,1,0.95,advanced
+Children should eat healthy food every day ref26-9.,1,0.95,advanced
+The train arrived at the station on schedule ref50-14.,1,0.95,advanced
+She go to school every day err6-0.,0,0.11,beginner
+He work as software engineer at Jakarta err50-9.,0,0.13,beginner
+The train arrived at the station on schedule ref6-14.,1,0.95,advanced
+He play piano beautiful err67-2.,0,0.14,beginner
+She go to school every day err4-0.,0,0.11,beginner
+My sister buyed a new laptop last week err24-11.,0,0.1,beginner
+The students completed their homework on time ref8-6.,1,0.95,advanced
+Children should eats healthy food err77-8.,0,0.11,beginner
+The students completed their homework on time ref4-6.,1,0.95,advanced
+The students complete their homework on time yesterday err18-5.,0,0.12,beginner
+We will visit the museum tomorrow ref28-4.,1,0.95,advanced
+We will visit the museum tomorrow ref11-4.,1,0.95,advanced
+He plays the piano beautifully ref76-3.,1,0.95,advanced
+The train arrived at the station on schedule ref41-14.,1,0.95,advanced
+They has been study English err35-1.,0,0.09,beginner
+We will visit the museum tomorrow ref61-4.,1,0.95,advanced
+The students complete their homework on time yesterday err6-5.,0,0.12,beginner
+The meeting were postpone until Monday err13-7.,0,0.15,beginner
+The train arrive at station in schedule err5-13.,0,0.12,beginner
+Children should eat healthy food every day ref54-9.,1,0.95,advanced
+He works as a software engineer in Jakarta ref47-10.,1,0.95,advanced
+My sister buyed a new laptop last week err31-11.,0,0.1,beginner
+The students completed their homework on time ref53-6.,1,0.95,advanced
+The students completed their homework on time ref10-6.,1,0.95,advanced
+He work as software engineer at Jakarta err54-9.,0,0.13,beginner
+The students complete their homework on time yesterday err26-5.,0,0.12,beginner
+The weather today is warmer than yesterday ref37-11.,1,0.95,advanced
+She speaks three languages fluently ref27-7.,1,0.95,advanced
+Children should eat healthy food every day ref3-9.,1,0.95,advanced
+They have been studying English for two years ref3-1.,1,0.95,advanced
+He works as a software engineer in Jakarta ref13-10.,1,0.95,advanced
+Reading books helps improve your vocabulary ref6-13.,1,0.95,advanced
+The weather today is warmer than yesterday ref71-11.,1,0.95,advanced
+He play piano beautiful err31-2.,0,0.14,beginner
+The train arrive at station in schedule err18-13.,0,0.12,beginner
+I have never seen such a beautiful sunset ref67-5.,1,0.95,advanced
+The weather today is warmer than yesterday ref66-11.,1,0.95,advanced
+They has been study English err71-1.,0,0.09,beginner
+The train arrived at the station on schedule ref12-14.,1,0.95,advanced
+The students completed their homework on time ref34-6.,1,0.95,advanced
+He works as a software engineer in Jakarta ref19-10.,1,0.95,advanced
+She go to school every day err49-0.,0,0.11,beginner
+He work as software engineer at Jakarta err8-9.,0,0.13,beginner
+The students completed their homework on time ref14-6.,1,0.95,advanced
+Children should eat healthy food every day ref20-9.,1,0.95,advanced
+He works as a software engineer in Jakarta ref40-10.,1,0.95,advanced
+The meeting were postpone until Monday err39-7.,0,0.15,beginner
+The weather today is warmer than yesterday ref62-11.,1,0.95,advanced
+The book that I read yesterday was interesting ref14-2.,1,0.95,advanced
+They has been study English err78-1.,0,0.09,beginner
+Reading book help improve you vocabulary err39-12.,0,0.09,beginner
+She speak three language fluent err32-6.,0,0.08,beginner
+He works as a software engineer in Jakarta ref67-10.,1,0.95,advanced
+The meeting was postponed until next Monday ref76-8.,1,0.95,advanced
+He play piano beautiful err46-2.,0,0.14,beginner
+The book that I read yesterday was interesting ref5-2.,1,0.95,advanced
+The students complete their homework on time yesterday err38-5.,0,0.12,beginner
+We will visit the museum tomorrow ref44-4.,1,0.95,advanced
+Reading book help improve you vocabulary err44-12.,0,0.09,beginner
+He plays the piano beautifully ref43-3.,1,0.95,advanced
+She go to school every day err70-0.,0,0.11,beginner
+I have never see such beautiful sunset err36-4.,0,0.1,beginner
+The train arrive at station in schedule err56-13.,0,0.12,beginner
+He play piano beautiful err4-2.,0,0.14,beginner
+She go to school every day err18-0.,0,0.11,beginner
+The students completed their homework on time ref57-6.,1,0.95,advanced
+She goes to school every day ref35-0.,1,0.95,advanced
+They have been studying English for two years ref0-1.,1,0.95,advanced
+He work as software engineer at Jakarta err53-9.,0,0.13,beginner
+The students completed their homework on time ref77-6.,1,0.95,advanced
+The train arrive at station in schedule err50-13.,0,0.12,beginner
+The weather today is warmer than yesterday ref50-11.,1,0.95,advanced
+My sister bought a new laptop last week ref48-12.,1,0.95,advanced
+Reading books helps improve your vocabulary ref38-13.,1,0.95,advanced
+Children should eat healthy food every day ref31-9.,1,0.95,advanced
+He play piano beautiful err24-2.,0,0.14,beginner
+The train arrived at the station on schedule ref45-14.,1,0.95,advanced
+She go to school every day err1-0.,0,0.11,beginner
+I have never seen such a beautiful sunset ref57-5.,1,0.95,advanced
+She speak three language fluent err73-6.,0,0.08,beginner
+He play piano beautiful err60-2.,0,0.14,beginner
+He plays the piano beautifully ref78-3.,1,0.95,advanced
+They have been studying English for two years ref21-1.,1,0.95,advanced
+There is many problem with this sentence err43-14.,0,0.11,beginner
+He plays the piano beautifully ref24-3.,1,0.95,advanced
+He work as software engineer at Jakarta err44-9.,0,0.13,beginner
+We will visiting museum tomorrow err4-3.,0,0.13,beginner
+We will visit the museum tomorrow ref65-4.,1,0.95,advanced
+Children should eats healthy food err18-8.,0,0.11,beginner
+She speaks three languages fluently ref48-7.,1,0.95,advanced
+They have been studying English for two years ref34-1.,1,0.95,advanced
+We will visit the museum tomorrow ref78-4.,1,0.95,advanced
+The students completed their homework on time ref19-6.,1,0.95,advanced
+We will visiting museum tomorrow err30-3.,0,0.13,beginner
+He plays the piano beautifully ref65-3.,1,0.95,advanced
+The students completed their homework on time ref67-6.,1,0.95,advanced
+The meeting were postpone until Monday err11-7.,0,0.15,beginner
+He plays the piano beautifully ref40-3.,1,0.95,advanced
+My sister buyed a new laptop last week err6-11.,0,0.1,beginner
+She speaks three languages fluently ref59-7.,1,0.95,advanced
+Reading book help improve you vocabulary err74-12.,0,0.09,beginner
+There is many problem with this sentence err9-14.,0,0.11,beginner
+Reading books helps improve your vocabulary ref45-13.,1,0.95,advanced
+We will visiting museum tomorrow err51-3.,0,0.13,beginner
+There is many problem with this sentence err28-14.,0,0.11,beginner
+The students complete their homework on time yesterday err64-5.,0,0.12,beginner
+I have never seen such a beautiful sunset ref7-5.,1,0.95,advanced
+I have never see such beautiful sunset err1-4.,0,0.1,beginner
+The students completed their homework on time ref31-6.,1,0.95,advanced
+The train arrive at station in schedule err69-13.,0,0.12,beginner
+My sister buyed a new laptop last week err30-11.,0,0.1,beginner
+She go to school every day err58-0.,0,0.11,beginner
+Reading books helps improve your vocabulary ref73-13.,1,0.95,advanced
+The weather today is more warm than yesterday err19-10.,0,0.14,beginner
+I have never seen such a beautiful sunset ref77-5.,1,0.95,advanced
+He plays the piano beautifully ref33-3.,1,0.95,advanced
+They have been studying English for two years ref7-1.,1,0.95,advanced
+He works as a software engineer in Jakarta ref78-10.,1,0.95,advanced
+She go to school every day err30-0.,0,0.11,beginner
+He play piano beautiful err50-2.,0,0.14,beginner
+He play piano beautiful err17-2.,0,0.14,beginner
+He plays the piano beautifully ref66-3.,1,0.95,advanced
+We will visit the museum tomorrow ref40-4.,1,0.95,advanced
+We will visit the museum tomorrow ref16-4.,1,0.95,advanced
+She speak three language fluent err38-6.,0,0.08,beginner
+The book that I read yesterday was interesting ref39-2.,1,0.95,advanced
+I have never see such beautiful sunset err72-4.,0,0.1,beginner
+Reading book help improve you vocabulary err8-12.,0,0.09,beginner
+The students completed their homework on time ref1-6.,1,0.95,advanced
+The weather today is more warm than yesterday err30-10.,0,0.14,beginner
+The weather today is warmer than yesterday ref51-11.,1,0.95,advanced
+The train arrive at station in schedule err3-13.,0,0.12,beginner
+Reading books helps improve your vocabulary ref35-13.,1,0.95,advanced
+I have never seen such a beautiful sunset ref53-5.,1,0.95,advanced
+The meeting were postpone until Monday err3-7.,0,0.15,beginner
+She goes to school every day ref25-0.,1,0.95,advanced
+There is many problem with this sentence err74-14.,0,0.11,beginner
+She speaks three languages fluently ref10-7.,1,0.95,advanced
+They has been study English err28-1.,0,0.09,beginner
+She go to school every day err73-0.,0,0.11,beginner
+The train arrived at the station on schedule ref53-14.,1,0.95,advanced
+He play piano beautiful err43-2.,0,0.14,beginner
+He play piano beautiful err68-2.,0,0.14,beginner
+She speaks three languages fluently ref65-7.,1,0.95,advanced
+The train arrived at the station on schedule ref2-14.,1,0.95,advanced
+The weather today is more warm than yesterday err52-10.,0,0.14,beginner
+He play piano beautiful err59-2.,0,0.14,beginner
+The book that I read yesterday was interesting ref41-2.,1,0.95,advanced
+We will visit the museum tomorrow ref59-4.,1,0.95,advanced
+The weather today is more warm than yesterday err25-10.,0,0.14,beginner
+My sister buyed a new laptop last week err41-11.,0,0.1,beginner
+They has been study English err79-1.,0,0.09,beginner
+My sister bought a new laptop last week ref9-12.,1,0.95,advanced
+Reading book help improve you vocabulary err13-12.,0,0.09,beginner
+The train arrive at station in schedule err31-13.,0,0.12,beginner
+They have been studying English for two years ref77-1.,1,0.95,advanced
+He plays the piano beautifully ref39-3.,1,0.95,advanced
+The weather today is warmer than yesterday ref14-11.,1,0.95,advanced
+She speak three language fluent err61-6.,0,0.08,beginner
+Children should eats healthy food err24-8.,0,0.11,beginner
+He work as software engineer at Jakarta err71-9.,0,0.13,beginner
+We will visiting museum tomorrow err75-3.,0,0.13,beginner
+My sister bought a new laptop last week ref56-12.,1,0.95,advanced
+The train arrive at station in schedule err72-13.,0,0.12,beginner
+There is many problem with this sentence err15-14.,0,0.11,beginner
+My sister bought a new laptop last week ref27-12.,1,0.95,advanced
+We will visiting museum tomorrow err5-3.,0,0.13,beginner
+We will visiting museum tomorrow err56-3.,0,0.13,beginner
+The book that I read yesterday was interesting ref29-2.,1,0.95,advanced
+She speak three language fluent err14-6.,0,0.08,beginner
+They has been study English err77-1.,0,0.09,beginner
+The weather today is more warm than yesterday err14-10.,0,0.14,beginner
+My sister buyed a new laptop last week err73-11.,0,0.1,beginner
+The book that I read yesterday was interesting ref77-2.,1,0.95,advanced
+Children should eats healthy food err0-8.,0,0.11,beginner
+The students completed their homework on time ref60-6.,1,0.95,advanced
+My sister bought a new laptop last week ref30-12.,1,0.95,advanced
+I have never see such beautiful sunset err54-4.,0,0.1,beginner
+The weather today is more warm than yesterday err13-10.,0,0.14,beginner
+The students complete their homework on time yesterday err27-5.,0,0.12,beginner
+The train arrive at station in schedule err48-13.,0,0.12,beginner
+My sister bought a new laptop last week ref54-12.,1,0.95,advanced
+The weather today is more warm than yesterday err71-10.,0,0.14,beginner
+My sister buyed a new laptop last week err61-11.,0,0.1,beginner
+I have never seen such a beautiful sunset ref58-5.,1,0.95,advanced
+I have never see such beautiful sunset err58-4.,0,0.1,beginner
+My sister bought a new laptop last week ref2-12.,1,0.95,advanced
+The weather today is more warm than yesterday err65-10.,0,0.14,beginner
+Reading books helps improve your vocabulary ref70-13.,1,0.95,advanced
+He play piano beautiful err66-2.,0,0.14,beginner
+The weather today is warmer than yesterday ref23-11.,1,0.95,advanced
+Children should eats healthy food err32-8.,0,0.11,beginner
+The train arrive at station in schedule err55-13.,0,0.12,beginner
+She goes to school every day ref37-0.,1,0.95,advanced
+We will visit the museum tomorrow ref42-4.,1,0.95,advanced
+He plays the piano beautifully ref10-3.,1,0.95,advanced
+The meeting were postpone until Monday err43-7.,0,0.15,beginner
+He works as a software engineer in Jakarta ref62-10.,1,0.95,advanced
+Children should eat healthy food every day ref12-9.,1,0.95,advanced
+My sister bought a new laptop last week ref71-12.,1,0.95,advanced
+The weather today is more warm than yesterday err73-10.,0,0.14,beginner
+The meeting were postpone until Monday err76-7.,0,0.15,beginner
+The students completed their homework on time ref52-6.,1,0.95,advanced
+The meeting was postponed until next Monday ref50-8.,1,0.95,advanced
+The weather today is warmer than yesterday ref26-11.,1,0.95,advanced
+Reading book help improve you vocabulary err16-12.,0,0.09,beginner
+The book that I read yesterday was interesting ref9-2.,1,0.95,advanced
+The train arrived at the station on schedule ref36-14.,1,0.95,advanced
+The meeting were postpone until Monday err70-7.,0,0.15,beginner
+The book that I read yesterday was interesting ref7-2.,1,0.95,advanced
+He works as a software engineer in Jakarta ref44-10.,1,0.95,advanced
+I have never seen such a beautiful sunset ref9-5.,1,0.95,advanced
+He works as a software engineer in Jakarta ref34-10.,1,0.95,advanced
+The meeting were postpone until Monday err59-7.,0,0.15,beginner
+She speak three language fluent err70-6.,0,0.08,beginner
+The weather today is more warm than yesterday err3-10.,0,0.14,beginner
+The meeting were postpone until Monday err50-7.,0,0.15,beginner
+Children should eat healthy food every day ref48-9.,1,0.95,advanced
+Children should eat healthy food every day ref13-9.,1,0.95,advanced
+She goes to school every day ref21-0.,1,0.95,advanced
+She goes to school every day ref32-0.,1,0.95,advanced
+The weather today is more warm than yesterday err55-10.,0,0.14,beginner
+We will visit the museum tomorrow ref75-4.,1,0.95,advanced
+The train arrived at the station on schedule ref3-14.,1,0.95,advanced
+Children should eats healthy food err62-8.,0,0.11,beginner
+The meeting were postpone until Monday err42-7.,0,0.15,beginner
+She speaks three languages fluently ref54-7.,1,0.95,advanced
+My sister buyed a new laptop last week err15-11.,0,0.1,beginner
+The students complete their homework on time yesterday err55-5.,0,0.12,beginner
+He plays the piano beautifully ref6-3.,1,0.95,advanced
+Reading books helps improve your vocabulary ref17-13.,1,0.95,advanced
+We will visit the museum tomorrow ref37-4.,1,0.95,advanced
+They have been studying English for two years ref44-1.,1,0.95,advanced
+He works as a software engineer in Jakarta ref32-10.,1,0.95,advanced
+The weather today is warmer than yesterday ref68-11.,1,0.95,advanced
+The book that I read yesterday was interesting ref23-2.,1,0.95,advanced
+I have never see such beautiful sunset err69-4.,0,0.1,beginner
+Reading books helps improve your vocabulary ref57-13.,1,0.95,advanced
+Children should eats healthy food err68-8.,0,0.11,beginner
+Children should eat healthy food every day ref40-9.,1,0.95,advanced
+There is many problem with this sentence err3-14.,0,0.11,beginner
+Reading book help improve you vocabulary err48-12.,0,0.09,beginner
+She go to school every day err50-0.,0,0.11,beginner
+The train arrived at the station on schedule ref19-14.,1,0.95,advanced
+My sister bought a new laptop last week ref8-12.,1,0.95,advanced
+He works as a software engineer in Jakarta ref77-10.,1,0.95,advanced
+Children should eats healthy food err16-8.,0,0.11,beginner
+The weather today is more warm than yesterday err41-10.,0,0.14,beginner
+She go to school every day err21-0.,0,0.11,beginner
+He works as a software engineer in Jakarta ref42-10.,1,0.95,advanced
+He works as a software engineer in Jakarta ref64-10.,1,0.95,advanced
+Reading book help improve you vocabulary err66-12.,0,0.09,beginner
+He work as software engineer at Jakarta err26-9.,0,0.13,beginner
+I have never seen such a beautiful sunset ref69-5.,1,0.95,advanced
+She go to school every day err23-0.,0,0.11,beginner
+The train arrive at station in schedule err4-13.,0,0.12,beginner
+He plays the piano beautifully ref1-3.,1,0.95,advanced
+He play piano beautiful err53-2.,0,0.14,beginner
+She speak three language fluent err68-6.,0,0.08,beginner
+My sister buyed a new laptop last week err28-11.,0,0.1,beginner
+She speaks three languages fluently ref42-7.,1,0.95,advanced
+The train arrive at station in schedule err2-13.,0,0.12,beginner
+The train arrived at the station on schedule ref40-14.,1,0.95,advanced
+She speaks three languages fluently ref1-7.,1,0.95,advanced
+The book that I read yesterday was interesting ref16-2.,1,0.95,advanced
+She speak three language fluent err36-6.,0,0.08,beginner
+She speak three language fluent err25-6.,0,0.08,beginner
+The weather today is warmer than yesterday ref8-11.,1,0.95,advanced
+The weather today is warmer than yesterday ref64-11.,1,0.95,advanced
+My sister buyed a new laptop last week err48-11.,0,0.1,beginner
+Children should eats healthy food err79-8.,0,0.11,beginner
+She speak three language fluent err51-6.,0,0.08,beginner
+Children should eat healthy food every day ref49-9.,1,0.95,advanced
+The train arrived at the station on schedule ref72-14.,1,0.95,advanced
+He play piano beautiful err9-2.,0,0.14,beginner
+She speak three language fluent err63-6.,0,0.08,beginner
+He work as software engineer at Jakarta err23-9.,0,0.13,beginner
+She speaks three languages fluently ref67-7.,1,0.95,advanced
+We will visit the museum tomorrow ref12-4.,1,0.95,advanced
+Children should eats healthy food err75-8.,0,0.11,beginner
+She go to school every day err57-0.,0,0.11,beginner
+Reading book help improve you vocabulary err71-12.,0,0.09,beginner
+I have never see such beautiful sunset err42-4.,0,0.1,beginner
+He works as a software engineer in Jakarta ref5-10.,1,0.95,advanced
+The meeting was postponed until next Monday ref75-8.,1,0.95,advanced
+He plays the piano beautifully ref11-3.,1,0.95,advanced
+She speaks three languages fluently ref77-7.,1,0.95,advanced
+He works as a software engineer in Jakarta ref2-10.,1,0.95,advanced
+She go to school every day err64-0.,0,0.11,beginner
+Reading books helps improve your vocabulary ref56-13.,1,0.95,advanced
+She go to school every day err11-0.,0,0.11,beginner
+Children should eats healthy food err53-8.,0,0.11,beginner
+Children should eat healthy food every day ref6-9.,1,0.95,advanced
+The students complete their homework on time yesterday err7-5.,0,0.12,beginner
+She speaks three languages fluently ref22-7.,1,0.95,advanced
+Children should eat healthy food every day ref10-9.,1,0.95,advanced
+Children should eats healthy food err69-8.,0,0.11,beginner
+The meeting were postpone until Monday err21-7.,0,0.15,beginner
+She speak three language fluent err67-6.,0,0.08,beginner
+He plays the piano beautifully ref19-3.,1,0.95,advanced
+The students completed their homework on time ref35-6.,1,0.95,advanced
+She goes to school every day ref4-0.,1,0.95,advanced
+The meeting was postponed until next Monday ref43-8.,1,0.95,advanced
+We will visit the museum tomorrow ref2-4.,1,0.95,advanced
+He play piano beautiful err0-2.,0,0.14,beginner
+The train arrived at the station on schedule ref7-14.,1,0.95,advanced
+The students completed their homework on time ref16-6.,1,0.95,advanced
+She speaks three languages fluently ref15-7.,1,0.95,advanced
+She go to school every day err0-0.,0,0.11,beginner
+She goes to school every day ref46-0.,1,0.95,advanced
+We will visiting museum tomorrow err23-3.,0,0.13,beginner
+I have never seen such a beautiful sunset ref45-5.,1,0.95,advanced
+She go to school every day err72-0.,0,0.11,beginner
+The students complete their homework on time yesterday err52-5.,0,0.12,beginner
+I have never seen such a beautiful sunset ref62-5.,1,0.95,advanced
+I have never see such beautiful sunset err28-4.,0,0.1,beginner
+Children should eat healthy food every day ref47-9.,1,0.95,advanced
+He play piano beautiful err78-2.,0,0.14,beginner
+I have never seen such a beautiful sunset ref66-5.,1,0.95,advanced
+The weather today is more warm than yesterday err40-10.,0,0.14,beginner
+They has been study English err70-1.,0,0.09,beginner
+We will visit the museum tomorrow ref48-4.,1,0.95,advanced
+My sister bought a new laptop last week ref34-12.,1,0.95,advanced
+The weather today is more warm than yesterday err26-10.,0,0.14,beginner
+She speaks three languages fluently ref60-7.,1,0.95,advanced
+The train arrive at station in schedule err17-13.,0,0.12,beginner
+Children should eats healthy food err38-8.,0,0.11,beginner
+They has been study English err33-1.,0,0.09,beginner
+We will visiting museum tomorrow err7-3.,0,0.13,beginner
+The train arrive at station in schedule err52-13.,0,0.12,beginner
+He work as software engineer at Jakarta err73-9.,0,0.13,beginner
+I have never see such beautiful sunset err66-4.,0,0.1,beginner
+She go to school every day err56-0.,0,0.11,beginner
+She speak three language fluent err47-6.,0,0.08,beginner
+We will visit the museum tomorrow ref70-4.,1,0.95,advanced
+Reading book help improve you vocabulary err17-12.,0,0.09,beginner
+The train arrive at station in schedule err77-13.,0,0.12,beginner
+There is many problem with this sentence err48-14.,0,0.11,beginner
+I have never see such beautiful sunset err52-4.,0,0.1,beginner
+Children should eats healthy food err41-8.,0,0.11,beginner
+We will visit the museum tomorrow ref60-4.,1,0.95,advanced
+The meeting was postponed until next Monday ref74-8.,1,0.95,advanced
+The weather today is more warm than yesterday err64-10.,0,0.14,beginner
+She goes to school every day ref45-0.,1,0.95,advanced
+They has been study English err4-1.,0,0.09,beginner
+The weather today is more warm than yesterday err8-10.,0,0.14,beginner
+We will visit the museum tomorrow ref43-4.,1,0.95,advanced
+He plays the piano beautifully ref12-3.,1,0.95,advanced
+He work as software engineer at Jakarta err11-9.,0,0.13,beginner
+The students complete their homework on time yesterday err66-5.,0,0.12,beginner
+They has been study English err38-1.,0,0.09,beginner
+My sister buyed a new laptop last week err38-11.,0,0.1,beginner
+He play piano beautiful err6-2.,0,0.14,beginner
+I have never see such beautiful sunset err43-4.,0,0.1,beginner
+The meeting was postponed until next Monday ref18-8.,1,0.95,advanced
+Reading books helps improve your vocabulary ref7-13.,1,0.95,advanced
+The meeting was postponed until next Monday ref6-8.,1,0.95,advanced
+I have never see such beautiful sunset err25-4.,0,0.1,beginner
+I have never see such beautiful sunset err4-4.,0,0.1,beginner
+He plays the piano beautifully ref70-3.,1,0.95,advanced
+We will visiting museum tomorrow err65-3.,0,0.13,beginner
+The weather today is more warm than yesterday err34-10.,0,0.14,beginner
+He work as software engineer at Jakarta err16-9.,0,0.13,beginner
+My sister buyed a new laptop last week err66-11.,0,0.1,beginner
+My sister bought a new laptop last week ref77-12.,1,0.95,advanced
+They have been studying English for two years ref11-1.,1,0.95,advanced
+The students completed their homework on time ref69-6.,1,0.95,advanced
+The students completed their homework on time ref65-6.,1,0.95,advanced
+I have never see such beautiful sunset err48-4.,0,0.1,beginner
+He work as software engineer at Jakarta err25-9.,0,0.13,beginner
+She go to school every day err35-0.,0,0.11,beginner
+The train arrived at the station on schedule ref52-14.,1,0.95,advanced
+The weather today is warmer than yesterday ref38-11.,1,0.95,advanced
+The weather today is warmer than yesterday ref27-11.,1,0.95,advanced
+The students completed their homework on time ref45-6.,1,0.95,advanced
+There is many problem with this sentence err56-14.,0,0.11,beginner
+The students complete their homework on time yesterday err75-5.,0,0.12,beginner
+Reading books helps improve your vocabulary ref19-13.,1,0.95,advanced
+The weather today is more warm than yesterday err35-10.,0,0.14,beginner
+He work as software engineer at Jakarta err65-9.,0,0.13,beginner
+I have never seen such a beautiful sunset ref44-5.,1,0.95,advanced
+The students completed their homework on time ref12-6.,1,0.95,advanced
+She speaks three languages fluently ref25-7.,1,0.95,advanced
+The weather today is more warm than yesterday err22-10.,0,0.14,beginner
+She speak three language fluent err17-6.,0,0.08,beginner
+The students complete their homework on time yesterday err29-5.,0,0.12,beginner
+I have never seen such a beautiful sunset ref8-5.,1,0.95,advanced
+Children should eat healthy food every day ref23-9.,1,0.95,advanced
+My sister bought a new laptop last week ref70-12.,1,0.95,advanced
+The train arrive at station in schedule err74-13.,0,0.12,beginner
+They have been studying English for two years ref62-1.,1,0.95,advanced
+The students complete their homework on time yesterday err41-5.,0,0.12,beginner
+We will visit the museum tomorrow ref79-4.,1,0.95,advanced
+They have been studying English for two years ref63-1.,1,0.95,advanced
+I have never seen such a beautiful sunset ref55-5.,1,0.95,advanced
+Reading books helps improve your vocabulary ref26-13.,1,0.95,advanced
+Reading book help improve you vocabulary err47-12.,0,0.09,beginner
+The train arrive at station in schedule err30-13.,0,0.12,beginner
+The students complete their homework on time yesterday err5-5.,0,0.12,beginner
+Reading book help improve you vocabulary err12-12.,0,0.09,beginner
+They have been studying English for two years ref73-1.,1,0.95,advanced
+He works as a software engineer in Jakarta ref74-10.,1,0.95,advanced
+She speak three language fluent err49-6.,0,0.08,beginner
+The students complete their homework on time yesterday err25-5.,0,0.12,beginner
+Children should eats healthy food err47-8.,0,0.11,beginner
+My sister bought a new laptop last week ref24-12.,1,0.95,advanced
+She go to school every day err12-0.,0,0.11,beginner
+I have never see such beautiful sunset err59-4.,0,0.1,beginner
+There is many problem with this sentence err22-14.,0,0.11,beginner
+She goes to school every day ref53-0.,1,0.95,advanced
+I have never seen such a beautiful sunset ref65-5.,1,0.95,advanced
+The book that I read yesterday was interesting ref6-2.,1,0.95,advanced
+He play piano beautiful err15-2.,0,0.14,beginner
+Reading book help improve you vocabulary err23-12.,0,0.09,beginner
+I have never seen such a beautiful sunset ref49-5.,1,0.95,advanced
+He work as software engineer at Jakarta err62-9.,0,0.13,beginner
+The meeting were postpone until Monday err44-7.,0,0.15,beginner
+My sister bought a new laptop last week ref60-12.,1,0.95,advanced
+The meeting were postpone until Monday err0-7.,0,0.15,beginner
+Children should eats healthy food err58-8.,0,0.11,beginner
+The students complete their homework on time yesterday err74-5.,0,0.12,beginner
+He works as a software engineer in Jakarta ref0-10.,1,0.95,advanced
+The meeting was postponed until next Monday ref67-8.,1,0.95,advanced
+He plays the piano beautifully ref25-3.,1,0.95,advanced
+My sister bought a new laptop last week ref13-12.,1,0.95,advanced
+I have never seen such a beautiful sunset ref34-5.,1,0.95,advanced
+Children should eats healthy food err46-8.,0,0.11,beginner
+The train arrived at the station on schedule ref34-14.,1,0.95,advanced
+We will visit the museum tomorrow ref1-4.,1,0.95,advanced
+Reading book help improve you vocabulary err64-12.,0,0.09,beginner
+We will visit the museum tomorrow ref57-4.,1,0.95,advanced
+I have never seen such a beautiful sunset ref42-5.,1,0.95,advanced
+I have never seen such a beautiful sunset ref48-5.,1,0.95,advanced
+She goes to school every day ref47-0.,1,0.95,advanced
+The train arrived at the station on schedule ref48-14.,1,0.95,advanced
+He plays the piano beautifully ref7-3.,1,0.95,advanced
+He work as software engineer at Jakarta err77-9.,0,0.13,beginner
+I have never seen such a beautiful sunset ref78-5.,1,0.95,advanced
+I have never see such beautiful sunset err44-4.,0,0.1,beginner
+The train arrived at the station on schedule ref10-14.,1,0.95,advanced
+He work as software engineer at Jakarta err63-9.,0,0.13,beginner
+The meeting were postpone until Monday err19-7.,0,0.15,beginner
+There is many problem with this sentence err39-14.,0,0.11,beginner
+We will visiting museum tomorrow err68-3.,0,0.13,beginner
+They have been studying English for two years ref50-1.,1,0.95,advanced
+The book that I read yesterday was interesting ref48-2.,1,0.95,advanced
+My sister bought a new laptop last week ref46-12.,1,0.95,advanced
+Children should eats healthy food err8-8.,0,0.11,beginner
+He play piano beautiful err54-2.,0,0.14,beginner
+The book that I read yesterday was interesting ref72-2.,1,0.95,advanced
+We will visit the museum tomorrow ref9-4.,1,0.95,advanced
+The meeting were postpone until Monday err46-7.,0,0.15,beginner
+They have been studying English for two years ref65-1.,1,0.95,advanced
+They has been study English err16-1.,0,0.09,beginner
+There is many problem with this sentence err69-14.,0,0.11,beginner
+There is many problem with this sentence err59-14.,0,0.11,beginner
+I have never seen such a beautiful sunset ref76-5.,1,0.95,advanced
+The meeting was postponed until next Monday ref55-8.,1,0.95,advanced
+We will visiting museum tomorrow err10-3.,0,0.13,beginner
+The meeting was postponed until next Monday ref60-8.,1,0.95,advanced
+Reading book help improve you vocabulary err10-12.,0,0.09,beginner
+The book that I read yesterday was interesting ref63-2.,1,0.95,advanced
+We will visit the museum tomorrow ref66-4.,1,0.95,advanced
+He work as software engineer at Jakarta err0-9.,0,0.13,beginner
+The students completed their homework on time ref33-6.,1,0.95,advanced
+Children should eats healthy food err60-8.,0,0.11,beginner
+They have been studying English for two years ref4-1.,1,0.95,advanced
+The train arrived at the station on schedule ref79-14.,1,0.95,advanced
+She goes to school every day ref68-0.,1,0.95,advanced
+They have been studying English for two years ref59-1.,1,0.95,advanced
+We will visiting museum tomorrow err39-3.,0,0.13,beginner
+Reading books helps improve your vocabulary ref43-13.,1,0.95,advanced
+She go to school every day err41-0.,0,0.11,beginner
+We will visiting museum tomorrow err64-3.,0,0.13,beginner
+I have never see such beautiful sunset err78-4.,0,0.1,beginner
+I have never seen such a beautiful sunset ref38-5.,1,0.95,advanced
+Children should eat healthy food every day ref36-9.,1,0.95,advanced
+The train arrive at station in schedule err24-13.,0,0.12,beginner
+Reading book help improve you vocabulary err52-12.,0,0.09,beginner
+The students completed their homework on time ref59-6.,1,0.95,advanced
+Children should eat healthy food every day ref0-9.,1,0.95,advanced
+The weather today is warmer than yesterday ref21-11.,1,0.95,advanced
+Reading books helps improve your vocabulary ref15-13.,1,0.95,advanced
+She go to school every day err53-0.,0,0.11,beginner
+My sister bought a new laptop last week ref26-12.,1,0.95,advanced
+The students complete their homework on time yesterday err36-5.,0,0.12,beginner
+She speaks three languages fluently ref43-7.,1,0.95,advanced
+They have been studying English for two years ref12-1.,1,0.95,advanced
+Children should eat healthy food every day ref35-9.,1,0.95,advanced
+I have never seen such a beautiful sunset ref28-5.,1,0.95,advanced
+He works as a software engineer in Jakarta ref31-10.,1,0.95,advanced
+They has been study English err48-1.,0,0.09,beginner
+The students complete their homework on time yesterday err65-5.,0,0.12,beginner
+Reading book help improve you vocabulary err43-12.,0,0.09,beginner
+She goes to school every day ref52-0.,1,0.95,advanced
+The students completed their homework on time ref46-6.,1,0.95,advanced
+He work as software engineer at Jakarta err39-9.,0,0.13,beginner
+She go to school every day err65-0.,0,0.11,beginner
+I have never see such beautiful sunset err23-4.,0,0.1,beginner
+Reading books helps improve your vocabulary ref55-13.,1,0.95,advanced
+There is many problem with this sentence err46-14.,0,0.11,beginner
+My sister buyed a new laptop last week err67-11.,0,0.1,beginner
+She speaks three languages fluently ref56-7.,1,0.95,advanced
+I have never seen such a beautiful sunset ref61-5.,1,0.95,advanced
+The train arrive at station in schedule err41-13.,0,0.12,beginner
+The weather today is more warm than yesterday err31-10.,0,0.14,beginner
+The students complete their homework on time yesterday err20-5.,0,0.12,beginner
+Children should eat healthy food every day ref67-9.,1,0.95,advanced
+Reading books helps improve your vocabulary ref72-13.,1,0.95,advanced
+The students completed their homework on time ref29-6.,1,0.95,advanced
+The meeting was postponed until next Monday ref24-8.,1,0.95,advanced
+He work as software engineer at Jakarta err1-9.,0,0.13,beginner
+She goes to school every day ref64-0.,1,0.95,advanced
+Reading book help improve you vocabulary err0-12.,0,0.09,beginner
+The weather today is more warm than yesterday err23-10.,0,0.14,beginner
+The weather today is more warm than yesterday err75-10.,0,0.14,beginner
+He play piano beautiful err7-2.,0,0.14,beginner
+She goes to school every day ref28-0.,1,0.95,advanced
+They has been study English err24-1.,0,0.09,beginner
+She goes to school every day ref5-0.,1,0.95,advanced
+My sister buyed a new laptop last week err33-11.,0,0.1,beginner
+My sister buyed a new laptop last week err21-11.,0,0.1,beginner
+Reading book help improve you vocabulary err26-12.,0,0.09,beginner
+They have been studying English for two years ref46-1.,1,0.95,advanced
+The weather today is more warm than yesterday err2-10.,0,0.14,beginner
+The meeting was postponed until next Monday ref61-8.,1,0.95,advanced
+They have been studying English for two years ref68-1.,1,0.95,advanced
+We will visiting museum tomorrow err17-3.,0,0.13,beginner
+We will visit the museum tomorrow ref67-4.,1,0.95,advanced
+The students complete their homework on time yesterday err12-5.,0,0.12,beginner
+Reading book help improve you vocabulary err51-12.,0,0.09,beginner
+The train arrived at the station on schedule ref75-14.,1,0.95,advanced
+They has been study English err8-1.,0,0.09,beginner
+He plays the piano beautifully ref54-3.,1,0.95,advanced
+The train arrived at the station on schedule ref67-14.,1,0.95,advanced
+She go to school every day err59-0.,0,0.11,beginner
+The meeting was postponed until next Monday ref14-8.,1,0.95,advanced
+She goes to school every day ref18-0.,1,0.95,advanced
+My sister buyed a new laptop last week err50-11.,0,0.1,beginner
+I have never seen such a beautiful sunset ref52-5.,1,0.95,advanced
+She speaks three languages fluently ref37-7.,1,0.95,advanced
+Reading books helps improve your vocabulary ref31-13.,1,0.95,advanced
+They have been studying English for two years ref58-1.,1,0.95,advanced
+My sister bought a new laptop last week ref51-12.,1,0.95,advanced
+Children should eat healthy food every day ref56-9.,1,0.95,advanced
+She go to school every day err25-0.,0,0.11,beginner
+Reading book help improve you vocabulary err41-12.,0,0.09,beginner
+The students complete their homework on time yesterday err50-5.,0,0.12,beginner
+The train arrive at station in schedule err43-13.,0,0.12,beginner
+She speak three language fluent err71-6.,0,0.08,beginner
+I have never seen such a beautiful sunset ref23-5.,1,0.95,advanced
+The students complete their homework on time yesterday err46-5.,0,0.12,beginner
+Reading books helps improve your vocabulary ref37-13.,1,0.95,advanced
+He plays the piano beautifully ref8-3.,1,0.95,advanced
+Reading books helps improve your vocabulary ref12-13.,1,0.95,advanced
+I have never see such beautiful sunset err35-4.,0,0.1,beginner
+Reading book help improve you vocabulary err70-12.,0,0.09,beginner
+She goes to school every day ref39-0.,1,0.95,advanced
+I have never see such beautiful sunset err5-4.,0,0.1,beginner
+He work as software engineer at Jakarta err37-9.,0,0.13,beginner
+He work as software engineer at Jakarta err47-9.,0,0.13,beginner
+She speaks three languages fluently ref5-7.,1,0.95,advanced
+We will visit the museum tomorrow ref62-4.,1,0.95,advanced
+The train arrived at the station on schedule ref4-14.,1,0.95,advanced
+The train arrived at the station on schedule ref11-14.,1,0.95,advanced
+He play piano beautiful err49-2.,0,0.14,beginner
+They have been studying English for two years ref20-1.,1,0.95,advanced
+My sister bought a new laptop last week ref18-12.,1,0.95,advanced
+They has been study English err44-1.,0,0.09,beginner
+Reading books helps improve your vocabulary ref44-13.,1,0.95,advanced
+The meeting were postpone until Monday err66-7.,0,0.15,beginner
+He work as software engineer at Jakarta err32-9.,0,0.13,beginner
+I have never see such beautiful sunset err63-4.,0,0.1,beginner
+The book that I read yesterday was interesting ref26-2.,1,0.95,advanced
+The students completed their homework on time ref54-6.,1,0.95,advanced
+They has been study English err6-1.,0,0.09,beginner
+They have been studying English for two years ref27-1.,1,0.95,advanced
+The students complete their homework on time yesterday err69-5.,0,0.12,beginner
+Children should eat healthy food every day ref7-9.,1,0.95,advanced
+There is many problem with this sentence err35-14.,0,0.11,beginner
+The train arrived at the station on schedule ref28-14.,1,0.95,advanced
+She goes to school every day ref65-0.,1,0.95,advanced
+We will visiting museum tomorrow err0-3.,0,0.13,beginner
+I have never see such beautiful sunset err27-4.,0,0.1,beginner
+My sister bought a new laptop last week ref39-12.,1,0.95,advanced
+He plays the piano beautifully ref30-3.,1,0.95,advanced
+He work as software engineer at Jakarta err30-9.,0,0.13,beginner
+The train arrived at the station on schedule ref26-14.,1,0.95,advanced
+I have never see such beautiful sunset err79-4.,0,0.1,beginner
+She go to school every day err37-0.,0,0.11,beginner
+She speaks three languages fluently ref53-7.,1,0.95,advanced
+They has been study English err25-1.,0,0.09,beginner
+She go to school every day err27-0.,0,0.11,beginner
+We will visiting museum tomorrow err44-3.,0,0.13,beginner
+Children should eats healthy food err61-8.,0,0.11,beginner
+They has been study English err72-1.,0,0.09,beginner
+Reading book help improve you vocabulary err53-12.,0,0.09,beginner
+She go to school every day err29-0.,0,0.11,beginner
+He work as software engineer at Jakarta err4-9.,0,0.13,beginner
+My sister buyed a new laptop last week err75-11.,0,0.1,beginner
+The book that I read yesterday was interesting ref67-2.,1,0.95,advanced
+We will visit the museum tomorrow ref24-4.,1,0.95,advanced
+The students complete their homework on time yesterday err57-5.,0,0.12,beginner
+They has been study English err54-1.,0,0.09,beginner
+He play piano beautiful err63-2.,0,0.14,beginner
+I have never see such beautiful sunset err26-4.,0,0.1,beginner
+He plays the piano beautifully ref67-3.,1,0.95,advanced
+They have been studying English for two years ref53-1.,1,0.95,advanced
+The students completed their homework on time ref3-6.,1,0.95,advanced
+The weather today is warmer than yesterday ref30-11.,1,0.95,advanced
+I have never see such beautiful sunset err32-4.,0,0.1,beginner
+My sister bought a new laptop last week ref11-12.,1,0.95,advanced
+She go to school every day err74-0.,0,0.11,beginner
+The students complete their homework on time yesterday err60-5.,0,0.12,beginner
+They has been study English err11-1.,0,0.09,beginner
+Reading book help improve you vocabulary err78-12.,0,0.09,beginner
+He work as software engineer at Jakarta err78-9.,0,0.13,beginner
+I have never see such beautiful sunset err9-4.,0,0.1,beginner
+I have never see such beautiful sunset err30-4.,0,0.1,beginner
+We will visiting museum tomorrow err52-3.,0,0.13,beginner
+He plays the piano beautifully ref71-3.,1,0.95,advanced
+He work as software engineer at Jakarta err20-9.,0,0.13,beginner
+The meeting was postponed until next Monday ref69-8.,1,0.95,advanced
+He works as a software engineer in Jakarta ref24-10.,1,0.95,advanced
+There is many problem with this sentence err57-14.,0,0.11,beginner
+The meeting was postponed until next Monday ref38-8.,1,0.95,advanced
+She go to school every day err46-0.,0,0.11,beginner
+She speak three language fluent err58-6.,0,0.08,beginner
+My sister buyed a new laptop last week err5-11.,0,0.1,beginner
+He play piano beautiful err44-2.,0,0.14,beginner
+The meeting was postponed until next Monday ref46-8.,1,0.95,advanced
+She speak three language fluent err11-6.,0,0.08,beginner
+The meeting was postponed until next Monday ref64-8.,1,0.95,advanced
+The weather today is warmer than yesterday ref15-11.,1,0.95,advanced
+They have been studying English for two years ref56-1.,1,0.95,advanced
+We will visiting museum tomorrow err59-3.,0,0.13,beginner
+I have never see such beautiful sunset err64-4.,0,0.1,beginner
+The students complete their homework on time yesterday err70-5.,0,0.12,beginner
+We will visit the museum tomorrow ref32-4.,1,0.95,advanced
+The meeting were postpone until Monday err32-7.,0,0.15,beginner
+She go to school every day err76-0.,0,0.11,beginner
+She speak three language fluent err59-6.,0,0.08,beginner
+They have been studying English for two years ref71-1.,1,0.95,advanced
+The students complete their homework on time yesterday err45-5.,0,0.12,beginner
+She speak three language fluent err34-6.,0,0.08,beginner
+He work as software engineer at Jakarta err19-9.,0,0.13,beginner
+My sister bought a new laptop last week ref59-12.,1,0.95,advanced
+He plays the piano beautifully ref13-3.,1,0.95,advanced
+The train arrive at station in schedule err64-13.,0,0.12,beginner
+She speak three language fluent err53-6.,0,0.08,beginner
+I have never see such beautiful sunset err33-4.,0,0.1,beginner
+He works as a software engineer in Jakarta ref36-10.,1,0.95,advanced
+Children should eats healthy food err23-8.,0,0.11,beginner
+The book that I read yesterday was interesting ref24-2.,1,0.95,advanced
+The students completed their homework on time ref71-6.,1,0.95,advanced
+The meeting was postponed until next Monday ref49-8.,1,0.95,advanced
+She speak three language fluent err52-6.,0,0.08,beginner
+We will visiting museum tomorrow err70-3.,0,0.13,beginner
+We will visiting museum tomorrow err31-3.,0,0.13,beginner
+The weather today is more warm than yesterday err50-10.,0,0.14,beginner
+She speaks three languages fluently ref24-7.,1,0.95,advanced
+The weather today is more warm than yesterday err32-10.,0,0.14,beginner
+He play piano beautiful err65-2.,0,0.14,beginner
+The weather today is warmer than yesterday ref63-11.,1,0.95,advanced
+Reading book help improve you vocabulary err1-12.,0,0.09,beginner
+Children should eats healthy food err39-8.,0,0.11,beginner
+My sister buyed a new laptop last week err70-11.,0,0.1,beginner
+The students complete their homework on time yesterday err68-5.,0,0.12,beginner
+She speak three language fluent err50-6.,0,0.08,beginner
+There is many problem with this sentence err26-14.,0,0.11,beginner
+There is many problem with this sentence err76-14.,0,0.11,beginner
+Children should eat healthy food every day ref2-9.,1,0.95,advanced
+She goes to school every day ref15-0.,1,0.95,advanced
+We will visit the museum tomorrow ref58-4.,1,0.95,advanced
+The train arrived at the station on schedule ref49-14.,1,0.95,advanced
+The meeting were postpone until Monday err74-7.,0,0.15,beginner
+She goes to school every day ref11-0.,1,0.95,advanced
+They has been study English err58-1.,0,0.09,beginner
+The students complete their homework on time yesterday err21-5.,0,0.12,beginner
+The train arrived at the station on schedule ref33-14.,1,0.95,advanced
+The meeting was postponed until next Monday ref19-8.,1,0.95,advanced
+They has been study English err39-1.,0,0.09,beginner
+Children should eats healthy food err19-8.,0,0.11,beginner
+She speaks three languages fluently ref19-7.,1,0.95,advanced
+The train arrived at the station on schedule ref39-14.,1,0.95,advanced
+The weather today is more warm than yesterday err16-10.,0,0.14,beginner
+Reading books helps improve your vocabulary ref21-13.,1,0.95,advanced
+They have been studying English for two years ref6-1.,1,0.95,advanced
+He play piano beautiful err2-2.,0,0.14,beginner
+There is many problem with this sentence err36-14.,0,0.11,beginner
+He play piano beautiful err61-2.,0,0.14,beginner
+The train arrive at station in schedule err63-13.,0,0.12,beginner
+She speaks three languages fluently ref55-7.,1,0.95,advanced
+He work as software engineer at Jakarta err76-9.,0,0.13,beginner
+I have never seen such a beautiful sunset ref74-5.,1,0.95,advanced
+She speaks three languages fluently ref62-7.,1,0.95,advanced
+She goes to school every day ref44-0.,1,0.95,advanced
+The train arrive at station in schedule err73-13.,0,0.12,beginner
+My sister bought a new laptop last week ref78-12.,1,0.95,advanced
+The train arrive at station in schedule err78-13.,0,0.12,beginner
+Children should eats healthy food err51-8.,0,0.11,beginner
+He play piano beautiful err34-2.,0,0.14,beginner
+The weather today is more warm than yesterday err60-10.,0,0.14,beginner
+Children should eat healthy food every day ref38-9.,1,0.95,advanced
+I have never seen such a beautiful sunset ref51-5.,1,0.95,advanced
+Children should eats healthy food err26-8.,0,0.11,beginner
+The book that I read yesterday was interesting ref28-2.,1,0.95,advanced
+He work as software engineer at Jakarta err52-9.,0,0.13,beginner
+The students completed their homework on time ref66-6.,1,0.95,advanced
+The meeting were postpone until Monday err5-7.,0,0.15,beginner
+The weather today is warmer than yesterday ref11-11.,1,0.95,advanced
+We will visit the museum tomorrow ref74-4.,1,0.95,advanced
+Reading books helps improve your vocabulary ref28-13.,1,0.95,advanced
+He play piano beautiful err10-2.,0,0.14,beginner
+The meeting were postpone until Monday err61-7.,0,0.15,beginner
+He plays the piano beautifully ref38-3.,1,0.95,advanced
+I have never seen such a beautiful sunset ref46-5.,1,0.95,advanced
+Children should eat healthy food every day ref44-9.,1,0.95,advanced
+He plays the piano beautifully ref20-3.,1,0.95,advanced
+He works as a software engineer in Jakarta ref71-10.,1,0.95,advanced
+The students complete their homework on time yesterday err71-5.,0,0.12,beginner
+Reading books helps improve your vocabulary ref79-13.,1,0.95,advanced
+There is many problem with this sentence err72-14.,0,0.11,beginner
+I have never see such beautiful sunset err65-4.,0,0.1,beginner
+Children should eats healthy food err48-8.,0,0.11,beginner
+He plays the piano beautifully ref42-3.,1,0.95,advanced
+He works as a software engineer in Jakarta ref38-10.,1,0.95,advanced
+Children should eat healthy food every day ref27-9.,1,0.95,advanced
+We will visit the museum tomorrow ref52-4.,1,0.95,advanced
+The meeting were postpone until Monday err60-7.,0,0.15,beginner
+She speak three language fluent err0-6.,0,0.08,beginner
+The meeting were postpone until Monday err72-7.,0,0.15,beginner
+There is many problem with this sentence err78-14.,0,0.11,beginner
+She go to school every day err28-0.,0,0.11,beginner
+She speaks three languages fluently ref14-7.,1,0.95,advanced
+My sister bought a new laptop last week ref76-12.,1,0.95,advanced
+She go to school every day err52-0.,0,0.11,beginner
+He work as software engineer at Jakarta err13-9.,0,0.13,beginner
+The meeting was postponed until next Monday ref59-8.,1,0.95,advanced
+The students completed their homework on time ref76-6.,1,0.95,advanced
+She speaks three languages fluently ref39-7.,1,0.95,advanced
+The train arrive at station in schedule err71-13.,0,0.12,beginner
+The students complete their homework on time yesterday err67-5.,0,0.12,beginner
+The students complete their homework on time yesterday err15-5.,0,0.12,beginner
+She goes to school every day ref55-0.,1,0.95,advanced
+I have never see such beautiful sunset err60-4.,0,0.1,beginner
+We will visit the museum tomorrow ref35-4.,1,0.95,advanced
+She goes to school every day ref36-0.,1,0.95,advanced
+The weather today is more warm than yesterday err54-10.,0,0.14,beginner
+He play piano beautiful err40-2.,0,0.14,beginner
+She speaks three languages fluently ref30-7.,1,0.95,advanced
+He work as software engineer at Jakarta err22-9.,0,0.13,beginner
+Children should eats healthy food err35-8.,0,0.11,beginner
+There is many problem with this sentence err38-14.,0,0.11,beginner
+He works as a software engineer in Jakarta ref37-10.,1,0.95,advanced
+There is many problem with this sentence err67-14.,0,0.11,beginner
+I have never seen such a beautiful sunset ref18-5.,1,0.95,advanced
+She speaks three languages fluently ref38-7.,1,0.95,advanced
+My sister bought a new laptop last week ref4-12.,1,0.95,advanced
+There is many problem with this sentence err5-14.,0,0.11,beginner
+She speak three language fluent err26-6.,0,0.08,beginner
+They have been studying English for two years ref41-1.,1,0.95,advanced
+There is many problem with this sentence err16-14.,0,0.11,beginner
+He work as software engineer at Jakarta err75-9.,0,0.13,beginner
+We will visiting museum tomorrow err46-3.,0,0.13,beginner
+The students completed their homework on time ref55-6.,1,0.95,advanced
+The train arrive at station in schedule err47-13.,0,0.12,beginner
+The meeting was postponed until next Monday ref78-8.,1,0.95,advanced
+The train arrive at station in schedule err34-13.,0,0.12,beginner
+My sister buyed a new laptop last week err53-11.,0,0.1,beginner
+The weather today is warmer than yesterday ref33-11.,1,0.95,advanced
+There is many problem with this sentence err6-14.,0,0.11,beginner
+She speaks three languages fluently ref0-7.,1,0.95,advanced
+She go to school every day err66-0.,0,0.11,beginner
+The students completed their homework on time ref40-6.,1,0.95,advanced
+The train arrived at the station on schedule ref13-14.,1,0.95,advanced
+The book that I read yesterday was interesting ref54-2.,1,0.95,advanced
+They has been study English err1-1.,0,0.09,beginner
+Reading book help improve you vocabulary err62-12.,0,0.09,beginner
+The book that I read yesterday was interesting ref35-2.,1,0.95,advanced
+There is many problem with this sentence err17-14.,0,0.11,beginner
+They have been studying English for two years ref35-1.,1,0.95,advanced
+She speaks three languages fluently ref74-7.,1,0.95,advanced
+We will visit the museum tomorrow ref69-4.,1,0.95,advanced
+We will visit the museum tomorrow ref23-4.,1,0.95,advanced
+Children should eats healthy food err73-8.,0,0.11,beginner
+Children should eats healthy food err3-8.,0,0.11,beginner
+I have never see such beautiful sunset err31-4.,0,0.1,beginner
+Children should eats healthy food err11-8.,0,0.11,beginner
+My sister buyed a new laptop last week err3-11.,0,0.1,beginner
+They has been study English err55-1.,0,0.09,beginner
+Children should eats healthy food err25-8.,0,0.11,beginner
+Reading book help improve you vocabulary err27-12.,0,0.09,beginner
+He play piano beautiful err28-2.,0,0.14,beginner
+My sister buyed a new laptop last week err65-11.,0,0.1,beginner
+The book that I read yesterday was interesting ref15-2.,1,0.95,advanced
+She speak three language fluent err20-6.,0,0.08,beginner
+The students complete their homework on time yesterday err54-5.,0,0.12,beginner
+There is many problem with this sentence err62-14.,0,0.11,beginner
+They has been study English err66-1.,0,0.09,beginner
+The meeting was postponed until next Monday ref65-8.,1,0.95,advanced
+The meeting was postponed until next Monday ref71-8.,1,0.95,advanced
+Children should eats healthy food err2-8.,0,0.11,beginner
+She goes to school every day ref23-0.,1,0.95,advanced
+The train arrived at the station on schedule ref62-14.,1,0.95,advanced
+We will visiting museum tomorrow err48-3.,0,0.13,beginner
+He plays the piano beautifully ref75-3.,1,0.95,advanced
+They have been studying English for two years ref52-1.,1,0.95,advanced
+Children should eat healthy food every day ref5-9.,1,0.95,advanced
+Children should eats healthy food err1-8.,0,0.11,beginner
+He plays the piano beautifully ref74-3.,1,0.95,advanced
+We will visiting museum tomorrow err69-3.,0,0.13,beginner
+She goes to school every day ref63-0.,1,0.95,advanced
+The book that I read yesterday was interesting ref36-2.,1,0.95,advanced
+The weather today is warmer than yesterday ref32-11.,1,0.95,advanced
+She speaks three languages fluently ref41-7.,1,0.95,advanced
+He work as software engineer at Jakarta err43-9.,0,0.13,beginner
+The train arrived at the station on schedule ref69-14.,1,0.95,advanced
+Children should eat healthy food every day ref72-9.,1,0.95,advanced
+I have never see such beautiful sunset err11-4.,0,0.1,beginner
+Reading books helps improve your vocabulary ref67-13.,1,0.95,advanced
+Children should eat healthy food every day ref14-9.,1,0.95,advanced
+The weather today is more warm than yesterday err12-10.,0,0.14,beginner
+She go to school every day err36-0.,0,0.11,beginner
+Reading book help improve you vocabulary err76-12.,0,0.09,beginner
+The train arrived at the station on schedule ref25-14.,1,0.95,advanced
+Reading book help improve you vocabulary err30-12.,0,0.09,beginner
+She speaks three languages fluently ref33-7.,1,0.95,advanced
+The weather today is more warm than yesterday err51-10.,0,0.14,beginner
+She speak three language fluent err35-6.,0,0.08,beginner
+I have never seen such a beautiful sunset ref47-5.,1,0.95,advanced
+The weather today is warmer than yesterday ref2-11.,1,0.95,advanced
+The students complete their homework on time yesterday err13-5.,0,0.12,beginner
+He play piano beautiful err56-2.,0,0.14,beginner
+Reading book help improve you vocabulary err55-12.,0,0.09,beginner
+I have never see such beautiful sunset err46-4.,0,0.1,beginner
+Children should eat healthy food every day ref77-9.,1,0.95,advanced
+The students completed their homework on time ref0-6.,1,0.95,advanced
+They have been studying English for two years ref66-1.,1,0.95,advanced
+Reading books helps improve your vocabulary ref39-13.,1,0.95,advanced
+The meeting were postpone until Monday err75-7.,0,0.15,beginner
+The students complete their homework on time yesterday err63-5.,0,0.12,beginner
+He work as software engineer at Jakarta err66-9.,0,0.13,beginner
+We will visiting museum tomorrow err77-3.,0,0.13,beginner
+He plays the piano beautifully ref37-3.,1,0.95,advanced
+She goes to school every day ref74-0.,1,0.95,advanced
+She goes to school every day ref61-0.,1,0.95,advanced
+The students complete their homework on time yesterday err23-5.,0,0.12,beginner
+The book that I read yesterday was interesting ref58-2.,1,0.95,advanced
+Reading books helps improve your vocabulary ref22-13.,1,0.95,advanced
+The meeting was postponed until next Monday ref36-8.,1,0.95,advanced
+I have never seen such a beautiful sunset ref79-5.,1,0.95,advanced
+She goes to school every day ref67-0.,1,0.95,advanced
+He work as software engineer at Jakarta err60-9.,0,0.13,beginner
+The meeting were postpone until Monday err56-7.,0,0.15,beginner
+The train arrive at station in schedule err20-13.,0,0.12,beginner
+We will visiting museum tomorrow err49-3.,0,0.13,beginner
+The train arrive at station in schedule err27-13.,0,0.12,beginner
+There is many problem with this sentence err60-14.,0,0.11,beginner
+He work as software engineer at Jakarta err72-9.,0,0.13,beginner
+There is many problem with this sentence err45-14.,0,0.11,beginner
+I have never see such beautiful sunset err14-4.,0,0.1,beginner
+They has been study English err27-1.,0,0.09,beginner
+She speak three language fluent err7-6.,0,0.08,beginner
+I have never seen such a beautiful sunset ref73-5.,1,0.95,advanced
+She go to school every day err9-0.,0,0.11,beginner
+Reading books helps improve your vocabulary ref53-13.,1,0.95,advanced
+The students completed their homework on time ref39-6.,1,0.95,advanced
+They has been study English err12-1.,0,0.09,beginner
+They has been study English err30-1.,0,0.09,beginner
+The weather today is more warm than yesterday err28-10.,0,0.14,beginner
+The students complete their homework on time yesterday err39-5.,0,0.12,beginner
+He works as a software engineer in Jakarta ref53-10.,1,0.95,advanced
+He work as software engineer at Jakarta err64-9.,0,0.13,beginner
+Reading books helps improve your vocabulary ref77-13.,1,0.95,advanced
+Children should eat healthy food every day ref42-9.,1,0.95,advanced
+He work as software engineer at Jakarta err34-9.,0,0.13,beginner
+Children should eats healthy food err59-8.,0,0.11,beginner
+She speaks three languages fluently ref7-7.,1,0.95,advanced
+Children should eat healthy food every day ref17-9.,1,0.95,advanced
+There is many problem with this sentence err75-14.,0,0.11,beginner
+He works as a software engineer in Jakarta ref56-10.,1,0.95,advanced
+We will visiting museum tomorrow err53-3.,0,0.13,beginner
+I have never see such beautiful sunset err10-4.,0,0.1,beginner
+The train arrived at the station on schedule ref20-14.,1,0.95,advanced
+He work as software engineer at Jakarta err9-9.,0,0.13,beginner
+She go to school every day err34-0.,0,0.11,beginner
+The meeting were postpone until Monday err45-7.,0,0.15,beginner
+The weather today is warmer than yesterday ref40-11.,1,0.95,advanced
+Reading book help improve you vocabulary err58-12.,0,0.09,beginner
+The train arrive at station in schedule err54-13.,0,0.12,beginner
+They have been studying English for two years ref61-1.,1,0.95,advanced
+He work as software engineer at Jakarta err29-9.,0,0.13,beginner
+The book that I read yesterday was interesting ref12-2.,1,0.95,advanced
+There is many problem with this sentence err34-14.,0,0.11,beginner
+I have never seen such a beautiful sunset ref4-5.,1,0.95,advanced
+There is many problem with this sentence err64-14.,0,0.11,beginner
+She speaks three languages fluently ref11-7.,1,0.95,advanced
+They has been study English err61-1.,0,0.09,beginner
+I have never seen such a beautiful sunset ref19-5.,1,0.95,advanced
+They have been studying English for two years ref40-1.,1,0.95,advanced
+They have been studying English for two years ref2-1.,1,0.95,advanced
+She speaks three languages fluently ref64-7.,1,0.95,advanced
+We will visiting museum tomorrow err60-3.,0,0.13,beginner
+She speaks three languages fluently ref76-7.,1,0.95,advanced
+She speak three language fluent err12-6.,0,0.08,beginner
+The students completed their homework on time ref25-6.,1,0.95,advanced
+My sister bought a new laptop last week ref25-12.,1,0.95,advanced
+The meeting was postponed until next Monday ref3-8.,1,0.95,advanced
+Children should eat healthy food every day ref63-9.,1,0.95,advanced
+I have never seen such a beautiful sunset ref3-5.,1,0.95,advanced
+Reading book help improve you vocabulary err2-12.,0,0.09,beginner
+There is many problem with this sentence err66-14.,0,0.11,beginner
+She goes to school every day ref78-0.,1,0.95,advanced
+The weather today is more warm than yesterday err74-10.,0,0.14,beginner
+The meeting were postpone until Monday err38-7.,0,0.15,beginner
+Reading books helps improve your vocabulary ref23-13.,1,0.95,advanced
+The students completed their homework on time ref5-6.,1,0.95,advanced
+He play piano beautiful err79-2.,0,0.14,beginner
+The train arrived at the station on schedule ref57-14.,1,0.95,advanced
+The weather today is warmer than yesterday ref72-11.,1,0.95,advanced
+Reading book help improve you vocabulary err73-12.,0,0.09,beginner
+He works as a software engineer in Jakarta ref63-10.,1,0.95,advanced
+The students complete their homework on time yesterday err49-5.,0,0.12,beginner
+She speaks three languages fluently ref3-7.,1,0.95,advanced
+The students completed their homework on time ref79-6.,1,0.95,advanced
+The students completed their homework on time ref58-6.,1,0.95,advanced
+There is many problem with this sentence err55-14.,0,0.11,beginner
+The students completed their homework on time ref32-6.,1,0.95,advanced
+She speaks three languages fluently ref28-7.,1,0.95,advanced
+I have never see such beautiful sunset err77-4.,0,0.1,beginner
+The train arrive at station in schedule err58-13.,0,0.12,beginner
+The book that I read yesterday was interesting ref52-2.,1,0.95,advanced
+Children should eat healthy food every day ref30-9.,1,0.95,advanced
+Children should eats healthy food err33-8.,0,0.11,beginner
+The train arrived at the station on schedule ref73-14.,1,0.95,advanced
+He works as a software engineer in Jakarta ref7-10.,1,0.95,advanced
+They has been study English err29-1.,0,0.09,beginner
+We will visiting museum tomorrow err24-3.,0,0.13,beginner
+He work as software engineer at Jakarta err18-9.,0,0.13,beginner
+The train arrived at the station on schedule ref46-14.,1,0.95,advanced
+The students complete their homework on time yesterday err76-5.,0,0.12,beginner
+There is many problem with this sentence err77-14.,0,0.11,beginner
+My sister buyed a new laptop last week err56-11.,0,0.1,beginner
+They has been study English err60-1.,0,0.09,beginner
+Reading book help improve you vocabulary err3-12.,0,0.09,beginner
+The train arrive at station in schedule err23-13.,0,0.12,beginner
+Reading book help improve you vocabulary err54-12.,0,0.09,beginner
+Children should eat healthy food every day ref68-9.,1,0.95,advanced
+The students complete their homework on time yesterday err14-5.,0,0.12,beginner
+She goes to school every day ref50-0.,1,0.95,advanced
+The students completed their homework on time ref49-6.,1,0.95,advanced
+The train arrived at the station on schedule ref15-14.,1,0.95,advanced
+She go to school every day err62-0.,0,0.11,beginner
+He plays the piano beautifully ref51-3.,1,0.95,advanced
+He plays the piano beautifully ref48-3.,1,0.95,advanced
+Reading book help improve you vocabulary err59-12.,0,0.09,beginner
+The book that I read yesterday was interesting ref11-2.,1,0.95,advanced
+The students complete their homework on time yesterday err43-5.,0,0.12,beginner
+The weather today is more warm than yesterday err49-10.,0,0.14,beginner
+There is many problem with this sentence err19-14.,0,0.11,beginner
+Reading book help improve you vocabulary err77-12.,0,0.09,beginner
+Children should eat healthy food every day ref21-9.,1,0.95,advanced
+Children should eat healthy food every day ref70-9.,1,0.95,advanced
+The meeting was postponed until next Monday ref77-8.,1,0.95,advanced
+She speaks three languages fluently ref69-7.,1,0.95,advanced
+We will visit the museum tomorrow ref39-4.,1,0.95,advanced
+She goes to school every day ref73-0.,1,0.95,advanced
+The train arrive at station in schedule err44-13.,0,0.12,beginner
+Reading book help improve you vocabulary err60-12.,0,0.09,beginner
+The students completed their homework on time ref74-6.,1,0.95,advanced
+The weather today is warmer than yesterday ref55-11.,1,0.95,advanced
+We will visit the museum tomorrow ref15-4.,1,0.95,advanced
+She speaks three languages fluently ref35-7.,1,0.95,advanced
+Children should eat healthy food every day ref24-9.,1,0.95,advanced
+He plays the piano beautifully ref53-3.,1,0.95,advanced
+The students complete their homework on time yesterday err3-5.,0,0.12,beginner
+My sister bought a new laptop last week ref23-12.,1,0.95,advanced
+They has been study English err14-1.,0,0.09,beginner
+The meeting were postpone until Monday err37-7.,0,0.15,beginner
+He play piano beautiful err74-2.,0,0.14,beginner
+We will visiting museum tomorrow err43-3.,0,0.13,beginner
+The book that I read yesterday was interesting ref2-2.,1,0.95,advanced
+He plays the piano beautifully ref41-3.,1,0.95,advanced
+Reading book help improve you vocabulary err32-12.,0,0.09,beginner
+The train arrive at station in schedule err21-13.,0,0.12,beginner
+The book that I read yesterday was interesting ref76-2.,1,0.95,advanced
+Reading books helps improve your vocabulary ref59-13.,1,0.95,advanced
+Children should eats healthy food err17-8.,0,0.11,beginner
+We will visit the museum tomorrow ref72-4.,1,0.95,advanced
+The weather today is more warm than yesterday err53-10.,0,0.14,beginner
+She goes to school every day ref31-0.,1,0.95,advanced
+The meeting were postpone until Monday err26-7.,0,0.15,beginner
+He work as software engineer at Jakarta err24-9.,0,0.13,beginner
+He play piano beautiful err38-2.,0,0.14,beginner
+They has been study English err46-1.,0,0.09,beginner
+They have been studying English for two years ref48-1.,1,0.95,advanced
+They has been study English err7-1.,0,0.09,beginner
+He work as software engineer at Jakarta err74-9.,0,0.13,beginner
+The students completed their homework on time ref37-6.,1,0.95,advanced
+The train arrived at the station on schedule ref77-14.,1,0.95,advanced
+She speaks three languages fluently ref20-7.,1,0.95,advanced
+Children should eats healthy food err74-8.,0,0.11,beginner
+He works as a software engineer in Jakarta ref12-10.,1,0.95,advanced
+Reading books helps improve your vocabulary ref69-13.,1,0.95,advanced
+She speak three language fluent err75-6.,0,0.08,beginner
+The weather today is warmer than yesterday ref34-11.,1,0.95,advanced
+I have never seen such a beautiful sunset ref2-5.,1,0.95,advanced
+Reading books helps improve your vocabulary ref25-13.,1,0.95,advanced
+Children should eat healthy food every day ref43-9.,1,0.95,advanced
+The meeting were postpone until Monday err69-7.,0,0.15,beginner
+My sister buyed a new laptop last week err49-11.,0,0.1,beginner
+He play piano beautiful err3-2.,0,0.14,beginner
+My sister bought a new laptop last week ref66-12.,1,0.95,advanced
+They have been studying English for two years ref64-1.,1,0.95,advanced
+The book that I read yesterday was interesting ref70-2.,1,0.95,advanced
+He plays the piano beautifully ref22-3.,1,0.95,advanced
+She speaks three languages fluently ref16-7.,1,0.95,advanced
+Reading books helps improve your vocabulary ref24-13.,1,0.95,advanced
+She goes to school every day ref1-0.,1,0.95,advanced
+They have been studying English for two years ref60-1.,1,0.95,advanced
+The weather today is more warm than yesterday err45-10.,0,0.14,beginner
+She go to school every day err7-0.,0,0.11,beginner
+Reading book help improve you vocabulary err11-12.,0,0.09,beginner
+The students completed their homework on time ref38-6.,1,0.95,advanced
+My sister buyed a new laptop last week err8-11.,0,0.1,beginner
+The weather today is more warm than yesterday err42-10.,0,0.14,beginner
+The book that I read yesterday was interesting ref60-2.,1,0.95,advanced
+Reading books helps improve your vocabulary ref42-13.,1,0.95,advanced
+He work as software engineer at Jakarta err61-9.,0,0.13,beginner
+Children should eats healthy food err40-8.,0,0.11,beginner
+Reading book help improve you vocabulary err15-12.,0,0.09,beginner
+The meeting were postpone until Monday err14-7.,0,0.15,beginner
+She goes to school every day ref70-0.,1,0.95,advanced
+Reading books helps improve your vocabulary ref47-13.,1,0.95,advanced
+She goes to school every day ref14-0.,1,0.95,advanced
+He play piano beautiful err8-2.,0,0.14,beginner
+The book that I read yesterday was interesting ref56-2.,1,0.95,advanced
+Children should eats healthy food err22-8.,0,0.11,beginner
+Reading books helps improve your vocabulary ref3-13.,1,0.95,advanced
+Reading books helps improve your vocabulary ref1-13.,1,0.95,advanced
+He works as a software engineer in Jakarta ref60-10.,1,0.95,advanced
+He work as software engineer at Jakarta err45-9.,0,0.13,beginner
+Reading book help improve you vocabulary err36-12.,0,0.09,beginner
+He works as a software engineer in Jakarta ref8-10.,1,0.95,advanced
+The train arrive at station in schedule err12-13.,0,0.12,beginner
+We will visiting museum tomorrow err42-3.,0,0.13,beginner
+I have never seen such a beautiful sunset ref27-5.,1,0.95,advanced
+We will visit the museum tomorrow ref4-4.,1,0.95,advanced
+Reading books helps improve your vocabulary ref78-13.,1,0.95,advanced
+The book that I read yesterday was interesting ref25-2.,1,0.95,advanced
+She goes to school every day ref48-0.,1,0.95,advanced
+The meeting were postpone until Monday err24-7.,0,0.15,beginner
+He plays the piano beautifully ref16-3.,1,0.95,advanced
+He works as a software engineer in Jakarta ref30-10.,1,0.95,advanced
+My sister bought a new laptop last week ref55-12.,1,0.95,advanced
+He work as software engineer at Jakarta err14-9.,0,0.13,beginner
+We will visit the museum tomorrow ref54-4.,1,0.95,advanced
+She speaks three languages fluently ref2-7.,1,0.95,advanced
+My sister bought a new laptop last week ref52-12.,1,0.95,advanced
+My sister bought a new laptop last week ref43-12.,1,0.95,advanced
+My sister buyed a new laptop last week err62-11.,0,0.1,beginner
+The meeting were postpone until Monday err6-7.,0,0.15,beginner
+He play piano beautiful err42-2.,0,0.14,beginner
+She goes to school every day ref41-0.,1,0.95,advanced
+The meeting was postponed until next Monday ref58-8.,1,0.95,advanced
+Children should eat healthy food every day ref25-9.,1,0.95,advanced
+She go to school every day err51-0.,0,0.11,beginner
+She go to school every day err26-0.,0,0.11,beginner
+The book that I read yesterday was interesting ref57-2.,1,0.95,advanced
+Children should eats healthy food err71-8.,0,0.11,beginner
+I have never see such beautiful sunset err6-4.,0,0.1,beginner
+She go to school every day err44-0.,0,0.11,beginner
+We will visit the museum tomorrow ref71-4.,1,0.95,advanced
+Children should eats healthy food err20-8.,0,0.11,beginner
+They has been study English err2-1.,0,0.09,beginner
+The book that I read yesterday was interesting ref3-2.,1,0.95,advanced
+They has been study English err9-1.,0,0.09,beginner
+The train arrive at station in schedule err7-13.,0,0.12,beginner
+The weather today is more warm than yesterday err47-10.,0,0.14,beginner
+The weather today is warmer than yesterday ref53-11.,1,0.95,advanced
+The students complete their homework on time yesterday err31-5.,0,0.12,beginner
+Children should eat healthy food every day ref4-9.,1,0.95,advanced
+He play piano beautiful err51-2.,0,0.14,beginner
+The weather today is warmer than yesterday ref22-11.,1,0.95,advanced
+She speak three language fluent err1-6.,0,0.08,beginner
+I have never seen such a beautiful sunset ref32-5.,1,0.95,advanced
+The meeting were postpone until Monday err41-7.,0,0.15,beginner
+We will visit the museum tomorrow ref55-4.,1,0.95,advanced
+He works as a software engineer in Jakarta ref25-10.,1,0.95,advanced
+He play piano beautiful err41-2.,0,0.14,beginner
+Children should eats healthy food err70-8.,0,0.11,beginner
+We will visit the museum tomorrow ref25-4.,1,0.95,advanced
+I have never seen such a beautiful sunset ref68-5.,1,0.95,advanced
+Reading books helps improve your vocabulary ref8-13.,1,0.95,advanced
+We will visiting museum tomorrow err66-3.,0,0.13,beginner
+The book that I read yesterday was interesting ref47-2.,1,0.95,advanced
+The train arrived at the station on schedule ref43-14.,1,0.95,advanced
+The train arrive at station in schedule err26-13.,0,0.12,beginner
+There is many problem with this sentence err51-14.,0,0.11,beginner
+I have never see such beautiful sunset err37-4.,0,0.1,beginner
+He plays the piano beautifully ref27-3.,1,0.95,advanced
+Reading books helps improve your vocabulary ref48-13.,1,0.95,advanced
+We will visiting museum tomorrow err9-3.,0,0.13,beginner
+We will visit the museum tomorrow ref5-4.,1,0.95,advanced
+He plays the piano beautifully ref79-3.,1,0.95,advanced
+The weather today is warmer than yesterday ref65-11.,1,0.95,advanced
+They have been studying English for two years ref70-1.,1,0.95,advanced
+My sister buyed a new laptop last week err37-11.,0,0.1,beginner
+She goes to school every day ref75-0.,1,0.95,advanced
+They has been study English err17-1.,0,0.09,beginner
+The students completed their homework on time ref11-6.,1,0.95,advanced
+The train arrive at station in schedule err57-13.,0,0.12,beginner
+She speaks three languages fluently ref34-7.,1,0.95,advanced
+The weather today is more warm than yesterday err39-10.,0,0.14,beginner
+There is many problem with this sentence err24-14.,0,0.11,beginner
+The weather today is warmer than yesterday ref56-11.,1,0.95,advanced
+She goes to school every day ref9-0.,1,0.95,advanced
+She speak three language fluent err13-6.,0,0.08,beginner
+There is many problem with this sentence err11-14.,0,0.11,beginner
+They have been studying English for two years ref43-1.,1,0.95,advanced
+Children should eats healthy food err56-8.,0,0.11,beginner
+We will visiting museum tomorrow err38-3.,0,0.13,beginner
+We will visit the museum tomorrow ref6-4.,1,0.95,advanced
+There is many problem with this sentence err8-14.,0,0.11,beginner
+Reading book help improve you vocabulary err24-12.,0,0.09,beginner
+The meeting was postponed until next Monday ref2-8.,1,0.95,advanced
+He works as a software engineer in Jakarta ref49-10.,1,0.95,advanced
+The book that I read yesterday was interesting ref21-2.,1,0.95,advanced
+The students complete their homework on time yesterday err2-5.,0,0.12,beginner
+We will visiting museum tomorrow err6-3.,0,0.13,beginner
+Children should eat healthy food every day ref71-9.,1,0.95,advanced
+He plays the piano beautifully ref17-3.,1,0.95,advanced
+The train arrived at the station on schedule ref78-14.,1,0.95,advanced
+Children should eats healthy food err65-8.,0,0.11,beginner
+They have been studying English for two years ref24-1.,1,0.95,advanced
+She speak three language fluent err15-6.,0,0.08,beginner
+They has been study English err19-1.,0,0.09,beginner
+Reading book help improve you vocabulary err33-12.,0,0.09,beginner
+He works as a software engineer in Jakarta ref3-10.,1,0.95,advanced
+They has been study English err0-1.,0,0.09,beginner
+The weather today is more warm than yesterday err59-10.,0,0.14,beginner
+She goes to school every day ref27-0.,1,0.95,advanced
+The train arrived at the station on schedule ref1-14.,1,0.95,advanced
+We will visit the museum tomorrow ref20-4.,1,0.95,advanced
+My sister bought a new laptop last week ref64-12.,1,0.95,advanced
+She go to school every day err24-0.,0,0.11,beginner
+They have been studying English for two years ref26-1.,1,0.95,advanced
+I have never seen such a beautiful sunset ref16-5.,1,0.95,advanced
+The students completed their homework on time ref63-6.,1,0.95,advanced
+There is many problem with this sentence err32-14.,0,0.11,beginner
+The weather today is warmer than yesterday ref78-11.,1,0.95,advanced
+They has been study English err62-1.,0,0.09,beginner
+We will visiting museum tomorrow err20-3.,0,0.13,beginner
+We will visit the museum tomorrow ref41-4.,1,0.95,advanced
+My sister buyed a new laptop last week err45-11.,0,0.1,beginner
+The train arrive at station in schedule err28-13.,0,0.12,beginner
+My sister bought a new laptop last week ref20-12.,1,0.95,advanced
+The book that I read yesterday was interesting ref66-2.,1,0.95,advanced
+Reading books helps improve your vocabulary ref63-13.,1,0.95,advanced
+Children should eats healthy food err78-8.,0,0.11,beginner
+Children should eats healthy food err10-8.,0,0.11,beginner
+Children should eat healthy food every day ref37-9.,1,0.95,advanced
+The weather today is more warm than yesterday err43-10.,0,0.14,beginner
+I have never seen such a beautiful sunset ref56-5.,1,0.95,advanced
+I have never see such beautiful sunset err0-4.,0,0.1,beginner
+The weather today is more warm than yesterday err68-10.,0,0.14,beginner
+The weather today is more warm than yesterday err67-10.,0,0.14,beginner
+He works as a software engineer in Jakarta ref17-10.,1,0.95,advanced
+The train arrived at the station on schedule ref31-14.,1,0.95,advanced
+The weather today is more warm than yesterday err15-10.,0,0.14,beginner
+Children should eats healthy food err9-8.,0,0.11,beginner
+There is many problem with this sentence err33-14.,0,0.11,beginner
+Reading books helps improve your vocabulary ref16-13.,1,0.95,advanced
+The meeting were postpone until Monday err67-7.,0,0.15,beginner
+The weather today is warmer than yesterday ref5-11.,1,0.95,advanced
+We will visit the museum tomorrow ref76-4.,1,0.95,advanced
+We will visiting museum tomorrow err11-3.,0,0.13,beginner
+The meeting was postponed until next Monday ref12-8.,1,0.95,advanced
+The weather today is warmer than yesterday ref54-11.,1,0.95,advanced
+My sister buyed a new laptop last week err44-11.,0,0.1,beginner
+Children should eat healthy food every day ref74-9.,1,0.95,advanced
+The students complete their homework on time yesterday err16-5.,0,0.12,beginner
+The train arrive at station in schedule err9-13.,0,0.12,beginner
+My sister bought a new laptop last week ref29-12.,1,0.95,advanced
+He play piano beautiful err25-2.,0,0.14,beginner
+The meeting was postponed until next Monday ref68-8.,1,0.95,advanced
+She goes to school every day ref20-0.,1,0.95,advanced
+He work as software engineer at Jakarta err3-9.,0,0.13,beginner
+We will visit the museum tomorrow ref22-4.,1,0.95,advanced
+Reading books helps improve your vocabulary ref62-13.,1,0.95,advanced
+She speak three language fluent err43-6.,0,0.08,beginner
+Reading books helps improve your vocabulary ref20-13.,1,0.95,advanced
+He works as a software engineer in Jakarta ref11-10.,1,0.95,advanced
+The meeting was postponed until next Monday ref30-8.,1,0.95,advanced
+The meeting was postponed until next Monday ref41-8.,1,0.95,advanced
+She speak three language fluent err6-6.,0,0.08,beginner
+We will visiting museum tomorrow err29-3.,0,0.13,beginner
+I have never seen such a beautiful sunset ref6-5.,1,0.95,advanced
+He plays the piano beautifully ref50-3.,1,0.95,advanced
+We will visiting museum tomorrow err19-3.,0,0.13,beginner
+The students complete their homework on time yesterday err59-5.,0,0.12,beginner
+The students completed their homework on time ref56-6.,1,0.95,advanced
+Reading books helps improve your vocabulary ref2-13.,1,0.95,advanced
+The train arrive at station in schedule err36-13.,0,0.12,beginner
+Children should eat healthy food every day ref62-9.,1,0.95,advanced
+We will visiting museum tomorrow err21-3.,0,0.13,beginner
+The train arrive at station in schedule err25-13.,0,0.12,beginner
+She goes to school every day ref76-0.,1,0.95,advanced
+They have been studying English for two years ref67-1.,1,0.95,advanced
+The book that I read yesterday was interesting ref46-2.,1,0.95,advanced
+She go to school every day err75-0.,0,0.11,beginner
+He plays the piano beautifully ref23-3.,1,0.95,advanced
+The weather today is warmer than yesterday ref70-11.,1,0.95,advanced
+She speak three language fluent err76-6.,0,0.08,beginner
+He works as a software engineer in Jakarta ref70-10.,1,0.95,advanced
+They has been study English err10-1.,0,0.09,beginner
+There is many problem with this sentence err27-14.,0,0.11,beginner
+The weather today is more warm than yesterday err9-10.,0,0.14,beginner
+They have been studying English for two years ref1-1.,1,0.95,advanced
+Reading book help improve you vocabulary err42-12.,0,0.09,beginner
+Reading book help improve you vocabulary err35-12.,0,0.09,beginner
+He work as software engineer at Jakarta err6-9.,0,0.13,beginner
+They have been studying English for two years ref30-1.,1,0.95,advanced
+The students completed their homework on time ref50-6.,1,0.95,advanced
+I have never see such beautiful sunset err22-4.,0,0.1,beginner
+The meeting was postponed until next Monday ref40-8.,1,0.95,advanced
+They has been study English err69-1.,0,0.09,beginner
+I have never see such beautiful sunset err49-4.,0,0.1,beginner
+She speak three language fluent err44-6.,0,0.08,beginner
+The weather today is more warm than yesterday err44-10.,0,0.14,beginner
+The weather today is warmer than yesterday ref10-11.,1,0.95,advanced
+He works as a software engineer in Jakarta ref26-10.,1,0.95,advanced
+She goes to school every day ref26-0.,1,0.95,advanced
+He works as a software engineer in Jakarta ref75-10.,1,0.95,advanced
+She speak three language fluent err21-6.,0,0.08,beginner
+There is many problem with this sentence err2-14.,0,0.11,beginner
+They have been studying English for two years ref28-1.,1,0.95,advanced
+We will visiting museum tomorrow err50-3.,0,0.13,beginner
+The weather today is warmer than yesterday ref59-11.,1,0.95,advanced
+They have been studying English for two years ref39-1.,1,0.95,advanced
+My sister buyed a new laptop last week err71-11.,0,0.1,beginner
+The weather today is warmer than yesterday ref73-11.,1,0.95,advanced
+She go to school every day err63-0.,0,0.11,beginner
+The students completed their homework on time ref62-6.,1,0.95,advanced
+The meeting were postpone until Monday err25-7.,0,0.15,beginner
+The book that I read yesterday was interesting ref37-2.,1,0.95,advanced
+The students complete their homework on time yesterday err47-5.,0,0.12,beginner
+The students complete their homework on time yesterday err22-5.,0,0.12,beginner
+They has been study English err23-1.,0,0.09,beginner
+She speaks three languages fluently ref70-7.,1,0.95,advanced
+Children should eats healthy food err36-8.,0,0.11,beginner
+The weather today is more warm than yesterday err79-10.,0,0.14,beginner
+We will visit the museum tomorrow ref10-4.,1,0.95,advanced
+She speak three language fluent err77-6.,0,0.08,beginner
+We will visiting museum tomorrow err63-3.,0,0.13,beginner
+She go to school every day err67-0.,0,0.11,beginner
+Reading books helps improve your vocabulary ref58-13.,1,0.95,advanced
+She speaks three languages fluently ref47-7.,1,0.95,advanced
+He plays the piano beautifully ref58-3.,1,0.95,advanced
+She speaks three languages fluently ref18-7.,1,0.95,advanced
+I have never see such beautiful sunset err34-4.,0,0.1,beginner
+The students completed their homework on time ref23-6.,1,0.95,advanced
+I have never seen such a beautiful sunset ref59-5.,1,0.95,advanced
+Children should eat healthy food every day ref52-9.,1,0.95,advanced
+The train arrive at station in schedule err66-13.,0,0.12,beginner
+Children should eat healthy food every day ref9-9.,1,0.95,advanced
+The students complete their homework on time yesterday err34-5.,0,0.12,beginner
+Reading book help improve you vocabulary err40-12.,0,0.09,beginner
+She goes to school every day ref13-0.,1,0.95,advanced
+I have never seen such a beautiful sunset ref26-5.,1,0.95,advanced
+My sister buyed a new laptop last week err9-11.,0,0.1,beginner
+He plays the piano beautifully ref60-3.,1,0.95,advanced
+I have never seen such a beautiful sunset ref31-5.,1,0.95,advanced
+There is many problem with this sentence err52-14.,0,0.11,beginner
+She speaks three languages fluently ref32-7.,1,0.95,advanced
+The train arrive at station in schedule err32-13.,0,0.12,beginner
+He works as a software engineer in Jakarta ref28-10.,1,0.95,advanced
+I have never see such beautiful sunset err18-4.,0,0.1,beginner
+The meeting were postpone until Monday err34-7.,0,0.15,beginner
+Reading book help improve you vocabulary err19-12.,0,0.09,beginner
+He plays the piano beautifully ref44-3.,1,0.95,advanced
+She go to school every day err10-0.,0,0.11,beginner
+I have never seen such a beautiful sunset ref72-5.,1,0.95,advanced
+Children should eat healthy food every day ref58-9.,1,0.95,advanced
+Reading books helps improve your vocabulary ref71-13.,1,0.95,advanced
+She speak three language fluent err69-6.,0,0.08,beginner
+I have never see such beautiful sunset err51-4.,0,0.1,beginner
+The weather today is more warm than yesterday err27-10.,0,0.14,beginner
+She speak three language fluent err37-6.,0,0.08,beginner
+There is many problem with this sentence err49-14.,0,0.11,beginner
+We will visiting museum tomorrow err37-3.,0,0.13,beginner
+The weather today is more warm than yesterday err69-10.,0,0.14,beginner
+He work as software engineer at Jakarta err10-9.,0,0.13,beginner
+He works as a software engineer in Jakarta ref16-10.,1,0.95,advanced
+They has been study English err41-1.,0,0.09,beginner
+She goes to school every day ref43-0.,1,0.95,advanced
+The weather today is more warm than yesterday err57-10.,0,0.14,beginner
+The book that I read yesterday was interesting ref61-2.,1,0.95,advanced
+The train arrive at station in schedule err59-13.,0,0.12,beginner
+Reading book help improve you vocabulary err29-12.,0,0.09,beginner
+I have never see such beautiful sunset err19-4.,0,0.1,beginner
+The train arrive at station in schedule err8-13.,0,0.12,beginner
+The train arrived at the station on schedule ref37-14.,1,0.95,advanced
+Reading book help improve you vocabulary err67-12.,0,0.09,beginner
+My sister buyed a new laptop last week err13-11.,0,0.1,beginner
+The weather today is warmer than yesterday ref60-11.,1,0.95,advanced
+My sister bought a new laptop last week ref45-12.,1,0.95,advanced
+The book that I read yesterday was interesting ref64-2.,1,0.95,advanced
+She goes to school every day ref34-0.,1,0.95,advanced
+She go to school every day err42-0.,0,0.11,beginner
+The students complete their homework on time yesterday err24-5.,0,0.12,beginner
+The weather today is warmer than yesterday ref35-11.,1,0.95,advanced
+He work as software engineer at Jakarta err12-9.,0,0.13,beginner
+The meeting were postpone until Monday err68-7.,0,0.15,beginner
+The students completed their homework on time ref28-6.,1,0.95,advanced
+They has been study English err31-1.,0,0.09,beginner
+The book that I read yesterday was interesting ref59-2.,1,0.95,advanced
+Children should eat healthy food every day ref75-9.,1,0.95,advanced
+He plays the piano beautifully ref35-3.,1,0.95,advanced
+He play piano beautiful err27-2.,0,0.14,beginner
+They have been studying English for two years ref75-1.,1,0.95,advanced
+The book that I read yesterday was interesting ref22-2.,1,0.95,advanced
+They has been study English err56-1.,0,0.09,beginner
+The train arrived at the station on schedule ref71-14.,1,0.95,advanced
+The weather today is warmer than yesterday ref69-11.,1,0.95,advanced
+He work as software engineer at Jakarta err56-9.,0,0.13,beginner
+She go to school every day err2-0.,0,0.11,beginner
+Reading book help improve you vocabulary err79-12.,0,0.09,beginner
+The book that I read yesterday was interesting ref49-2.,1,0.95,advanced
+The meeting was postponed until next Monday ref47-8.,1,0.95,advanced
+He work as software engineer at Jakarta err33-9.,0,0.13,beginner
+He plays the piano beautifully ref77-3.,1,0.95,advanced
+She go to school every day err22-0.,0,0.11,beginner
+There is many problem with this sentence err10-14.,0,0.11,beginner
+We will visit the museum tomorrow ref7-4.,1,0.95,advanced
+Reading book help improve you vocabulary err21-12.,0,0.09,beginner
+The meeting were postpone until Monday err22-7.,0,0.15,beginner
+There is many problem with this sentence err61-14.,0,0.11,beginner
+The meeting were postpone until Monday err23-7.,0,0.15,beginner
+My sister bought a new laptop last week ref47-12.,1,0.95,advanced
+The students completed their homework on time ref6-6.,1,0.95,advanced
+Children should eat healthy food every day ref55-9.,1,0.95,advanced
+He works as a software engineer in Jakarta ref43-10.,1,0.95,advanced
+The meeting was postponed until next Monday ref53-8.,1,0.95,advanced
+The train arrive at station in schedule err39-13.,0,0.12,beginner
+The weather today is warmer than yesterday ref12-11.,1,0.95,advanced
+I have never see such beautiful sunset err56-4.,0,0.1,beginner
+My sister bought a new laptop last week ref63-12.,1,0.95,advanced
+We will visit the museum tomorrow ref56-4.,1,0.95,advanced
+My sister bought a new laptop last week ref35-12.,1,0.95,advanced
+The train arrived at the station on schedule ref56-14.,1,0.95,advanced
+The train arrive at station in schedule err11-13.,0,0.12,beginner
+We will visiting museum tomorrow err78-3.,0,0.13,beginner
+The meeting were postpone until Monday err65-7.,0,0.15,beginner
+The weather today is warmer than yesterday ref18-11.,1,0.95,advanced
+My sister bought a new laptop last week ref1-12.,1,0.95,advanced
+Reading book help improve you vocabulary err75-12.,0,0.09,beginner
+The book that I read yesterday was interesting ref62-2.,1,0.95,advanced
+We will visiting museum tomorrow err15-3.,0,0.13,beginner
+Children should eat healthy food every day ref78-9.,1,0.95,advanced
+The book that I read yesterday was interesting ref55-2.,1,0.95,advanced
+The book that I read yesterday was interesting ref17-2.,1,0.95,advanced
+The students completed their homework on time ref41-6.,1,0.95,advanced
+The train arrived at the station on schedule ref61-14.,1,0.95,advanced
+The train arrived at the station on schedule ref29-14.,1,0.95,advanced
+She speak three language fluent err2-6.,0,0.08,beginner
+He work as software engineer at Jakarta err40-9.,0,0.13,beginner
+The train arrived at the station on schedule ref5-14.,1,0.95,advanced
+My sister buyed a new laptop last week err29-11.,0,0.1,beginner
+She speak three language fluent err33-6.,0,0.08,beginner
+He play piano beautiful err77-2.,0,0.14,beginner
+We will visit the museum tomorrow ref34-4.,1,0.95,advanced
+He play piano beautiful err18-2.,0,0.14,beginner
+The train arrived at the station on schedule ref64-14.,1,0.95,advanced
+The meeting were postpone until Monday err48-7.,0,0.15,beginner
+There is many problem with this sentence err31-14.,0,0.11,beginner
+The train arrived at the station on schedule ref8-14.,1,0.95,advanced
+She go to school every day err77-0.,0,0.11,beginner
+She speak three language fluent err19-6.,0,0.08,beginner
+There is many problem with this sentence err63-14.,0,0.11,beginner
+We will visiting museum tomorrow err40-3.,0,0.13,beginner
+There is many problem with this sentence err20-14.,0,0.11,beginner
+Children should eat healthy food every day ref11-9.,1,0.95,advanced
+We will visiting museum tomorrow err79-3.,0,0.13,beginner
+My sister buyed a new laptop last week err4-11.,0,0.1,beginner
+She speak three language fluent err9-6.,0,0.08,beginner
+We will visit the museum tomorrow ref18-4.,1,0.95,advanced
+He works as a software engineer in Jakarta ref61-10.,1,0.95,advanced
+He work as software engineer at Jakarta err70-9.,0,0.13,beginner
+We will visiting museum tomorrow err62-3.,0,0.13,beginner
+He work as software engineer at Jakarta err69-9.,0,0.13,beginner
+The weather today is more warm than yesterday err7-10.,0,0.14,beginner
+She speak three language fluent err64-6.,0,0.08,beginner
+She go to school every day err13-0.,0,0.11,beginner
+She speaks three languages fluently ref63-7.,1,0.95,advanced
+He works as a software engineer in Jakarta ref50-10.,1,0.95,advanced
+The students complete their homework on time yesterday err42-5.,0,0.12,beginner
+She go to school every day err55-0.,0,0.11,beginner
+The train arrive at station in schedule err15-13.,0,0.12,beginner
+Reading book help improve you vocabulary err46-12.,0,0.09,beginner
+The weather today is more warm than yesterday err4-10.,0,0.14,beginner
+He works as a software engineer in Jakarta ref79-10.,1,0.95,advanced
+The students complete their homework on time yesterday err72-5.,0,0.12,beginner
+The students complete their homework on time yesterday err19-5.,0,0.12,beginner
+He work as software engineer at Jakarta err15-9.,0,0.13,beginner
+The students completed their homework on time ref2-6.,1,0.95,advanced
+My sister buyed a new laptop last week err19-11.,0,0.1,beginner
+The book that I read yesterday was interesting ref32-2.,1,0.95,advanced
+They has been study English err40-1.,0,0.09,beginner
+They have been studying English for two years ref47-1.,1,0.95,advanced
+The train arrive at station in schedule err49-13.,0,0.12,beginner
+They has been study English err73-1.,0,0.09,beginner
+I have never seen such a beautiful sunset ref0-5.,1,0.95,advanced
+The students complete their homework on time yesterday err10-5.,0,0.12,beginner
+He plays the piano beautifully ref5-3.,1,0.95,advanced
+The students complete their homework on time yesterday err37-5.,0,0.12,beginner
+The weather today is more warm than yesterday err11-10.,0,0.14,beginner
+I have never seen such a beautiful sunset ref71-5.,1,0.95,advanced
+She speak three language fluent err10-6.,0,0.08,beginner
+They has been study English err5-1.,0,0.09,beginner
+The book that I read yesterday was interesting ref45-2.,1,0.95,advanced
+The weather today is more warm than yesterday err76-10.,0,0.14,beginner
+My sister bought a new laptop last week ref14-12.,1,0.95,advanced
+She speak three language fluent err42-6.,0,0.08,beginner
+I have never seen such a beautiful sunset ref14-5.,1,0.95,advanced
+Children should eats healthy food err6-8.,0,0.11,beginner
+We will visiting museum tomorrow err41-3.,0,0.13,beginner
+He plays the piano beautifully ref4-3.,1,0.95,advanced
+The weather today is warmer than yesterday ref42-11.,1,0.95,advanced
+He work as software engineer at Jakarta err38-9.,0,0.13,beginner
+He play piano beautiful err76-2.,0,0.14,beginner
+The meeting was postponed until next Monday ref29-8.,1,0.95,advanced
+I have never seen such a beautiful sunset ref40-5.,1,0.95,advanced
+The meeting was postponed until next Monday ref20-8.,1,0.95,advanced
+She speak three language fluent err60-6.,0,0.08,beginner
+The meeting were postpone until Monday err30-7.,0,0.15,beginner
+He play piano beautiful err58-2.,0,0.14,beginner
+The students complete their homework on time yesterday err35-5.,0,0.12,beginner
+My sister bought a new laptop last week ref15-12.,1,0.95,advanced
+The students completed their homework on time ref42-6.,1,0.95,advanced
+The weather today is warmer than yesterday ref52-11.,1,0.95,advanced
+Reading book help improve you vocabulary err65-12.,0,0.09,beginner
+My sister bought a new laptop last week ref28-12.,1,0.95,advanced
+The book that I read yesterday was interesting ref38-2.,1,0.95,advanced
+The book that I read yesterday was interesting ref8-2.,1,0.95,advanced
+The train arrive at station in schedule err67-13.,0,0.12,beginner
+He work as software engineer at Jakarta err5-9.,0,0.13,beginner
+Children should eats healthy food err63-8.,0,0.11,beginner
+My sister bought a new laptop last week ref38-12.,1,0.95,advanced
+I have never seen such a beautiful sunset ref10-5.,1,0.95,advanced
+He works as a software engineer in Jakarta ref10-10.,1,0.95,advanced
+I have never see such beautiful sunset err3-4.,0,0.1,beginner
+The weather today is more warm than yesterday err46-10.,0,0.14,beginner
+There is many problem with this sentence err71-14.,0,0.11,beginner
+The weather today is warmer than yesterday ref39-11.,1,0.95,advanced
+They have been studying English for two years ref5-1.,1,0.95,advanced
+He play piano beautiful err33-2.,0,0.14,beginner
+He works as a software engineer in Jakarta ref27-10.,1,0.95,advanced
+Reading books helps improve your vocabulary ref4-13.,1,0.95,advanced
+Children should eats healthy food err7-8.,0,0.11,beginner
+We will visiting museum tomorrow err32-3.,0,0.13,beginner
+She speaks three languages fluently ref17-7.,1,0.95,advanced
+She go to school every day err3-0.,0,0.11,beginner
+He play piano beautiful err12-2.,0,0.14,beginner
+The meeting was postponed until next Monday ref62-8.,1,0.95,advanced
+They have been studying English for two years ref74-1.,1,0.95,advanced
+The book that I read yesterday was interesting ref75-2.,1,0.95,advanced
+They have been studying English for two years ref32-1.,1,0.95,advanced
+My sister bought a new laptop last week ref19-12.,1,0.95,advanced
+I have never seen such a beautiful sunset ref39-5.,1,0.95,advanced
+There is many problem with this sentence err53-14.,0,0.11,beginner
+She goes to school every day ref7-0.,1,0.95,advanced
+He play piano beautiful err72-2.,0,0.14,beginner
+They has been study English err43-1.,0,0.09,beginner
+He work as software engineer at Jakarta err55-9.,0,0.13,beginner
+We will visiting museum tomorrow err47-3.,0,0.13,beginner
+The train arrive at station in schedule err19-13.,0,0.12,beginner
+The meeting were postpone until Monday err62-7.,0,0.15,beginner
+She speak three language fluent err3-6.,0,0.08,beginner
+He plays the piano beautifully ref3-3.,1,0.95,advanced
+She speak three language fluent err18-6.,0,0.08,beginner
+I have never see such beautiful sunset err8-4.,0,0.1,beginner
+My sister bought a new laptop last week ref57-12.,1,0.95,advanced
+He works as a software engineer in Jakarta ref48-10.,1,0.95,advanced
+The train arrive at station in schedule err0-13.,0,0.12,beginner
+I have never see such beautiful sunset err20-4.,0,0.1,beginner
+She speaks three languages fluently ref12-7.,1,0.95,advanced
+I have never see such beautiful sunset err24-4.,0,0.1,beginner
+She go to school every day err15-0.,0,0.11,beginner
+Reading book help improve you vocabulary err68-12.,0,0.09,beginner
+He works as a software engineer in Jakarta ref73-10.,1,0.95,advanced
+He play piano beautiful err71-2.,0,0.14,beginner
+Children should eat healthy food every day ref19-9.,1,0.95,advanced
+He play piano beautiful err75-2.,0,0.14,beginner
+He work as software engineer at Jakarta err35-9.,0,0.13,beginner
+She speaks three languages fluently ref40-7.,1,0.95,advanced
+Children should eats healthy food err72-8.,0,0.11,beginner
+My sister buyed a new laptop last week err76-11.,0,0.1,beginner
+They have been studying English for two years ref33-1.,1,0.95,advanced
+The train arrive at station in schedule err68-13.,0,0.12,beginner
+Children should eats healthy food err14-8.,0,0.11,beginner
+Children should eat healthy food every day ref64-9.,1,0.95,advanced
+My sister buyed a new laptop last week err78-11.,0,0.1,beginner
+He plays the piano beautifully ref47-3.,1,0.95,advanced
+He play piano beautiful err36-2.,0,0.14,beginner
+We will visit the museum tomorrow ref8-4.,1,0.95,advanced
+The meeting were postpone until Monday err73-7.,0,0.15,beginner
+We will visit the museum tomorrow ref13-4.,1,0.95,advanced
+She speaks three languages fluently ref49-7.,1,0.95,advanced
+Reading books helps improve your vocabulary ref54-13.,1,0.95,advanced
+Reading book help improve you vocabulary err69-12.,0,0.09,beginner
+We will visit the museum tomorrow ref17-4.,1,0.95,advanced
+My sister bought a new laptop last week ref58-12.,1,0.95,advanced
+The train arrived at the station on schedule ref18-14.,1,0.95,advanced
+There is many problem with this sentence err30-14.,0,0.11,beginner
+There is many problem with this sentence err47-14.,0,0.11,beginner
+My sister buyed a new laptop last week err68-11.,0,0.1,beginner
+He plays the piano beautifully ref59-3.,1,0.95,advanced
+He play piano beautiful err37-2.,0,0.14,beginner
+Reading book help improve you vocabulary err50-12.,0,0.09,beginner
+They have been studying English for two years ref29-1.,1,0.95,advanced
+The train arrived at the station on schedule ref23-14.,1,0.95,advanced
+My sister buyed a new laptop last week err60-11.,0,0.1,beginner
+My sister bought a new laptop last week ref69-12.,1,0.95,advanced
+Children should eats healthy food err55-8.,0,0.11,beginner
+She go to school every day err68-0.,0,0.11,beginner
+She speak three language fluent err39-6.,0,0.08,beginner
+The train arrive at station in schedule err62-13.,0,0.12,beginner
+Reading book help improve you vocabulary err20-12.,0,0.09,beginner
+We will visiting museum tomorrow err16-3.,0,0.13,beginner
+The students completed their homework on time ref47-6.,1,0.95,advanced
+The weather today is warmer than yesterday ref76-11.,1,0.95,advanced
+He plays the piano beautifully ref15-3.,1,0.95,advanced
+The book that I read yesterday was interesting ref20-2.,1,0.95,advanced
+He works as a software engineer in Jakarta ref6-10.,1,0.95,advanced
+I have never seen such a beautiful sunset ref1-5.,1,0.95,advanced
+He play piano beautiful err30-2.,0,0.14,beginner
+She go to school every day err33-0.,0,0.11,beginner
+He play piano beautiful err48-2.,0,0.14,beginner
+The book that I read yesterday was interesting ref44-2.,1,0.95,advanced
+She go to school every day err32-0.,0,0.11,beginner
+He plays the piano beautifully ref68-3.,1,0.95,advanced
+My sister bought a new laptop last week ref16-12.,1,0.95,advanced
+He plays the piano beautifully ref72-3.,1,0.95,advanced
+Reading book help improve you vocabulary err37-12.,0,0.09,beginner
+The meeting was postponed until next Monday ref70-8.,1,0.95,advanced
+The meeting were postpone until Monday err27-7.,0,0.15,beginner
+The meeting were postpone until Monday err64-7.,0,0.15,beginner
+The train arrived at the station on schedule ref16-14.,1,0.95,advanced
+The weather today is more warm than yesterday err5-10.,0,0.14,beginner
+They have been studying English for two years ref13-1.,1,0.95,advanced
+The meeting was postponed until next Monday ref35-8.,1,0.95,advanced
+The students complete their homework on time yesterday err0-5.,0,0.12,beginner
+The book that I read yesterday was interesting ref78-2.,1,0.95,advanced
+The weather today is more warm than yesterday err18-10.,0,0.14,beginner
+He work as software engineer at Jakarta err67-9.,0,0.13,beginner
+The students complete their homework on time yesterday err40-5.,0,0.12,beginner
+The book that I read yesterday was interesting ref19-2.,1,0.95,advanced
+She speaks three languages fluently ref23-7.,1,0.95,advanced
+I have never see such beautiful sunset err17-4.,0,0.1,beginner
+The students completed their homework on time ref24-6.,1,0.95,advanced
+The train arrived at the station on schedule ref14-14.,1,0.95,advanced
+The meeting was postponed until next Monday ref33-8.,1,0.95,advanced
+She goes to school every day ref57-0.,1,0.95,advanced
+My sister bought a new laptop last week ref68-12.,1,0.95,advanced
+They have been studying English for two years ref78-1.,1,0.95,advanced
+The train arrive at station in schedule err1-13.,0,0.12,beginner
+We will visiting museum tomorrow err74-3.,0,0.13,beginner
+The students complete their homework on time yesterday err56-5.,0,0.12,beginner
+We will visiting museum tomorrow err45-3.,0,0.13,beginner
+I have never see such beautiful sunset err41-4.,0,0.1,beginner
+The students completed their homework on time ref70-6.,1,0.95,advanced
+The students complete their homework on time yesterday err61-5.,0,0.12,beginner
+The students completed their homework on time ref51-6.,1,0.95,advanced
+The weather today is more warm than yesterday err61-10.,0,0.14,beginner
+Children should eats healthy food err30-8.,0,0.11,beginner
+The weather today is more warm than yesterday err66-10.,0,0.14,beginner
+The students complete their homework on time yesterday err78-5.,0,0.12,beginner
+The meeting were postpone until Monday err16-7.,0,0.15,beginner
+She goes to school every day ref22-0.,1,0.95,advanced
+Children should eat healthy food every day ref18-9.,1,0.95,advanced
+Reading books helps improve your vocabulary ref40-13.,1,0.95,advanced
+Reading book help improve you vocabulary err49-12.,0,0.09,beginner
+He plays the piano beautifully ref61-3.,1,0.95,advanced
+We will visiting museum tomorrow err55-3.,0,0.13,beginner
+She goes to school every day ref33-0.,1,0.95,advanced
+My sister buyed a new laptop last week err52-11.,0,0.1,beginner
+He works as a software engineer in Jakarta ref58-10.,1,0.95,advanced
+They have been studying English for two years ref42-1.,1,0.95,advanced
+Reading books helps improve your vocabulary ref18-13.,1,0.95,advanced
+My sister bought a new laptop last week ref44-12.,1,0.95,advanced
+There is many problem with this sentence err70-14.,0,0.11,beginner
+The book that I read yesterday was interesting ref50-2.,1,0.95,advanced
+The weather today is warmer than yesterday ref61-11.,1,0.95,advanced
+The meeting were postpone until Monday err71-7.,0,0.15,beginner
+Reading books helps improve your vocabulary ref10-13.,1,0.95,advanced
+They has been study English err68-1.,0,0.09,beginner
+The weather today is warmer than yesterday ref31-11.,1,0.95,advanced
+The weather today is warmer than yesterday ref43-11.,1,0.95,advanced
+She speak three language fluent err24-6.,0,0.08,beginner
+He play piano beautiful err29-2.,0,0.14,beginner
+The students completed their homework on time ref7-6.,1,0.95,advanced
+My sister buyed a new laptop last week err79-11.,0,0.1,beginner
+My sister buyed a new laptop last week err58-11.,0,0.1,beginner
+The weather today is more warm than yesterday err0-10.,0,0.14,beginner
+The meeting was postponed until next Monday ref23-8.,1,0.95,advanced
+The students completed their homework on time ref44-6.,1,0.95,advanced
+They has been study English err34-1.,0,0.09,beginner
+She speak three language fluent err4-6.,0,0.08,beginner
+The meeting was postponed until next Monday ref25-8.,1,0.95,advanced
+We will visit the museum tomorrow ref45-4.,1,0.95,advanced
+He plays the piano beautifully ref57-3.,1,0.95,advanced
+The weather today is warmer than yesterday ref36-11.,1,0.95,advanced
+She speak three language fluent err23-6.,0,0.08,beginner
+He work as software engineer at Jakarta err2-9.,0,0.13,beginner
+The students completed their homework on time ref68-6.,1,0.95,advanced
+I have never see such beautiful sunset err38-4.,0,0.1,beginner
+The train arrived at the station on schedule ref65-14.,1,0.95,advanced
+She speaks three languages fluently ref8-7.,1,0.95,advanced
+There is many problem with this sentence err40-14.,0,0.11,beginner
+She speak three language fluent err46-6.,0,0.08,beginner
+He play piano beautiful err20-2.,0,0.14,beginner
+The meeting were postpone until Monday err52-7.,0,0.15,beginner
+Reading books helps improve your vocabulary ref64-13.,1,0.95,advanced
+She go to school every day err69-0.,0,0.11,beginner
+He play piano beautiful err16-2.,0,0.14,beginner
+I have never see such beautiful sunset err71-4.,0,0.1,beginner
+We will visit the museum tomorrow ref47-4.,1,0.95,advanced
+Children should eat healthy food every day ref57-9.,1,0.95,advanced
+I have never seen such a beautiful sunset ref5-5.,1,0.95,advanced
+They has been study English err13-1.,0,0.09,beginner
+He work as software engineer at Jakarta err48-9.,0,0.13,beginner
+The book that I read yesterday was interesting ref27-2.,1,0.95,advanced
+We will visiting museum tomorrow err25-3.,0,0.13,beginner
+We will visit the museum tomorrow ref64-4.,1,0.95,advanced
+I have never see such beautiful sunset err67-4.,0,0.1,beginner
+The meeting was postponed until next Monday ref21-8.,1,0.95,advanced
+The meeting were postpone until Monday err1-7.,0,0.15,beginner
+She speaks three languages fluently ref78-7.,1,0.95,advanced
+Children should eats healthy food err67-8.,0,0.11,beginner
+She speaks three languages fluently ref21-7.,1,0.95,advanced
+The book that I read yesterday was interesting ref71-2.,1,0.95,advanced
+She goes to school every day ref60-0.,1,0.95,advanced
+She speak three language fluent err55-6.,0,0.08,beginner
+She goes to school every day ref62-0.,1,0.95,advanced
+Reading books helps improve your vocabulary ref75-13.,1,0.95,advanced
+Reading books helps improve your vocabulary ref41-13.,1,0.95,advanced
+He works as a software engineer in Jakarta ref41-10.,1,0.95,advanced
+Reading books helps improve your vocabulary ref11-13.,1,0.95,advanced
+I have never seen such a beautiful sunset ref25-5.,1,0.95,advanced
+He works as a software engineer in Jakarta ref52-10.,1,0.95,advanced
+The train arrived at the station on schedule ref17-14.,1,0.95,advanced
+The meeting were postpone until Monday err47-7.,0,0.15,beginner
+The train arrived at the station on schedule ref63-14.,1,0.95,advanced
+My sister buyed a new laptop last week err14-11.,0,0.1,beginner
+Children should eat healthy food every day ref79-9.,1,0.95,advanced
+We will visiting museum tomorrow err71-3.,0,0.13,beginner
+The book that I read yesterday was interesting ref68-2.,1,0.95,advanced
+The meeting was postponed until next Monday ref63-8.,1,0.95,advanced
+We will visiting museum tomorrow err8-3.,0,0.13,beginner
+The meeting was postponed until next Monday ref16-8.,1,0.95,advanced
+Children should eat healthy food every day ref59-9.,1,0.95,advanced
+My sister bought a new laptop last week ref42-12.,1,0.95,advanced
+The weather today is warmer than yesterday ref1-11.,1,0.95,advanced
+They has been study English err67-1.,0,0.09,beginner

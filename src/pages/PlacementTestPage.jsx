@@ -104,12 +104,10 @@ export default function PlacementTestPage() {
       const score = Math.round((correctAnswers / totalQuestions) * 100)
 
       let recommendedLevel = 1 // Default: Beginner
-      if (correctAnswers >= 12) {
-          // Benar 12 - 15 (80% - 100%) -> Advanced
-          recommendedLevel = 3 
-      } else if (correctAnswers >= 7) {
-          // Benar 7 - 11 (46% - 73%) -> Intermediate
-          recommendedLevel = 2 
+      if (correctAnswers >= 8) {
+          recommendedLevel = 3
+      } else if (correctAnswers >= 5) {
+          recommendedLevel = 2
       }
 
       const testResult = { correctAnswers, score, recommendedLevel }

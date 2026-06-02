@@ -113,7 +113,7 @@ export default function LoginPage() {
             className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!emailError)}`}
             value={email}
             onChange={(e) => { applyEmail(e.target.value); if (error) setError(''); }}
-            placeholder="nama@gmail.com"
+            placeholder="you@example.com"
           />
           {emailError && <p id="login-email-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">{emailError}</p>}
 

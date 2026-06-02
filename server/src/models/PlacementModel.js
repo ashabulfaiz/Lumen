@@ -1,17 +1,23 @@
 const db = require('../config/database');
 
+const PLACEMENT_TOTAL = 10;
+const BEGINNER_COUNT = 4;
+const INTERMEDIATE_COUNT = 3;
+const ADVANCED_COUNT = 3;
+
 class PlacementModel {
     static async getRandomQuestions() {
         const [rows] = await db.query(`
             SELECT * FROM (
-                (SELECT * FROM placement_questions WHERE id BETWEEN 1 AND 33 ORDER BY RAND() LIMIT 5)
+                (SELECT * FROM placement_questions WHERE id BETWEEN 1 AND 33 ORDER BY RAND() LIMIT ?)
                 UNION ALL
-                (SELECT * FROM placement_questions WHERE id BETWEEN 34 AND 66 ORDER BY RAND() LIMIT 5)
+                (SELECT * FROM placement_questions WHERE id BETWEEN 34 AND 66 ORDER BY RAND() LIMIT ?)
                 UNION ALL
-                (SELECT * FROM placement_questions WHERE id BETWEEN 67 AND 100 ORDER BY RAND() LIMIT 5)
+                (SELECT * FROM placement_questions WHERE id BETWEEN 67 AND 100 ORDER BY RAND() LIMIT ?)
             ) AS combined_questions
-            ORDER BY RAND();
-        `);
+            ORDER BY RAND()
+            LIMIT ?
+        `, [BEGINNER_COUNT, INTERMEDIATE_COUNT, ADVANCED_COUNT, PLACEMENT_TOTAL]);
         return rows;
     }
 

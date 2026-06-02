@@ -81,7 +81,7 @@ export default function HelpPage() {
       
     } catch (error) {
       console.error("Chat Error:", error);
-      setMessages(prev => [...prev, { role: 'assistant', text: "Maaf, sistem AI sedang sibuk atau terjadi kesalahan.", at: Date.now() }])
+      setMessages(prev => [...prev, { role: 'assistant', text: 'Sorry, the AI system is busy or an error occurred. Please try again.', at: Date.now() }])
       setIsLoading(false)
     }
   }

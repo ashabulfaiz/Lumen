@@ -7,12 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Frontend build
 node_modules
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,6 +24,39 @@ dist-ssr
 *.sln
 *.sw?
 
-# Backend ignores
+# Environment secrets (keep .env.example tracked)
+.env
+.env.local
+.env.*.local
+**/.env
+!**/.env.example
+
+# Node backend
 server/node_modules
-server/.env
+
+# Python (all services)
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.py[cod]
+**/.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Data Science service
+ds-service/**/__pycache__/
+ds-service/.venv/
+
+# AI — chat
+ai/chat/.env
+
+# AI — grammar trained artifacts (reports JSON/txt may be committed)
+ai/grammar/models/*.keras
+ai/grammar/models/saved_model/
+ai/grammar/models/checkpoints/
+ai/grammar/models/vocabulary.json
+ai/grammar/models/vectorizer_config.json
+ai/grammar/reports/tensorboard/**/*
+!ai/grammar/reports/tensorboard/.gitkeep

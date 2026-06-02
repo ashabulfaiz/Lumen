@@ -25,6 +25,10 @@ const generateQuiz = async (req, res) => {
         const safeQuestionsForFrontend = [];
 
         for (let q of targetTopic.daftar_soal) {
+            if (!Array.isArray(q.pilihan) || q.pilihan.length === 0) {
+                continue;
+            }
+
             const questionId = await QuizModel.saveQuestionCache(quizId, q.pertanyaan, q.jawaban_benar);
 
             safeQuestionsForFrontend.push({

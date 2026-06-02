@@ -4,18 +4,74 @@
     "courses": [
       {
         "judul_course": "Basic English Grammar",
-        "deskripsi": "This module covers the most fundamental rules for forming English sentences, perfect for beginners.",
+        "deskripsi": "Core grammar for everyday English — articles, pronouns, and essential verbs.",
         "urutan": 1,
         "lessons": [
           {
             "judul_lesson": "Using Articles (A, An, The)",
-            "konten_teks": "<p>An <b>Article</b> is a word used to modify a noun. There are two types of articles: Definite (The) and Indefinite (A/An). <i>A</i> is used before a noun starting with a consonant sound, while <i>An</i> is used before a vowel sound.</p><p>Examples: <i>A car, An apple, The sun.</i></p>",
-            "kuis_topik_id": "Article Or No Article" 
+            "konten_teks": "<p>An <b>Article</b> is a word used to modify a noun. There are two types: definite (<i>the</i>) and indefinite (<i>a/an</i>).</p><p>Examples: <i>a car, an apple, the sun</i>.</p>",
+            "kuis_topik_id": "Article Or No Article",
+            "urutan": 1
           },
           {
             "judul_lesson": "Introduction to Subjects & Pronouns",
-            "konten_teks": "<p>A <b>Pronoun</b> is used to replace a noun to avoid word repetition. Examples of basic pronouns are I, You, They, We, He, She, It.</p>",
-            "kuis_topik_id": "Pronouns Basics"
+            "konten_teks": "<p>A <b>pronoun</b> replaces a noun to avoid repetition — I, you, he, she, they, we, it.</p>",
+            "kuis_topik_id": "Pronoun Case",
+            "urutan": 2
+          },
+          {
+            "judul_lesson": "To Be & To Have",
+            "konten_teks": "<p>Learn when to use <b>to be</b> (am, is, are, was, were) and <b>to have</b> (have, has, had) in simple sentences.</p>",
+            "kuis_topik_id": "To Be Or To Have",
+            "urutan": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "nama_level": "Intermediate",
+    "courses": [
+      {
+        "judul_course": "Reading & Listening",
+        "deskripsi": "Build comprehension with short texts and listening-style grammar practice.",
+        "urutan": 1,
+        "lessons": [
+          {
+            "judul_lesson": "Reading short texts",
+            "konten_teks": "<p>Practice identifying main ideas and key details in short English passages.</p>",
+            "kuis_topik_id": "Mixed Verb Tenses",
+            "urutan": 1
+          },
+          {
+            "judul_lesson": "Listening for gist",
+            "konten_teks": "<p>Focus on overall meaning in conversations and announcements — auxiliary verbs in context.</p>",
+            "kuis_topik_id": "Auxiliary Verbs Be, Do, Have",
+            "urutan": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "nama_level": "Advanced",
+    "courses": [
+      {
+        "judul_course": "Fluency & Discussion",
+        "deskripsi": "Complex grammar, punctuation, and structures for longer discussions and writing.",
+        "urutan": 1,
+        "lessons": [
+          {
+            "judul_lesson": "Opinion essays & linking words",
+            "konten_teks": "<p>Use conditionals and connectors to structure arguments clearly in written English.</p>",
+            "kuis_topik_id": "The Second Conditional",
+            "urutan": 1
+          },
+          {
+            "judul_lesson": "Real-world dialogues",
+            "konten_teks": "<p>Master verb types and nuance for natural, fast-paced spoken English.</p>",
+            "kuis_topik_id": "Transitive And Intransitive Verbs",
+            "urutan": 2
           }
         ]
       }

@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
 import { Link, useLocation, Navigate } from 'react-router-dom'
-import { IconBook, IconPlay, IconLock, IconClock, IconCheckCircle, IconArrowRight, IconCollection } from '../components/Icons.jsx'
+import { IconLock, IconClock, IconCheckCircle, IconArrowRight, IconCollection } from '../components/Icons.jsx'
 import api from '../lib/axiosInstance'
 
 const LEVEL_THEMES = {
@@ -49,30 +49,37 @@ export default function LevelDetailPage() {
   const themeConfig = LEVEL_THEMES[slug]
 
   const [courses, setCourses] = useState([])
-  const [completedLessonIds, setCompletedLessonIds] = useState([])
+  const [moduleStatusMap, setModuleStatusMap] = useState({})
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
       if (!themeConfig) return
       setLoading(true)
+      setLoadError(null)
       try {
-        const courseResponse = await api.get(`/learning/courses/${themeConfig.levelId}`)
-        const fetchedCourses = courseResponse.data.data
+        const courseResponse = await api.get(`/learning/courses/${slug}`)
+        const fetchedCourses = courseResponse.data.data || []
 
         const coursesWithLessons = await Promise.all(
           fetchedCourses.map(async (course) => {
             const lessonResponse = await api.get(`/learning/lessons/${course.id}`)
-            return { ...course, lessons: lessonResponse.data.data }
-          })
+            return { ...course, lessons: lessonResponse.data.data || [] }
+          }),
         )
         setCourses(coursesWithLessons)
 
-        const progressResponse = await api.get(`/progress/completed/${themeConfig.levelId}`)
-        setCompletedLessonIds(progressResponse.data.data || [])
-
+        const statusResponse = await api.get(`/progress/module-status/${slug}`)
+        const map = {}
+        for (const row of statusResponse.data.data || []) {
+          map[row.lesson_id] = row
+        }
+        setModuleStatusMap(map)
       } catch (error) {
-        console.error("Failed to load data from the database:", error)
+        console.error('Failed to load data from the database:', error)
+        setLoadError(error.response?.data?.message || 'Failed to load curriculum.')
+        setCourses([])
       } finally {
         setLoading(false)
       }
@@ -81,32 +88,46 @@ export default function LevelDetailPage() {
     fetchData()
   }, [slug, themeConfig])
 
-  const allLessonsFlat = useMemo(() => {
-    return courses.flatMap(c => c.lessons)
-  }, [courses])
+  const allLessonsFlat = useMemo(() => courses.flatMap((c) => c.lessons), [courses])
 
   const getLessonStatus = (lessonId) => {
-    const isCompleted = completedLessonIds.includes(lessonId)
-    const currentIndex = allLessonsFlat.findIndex(l => l.id === lessonId)
-    
+    const mod = moduleStatusMap[lessonId] || {
+      quiz_completed: false,
+      essay_completed: false,
+      module_completed: false,
+    }
+    const currentIndex = allLessonsFlat.findIndex((l) => l.id === lessonId)
+
     let isAvailable = false
-    
     if (currentIndex === 0) {
-        isAvailable = true 
-    } else if (isCompleted) {
-        isAvailable = true 
+      isAvailable = true
+    } else if (mod.module_completed) {
+      isAvailable = true
     } else {
-        const previousLesson = allLessonsFlat[currentIndex - 1]
-        if (previousLesson && completedLessonIds.includes(previousLesson.id)) {
-            isAvailable = true
-        }
+      const previousLesson = allLessonsFlat[currentIndex - 1]
+      const prevMod = previousLesson ? moduleStatusMap[previousLesson.id] : null
+      if (prevMod?.module_completed) {
+        isAvailable = true
+      }
     }
 
     return {
-        isCompleted,
-        isAvailable,
-        isLocked: !isAvailable
+      quizCompleted: mod.quiz_completed,
+      essayCompleted: mod.essay_completed,
+      isCompleted: mod.module_completed,
+      isAvailable,
+      isLocked: !isAvailable,
     }
+  }
+
+  const isCourseUnlocked = (courseIndex) => {
+    if (courseIndex === 0) return true
+    const previousCourse = courses[courseIndex - 1]
+    if (!previousCourse?.lessons?.length) return true
+    return previousCourse.lessons.every((lesson) => {
+      const mod = moduleStatusMap[lesson.id]
+      return mod?.module_completed
+    })
   }
 
   if (!themeConfig) return <Navigate to="/learning" replace />
@@ -144,16 +165,21 @@ export default function LevelDetailPage() {
           <p className="text-sm md:text-base text-slate-600 max-w-xl">
             {themeConfig.description}
           </p>
+          <p className="text-xs text-slate-500 max-w-xl">
+            Complete <strong>Quiz</strong> and <strong>Writing</strong> (grammar ≥ 60%) in each module to unlock the next module.
+          </p>
         </div>
       </header>
 
       {/* CONTAINER KURSUS YANG SUDAH DIPISAH */}
       <div className="space-y-8">
         
-        {courses.map((course) => (
+        {courses.map((course, courseIndex) => {
+          const courseLocked = !isCourseUnlocked(courseIndex)
+          return (
           <section 
             key={course.id} 
-            className={`rounded-3xl border-2 ${themeConfig.shellBorder} bg-white p-6 md:p-8 shadow-sm space-y-8`}
+            className={`rounded-3xl border-2 ${themeConfig.shellBorder} bg-white p-6 md:p-8 shadow-sm space-y-8 ${courseLocked ? 'opacity-60' : ''}`}
           >
             
             {/* Header Course / Topik */}
@@ -163,6 +189,11 @@ export default function LevelDetailPage() {
               </div>
               <div className="flex-1">
                 <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">{course.judul_course}</h2>
+                {courseLocked && (
+                  <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-600">
+                    <IconLock className="h-3 w-3" /> Complete the previous course
+                  </span>
+                )}
                 <p className="text-sm text-slate-600 mt-1 max-w-2xl">{course.deskripsi}</p>
               </div>
             </div>
@@ -171,14 +202,15 @@ export default function LevelDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {course.lessons && course.lessons.map((lesson, index) => {
                 const status = getLessonStatus(lesson.id);
-                const stepNum = index + 1; 
+                const stepNum = index + 1;
+                const locked = status.isLocked || courseLocked;
 
                 return (
                   <div 
                     key={lesson.id} 
                     className={`relative flex flex-col justify-between rounded-2xl border-2 p-6 transition-all duration-300 ${
                       status.isCompleted ? 'bg-emerald-50/30 border-emerald-100' :
-                      status.isAvailable ? `bg-white border-slate-200 hover:-translate-y-1 hover:shadow-lg ${themeConfig.cardHover}` : 
+                      !locked ? `bg-white border-slate-200 hover:-translate-y-1 hover:shadow-lg ${themeConfig.cardHover}` : 
                       'bg-slate-50 border-slate-100 opacity-70 grayscale-[20%]'
                     }`}
                   >
@@ -209,9 +241,20 @@ export default function LevelDetailPage() {
                         </div>
                       </div>
 
-                      <h3 className="text-lg font-bold text-slate-900 mb-3 leading-tight">
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight">
                         {lesson.judul_lesson}
                       </h3>
+
+                      {!locked && !status.isCompleted && (
+                        <div className="mb-4 flex flex-wrap gap-2">
+                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${status.quizCompleted ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                            Quiz {status.quizCompleted ? '✓' : 'pending'}
+                          </span>
+                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${status.essayCompleted ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                            Writing {status.essayCompleted ? '✓' : 'pending'}
+                          </span>
+                        </div>
+                      )}
                       
                       {/* Konten dengan line-clamp agar tinggi card konsisten */}
                       <div 
@@ -227,30 +270,47 @@ export default function LevelDetailPage() {
                         15 minutes
                       </div>
 
-                      <div className="flex justify-end">
-                        {status.isAvailable && !status.isCompleted && (
-                          <Link 
-                            to={`/learning/${slug}/lesson/${lesson.id}`}
-                            className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition-colors ${themeConfig.badgeBg} ${themeConfig.badgeText} shadow-sm hover:opacity-90`}
-                          >
-                            Get Started
-                            <IconArrowRight className="h-3 w-3" />
-                          </Link>
+                      <div className="flex flex-wrap justify-end gap-2">
+                        {!locked && !status.isCompleted && (
+                          <>
+                            <Link
+                              to={`/learning/${slug}/lesson/${lesson.id}/writing`}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-slate-300"
+                            >
+                              Writing
+                            </Link>
+                            <Link
+                              to={`/learning/${slug}/lesson/${lesson.id}`}
+                              className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition-colors ${themeConfig.badgeBg} ${themeConfig.badgeText} shadow-sm hover:opacity-90`}
+                            >
+                              Quiz
+                              <IconArrowRight className="h-3 w-3" />
+                            </Link>
+                          </>
                         )}
-                        
-                        {/* {status.isCompleted && (
-                          <Link 
-                            to={`/learning/${slug}/lesson/${lesson.id}`}
-                            state={{ autoReview: true }}
-                            className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors"
-                          >
-                            Review Material <IconArrowRight className="h-3 w-3" />
-                          </Link>
-                        )} */}
 
-                        {status.isLocked && (
-                          <span className="text-xs font-medium text-slate-400">
-                            Complete the previous module to unlock
+                        {!locked && status.isCompleted && (
+                          <>
+                            <Link
+                              to={`/learning/${slug}/lesson/${lesson.id}/writing`}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900"
+                            >
+                              Writing
+                            </Link>
+                            <Link
+                              to={`/learning/${slug}/lesson/${lesson.id}`}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800"
+                            >
+                              Review quiz <IconArrowRight className="h-3 w-3" />
+                            </Link>
+                          </>
+                        )}
+
+                        {locked && (
+                          <span className="text-xs font-medium text-slate-400 text-right max-w-[200px]">
+                            {courseLocked
+                              ? 'Complete all modules in the previous course'
+                              : 'Complete the previous module’s quiz & writing'}
                           </span>
                         )}
                       </div>
@@ -261,11 +321,14 @@ export default function LevelDetailPage() {
               })}
             </div>
           </section>
-        ))}
+        )})}
 
         {courses.length === 0 && (
-          <div className="py-16 text-center border-2 border-dashed border-slate-200 rounded-3xl bg-white">
-            <p className="text-sm font-medium text-slate-500">No curriculum has been added for this level yet.</p>
+          <div className="py-16 text-center border-2 border-dashed border-slate-200 rounded-3xl bg-white px-6">
+            <p className="text-sm font-medium text-slate-700">
+              {loadError || 'No curriculum has been added for this level yet.'}
+            </p>
+            <p className="mt-2 text-xs text-slate-500">Restart the backend server to load curriculum automatically.</p>
           </div>
         )}
 

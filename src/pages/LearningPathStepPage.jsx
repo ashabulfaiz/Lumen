@@ -185,7 +185,7 @@ export default function LearningPathStepPage() {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 text-violet-600">⎔</span>
                 <div>
                   <p className="text-[15px] font-medium text-slate-800">Questions</p>
-                  <p className="text-xs text-slate-500">15 questions</p>
+                  <p className="text-xs text-slate-500">10 questions</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-xl p-3">

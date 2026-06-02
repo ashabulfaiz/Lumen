@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('./src/config/loadEnv');
 const express = require('express');
 const cors = require('cors');
 const db = require('./src/config/database');
@@ -14,32 +14,30 @@ const grammarRoutes = require('./src/routes/grammarRoutes');
 
 const app = express();
 
-// --- MIDDLEWARE ---
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 
-// --- ROUTES ---
 app.get('/', (req, res) => {
-    res.json({ status: "success", message: "Selamat datang di LUMEN API!" });
+    res.json({ status: 'success', message: 'Selamat datang di LUMEN API!' });
 });
 
 app.get('/api/test-db', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT nama_lengkap, email FROM users');
-        res.json({ 
-            status: "success", 
-            message: "Database berhasil diakses!", 
-            data_users: rows 
+        res.json({
+            status: 'success',
+            message: 'Database berhasil diakses!',
+            data_users: rows,
         });
     } catch (error) {
-        res.status(500).json({ 
-            status: "error", 
-            message: "Gagal mengambil data", 
-            error: error.message 
+        res.status(500).json({
+            status: 'error',
+            message: 'Gagal mengambil data',
+            error: error.message,
         });
     }
 });
@@ -58,11 +56,21 @@ app.use((req, res, next) => {
     res.status(404);
     next(error);
 });
-// --- ERROR HANDLER ---
+
 app.use(errorHandler);
 
-// --- START SERVER ---
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`🚀 Server LUMEN berhasil berjalan di http://localhost:${PORT}`);
-});
+
+async function startServer() {
+    try {
+        await db.waitForDatabase();
+    } catch {
+        console.warn('⚠️ Server starting without database — check .env and MySQL.');
+    }
+
+    app.listen(PORT, () => {
+        console.log(`🚀 Server LUMEN berhasil berjalan di http://localhost:${PORT}`);
+    });
+}
+
+startServer();

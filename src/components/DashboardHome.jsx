@@ -94,7 +94,7 @@ export default function DashboardHome() {
         let fallbackLessonsPool = []
 
         await Promise.all(LEVEL_TRACKS.map(async (track) => {
-          const coursesRes = await api.get(`/learning/courses/${track.id}`)
+          const coursesRes = await api.get(`/learning/courses/${track.slug}`)
           const courses = coursesRes.data.data || []
 
           let trackLessons = []
@@ -110,7 +110,7 @@ export default function DashboardHome() {
 
           let completedIds = []
           try {
-            const progRes = await api.get(`/progress/completed/${track.id}`)
+            const progRes = await api.get(`/progress/completed/${track.slug}`)
             completedIds = progRes.data.data || []
           } catch (e) {
             console.error(`Failed to load level progress ${track.id}`, e)

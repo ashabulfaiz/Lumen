@@ -12,6 +12,7 @@ import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LevelDetailPage from './pages/LevelDetailPage.jsx'
 import LessonPage from './pages/LessonPage.jsx'
+import EssayPage from './pages/EssayPage.jsx'
 import CertificatePage from './pages/CertificatePage.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/learning/intermediate" element={<LevelDetailPage />} />
             <Route path="/learning/advanced" element={<LevelDetailPage />} />
             <Route path="/learning/:level/lesson/:lessonId" element={<LessonPage />} />
+            <Route path="/learning/:level/lesson/:lessonId/writing" element={<EssayPage />} />
             <Route path="/learning/introduction" element={<LearningPathStepPage />} />
             <Route path="/learning/placement" element={<LearningPathStepPage />} />
             <Route path="/learning/placement/test" element={<PlacementTestPage />} />

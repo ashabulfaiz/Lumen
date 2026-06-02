@@ -1,4 +1,5 @@
 const LearningModel = require('../models/LearningModel');
+const { resolveLevelId } = require('../utils/resolveLevelId');
 
 const getLanguages = async (req, res) => {
     try {
@@ -21,11 +22,14 @@ const getLevelsByLanguage = async (req, res) => {
 
 const getCoursesByLevel = async (req, res) => {
     try {
-        const { level_id } = req.params;
-        const courses = await LearningModel.getCoursesByLevel(level_id);
-        res.status(200).json({ status: "success", data: courses });
+        const levelId = await resolveLevelId(req.params.level_ref);
+        if (!levelId) {
+            return res.status(404).json({ message: 'Level not found' });
+        }
+        const courses = await LearningModel.getCoursesByLevel(levelId);
+        res.status(200).json({ status: 'success', data: courses, level_id: levelId });
     } catch (error) {
-        res.status(500).json({ message: "Gagal mengambil data course", error: error.message });
+        res.status(500).json({ message: 'Gagal mengambil data course', error: error.message });
     }
 };
 
@@ -39,9 +43,26 @@ const getLessonsByCourse = async (req, res) => {
     }
 };
 
+const getLessonById = async (req, res) => {
+    try {
+        const lessonId = parseInt(req.params.lesson_id, 10);
+        if (!lessonId) {
+            return res.status(400).json({ message: 'lesson_id is required' });
+        }
+        const lesson = await LearningModel.getLessonById(lessonId);
+        if (!lesson) {
+            return res.status(404).json({ message: 'Lesson not found' });
+        }
+        res.status(200).json({ status: 'success', data: lesson });
+    } catch (error) {
+        res.status(500).json({ message: 'Gagal mengambil data lesson', error: error.message });
+    }
+};
+
 module.exports = {
     getLanguages,
     getLevelsByLanguage,
     getCoursesByLevel,
-    getLessonsByCourse
+    getLessonsByCourse,
+    getLessonById,
 };

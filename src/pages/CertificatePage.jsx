@@ -28,7 +28,7 @@ export default function CertificatePage() {
       const progressData = {}
       for (const lvl of levels) {
         try {
-          const courseRes = await api.get(`/learning/courses/${lvl.id}`)
+          const courseRes = await api.get(`/learning/courses/${lvl.slug}`)
           const courses = courseRes.data.data || []
           
           if (courses.length === 0) {
@@ -39,7 +39,7 @@ export default function CertificatePage() {
           let totalLessons = 0
           let completedLessonsCount = 0
 
-          const completedRes = await api.get(`/progress/completed/${lvl.id}`)
+          const completedRes = await api.get(`/progress/completed/${lvl.slug}`)
           const completedLessonIds = completedRes.data.data || []
 
           for (const course of courses) {

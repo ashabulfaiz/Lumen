@@ -1,0 +1,36 @@
+{
+  "by_level_order": {
+    "beginner": {
+      "1": "coreGrammar",
+      "2": "coreGrammar",
+      "3": "everydayVocabulary"
+    },
+    "intermediate": {
+      "1": "readingShortTexts",
+      "2": "listeningForGist"
+    },
+    "advanced": {
+      "1": "opinionEssays",
+      "2": "realWorldDialogues"
+    }
+  },
+  "by_course_title": {
+    "basic english grammar": "coreGrammar",
+    "daily vocabulary": "everydayVocabulary",
+    "reading & listening": "readingShortTexts",
+    "reading and listening": "readingShortTexts",
+    "fluency & discussion": "opinionEssays",
+    "fluency and discussion": "opinionEssays"
+  },
+  "by_lesson_title": {
+    "reading short texts": "readingShortTexts",
+    "listening for gist": "listeningForGist",
+    "opinion essays & linking words": "opinionEssays",
+    "opinion essays and linking words": "opinionEssays",
+    "real-world dialogues": "realWorldDialogues",
+    "real world dialogues": "realWorldDialogues",
+    "to be & to have": "everydayVocabulary",
+    "introduction to subjects & pronouns": "coreGrammar",
+    "using articles (a, an, the)": "coreGrammar"
+  }
+}

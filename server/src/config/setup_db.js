@@ -1,4 +1,8 @@
-require('dotenv').config();
+const path = require('path');
+
+require('dotenv').config({
+  path: path.resolve(__dirname, '../../../.env')
+});
 const mysql = require('mysql2/promise');
 
 async function setupDatabase() {
@@ -80,6 +84,7 @@ async function setupDatabase() {
                 course_id INT,
                 judul_lesson VARCHAR(255) NOT NULL,
                 konten_teks TEXT,
+                kuis_topik_id VARCHAR(255),
                 urutan INT,
                 FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
             )

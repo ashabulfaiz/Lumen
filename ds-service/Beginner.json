@@ -94,11 +94,6 @@
                     "a"
                 ],
                 "jawaban_benar": "the"
-            },
-            {
-                "pertanyaan": "Please write a sentence using the word 'gentleman' in the past tense.",
-                "pilihan": [], 
-                "jawaban_benar": "He was a real gentleman."
             }
         ]
     },

@@ -141,7 +141,7 @@ export default function RegisterPage() {
             aria-invalid={emailError ? 'true' : 'false'}
             aria-describedby={emailError ? 'reg-email-hint' : undefined}
             className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!emailError)}`}
-            value={email} onChange={(e) => applyEmail(e.target.value)} placeholder="nama@gmail.com"
+            value={email} onChange={(e) => applyEmail(e.target.value)} placeholder="you@example.com"
           />
           {emailError && <p id="reg-email-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">{emailError}</p>}
 
