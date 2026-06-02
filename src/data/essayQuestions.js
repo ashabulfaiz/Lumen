@@ -51,46 +51,46 @@ export const essayQuestions = {
     readingShortTexts: [
       {
         id: 1,
-        question: 'Read a short text and write the main idea in 3–5 sentences.',
+        question: 'Summarize a book, article, or news story you read recently in 3–5 sentences.',
       },
       {
         id: 2,
-        question: 'What is the text about? Explain in simple words.',
+        question: 'Explain a topic you know well in simple words, as if teaching a beginner.',
       },
       {
         id: 3,
-        question: 'Write 2 important points from the text.',
+        question: 'Describe the main idea of your favorite movie or show in your own words.',
       },
       {
         id: 4,
-        question: 'Do you like the text? Why or why not?',
+        question: 'Write about something interesting you learned this week and why it stood out to you.',
       },
       {
         id: 5,
-        question: 'Rewrite the text using your own words (short version).',
+        question: 'In 3–5 sentences, explain how to do an activity you enjoy (for example a recipe or a hobby).',
       },
     ],
 
     listeningForGist: [
       {
         id: 1,
-        question: 'After listening, what is the conversation about?',
+        question: 'Describe a recent conversation you had — who was involved and what it was about.',
       },
       {
         id: 2,
-        question: 'Write 2–3 things you understand from the audio.',
+        question: 'Write a short dialogue (4–6 lines) between two people making weekend plans.',
       },
       {
         id: 3,
-        question: 'Who is talking and what are they doing?',
+        question: 'Explain how you would introduce two friends to each other and start a conversation.',
       },
       {
         id: 4,
-        question: 'What is the main topic of the conversation?',
+        question: 'Write about a discussion you had recently and summarize its main point.',
       },
       {
         id: 5,
-        question: 'Explain the conversation in your own words (3–5 sentences).',
+        question: 'Describe a memorable phone call or chat: who was talking and what they wanted.',
       },
     ],
   },

@@ -9,6 +9,8 @@ const {
     getModuleStatus,
     saveEssaySubmission,
     getEssaySubmission,
+    resetProgress,
+    getUnlockedLevel,
 } = require('../controllers/progressController');
 const { verifyToken } = require('../middlewares/authMiddleware');
 
@@ -22,5 +24,7 @@ router.get('/completed/:level_ref', getCompletedLessons);
 router.get('/module-status/:level_ref', getModuleStatus);
 router.get('/essay/:lesson_id', getEssaySubmission);
 router.post('/essay', saveEssaySubmission);
+router.post('/reset', resetProgress);
+router.get('/unlocked-level', getUnlockedLevel);
 
 module.exports = router;

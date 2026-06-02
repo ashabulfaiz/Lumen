@@ -1,14 +1,19 @@
 const PlacementModel = require('../models/PlacementModel');
 
+// Question id ranges map to difficulty bands (see curriculumSeed placement data):
+// 1-33 beginner, 34-66 intermediate, 67-100 advanced.
+const difficultyFromId = (id) => (id <= 33 ? 1 : id <= 66 ? 2 : 3);
+
 const getPlacementQuestions = async (req, res) => {
     try {
         const questions = await PlacementModel.getRandomQuestions();
-        
+
         const formattedQuestions = questions.map(q => ({
             id: q.id,
             prompt: q.pertanyaan,
             options: [q.pilihan_a, q.pilihan_b, q.pilihan_c, q.pilihan_d].filter(Boolean),
             answer: q.jawaban_benar,
+            difficulty: difficultyFromId(q.id),
             explanation: "The correct answer is:" + q.jawaban_benar
         }));
 

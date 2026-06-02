@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { Link, useLocation, Navigate } from 'react-router-dom'
 import { IconLock, IconClock, IconCheckCircle, IconArrowRight, IconCollection } from '../components/Icons.jsx'
 import api from '../lib/axiosInstance'
+import { levelNumberBySlug, loadLearningProgress } from '../data/learningData.js'
 
 const LEVEL_THEMES = {
   beginner: {
@@ -131,6 +132,13 @@ export default function LevelDetailPage() {
   }
 
   if (!themeConfig) return <Navigate to="/learning" replace />
+
+  // Gate access to the placement-determined ceiling: an unplaced user is sent to
+  // the test, and a level above the unlocked ceiling redirects to the chooser.
+  const { highestUnlocked, placementCompleted } = loadLearningProgress()
+  const levelNum = levelNumberBySlug[slug]
+  if (!placementCompleted) return <Navigate to="/learning/placement" replace />
+  if (levelNum > highestUnlocked) return <Navigate to="/learning/levels" replace />
 
   if (loading) {
     return (

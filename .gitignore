@@ -60,3 +60,24 @@ ai/grammar/models/vocabulary.json
 ai/grammar/models/vectorizer_config.json
 ai/grammar/reports/tensorboard/**/*
 !ai/grammar/reports/tensorboard/.gitkeep
+
+# Downloaded ML model caches (e.g. sentence-transformers / HuggingFace)
+**/.cache/
+**/*_cache/
+hf_cache/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*~
+
+# Tooling caches & coverage
+.eslintcache
+coverage/
+*.tmp
+*.bak
+
+# Vite
+**/.vite/

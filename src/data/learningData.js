@@ -181,6 +181,33 @@ export function clearLearningProgress() {
   }
 }
 
+// Wipes the user's progress on the server (level, onboarding flag, lesson/quiz/
+// essay completions, placement answers, certificates). localStorage only holds a
+// cached copy, so a real reset must clear the database too.
+export async function resetLearningProgressFromDB() {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('lumen_token') : null
+  if (!token) return
+  await api.post('/progress/reset')
+}
+
+// Asks the server for the unlocked ceiling (placement floor raised by each fully
+// completed level) and bumps the cached highestUnlocked when it grows. Unlocking
+// is monotonic, so this only ever opens levels — it never re-locks them.
+export async function syncUnlockedLevelFromDB() {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('lumen_token') : null
+  if (!token) return
+
+  const res = await api.get('/progress/unlocked-level')
+  const unlocked = res.data?.data?.unlockedLevel
+  if (typeof unlocked !== 'number') return
+
+  const progress = loadLearningProgress()
+  if (!progress.placementCompleted) return
+  if (unlocked > progress.highestUnlocked) {
+    saveLearningProgress(progress.chosenLevel, unlocked, progress.placementCompleted, progress.completedLessons)
+  }
+}
+
 export function getLessonsWithStatus(slug, progress) {
   const level = learningLevels[slug]
   if (!level) return []

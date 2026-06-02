@@ -1,4 +1,5 @@
 const CertificateModel = require('../models/CertificateModel');
+const ProgressModel = require('../models/ProgressModel');
 
 const claimCertificate = async (req, res) => {
     try {
@@ -18,7 +19,11 @@ const claimCertificate = async (req, res) => {
             });
         }
 
-        const totalLulus = await CertificateModel.countPassedLessons(userId, level_id);
+        // A module only counts when its quiz passed (>= QUIZ_PASS_PERCENT) AND its
+        // writing passed (>= GRAMMAR_PASS_PERCENT) — the same rule used everywhere
+        // else, so the certificate stays consistent with module/course progress.
+        const completedLessons = await ProgressModel.getCompletedLessonsByLevel(userId, level_id);
+        const totalLulus = completedLessons.length;
         const totalLesson = await CertificateModel.countTotalLessonsInLevel(level_id);
 
         if (totalLesson === 0) {
@@ -26,8 +31,8 @@ const claimCertificate = async (req, res) => {
         }
 
         if (totalLulus < totalLesson) {
-            return res.status(403).json({ 
-                message: `You have not met the requirements. You have only passed ${totalLulus} out of ${totalLesson} lessons in this level.` 
+            return res.status(403).json({
+                message: `You have not met the requirements. You have only completed ${totalLulus} out of ${totalLesson} modules (quiz ≥ 70% and writing ≥ 60%) in this level.`
             });
         }
 

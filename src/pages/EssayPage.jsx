@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { levelNumberBySlug, loadLearningProgress } from '../data/learningData.js'
 import EssayRubricCard from '../components/EssayRubricCard.jsx'
 import GrammarReviewCard from '../components/GrammarReviewCard.jsx'
 import api from '../lib/axiosInstance'
@@ -199,6 +200,12 @@ export default function EssayPage() {
   }
 
   const currentGrammarScore = grammarPercent(grammarResult)
+
+  // Block writing practice in levels the learner hasn't unlocked via placement.
+  const access = loadLearningProgress()
+  const levelNum = levelNumberBySlug[level]
+  if (!access.placementCompleted) return <Navigate to="/learning/placement" replace />
+  if (levelNum && levelNum > access.highestUnlocked) return <Navigate to="/learning/levels" replace />
 
   if (loading) {
     return (

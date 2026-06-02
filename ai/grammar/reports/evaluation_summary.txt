@@ -1,13 +1,13 @@
 Grammar Acceptability — Evaluation Report
 ============================================
-Model: /Users/zacky/dicoding/Lumen/ai/grammar/models/grammar_acceptability.keras
-Generated: 2026-06-02T15:25:45.380542+00:00
+Model: D:\vscode\lumenNew\Lumen\ai\grammar\models\grammar_acceptability.keras
+Generated: 2026-06-02T17:51:59.672026+00:00
 
 Rubric: accuracy >= 85%, MAE <= 0.02
 Overall pass (test): True
 
-[TRAIN] n=2940 accuracy=0.9857 mae=0.0148 pass=True
-[VAL] n=630 accuracy=0.9841 mae=0.0165 pass=True
-[TEST] n=630 accuracy=0.9873 mae=0.0139 pass=True
+[TRAIN] n=2940 accuracy=0.9857 mae=0.0142 pass=True
+[VAL] n=630 accuracy=0.9841 mae=0.0159 pass=True
+[TEST] n=630 accuracy=0.9873 mae=0.0132 pass=True
 
 This file is for ML/offline review only — not exposed via API.

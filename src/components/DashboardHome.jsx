@@ -11,6 +11,7 @@ import {
 } from './Icons.jsx'
 import { useUser } from '../lib/useUser.jsx'
 import api from '../lib/axiosInstance'
+import { loadLearningProgress } from '../data/learningData.js'
 
 const cardShell = 'rounded-[2rem] border border-slate-200 bg-white shadow-sm'
 const sectionMuted = 'rounded-[2rem] border border-indigo-100/60 bg-gradient-to-br from-indigo-50/40 to-white p-6 shadow-sm transition-all hover:shadow-md'
@@ -88,25 +89,23 @@ export default function DashboardHome() {
     const fetchDashboardData = async () => {
       setLoading(true)
       try {
-        let tempTotalCompleted = 0
-        let tempProgressStats = { 1: 0, 2: 0, 3: 0 }
-        let availableLessonsPool = []
-        let fallbackLessonsPool = []
+        const { highestUnlocked } = loadLearningProgress()
 
-        await Promise.all(LEVEL_TRACKS.map(async (track) => {
+        // Fetch every level's lessons + completion in parallel, but keep the
+        // results keyed by track. Promise.all preserves input order, so the later
+        // processing is deterministic instead of depending on which request resolves first.
+        const perTrack = await Promise.all(LEVEL_TRACKS.map(async (track) => {
           const coursesRes = await api.get(`/learning/courses/${track.slug}`)
           const courses = coursesRes.data.data || []
 
-          let trackLessons = []
+          const trackLessons = []
           for (const course of courses) {
             const lessonsRes = await api.get(`/learning/lessons/${course.id}`)
             const lessons = lessonsRes.data.data || []
-            trackLessons.push(...lessons.map(l => ({ 
-              ...l, levelSlug: track.slug, levelLabel: track.label, badgeBg: track.badgeBg 
+            trackLessons.push(...lessons.map(l => ({
+              ...l, levelSlug: track.slug, levelLabel: track.label, badgeBg: track.badgeBg
             })))
           }
-
-          if (track.id === 1) fallbackLessonsPool = [...trackLessons]
 
           let completedIds = []
           try {
@@ -116,17 +115,33 @@ export default function DashboardHome() {
             console.error(`Failed to load level progress ${track.id}`, e)
           }
 
+          return { track, trackLessons, completedIds }
+        }))
+
+        let tempTotalCompleted = 0
+        const tempProgressStats = { 1: 0, 2: 0, 3: 0 }
+        const availableLessonsPool = []
+        let fallbackLessonsPool = []
+
+        // Process in LEVEL_TRACKS order (beginner → intermediate → advanced).
+        for (const { track, trackLessons, completedIds } of perTrack) {
+          if (track.id === 1) fallbackLessonsPool = [...trackLessons]
+
+          // Stats reflect every level regardless of which ones are unlocked.
           tempTotalCompleted += completedIds.length
-          tempProgressStats[track.id] = trackLessons.length > 0 
-            ? Math.round((completedIds.length / trackLessons.length) * 100) 
+          tempProgressStats[track.id] = trackLessons.length > 0
+            ? Math.round((completedIds.length / trackLessons.length) * 100)
             : 0
+
+          // Only recommend lessons from levels the learner has unlocked via placement.
+          if (track.id > highestUnlocked) continue
 
           trackLessons.forEach((lesson, index) => {
             const isCompleted = completedIds.includes(lesson.id)
-            let isAvailable = index === 0 || completedIds.includes(trackLessons[index - 1].id)
+            const isAvailable = index === 0 || completedIds.includes(trackLessons[index - 1].id)
             if (isAvailable && !isCompleted) availableLessonsPool.push(lesson)
           })
-        }))
+        }
 
         setProgressStats(tempProgressStats)
         setTotalLessonsCompleted(tempTotalCompleted)
@@ -274,7 +289,7 @@ export default function DashboardHome() {
                       {lesson.judul_lesson}
                     </h3>
                     <p className="mb-5 text-[13px] leading-relaxed text-slate-600 line-clamp-2">
-                      {stripHtml(lesson.konten_teks) || 'Materi pembelajaran modul ini siap untuk dipelajari.'}
+                      {stripHtml(lesson.konten_teks) || 'This module is ready for you to start.'}
                     </p>
                   </div>
                   

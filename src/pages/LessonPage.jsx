@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { learningLevels, markLessonCompleted } from '../data/learningData.js'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { levelNumberBySlug, loadLearningProgress } from '../data/learningData.js'
 import api from '../lib/axiosInstance'
 
 export default function LessonPage() {
@@ -19,6 +19,10 @@ export default function LessonPage() {
   const [savedAnswers, setSavedAnswers] = useState(null)
   const [isFinishedMode, setIsFinishedMode] = useState(false)
   const [moduleComplete, setModuleComplete] = useState(false)
+  const [passThreshold, setPassThreshold] = useState(70)
+  const [quizPassed, setQuizPassed] = useState(false)
+  // Ordered lesson ids for this level (from the DB), used to find the real next module.
+  const [levelLessonIds, setLevelLessonIds] = useState([])
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -40,6 +44,7 @@ export default function LessonPage() {
         setQuizId(data.quiz_id)
         setQuizData(data.soal)
         setJudulKuis(data.judul_kuis)
+        if (data.pass_threshold != null) setPassThreshold(data.pass_threshold)
 
         try {
           const reviewRes = await api.get(`/quiz/review/${data.quiz_id}`)
@@ -66,6 +71,7 @@ export default function LessonPage() {
     setSavedAnswers(null)
     setIsFinishedMode(false)
     setModuleComplete(false)
+    setQuizPassed(false)
   }, [level, lessonId])
 
   useEffect(() => {
@@ -73,12 +79,15 @@ export default function LessonPage() {
 
     api.get(`/progress/module-status/${level}`)
       .then((res) => {
-        const row = (res.data.data || []).find(
-          (s) => String(s.lesson_id) === String(lessonId),
-        )
+        const rows = res.data.data || []
+        const row = rows.find((s) => String(s.lesson_id) === String(lessonId))
         setModuleComplete(Boolean(row?.module_completed))
+        setLevelLessonIds(rows.map((r) => r.lesson_id))
       })
-      .catch(() => setModuleComplete(false))
+      .catch(() => {
+        setModuleComplete(false)
+        setLevelLessonIds([])
+      })
   }, [level, lessonId, isFinished])
 
   const steps = useMemo(() => {
@@ -109,17 +118,14 @@ export default function LessonPage() {
   const selectedOption = step ? selectedOptions[step.id] : null
 
   const isFirstStep = currentIndex === 0
+  // Next module is derived from the real DB lesson order for this level, so it can
+  // never resolve back to the current lesson or to a non-existent id.
   const nextLessonId = useMemo(() => {
-    const current = Number(lessonId)
-    if (!Number.isFinite(current)) return null
-    const lessons = learningLevels?.[level]?.lessons
-    if (!Array.isArray(lessons) || lessons.length === 0) return null
-    const idx = lessons.findIndex((l) => Number(l?.id) === current)
-    if (idx < 0) return null
-    const next = lessons[idx + 1]
-    const nextId = Number(next?.id)
-    return Number.isFinite(nextId) ? nextId : null
-  }, [level, lessonId])
+    if (!Array.isArray(levelLessonIds) || levelLessonIds.length === 0) return null
+    const idx = levelLessonIds.findIndex((id) => String(id) === String(lessonId))
+    if (idx < 0 || idx + 1 >= levelLessonIds.length) return null
+    return levelLessonIds[idx + 1]
+  }, [levelLessonIds, lessonId])
 
   const isLastStep = currentIndex === totalSteps - 1
   const nextLabel = isLastStep ? 'Submit & Finish' : 'Next'
@@ -156,8 +162,9 @@ export default function LessonPage() {
           jawaban_benar: payload.correct_answers,
           total_soal: payload.total_questions,
         })
+        if (payload.pass_threshold != null) setPassThreshold(payload.pass_threshold)
+        setQuizPassed(Boolean(payload.passed))
         setIsFinished(true)
-        markLessonCompleted(level, lessonId)
       } catch (error) {
         console.error('Failed to submit to database:', error)
         alert('Failed to submit answers. Please try again.')
@@ -191,6 +198,12 @@ export default function LessonPage() {
     const score = Math.round((correctCount / total) * 100)
     return { correctCount, total, score }
   }, [savedAnswers])
+
+  // Block lessons in levels the learner hasn't unlocked via placement.
+  const access = loadLearningProgress()
+  const levelNum = levelNumberBySlug[level]
+  if (!access.placementCompleted) return <Navigate to="/learning/placement" replace />
+  if (levelNum && levelNum > access.highestUnlocked) return <Navigate to="/learning/levels" replace />
 
   if (loading) {
     return (
@@ -314,15 +327,31 @@ export default function LessonPage() {
       <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h1 className="text-[30px] font-bold tracking-tight text-slate-900">Quiz complete!</h1>
-          <p className="mt-2 text-slate-600">
-            {moduleComplete
-              ? 'Quiz and writing are complete. The next module is unlocked.'
-              : 'Complete writing practice as well to unlock the next module.'}
-          </p>
+          {!quizPassed ? (
+            <p className="mt-2 text-amber-700">
+              Your score is below the {passThreshold}% passing score, so this quiz isn&apos;t passed yet. Retake it to
+              complete the module.
+            </p>
+          ) : moduleComplete ? (
+            <p className="mt-2 text-emerald-700">Quiz and writing are complete. The next module is unlocked.</p>
+          ) : (
+            <p className="mt-2 text-slate-600">
+              Quiz passed! Now complete the writing practice (grammar ≥ 60%) to finish this module.
+            </p>
+          )}
 
           <div className="mt-6 rounded-2xl bg-slate-50 p-5 text-center">
             <p className="text-sm font-medium uppercase tracking-wide text-slate-500">{judulKuis}</p>
-            <p className="mt-1 text-5xl font-bold text-indigo-600">{submitResult.skor_akhir}</p>
+            <p className={`mt-1 text-5xl font-bold ${quizPassed ? 'text-emerald-600' : 'text-amber-600'}`}>
+              {submitResult.skor_akhir}
+            </p>
+            <span
+              className={`mt-3 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
+                quizPassed ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'
+              }`}
+            >
+              {quizPassed ? `Passed (≥ ${passThreshold}%)` : `Not passed (need ${passThreshold}%)`}
+            </span>
             <p className="mt-3 text-sm text-slate-600">
               Correct Answers: <span className="font-bold">{submitResult.jawaban_benar}</span> out of{' '}
               {submitResult.total_soal} questions
@@ -421,6 +450,10 @@ export default function LessonPage() {
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
+          <p className="mt-2 text-xs font-medium text-slate-500">
+            Passing score: <span className="font-semibold text-slate-700">{passThreshold}%</span> — a lower score
+            won&apos;t complete this module.
+          </p>
         </div>
 
         {step.type === 'info' ? (

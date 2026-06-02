@@ -11,3 +11,6 @@ python-dotenv>=1.0.0
 # TensorBoard still needs pkg_resources (removed in setuptools 81+)
 setuptools>=65.0.0,<81.0.0
 tensorboard>=2.15.0,<2.20.0
+# Optional: semantic relevance for essay grading. If not installed (or the model
+# can't be downloaded), grading falls back to lexical keyword overlap automatically.
+sentence-transformers>=2.2.0

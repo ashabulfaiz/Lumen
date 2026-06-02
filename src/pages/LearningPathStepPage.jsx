@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import {
+  LEARNING_PROGRESS_EVENT,
   clearLearningProgress,
   getLevelPath,
   levelTracks,
   loadLearningProgress,
+  resetLearningProgressFromDB,
   saveLearningProgress,
 } from '../data/learningData.js'
 
@@ -24,7 +27,7 @@ const stepContentByPath = {
   '/learning/placement': {
     title: 'Placement Test',
     description:
-      'Kerjakan 10 soal untuk mengukur kemampuan awal kamu. Hasilnya akan menampilkan score dan rekomendasi level belajar.',
+      'Answer 15 questions to gauge your starting ability. The placement test is taken once — your result shows your score and sets your recommended learning level.',
     points: [
       'Assessment is short and practical.',
       'Result gives a recommended starting level.',
@@ -38,7 +41,7 @@ const stepContentByPath = {
   '/learning/levels': {
     title: 'Choose Your Level',
     description:
-      'Pick the level that matches your current English ability. Higher levels stay locked until you complete your current top level.',
+      'Your placement sets your starting level. Finish every module of your current top level to unlock the next one.',
     prevPath: '/learning/placement',
     prevLabel: 'Previous: Placement Test',
   },
@@ -57,23 +60,59 @@ export default function LearningPathStepPage() {
     saveLearningProgress(chosenLevel, highestUnlocked, placementCompleted)
   }, [chosenLevel, highestUnlocked, placementCompleted, isLevelChooserPage])
 
+  // Reflect unlock changes made elsewhere (e.g. the layout bumping the ceiling
+  // after a level is completed) without needing a page refresh.
+  useEffect(() => {
+    const sync = () => setProgress(initialProgressState())
+    window.addEventListener(LEARNING_PROGRESS_EVENT, sync)
+    window.addEventListener('storage', sync)
+    return () => {
+      window.removeEventListener(LEARNING_PROGRESS_EVENT, sync)
+      window.removeEventListener('storage', sync)
+    }
+  }, [])
+
   const pickLevel = (n) => {
     if (!placementCompleted || n > highestUnlocked) return
     setProgress((prev) => ({ ...prev, chosenLevel: n }))
     navigate(getLevelPath(n))
   }
-  const completeCurrentTop = () =>
-    setProgress((prev) => ({
-      ...prev,
-      highestUnlocked: Math.min(3, prev.highestUnlocked + 1),
-    }))
-  const resetProgress = () => {
-    clearLearningProgress()
-    setProgress({ chosenLevel: null, highestUnlocked: 1, placementCompleted: false })
-  }
+  const resetProgress = async () => {
+    const confirm = await Swal.fire({
+      title: 'Reset all progress?',
+      html:
+        'Your level choice, placement result, module progress, quiz scores, and certificates ' +
+        'will be permanently deleted. This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, reset everything',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#64748b',
+      reverseButtons: true,
+    })
+    if (!confirm.isConfirmed) return
 
-  const topActiveLevel = highestUnlocked
-  const showCompleteButton = chosenLevel != null && topActiveLevel < 3
+    try {
+      await resetLearningProgressFromDB()
+      clearLearningProgress()
+      setProgress({ chosenLevel: null, highestUnlocked: 1, placementCompleted: false })
+      await Swal.fire({
+        title: 'Progress reset',
+        text: 'Everything has been returned to the starting point.',
+        icon: 'success',
+        timer: 1800,
+        showConfirmButton: false,
+      })
+    } catch (error) {
+      console.error('Failed to reset progress:', error)
+      await Swal.fire({
+        title: 'Reset failed',
+        text: 'Something went wrong while resetting your progress on the server. Please try again.',
+        icon: 'error',
+      })
+    }
+  }
 
   const levelName = useMemo(() => {
     const map = new Map(levelTracks.map((track) => [track.num, track.title]))
@@ -81,15 +120,17 @@ export default function LearningPathStepPage() {
   }, [])
 
   const unlockedLabel = useMemo(() => {
-    if (chosenLevel == null) return 'Choose a level to unlock your study path.'
-    if (highestUnlocked <= 1) {
-      return `Unlocked: ${levelName(1)}. ${levelName(2)} is locked until you complete ${levelName(1)}.`
+    if (!placementCompleted) {
+      return 'Take the placement test first — your result decides where you start.'
+    }
+    if (highestUnlocked >= 3) {
+      return `All levels are unlocked: ${levelName(1)}, ${levelName(2)}, and ${levelName(3)}. Pick any of them.`
     }
     if (highestUnlocked === 2) {
-      return `Unlocked: ${levelName(1)}, ${levelName(2)}. ${levelName(3)} is locked until you complete ${levelName(2)}.`
+      return `Unlocked: ${levelName(1)} and ${levelName(2)}. Complete every ${levelName(2)} module (quiz ≥ 70% and writing ≥ 60%) to unlock ${levelName(3)}.`
     }
-    return `Unlocked: ${levelName(1)}, ${levelName(2)}, ${levelName(3)}. All levels are open.`
-  }, [chosenLevel, highestUnlocked, levelName])
+    return `Unlocked: ${levelName(1)}. Complete every ${levelName(1)} module (quiz ≥ 70% and writing ≥ 60%) to unlock ${levelName(2)}.`
+  }, [placementCompleted, highestUnlocked, levelName])
 
   return (
     <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
@@ -110,8 +151,8 @@ export default function LearningPathStepPage() {
               Choose your level
             </h2>
             <p className="mb-6 max-w-[62ch] text-[15px] leading-relaxed text-slate-600">
-              Pick the tier that matches your ability. You can open all units from {levelName(1)} up to the level you
-              select. The next level stays locked until you complete everything at your current top level.
+              Your placement result sets your starting level — you can pick any level up to it. To open the next
+              level, finish every module (quiz ≥ 70% and writing ≥ 60%) of your current top level.
             </p>
 
             <div className="grid gap-4 lg:grid-cols-3" role="group" aria-label="Select starting level">
@@ -147,22 +188,6 @@ export default function LearningPathStepPage() {
               {unlockedLabel}
             </div>
 
-            {chosenLevel != null && showCompleteButton && (
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-                <p className="text-sm text-slate-600">
-                  Finished all units at <strong className="text-slate-800">{levelName(topActiveLevel)}</strong>? Unlock
-                  the next tier.
-                </p>
-                <button
-                  type="button"
-                  className="cursor-pointer rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
-                  onClick={completeCurrentTop}
-                >
-                  Mark {levelName(topActiveLevel)} complete
-                </button>
-              </div>
-            )}
-
             <button
               type="button"
               className="mt-5 cursor-pointer text-sm text-slate-400 underline-offset-2 hover:text-slate-600"
@@ -185,7 +210,7 @@ export default function LearningPathStepPage() {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-violet-100 text-violet-600">⎔</span>
                 <div>
                   <p className="text-[15px] font-medium text-slate-800">Questions</p>
-                  <p className="text-xs text-slate-500">10 questions</p>
+                  <p className="text-xs text-slate-500">15 questions</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-xl p-3">

@@ -185,6 +185,27 @@ const getUserProgress = async (req, res) => {
     }
 };
 
+const resetProgress = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        await ProgressModel.resetUserProgress(userId);
+        res.status(200).json({ status: "success", message: "User progress has been reset." });
+    } catch (error) {
+        console.error("Failed to reset progress:", error);
+        res.status(500).json({ message: "Failed to reset progress", error: error.message });
+    }
+};
+
+const getUnlockedLevel = async (req, res) => {
+    try {
+        const data = await ProgressModel.getUnlockedLevel(req.user.id);
+        res.status(200).json({ status: "success", data });
+    } catch (error) {
+        console.error("Failed to compute unlocked level:", error);
+        res.status(500).json({ message: "Failed to compute unlocked level", error: error.message });
+    }
+};
+
 module.exports = {
     markLessonComplete,
     submitQuizScore,
@@ -194,4 +215,6 @@ module.exports = {
     getModuleStatus,
     saveEssaySubmission,
     getEssaySubmission,
+    resetProgress,
+    getUnlockedLevel,
 };

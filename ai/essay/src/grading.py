@@ -48,6 +48,46 @@ def _sentences(text: str) -> list[str]:
     return [p.strip() for p in parts if p.strip()]
 
 
+# --- Semantic relevance ------------------------------------------------------
+# NOTE (earlier bug): relevance was lexical only — a bag-of-words overlap between
+# prompt and answer. It mis-scored on-topic answers that used different words, and
+# the old reading/listening prompts ("the text" / "the audio") had their key words
+# in the stopword list, so overlap was ~0. We now compare *meaning* with a sentence
+# embedding model when available, and fall back to lexical overlap if it is not.
+
+_SEMANTIC_MODEL = None
+_SEMANTIC_OFF = False
+
+
+def _semantic_model():
+    global _SEMANTIC_MODEL, _SEMANTIC_OFF
+    if _SEMANTIC_OFF:
+        return None
+    if _SEMANTIC_MODEL is None:
+        try:
+            from sentence_transformers import SentenceTransformer
+
+            _SEMANTIC_MODEL = SentenceTransformer("all-MiniLM-L6-v2")
+        except Exception:
+            _SEMANTIC_OFF = True  # optional dependency or model download unavailable
+            return None
+    return _SEMANTIC_MODEL
+
+
+def semantic_similarity(question: str, answer: str) -> float | None:
+    """Cosine similarity of prompt vs answer meaning in [0, 1]; None if unavailable."""
+    model = _semantic_model()
+    if model is None:
+        return None
+    try:
+        import numpy as np
+
+        emb = model.encode([question, answer], normalize_embeddings=True)
+        return max(0.0, min(1.0, float(np.dot(emb[0], emb[1]))))
+    except Exception:
+        return None
+
+
 def score_vocabulary(answer: str, level: str) -> tuple[float, str]:
     words = _tokens(answer)
     if not words:
@@ -82,17 +122,22 @@ def score_relevance(question: str, answer: str, level: str) -> tuple[float, str]
         return 0.0, "Your answer is empty. Address the prompt directly."
 
     length_score = min(40.0, (len(answer) / min_chars) * 40)
-    overlap = 0.0
-    if q_tokens:
-        overlap = len(q_tokens & a_tokens) / len(q_tokens)
-    overlap_score = overlap * 45
+
+    lexical = len(q_tokens & a_tokens) / len(q_tokens) if q_tokens else 0.0
+
+    # Prefer semantic similarity (understands meaning/synonyms); blend the lexical
+    # overlap as a floor so it still works when the embedding model is absent.
+    semantic = semantic_similarity(question, answer)
+    relevance_ratio = (0.7 * semantic + 0.3 * lexical) if semantic is not None else lexical
+
+    overlap_score = relevance_ratio * 45
     structure_score = 15.0 if len(answer.strip()) >= min_chars * 0.5 else 5.0
 
     score = min(100.0, length_score + overlap_score + structure_score)
 
     if len(answer) < min_chars * 0.4:
         feedback = "Expand your answer so it clearly responds to the prompt."
-    elif overlap < 0.15 and q_tokens:
+    elif relevance_ratio < 0.15:
         feedback = "Stay closer to the topic in the question."
     else:
         feedback = "Your answer addresses the prompt."

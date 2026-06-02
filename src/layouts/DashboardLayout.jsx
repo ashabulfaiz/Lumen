@@ -6,6 +6,7 @@ import {
   LEARNING_PROGRESS_EVENT,
   levelTracks,
   loadLearningProgress,
+  syncUnlockedLevelFromDB,
 } from '../data/learningData.js'
 
 /** Landing-aligned tokens (indigo / cyan) */
@@ -74,7 +75,7 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
       {hasChildren && open && (
         <ul className="mt-1.5 flex list-none flex-col gap-2 pl-9 pr-2 pb-1">
           {item.children.map((child) => {
-            const isLocked = !placementCompleted;
+            const isLocked = !placementCompleted || child.num > highestUnlocked;
             return (
             <li key={child.to}>
               {!isLocked ? (
@@ -106,6 +107,7 @@ function SidebarItem({ item, highestUnlocked, placementCompleted }) {
 
 export default function DashboardLayout() {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [progress, setProgress] = useState(loadLearningProgress)
 
   useEffect(() => {
@@ -118,6 +120,13 @@ export default function DashboardLayout() {
       window.removeEventListener(LEARNING_PROGRESS_EVENT, syncProgress)
     }
   }, [])
+
+  // Re-check the unlocked ceiling on every navigation so finishing a level opens
+  // the next one without a manual refresh. The helper dispatches the progress
+  // event when it bumps highestUnlocked, which refreshes the sidebar above.
+  useEffect(() => {
+    syncUnlockedLevelFromDB().catch(() => {})
+  }, [pathname])
 
   return (
     <div className="grid min-h-svh grid-cols-1 bg-slate-50 font-sans text-[17px] leading-relaxed text-slate-700 selection:bg-indigo-200 selection:text-indigo-800 md:h-svh md:grid-cols-[260px_1fr] md:overflow-hidden">

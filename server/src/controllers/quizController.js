@@ -45,6 +45,7 @@ const generateQuiz = async (req, res) => {
                 quiz_id: quizId,
                 judul_kuis: targetTopic.judul_asli,
                 jumlah_soal: targetTopic.jumlah_soal,
+                pass_threshold: ProgressModel.QUIZ_PASS_PERCENT,
                 soal: safeQuestionsForFrontend
             }
         });
@@ -78,13 +79,18 @@ const submitQuiz = async (req, res) => {
 
         await ProgressModel.insertQuizScore(userId, quiz_id, finalScore);
 
+        const passThreshold = ProgressModel.QUIZ_PASS_PERCENT;
+        const passed = finalScore >= passThreshold;
+
         res.status(200).json({
             status: "success",
             message: "Quiz submitted and graded successfully.",
             data: {
                 correct_answers: correctCount,
                 total_questions: totalQuestions,
-                final_score: finalScore.toFixed(2)
+                final_score: finalScore.toFixed(2),
+                pass_threshold: passThreshold,
+                passed
             }
         });
 

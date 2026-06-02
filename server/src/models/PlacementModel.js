@@ -1,9 +1,9 @@
 const db = require('../config/database');
 
-const PLACEMENT_TOTAL = 10;
-const BEGINNER_COUNT = 4;
-const INTERMEDIATE_COUNT = 3;
-const ADVANCED_COUNT = 3;
+const PLACEMENT_TOTAL = 15;
+const BEGINNER_COUNT = 5;
+const INTERMEDIATE_COUNT = 5;
+const ADVANCED_COUNT = 5;
 
 class PlacementModel {
     static async getRandomQuestions() {

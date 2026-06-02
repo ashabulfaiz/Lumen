@@ -97,17 +97,28 @@ export default function PlacementTestPage() {
     if (!canProceed) return
     
     if (isLastQuestion) {
-      const correctAnswers = placementQuestions.reduce((total, item) => {
-        return selectedOptions[item.id] === item.answer ? total + 1 : total
-      }, 0)
-      
-      const score = Math.round((correctAnswers / totalQuestions) * 100)
+      // Score per difficulty band (1=beginner, 2=intermediate, 3=advanced) so the
+      // recommendation reflects competence at a level, not just a raw total.
+      const band = { 1: { correct: 0, total: 0 }, 2: { correct: 0, total: 0 }, 3: { correct: 0, total: 0 } }
+      placementQuestions.forEach((item) => {
+        const d = band[item.difficulty] ? item.difficulty : 1
+        band[d].total += 1
+        if (selectedOptions[item.id] === item.answer) band[d].correct += 1
+      })
 
-      let recommendedLevel = 1 // Default: Beginner
-      if (correctAnswers >= 8) {
-          recommendedLevel = 3
-      } else if (correctAnswers >= 5) {
-          recommendedLevel = 2
+      const correctAnswers = band[1].correct + band[2].correct + band[3].correct
+      const score = Math.round((correctAnswers / totalQuestions) * 100)
+      const overall = correctAnswers / totalQuestions
+      const bandRatio = (d) => (band[d].total ? band[d].correct / band[d].total : 0)
+
+      // Advanced needs solid advanced-band performance AND a strong overall score;
+      // Intermediate needs decent intermediate-band performance AND a fair overall;
+      // otherwise the learner starts at Beginner.
+      let recommendedLevel = 1
+      if (bandRatio(3) >= 0.6 && overall >= 0.7) {
+        recommendedLevel = 3
+      } else if (bandRatio(2) >= 0.6 && overall >= 0.5) {
+        recommendedLevel = 2
       }
 
       const testResult = { correctAnswers, score, recommendedLevel }
@@ -135,8 +146,11 @@ export default function PlacementTestPage() {
 
       import('../data/learningData.js').then(({ loadLearningProgress, saveLearningProgress }) => {
         const progress = loadLearningProgress()
-        const newHighest = Math.max(progress.highestUnlocked, recommendedLevel)
-        saveLearningProgress(progress.chosenLevel, newHighest, true)
+        // Placement is authoritative: it sets the ceiling of unlocked levels.
+        // A previously chosen level above the new ceiling is cleared.
+        const chosen =
+          progress.chosenLevel && progress.chosenLevel <= recommendedLevel ? progress.chosenLevel : null
+        saveLearningProgress(chosen, recommendedLevel, true)
       }).catch(console.error)
 
       return
@@ -279,7 +293,7 @@ export default function PlacementTestPage() {
       <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h1 className="text-[30px] font-bold tracking-tight text-slate-900">Placement Test Result</h1>
-          <p className="mt-2 text-slate-600">Berikut nilai dari jawaban yang kamu kerjakan.</p>
+          <p className="mt-2 text-slate-600">Here is the score from the answers you submitted.</p>
 
           <div className="mt-6 rounded-2xl bg-slate-50 p-5">
             <p className="text-sm font-medium uppercase tracking-wide text-slate-500">Final Score</p>

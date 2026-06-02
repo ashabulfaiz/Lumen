@@ -1,6 +1,7 @@
 const db = require('../config/database');
 
 const GRAMMAR_PASS_PERCENT = 60;
+const QUIZ_PASS_PERCENT = 70;
 
 class ProgressModel {
     static async checkLessonProgress(userId, lessonId) {
@@ -54,14 +55,19 @@ class ProgressModel {
     }
 
     static async getQuizCompletedLessonIds(userId, levelId) {
+        // A lesson's quiz only counts as passed when the user's BEST module-quiz
+        // score for it reaches the passing threshold. Retakes (multiple rows) are
+        // collapsed with MAX so an earlier failing attempt never blocks a later pass.
         const [rows] = await db.query(`
-            SELECT DISTINCT q.lesson_id
+            SELECT q.lesson_id
             FROM quiz_scores qs
             JOIN quizzes q ON qs.quiz_id = q.id
             JOIN lessons l ON q.lesson_id = l.id
             JOIN courses c ON l.course_id = c.id
-            WHERE qs.user_id = ? AND c.level_id = ?
-        `, [userId, levelId]);
+            WHERE qs.user_id = ? AND c.level_id = ? AND qs.quiz_type = 'module'
+            GROUP BY q.lesson_id
+            HAVING MAX(qs.skor) >= ?
+        `, [userId, levelId, QUIZ_PASS_PERCENT]);
 
         return rows.map((row) => row.lesson_id);
     }
@@ -190,6 +196,77 @@ class ProgressModel {
             .filter((s) => s.module_completed)
             .map((s) => s.lesson_id);
     }
+
+    // The unlocked ceiling = the placement floor, raised by one each time the
+    // current top level is fully completed (every module's quiz & writing passed).
+    // Monotonic and capped at Advanced (3); 0 means placement not done yet.
+    static async getUnlockedLevel(userId) {
+        const numToName = { 1: 'Beginner', 2: 'Intermediate', 3: 'Advanced' };
+        const nameToNum = { Beginner: 1, Intermediate: 2, Advanced: 3 };
+
+        const [[userRow]] = await db.query(
+            'SELECT current_level, is_onboarding_complete FROM users WHERE id = ?',
+            [userId],
+        );
+        const onboardingComplete = userRow ? Boolean(userRow.is_onboarding_complete) : false;
+        const placementLevel = userRow ? (nameToNum[userRow.current_level] || 1) : 1;
+
+        const levels = [];
+        let highestCompleted = 0;
+        for (let n = 1; n <= 3; n++) {
+            const [[lvl]] = await db.query(
+                'SELECT id FROM levels WHERE nama_level = ? LIMIT 1',
+                [numToName[n]],
+            );
+            if (!lvl) {
+                levels.push({ level: n, total: 0, completed: 0, isComplete: false });
+                continue;
+            }
+            const [[totalRow]] = await db.query(
+                `SELECT COUNT(l.id) AS total
+                 FROM lessons l JOIN courses c ON l.course_id = c.id
+                 WHERE c.level_id = ?`,
+                [lvl.id],
+            );
+            const total = totalRow.total;
+            const completed = (await this.getCompletedLessonsByLevel(userId, lvl.id)).length;
+            const isComplete = total > 0 && completed >= total;
+            if (isComplete) highestCompleted = n;
+            levels.push({ level: n, total, completed, isComplete });
+        }
+
+        let unlockedLevel = onboardingComplete ? placementLevel : 0;
+        if (onboardingComplete && highestCompleted > 0) {
+            unlockedLevel = Math.max(unlockedLevel, Math.min(3, highestCompleted + 1));
+        }
+
+        return { unlockedLevel, placementLevel, onboardingComplete, levels };
+    }
+
+    static async resetUserProgress(userId) {
+        const conn = await db.getConnection();
+        try {
+            await conn.beginTransaction();
+            await conn.query('DELETE FROM user_answers WHERE user_id = ?', [userId]);
+            await conn.query('DELETE FROM user_progress WHERE user_id = ?', [userId]);
+            await conn.query('DELETE FROM quiz_scores WHERE user_id = ?', [userId]);
+            await conn.query('DELETE FROM essay_completions WHERE user_id = ?', [userId]);
+            await conn.query('DELETE FROM certificates WHERE user_id = ?', [userId]);
+            await conn.query(
+                "UPDATE users SET current_level = 'Beginner', is_onboarding_complete = false WHERE id = ?",
+                [userId],
+            );
+            await conn.commit();
+        } catch (err) {
+            await conn.rollback();
+            throw err;
+        } finally {
+            conn.release();
+        }
+    }
 }
+
+ProgressModel.QUIZ_PASS_PERCENT = QUIZ_PASS_PERCENT;
+ProgressModel.GRAMMAR_PASS_PERCENT = GRAMMAR_PASS_PERCENT;
 
 module.exports = ProgressModel;

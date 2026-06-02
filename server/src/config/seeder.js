@@ -110,8 +110,11 @@ async function seedPlacementQuestions() {
 
 async function runFullSeed() {
     console.log('Starting seed...');
-    await ensureCurriculum();
-    await seedPlacementQuestions();
+    // Requiring ./database already kicks off runStartupMigrations() (which runs
+    // ensureCurriculum + seedPlacementQuestions). Route through the same memoized
+    // promise so seeding runs exactly once — calling the seed functions again here
+    // would race the migration and create duplicate curriculum rows.
+    await db.waitForDatabase();
     console.log('Seeding complete.');
 }
 
