@@ -1,0 +1,17 @@
+[
+  {
+    "judul_lesson": "Greetings and Introductions",
+    "konten_teks": "This lesson covers Greetings and Introductions. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+    "kuis_topik_id": "Greetings and Introductions"
+  },
+  {
+    "judul_lesson": "Personal Information",
+    "konten_teks": "This lesson covers Personal Information. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+    "kuis_topik_id": "Personal Information"
+  },
+  {
+    "judul_lesson": "Numbers and Time",
+    "konten_teks": "This lesson covers Numbers and Time. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+    "kuis_topik_id": "Numbers and Time"
+  }
+]

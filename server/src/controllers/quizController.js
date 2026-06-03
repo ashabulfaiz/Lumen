@@ -1,4 +1,5 @@
-const axios = require('axios');
+const path = require('path');
+const fs = require('fs');
 const QuizModel = require('../models/QuizModel');
 const ProgressModel = require('../models/ProgressModel');
 
@@ -10,10 +11,16 @@ const generateQuiz = async (req, res) => {
             return res.status(400).json({ message: "level_name, lesson_id, and topic_category are required fields!" });
         }
 
-        const dsUrl = `http://127.0.0.1:5002/api/ds/quiz/${level_name}`;
-        const dsResponse = await axios.get(dsUrl);
-        const allTopics = dsResponse.data.data;
+        const levelLower = level_name.toLowerCase();
+        const quizFileName = `${levelLower}_quiz.json`;
+        const jsonPath = path.join(__dirname, `../data/quizzes/${quizFileName}`);
+        
+        if (!fs.existsSync(jsonPath)) {
+            return res.status(404).json({ message: `Quiz dataset for level ${level_name} is not found.` });
+        }
 
+        const rawData = fs.readFileSync(jsonPath, 'utf8');
+        const allTopics = JSON.parse(rawData);
         const targetTopic = allTopics.find(t => t.kategori_topik === kategori_topik);
 
         if (!targetTopic) {
