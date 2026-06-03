@@ -26,9 +26,27 @@ export default function LessonPage() {
     const fetchQuiz = async () => {
       setLoading(true)
       try {
-        let topik = "Article Or No Article"; 
-        if (level === "beginner" && lessonId === "2") topik = "Pronoun Case";
-        if (level === "beginner" && lessonId === "3") topik = "To Be Or To Have";
+        let topik = ""; 
+        if (level === "beginner") {
+            const beginnerTopics = [
+                "Greetings and Introductions", "Personal Information", "Numbers and Time"
+            ];
+            topik = beginnerTopics[parseInt(lessonId) - 1] || beginnerTopics[0];
+        } 
+        else if (level === "intermediate") {
+            const intermediateTopics = [
+                "Present Continuous", "Past Simple", "Present Perfect"
+            ];
+            const index = (parseInt(lessonId) - 1) % 10;
+            topik = intermediateTopics[index] || intermediateTopics[0];
+        }
+        else if (level === "advanced") {
+            const advancedTopics = [
+                "Advanced Grammar", "Academic Vocabulary", "Academic Writing"
+            ];
+            const index = (parseInt(lessonId) - 1) % 10;
+            topik = advancedTopics[index] || advancedTopics[0];
+        }
 
         const formattedLevel = level.charAt(0).toUpperCase() + level.slice(1);
 
