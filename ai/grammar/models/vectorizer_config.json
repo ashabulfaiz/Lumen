@@ -1,0 +1,5 @@
+{
+  "max_tokens": 12000,
+  "output_sequence_length": 128,
+  "vocab_size": 2412
+}
