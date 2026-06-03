@@ -80,11 +80,34 @@ export default function PlacementTestPage() {
 
   if (!placementQuestions || placementQuestions.length === 0) {
     return (
-      <div className="flex min-h-[60vh] flex-col items-center justify-center font-sans text-center">
-        <p className="mb-4 text-lg font-bold text-slate-800">Exam questions not available in the database.</p>
-        <button onClick={() => navigate('/learning/introduction')} className="rounded-xl bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-700">
-          Back
-        </button>
+      <div className="mx-auto max-w-lg px-4 py-20 font-sans">
+        <div className="flex flex-col items-center justify-center rounded-[2rem] border border-slate-200 bg-white p-10 text-center shadow-sm">
+          
+          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-slate-50 text-slate-400">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+          </div>
+          
+          <h2 className="mb-3 text-[22px] font-bold tracking-tight text-slate-900">
+            Oops! Questions Unavailable
+          </h2>
+          
+          <p className="mb-8 max-w-sm text-[15px] leading-relaxed text-slate-500">
+            It looks like we are having trouble loading your assessment right now. Please return to the previous page and try again in a few moments.
+          </p>
+          
+          <button
+            onClick={() => navigate('/learning/introduction')}
+            className="inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+            </svg>
+            Return to Introduction
+          </button>
+
+        </div>
       </div>
     )
   }
@@ -281,7 +304,7 @@ export default function PlacementTestPage() {
       <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h1 className="text-[30px] font-bold tracking-tight text-slate-900">Placement Test Result</h1>
-          <p className="mt-2 text-slate-600">Berikut nilai dari jawaban yang kamu kerjakan.</p>
+          <p className="mt-2 text-slate-600">Here are the grades for your answers.</p>
 
           <div className="mt-6 rounded-2xl bg-slate-50 p-5">
             <p className="text-sm font-medium uppercase tracking-wide text-slate-500">Final Score</p>

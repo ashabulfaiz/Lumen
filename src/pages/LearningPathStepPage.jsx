@@ -24,7 +24,7 @@ const stepContentByPath = {
   '/learning/placement': {
     title: 'Placement Test',
     description:
-      'Kerjakan 10 soal untuk mengukur kemampuan awal kamu. Hasilnya akan menampilkan score dan rekomendasi level belajar.',
+      'Take this 15-question quiz to assess your current skill level. The results will show your score and a recommended learning level.',
     points: [
       'Assessment is short and practical.',
       'Result gives a recommended starting level.',
@@ -178,7 +178,7 @@ export default function LearningPathStepPage() {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600">◷</span>
                 <div>
                   <p className="text-[15px] font-medium text-slate-800">Duration</p>
-                  <p className="text-xs text-slate-500">~10-15 minutes</p>
+                  <p className="text-xs text-slate-500">~15-30 minutes</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-xl p-3">
