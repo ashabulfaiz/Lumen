@@ -134,7 +134,7 @@ export default function CertificatePage() {
     })
 
     try {
-      const html2pdf = (await importtml('html2pdf.js')).default
+      const html2pdf = (await import('html2pdf.js')).default
       const opt = {
         margin:       0,
         filename:     `Certificate_${activeCert.levelTitle}_${user?.name || 'Lumen'}.pdf`,

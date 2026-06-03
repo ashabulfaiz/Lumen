@@ -9,7 +9,9 @@ import {
   loadLearningProgress,
   resetLearningProgressFromDB,
   saveLearningProgress,
+  syncLearningProgressFromDB,
 } from '../data/learningData.js'
+import api from '../lib/axiosInstance';
 
 const stepContentByPath = {
   '/learning/introduction': {
@@ -77,6 +79,7 @@ export default function LearningPathStepPage() {
     setProgress((prev) => ({ ...prev, chosenLevel: n }))
     navigate(getLevelPath(n))
   }
+
   const resetProgress = async () => {
     const confirm = await Swal.fire({
       title: 'Reset all progress?',
@@ -132,8 +135,10 @@ export default function LearningPathStepPage() {
     return `Unlocked: ${levelName(1)}. Complete every ${levelName(1)} module (quiz ≥ 70% and writing ≥ 60%) to unlock ${levelName(2)}.`
   }, [placementCompleted, highestUnlocked, levelName])
 
+  const isIntroPage = pathname === '/learning/introduction'
+
   return (
-    <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
+    <div className={`mx-auto px-4 py-8 font-sans ${isLevelChooserPage || isPlacementPage || isIntroPage ? 'max-w-5xl' : 'max-w-2xl'}`}>
       <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
         
         <header className="mb-8">
@@ -188,13 +193,17 @@ export default function LearningPathStepPage() {
               {unlockedLabel}
             </div>
 
-            <button
-              type="button"
-              className="mt-5 cursor-pointer text-sm text-slate-400 underline-offset-2 hover:text-slate-600"
-              onClick={resetProgress}
-            >
-              Reset level choice &amp; progress
-            </button>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+
+              
+              <button
+                type="button"
+                className="cursor-pointer text-sm text-slate-400 underline underline-offset-2 hover:text-slate-600"
+                onClick={resetProgress}
+              >
+                Reset level choice &amp; progress
+              </button>
+            </div>
           </section>
         ) : isPlacementPage ? (
           <section className="mb-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
@@ -282,11 +291,65 @@ export default function LearningPathStepPage() {
             </div>
           </section>
         ) : (
-          <ul className="mb-7 space-y-2 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-sm">
-            {content.points.map((point) => (
-              <li key={point}>- {point}</li>
-            ))}
-          </ul>
+          <section className="mb-7 rounded-[2rem] bg-white border border-slate-200 p-6 text-slate-700 shadow-sm md:p-10 font-sans">
+            <h2 className="mb-6 text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+              Memulai Pembelajaran Bahasa Inggris bersama LUMEN
+            </h2>
+            
+            <div className="space-y-5 text-sm leading-relaxed text-slate-600 md:text-[15px]">
+              <p>
+                Selamat datang di LUMEN! Kami hadir untuk menemani perjalanan Anda dalam menguasai bahasa Inggris dengan cara yang menyenangkan, terarah, dan adaptif.
+              </p>
+              <p>
+                Di era globalisasi saat ini, kemampuan berkomunikasi dalam bahasa Inggris bukan lagi sekadar nilai tambah, melainkan kebutuhan mendasar. Baik untuk kebutuhan akademis, pengembangan karir, maupun interaksi sehari-hari, bahasa Inggris membuka gerbang ke berbagai peluang global tanpa batas.
+              </p>
+              <p>
+                LUMEN membantu Anda menguasai tata bahasa (grammar), memperluas kosakata (vocabulary), hingga melatih kelancaran berbicara melalui modul pembelajaran yang terstruktur. Didukung oleh teknologi kecerdasan buatan (AI Tutor), Anda akan mendapatkan umpan balik langsung secara instan dan personal.
+              </p>
+              <p>
+                Apakah Anda siap untuk meningkatkan kemampuan bahasa Inggris Anda secara terstruktur dan percaya diri?
+              </p>
+              <p>
+                Nah, kali ini kita akan belajar secara bertahap materi-materi tata bahasa dari tingkat dasar hingga tingkat mahir yang kami ambil secara representatif dari database kurikulum LUMEN:
+              </p>
+              
+              <div className="my-6 rounded-xl bg-slate-50 border border-slate-200 p-5 space-y-4">
+                <div>
+                  <span className="inline-block rounded-md bg-emerald-50 px-2 py-0.5 text-xs font-bold text-emerald-700 border border-emerald-200/60 mb-2">
+                    Beginner
+                  </span>
+                  <p className="text-slate-600 text-xs md:text-sm m-0">
+                    Fokus pada pemahaman <strong>Articles</strong> (seperti <em>Article or No Article</em>, <em>Indefinite Articles A/An</em>, dan <em>Articles with Geographic Names</em>) untuk membangun fondasi kalimat yang tepat.
+                  </p>
+                </div>
+                <div className="border-t border-slate-200/80 my-3"></div>
+                <div>
+                  <span className="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-xs font-bold text-blue-700 border border-blue-200/60 mb-2">
+                    Intermediate
+                  </span>
+                  <p className="text-slate-600 text-xs md:text-sm m-0">
+                    Mempelajari <strong>Irregular Verbs</strong> (kata kerja tidak beraturan pada <em>Past Tenses</em>) serta penggunaan kata bantu <strong>Mixed Modals</strong> seperti <em>Should, Can</em>, dan <em>Must</em> dalam percakapan sehari-hari.
+                  </p>
+                </div>
+                <div className="border-t border-slate-200/80 my-3"></div>
+                <div>
+                  <span className="inline-block rounded-md bg-purple-50 px-2 py-0.5 text-xs font-bold text-purple-700 border border-purple-200/60 mb-2">
+                    Advanced
+                  </span>
+                  <p className="text-slate-600 text-xs md:text-sm m-0">
+                    Menguasai kalimat pengandaian tingkat lanjut seperti <strong>Conditionals</strong> (<em>First, Second, &amp; Third Conditional</em>) serta pembagian <strong>Transitive &amp; Intransitive Verbs</strong> untuk ekspresi yang lebih bervariasi.
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                Keren kan materinya? Tujuan akhir dari materi ini adalah untuk memahami bagaimana menentukan kebutuhan pembelajaran bahasa Anda dan menguasai spesifikasi kompetensi tata bahasa sebagai fondasi karir Anda di era global. Jadi tunggu apalagi.
+              </p>
+              <p className="font-bold text-slate-800 text-[16px] mt-6">
+                Yuk, kita mulai belajar.
+              </p>
+            </div>
+          </section>
         )}
 
         <div className={`flex items-center justify-between gap-4 ${isPlacementPage ? 'flex-wrap pt-1' : 'flex-wrap'}`}>

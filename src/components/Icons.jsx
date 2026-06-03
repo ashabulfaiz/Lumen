@@ -1,10 +1,7 @@
 export function IconFlame({ className }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M12 2c0 4-4 6-4 12a4 4 0 1 0 8 0c0-3-2-5-2-8 3 2 4 5 4 8a6 6 0 1 1-12 0c0-5 4-8 4-12Z"
-        fill="currentColor"
-      />
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M12 5.5c.2 2 3.8 6 3.8 8.8a3.8 3.8 0 1 1-7.6 0c0-2.8 3.6-6.8 3.8-8.8z" />
     </svg>
   )
 }

@@ -23,6 +23,7 @@ export default function LessonPage() {
   const [quizPassed, setQuizPassed] = useState(false)
   // Ordered lesson ids for this level (from the DB), used to find the real next module.
   const [levelLessonIds, setLevelLessonIds] = useState([])
+  const [lessonMeta, setLessonMeta] = useState(null)
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -30,6 +31,7 @@ export default function LessonPage() {
       try {
         const lessonRes = await api.get(`/learning/lesson/${lessonId}`)
         const lessonMeta = lessonRes.data.data
+        setLessonMeta(lessonMeta)
         const topik = lessonMeta?.kuis_topik_id || 'Article Or No Article'
         const formattedLevel = (lessonMeta?.nama_level || level).charAt(0).toUpperCase()
           + (lessonMeta?.nama_level || level).slice(1).toLowerCase()
@@ -104,18 +106,23 @@ export default function LessonPage() {
       {
         id: 'intro',
         type: 'info',
-        title: judulKuis || `${level.charAt(0).toUpperCase() + level.slice(1)} — Lesson ${lessonId}`,
+        title: lessonMeta?.judul_lesson || judulKuis || `${level.charAt(0).toUpperCase() + level.slice(1)} — Lesson ${lessonId}`,
         content:
+          lessonMeta?.konten_teks ||
           "Welcome to the final quiz for this unit! This quiz is designed to test your understanding of the concepts you've learned. Each question will provide new insights, so be sure to read carefully and answer to the best of your ability. Don't worry about the results—what matters most is the process of learning and understanding the material. Good luck!",
       },
       ...dynamicSteps,
     ]
-  }, [quizData, level, lessonId, judulKuis])
+  }, [quizData, level, lessonId, judulKuis, lessonMeta])
 
   const step = steps[currentIndex]
   const totalSteps = steps.length
-  const progressPercentage = totalSteps > 0 ? ((currentIndex + 1) / totalSteps) * 100 : 0
   const selectedOption = step ? selectedOptions[step.id] : null
+
+  const isQuestionStep = step && step.type === 'question'
+  const questionNumber = currentIndex // 1-indexed since step 0 is intro
+  const totalQuestions = totalSteps - 1
+  const questionProgressPercentage = totalQuestions > 0 ? (questionNumber / totalQuestions) * 100 : 0
 
   const isFirstStep = currentIndex === 0
   // Next module is derived from the real DB lesson order for this level, so it can
@@ -435,31 +442,36 @@ export default function LessonPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-        <div className="mb-6">
-          <div className="mb-2 flex items-center justify-between gap-4">
-            <h1 className="text-[20px] sm:text-[24px] font-bold tracking-tight text-slate-900">
-              {judulKuis || `${level} - Lesson ${lessonId}`}
-            </h1>
-            <p className="text-sm text-slate-500 whitespace-nowrap">
-              Step {currentIndex + 1} of {totalSteps}
+        {isQuestionStep && (
+          <div className="mb-6">
+            <div className="mb-2 flex items-center justify-between gap-4">
+              <h1 className="text-[20px] sm:text-[24px] font-bold tracking-tight text-slate-900">
+                {judulKuis || `${level} - Lesson ${lessonId}`}
+              </h1>
+              <p className="text-sm text-slate-500 whitespace-nowrap">
+                Step {questionNumber} of {totalQuestions}
+              </p>
+            </div>
+            <div className="h-1.5 w-full rounded-full bg-slate-200">
+              <div
+                className="h-1.5 rounded-full bg-indigo-600 transition-all duration-300"
+                style={{ width: `${questionProgressPercentage}%` }}
+              />
+            </div>
+            <p className="mt-2 text-xs font-medium text-slate-500">
+              Passing score: <span className="font-semibold text-slate-700">{passThreshold}%</span> — a lower score
+              won&apos;t complete this module.
             </p>
           </div>
-          <div className="h-1.5 w-full rounded-full bg-slate-200">
-            <div
-              className="h-1.5 rounded-full bg-indigo-600 transition-all duration-300"
-              style={{ width: `${progressPercentage}%` }}
-            />
-          </div>
-          <p className="mt-2 text-xs font-medium text-slate-500">
-            Passing score: <span className="font-semibold text-slate-700">{passThreshold}%</span> — a lower score
-            won&apos;t complete this module.
-          </p>
-        </div>
+        )}
 
         {step.type === 'info' ? (
           <div className="py-4 space-y-4">
             <h2 className="text-xl font-bold text-slate-900">{step.title}</h2>
-            <p className="text-[16px] leading-relaxed text-slate-700">{step.content}</p>
+            <div 
+              className="text-[16px] leading-relaxed text-slate-700 space-y-3 prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: step.content }}
+            />
             <Link
               to={`/learning/${level}/lesson/${lessonId}/writing`}
               className="inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-800"
