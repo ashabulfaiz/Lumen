@@ -1,0 +1,17 @@
+[
+  {
+    "judul_lesson": "Advanced Grammar",
+    "konten_teks": "This lesson covers Advanced Grammar. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for advanced learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+    "kuis_topik_id": "Advanced Grammar"
+  },
+  {
+    "judul_lesson": "Academic Vocabulary",
+    "konten_teks": "This lesson covers Academic Vocabulary. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for advanced learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+    "kuis_topik_id": "Academic Vocabulary"
+  },
+  {
+    "judul_lesson": "Academic Writing",
+    "konten_teks": "This lesson covers Academic Writing. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for advanced learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+    "kuis_topik_id": "Academic Writing"
+  }
+]

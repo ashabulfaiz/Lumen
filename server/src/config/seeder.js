@@ -4,41 +4,90 @@ const db = require('./database');
 
 async function seedCurriculum() {
     try {
-        console.log("Starting the curriculum data seeding process...");
+        console.log("⏳ Starting the curriculum data seeding process...");
 
-        const jsonPath = path.join(__dirname, '../data/dummy_curriculum.json');
-        const rawData = fs.readFileSync(jsonPath, 'utf8');
-        const curriculumData = JSON.parse(rawData);
         const languageId = 1; 
+        console.log("Menambahkan bahasa default...");
+        await db.query(`INSERT IGNORE INTO languages (id, nama_bahasa, kode_iso) VALUES (1, 'English', 'EN')`);
 
-        for (const level of curriculumData) {
+        const levelsConfig = [
+            {
+                nama_level: 'Beginner',
+                course_judul: 'Beginner Essentials',
+                course_desc: 'Foundational English concepts for beginners.',
+                lessonFile: 'beginner_lessons.json',
+                quizFile: 'beginner_quiz.json'
+            },
+            {
+                nama_level: 'Intermediate',
+                course_judul: 'Intermediate Skills',
+                course_desc: 'Building upon the basics with complex structures.',
+                lessonFile: 'intermediate_lessons.json',
+                quizFile: 'intermediate_quiz.json'
+            },
+            {
+                nama_level: 'Advanced',
+                course_judul: 'Advanced Mastery',
+                course_desc: 'Mastering advanced grammar and professional English.',
+                lessonFile: 'advanced_lessons.json',
+                quizFile: 'advanced_quiz.json'
+            }
+        ];
+
+        for (const config of levelsConfig) {
+            const lessonPath = path.join(__dirname, `../data/curriculum/${config.lessonFile}`);
+            const quizPath = path.join(__dirname, `../data/quizzes/${config.quizFile}`);
+            
+            const lessonsData = JSON.parse(fs.readFileSync(lessonPath, 'utf8'));
+            const quizzesData = JSON.parse(fs.readFileSync(quizPath, 'utf8'));
+
             const [levelResult] = await db.query(
                 'INSERT INTO levels (language_id, nama_level) VALUES (?, ?)',
-                [languageId, level.nama_level]
+                [languageId, config.nama_level]
             );
             const levelId = levelResult.insertId;
-            console.log(`Level Entered Successfully: ${level.nama_level} (ID: ${levelId})`);
+            console.log(`\n✅ Level Entered Successfully: ${config.nama_level} (ID: ${levelId})`);
 
-            for (const course of level.courses) {
-                const [courseResult] = await db.query(
-                    'INSERT INTO courses (level_id, judul_course, deskripsi, urutan) VALUES (?, ?, ?, ?)',
-                    [levelId, course.judul_course, course.deskripsi, course.urutan]
+            const [courseResult] = await db.query(
+                'INSERT INTO courses (level_id, judul_course, deskripsi, urutan) VALUES (?, ?, ?, ?)',
+                [levelId, config.course_judul, config.course_desc, 1]
+            );
+            const courseId = courseResult.insertId;
+            console.log(`  🔹 Course Entered: ${config.course_judul} (ID: ${courseId})`);
+
+            for (let i = 0; i < lessonsData.length; i++) {
+                const lesson = lessonsData[i];
+                
+                const [lessonResult] = await db.query(
+                    'INSERT INTO lessons (course_id, judul_lesson, konten_teks, urutan) VALUES (?, ?, ?, ?)',
+                    [courseId, lesson.judul_lesson, lesson.konten_teks, i + 1]
                 );
-                const courseId = courseResult.insertId;
-                console.log(`   Course Entered Successfully: ${course.judul_course} (ID: ${courseId})`);
+                const lessonId = lessonResult.insertId;
+                console.log(`    🔸 Lesson Entered: ${lesson.judul_lesson}`);
 
-                for (const lesson of course.lessons) {
-                    await db.query(
-                        'INSERT INTO lessons (course_id, judul_lesson, konten_teks, urutan) VALUES (?, ?, ?, ?)',
-                        [courseId, lesson.judul_lesson, lesson.konten_teks, lesson.urutan]
+                const matchingQuiz = quizzesData.find(q => q.kategori_topik === lesson.kuis_topik_id);
+                
+                if (matchingQuiz) {
+                    const [quizResult] = await db.query(
+                        'INSERT INTO quizzes (lesson_id, judul_quiz) VALUES (?, ?)',
+                        [lessonId, matchingQuiz.judul_asli]
                     );
-                    console.log(`      Lesson Entered Successfully: ${lesson.judul_lesson}`);
+                    const quizId = quizResult.insertId;
+                    console.log(`      📝 Quiz Attached: ${matchingQuiz.judul_asli}`);
+
+                    for (let j = 0; j < matchingQuiz.daftar_soal.length; j++) {
+                        const soal = matchingQuiz.daftar_soal[j];
+                        
+                        await db.query(
+                            'INSERT INTO questions (quiz_id, pertanyaan, jawaban_benar, tipe_soal, urutan) VALUES (?, ?, ?, ?, ?)',
+                            [quizId, soal.pertanyaan, soal.jawaban_benar, 'multiple_choice', j + 1]
+                        );
+                    }
                 }
             }
         }
 
-        await db.query(`INSERT IGNORE INTO languages (id, nama_bahasa, kode_iso) VALUES (1, 'English', 'EN')`);
-
+        console.log("\nMemasukkan data soal Placement Test...");
         await db.query(`
             INSERT IGNORE INTO placement_questions (id, language_id, pertanyaan, pilihan_a, pilihan_b, pilihan_c, pilihan_d, jawaban_benar) VALUES
             -- BEGINNER LEVEL (Soal 1 - 33)
@@ -148,7 +197,7 @@ async function seedCurriculum() {
             (100, 1, 'The new law is tantamount ___ censorship.', 'with', 'to', 'as', 'for', 'to');
         `);
 
-        console.log("Seeding Complete! Your local database has been populated with dummy data.");
+        console.log("\n Seeding Complete! Database lokal kamu sudah menggunakan struktur JSON yang modular.");
         process.exit(0);
 
     } catch (error) {

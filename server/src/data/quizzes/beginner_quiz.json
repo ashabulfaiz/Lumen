@@ -1,0 +1,226 @@
+[
+  {
+    "judul_asli": "Greetings and Introductions Quiz",
+    "kategori_topik": "Greetings and Introductions",
+    "jumlah_soal": 10,
+    "sumber_url": "https://learnenglish.britishcouncil.org/",
+    "daftar_soal": [
+      {
+        "pertanyaan": "Which of the following is a greeting?",
+        "pilihan": [
+          "Hello",
+          "Table",
+          "Book",
+          "Chair"
+        ],
+        "jawaban_benar": "Hello"
+      },
+      {
+        "pertanyaan": "What do you say in the morning?",
+        "pilihan": [
+          "Good Morning",
+          "Good Night",
+          "Goodbye",
+          "See you"
+        ],
+        "jawaban_benar": "Good Morning"
+      },
+      {
+        "pertanyaan": "Which phrase is used when meeting someone?",
+        "pilihan": [
+          "Nice to meet you",
+          "Close the door",
+          "Sit down",
+          "Be quiet"
+        ],
+        "jawaban_benar": "Nice to meet you"
+      },
+      {
+        "pertanyaan": "What does 'Hello' mean?",
+        "pilihan": [
+          "Halo",
+          "Selamat tinggal",
+          "Terima kasih",
+          "Maaf"
+        ],
+        "jawaban_benar": "Halo"
+      },
+      {
+        "pertanyaan": "Which greeting can be used anytime?",
+        "pilihan": [
+          "Hi",
+          "Good Night",
+          "Good Afternoon only",
+          "None"
+        ],
+        "jawaban_benar": "Hi"
+      },
+      {
+        "pertanyaan": "What does 'Goodbye' mean?",
+        "pilihan": [
+          "Selamat tinggal",
+          "Selamat pagi",
+          "Apa kabar",
+          "Halo"
+        ],
+        "jawaban_benar": "Selamat tinggal"
+      },
+      {
+        "pertanyaan": "Which is a self-introduction?",
+        "pilihan": [
+          "My name is John.",
+          "Open the book.",
+          "Close the window.",
+          "Sit here."
+        ],
+        "jawaban_benar": "My name is John."
+      },
+      {
+        "pertanyaan": "What does 'Nice to meet you' mean?",
+        "pilihan": [
+          "Senang bertemu denganmu",
+          "Sampai jumpa",
+          "Selamat malam",
+          "Apa kabar"
+        ],
+        "jawaban_benar": "Senang bertemu denganmu"
+      },
+      {
+        "pertanyaan": "Which word means nama?",
+        "pilihan": [
+          "Name",
+          "Friend",
+          "City",
+          "Age"
+        ],
+        "jawaban_benar": "Name"
+      },
+      {
+        "pertanyaan": "What is a polite greeting?",
+        "pilihan": [
+          "Hello",
+          "Move!",
+          "Go away!",
+          "Stop!"
+        ],
+        "jawaban_benar": "Hello"
+      }
+    ]
+  },
+  {
+    "judul_asli": "Personal Information Quiz",
+    "kategori_topik": "Personal Information",
+    "jumlah_soal": 10,
+    "sumber_url": "https://learnenglish.britishcouncil.org/",
+    "daftar_soal": [
+      {
+        "pertanyaan": "How do you politely ask for someone's phone number?",
+        "pilihan": ["Give me your number.", "What is your phone number?", "You have phone?", "Where is phone?"],
+        "jawaban_benar": "What is your phone number?"
+      },
+      {
+        "pertanyaan": "Read the answer: 'I am 25 years old.' What is the correct question?",
+        "pilihan": ["How many years you?", "How old are you?", "What age you have?", "When are you old?"],
+        "jawaban_benar": "How old are you?"
+      },
+      {
+        "pertanyaan": "Which of the following is an email address?",
+        "pilihan": ["123 Main Street", "john.doe@email.com", "555-1234", "London, UK"],
+        "jawaban_benar": "john.doe@email.com"
+      },
+      {
+        "pertanyaan": "Fill in the blank: 'Where ___ you from?'",
+        "pilihan": ["is", "am", "are", "do"],
+        "jawaban_benar": "are"
+      },
+      {
+        "pertanyaan": "If someone asks 'What do you do?', they want to know about your...",
+        "pilihan": ["Hobby", "Job", "Name", "Age"],
+        "jawaban_benar": "Job"
+      },
+      {
+        "pertanyaan": "Fill in the blank: 'I am ___ Italy.'",
+        "pilihan": ["at", "on", "from", "in"],
+        "jawaban_benar": "from"
+      },
+      {
+        "pertanyaan": "What is the correct response to 'Are you a student?'",
+        "pilihan": ["Yes, I am.", "Yes, I do.", "No, I not.", "Yes, I student."],
+        "jawaban_benar": "Yes, I am."
+      },
+      {
+        "pertanyaan": "Which word is a surname (last name)?",
+        "pilihan": ["David", "Sarah", "Smith", "Michael"],
+        "jawaban_benar": "Smith"
+      },
+      {
+        "pertanyaan": "Complete the sentence: 'She ___ a doctor.'",
+        "pilihan": ["am", "are", "is", "be"],
+        "jawaban_benar": "is"
+      },
+      {
+        "pertanyaan": "How do you spell 'Smith'?",
+        "pilihan": ["S-M-I-T-H", "S-M-I-T", "S-M-E-E-T-H", "S-M-I-T-T"],
+        "jawaban_benar": "S-M-I-T-H"
+      }
+    ]
+  },
+  {
+    "judul_asli": "Numbers and Time Quiz",
+    "kategori_topik": "Numbers and Time",
+    "jumlah_soal": 10,
+    "sumber_url": "https://learnenglish.britishcouncil.org/",
+    "daftar_soal": [
+      {
+        "pertanyaan": "What number comes after twelve?",
+        "pilihan": ["Eleven", "Thirteen", "Twenty", "Fifteen"],
+        "jawaban_benar": "Thirteen"
+      },
+      {
+        "pertanyaan": "How do you write the number 50 in words?",
+        "pilihan": ["Fifteen", "Five zero", "Fifty", "Fivety"],
+        "jawaban_benar": "Fifty"
+      },
+      {
+        "pertanyaan": "If it is 14:00, what time is it?",
+        "pilihan": ["2:00 AM", "2:00 PM", "4:00 PM", "12:00 PM"],
+        "jawaban_benar": "2:00 PM"
+      },
+      {
+        "pertanyaan": "What is the English word for the day after Monday?",
+        "pilihan": ["Sunday", "Wednesday", "Thursday", "Tuesday"],
+        "jawaban_benar": "Tuesday"
+      },
+      {
+        "pertanyaan": "Fill in the blank: 'The meeting is ___ 10 o'clock.'",
+        "pilihan": ["in", "on", "at", "by"],
+        "jawaban_benar": "at"
+      },
+      {
+        "pertanyaan": "Which month comes before December?",
+        "pilihan": ["January", "October", "November", "September"],
+        "jawaban_benar": "November"
+      },
+      {
+        "pertanyaan": "How do you say 'It is 8:30'?",
+        "pilihan": ["It is half past eight.", "It is quarter to eight.", "It is eight thirty past.", "It is half to eight."],
+        "jawaban_benar": "It is half past eight."
+      },
+      {
+        "pertanyaan": "What is 100 in words?",
+        "pilihan": ["One thousand", "One hundred", "Ten ten", "A hundreds"],
+        "jawaban_benar": "One hundred"
+      },
+      {
+        "pertanyaan": "Complete the phrase: 'There are seven days in a ___.'",
+        "pilihan": ["month", "year", "week", "hour"],
+        "jawaban_benar": "week"
+      },
+      {
+        "pertanyaan": "How do you ask for the time?",
+        "pilihan": ["What time is it?", "How much time?", "Where is the time?", "When is the clock?"],
+        "jawaban_benar": "What time is it?"
+      }
+    ]
+  }
+]
