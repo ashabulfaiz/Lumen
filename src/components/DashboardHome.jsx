@@ -157,10 +157,10 @@ export default function DashboardHome() {
               }
             }
 
-            if (isAvailable && lessonPercent < 100) {
+            if (isAvailable && lessonPercent < 100 && track.id <= highestUnlocked) {
               availableLessonsPool.push({
                 ...lesson,
-                lockedForUser: track.id > highestUnlocked
+                lockedForUser: false
               })
             }
           })
@@ -170,9 +170,6 @@ export default function DashboardHome() {
           tempProgressStats[track.id] = trackLessons.length > 0
             ? Math.round(totalLevelPercent / trackLessons.length)
             : 0
-
-          // Only recommend lessons from levels the learner has unlocked via placement.
-          if (track.id > highestUnlocked) continue
         }
 
         setProgressStats(tempProgressStats)

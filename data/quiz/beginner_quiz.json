@@ -1,0 +1,257 @@
+[
+  {
+    "question": "What is the meaning of 'apple'?",
+    "options": ["apel", "meja", "kursi", "lampu"],
+    "answer": "apel"
+  },
+  {
+    "question": "Choose the correct meaning of 'teacher'.",
+    "options": ["guru", "dokter", "petani", "polisi"],
+    "answer": "guru"
+  },
+  {
+    "question": "What does 'happy' mean?",
+    "options": ["marah", "sedih", "senang", "takut"],
+    "answer": "senang"
+  },
+  {
+    "question": "What is the meaning of 'school'?",
+    "options": ["rumah", "kantor", "sekolah", "pasar"],
+    "answer": "sekolah"
+  },
+  {
+    "question": "Choose the correct translation for 'book'.",
+    "options": ["pensil", "tas", "buku", "sepatu"],
+    "answer": "buku"
+  },
+  {
+    "question": "What does 'water' mean?",
+    "options": ["air", "api", "tanah", "angin"],
+    "answer": "air"
+  },
+  {
+    "question": "What is the meaning of 'friend'?",
+    "options": ["musuh", "teman", "tetangga", "keluarga"],
+    "answer": "teman"
+  },
+  {
+    "question": "Choose the correct meaning of 'family'.",
+    "options": ["keluarga", "teman", "guru", "murid"],
+    "answer": "keluarga"
+  },
+  {
+    "question": "What does 'dog' mean?",
+    "options": ["kucing", "anjing", "ikan", "burung"],
+    "answer": "anjing"
+  },
+  {
+    "question": "What is the meaning of 'cat'?",
+    "options": ["ayam", "sapi", "kucing", "kuda"],
+    "answer": "kucing"
+  },
+  {
+    "question": "Choose the correct translation for 'chair'.",
+    "options": ["meja", "kursi", "lemari", "pintu"],
+    "answer": "kursi"
+  },
+  {
+    "question": "What is the meaning of 'table'?",
+    "options": ["kursi", "tas", "meja", "sepatu"],
+    "answer": "meja"
+  },
+  {
+    "question": "What does 'drink' mean?",
+    "options": ["makan", "tidur", "minum", "berlari"],
+    "answer": "minum"
+  },
+  {
+    "question": "Choose the correct meaning of 'food'.",
+    "options": ["minuman", "buah", "makanan", "obat"],
+    "answer": "makanan"
+  },
+  {
+    "question": "What is the meaning of 'music'?",
+    "options": ["gambar", "musik", "film", "game"],
+    "answer": "musik"
+  },
+  {
+    "question": "What does 'phone' mean?",
+    "options": ["radio", "televisi", "telepon", "kamera"],
+    "answer": "telepon"
+  },
+  {
+    "question": "What is the meaning of 'house'?",
+    "options": ["jalan", "taman", "rumah", "gedung"],
+    "answer": "rumah"
+  },
+  {
+    "question": "Choose the correct translation for 'read'.",
+    "options": ["menulis", "membaca", "bermain", "berjalan"],
+    "answer": "membaca"
+  },
+  {
+    "question": "What does 'write' mean?",
+    "options": ["membaca", "menulis", "menggambar", "berlari"],
+    "answer": "menulis"
+  },
+  {
+    "question": "What is the meaning of 'walk'?",
+    "options": ["melompat", "berlari", "berjalan", "duduk"],
+    "answer": "berjalan"
+  },
+  {
+    "question": "Choose the correct meaning of 'sleep'.",
+    "options": ["belajar", "makan", "tidur", "mandi"],
+    "answer": "tidur"
+  },
+  {
+    "question": "What does 'study' mean?",
+    "options": ["bermain", "berenang", "belajar", "berjalan"],
+    "answer": "belajar"
+  },
+  {
+    "question": "What is the meaning of 'work'?",
+    "options": ["bermain", "belanja", "bekerja", "berlibur"],
+    "answer": "bekerja"
+  },
+  {
+    "question": "Choose the correct translation for 'play'.",
+    "options": ["membaca", "makan", "bermain", "belajar"],
+    "answer": "bermain"
+  },
+  {
+    "question": "What does 'morning' mean?",
+    "options": ["malam", "siang", "pagi", "sore"],
+    "answer": "pagi"
+  },
+  {
+    "question": "What is the meaning of 'night'?",
+    "options": ["pagi", "siang", "malam", "sore"],
+    "answer": "malam"
+  },
+  {
+    "question": "Choose the correct meaning of 'sun'.",
+    "options": ["bulan", "bintang", "matahari", "awan"],
+    "answer": "matahari"
+  },
+  {
+    "question": "What does 'moon' mean?",
+    "options": ["matahari", "awan", "bulan", "langit"],
+    "answer": "bulan"
+  },
+  {
+    "question": "What is the meaning of 'car'?",
+    "options": ["motor", "mobil", "sepeda", "bus"],
+    "answer": "mobil"
+  },
+  {
+    "question": "Choose the correct translation for 'bike'.",
+    "options": ["mobil", "kereta", "sepeda", "pesawat"],
+    "answer": "sepeda"
+  },
+  {
+    "question": "What does 'shirt' mean?",
+    "options": ["celana", "sepatu", "baju", "topi"],
+    "answer": "baju"
+  },
+  {
+    "question": "What is the meaning of 'shoes'?",
+    "options": ["tas", "sepatu", "kaos kaki", "jaket"],
+    "answer": "sepatu"
+  },
+  {
+    "question": "Choose the correct meaning of 'market'.",
+    "options": ["pasar", "sekolah", "kantor", "rumah"],
+    "answer": "pasar"
+  },
+  {
+    "question": "What does 'hospital' mean?",
+    "options": ["bank", "rumah sakit", "hotel", "kantor"],
+    "answer": "rumah sakit"
+  },
+  {
+    "question": "What is the meaning of 'doctor'?",
+    "options": ["guru", "dokter", "polisi", "petani"],
+    "answer": "dokter"
+  },
+  {
+    "question": "Choose the correct translation for 'student'.",
+    "options": ["murid", "guru", "dokter", "polisi"],
+    "answer": "murid"
+  },
+  {
+    "question": "What does 'computer' mean?",
+    "options": ["radio", "kamera", "komputer", "televisi"],
+    "answer": "komputer"
+  },
+  {
+    "question": "What is the meaning of 'window'?",
+    "options": ["pintu", "atap", "jendela", "lantai"],
+    "answer": "jendela"
+  },
+  {
+    "question": "Choose the correct meaning of 'door'.",
+    "options": ["pintu", "lemari", "kursi", "meja"],
+    "answer": "pintu"
+  },
+  {
+    "question": "What does 'bag' mean?",
+    "options": ["tas", "dompet", "sepatu", "jaket"],
+    "answer": "tas"
+  },
+  {
+    "question": "What is the meaning of 'pen'?",
+    "options": ["pensil", "penghapus", "pulpen", "buku"],
+    "answer": "pulpen"
+  },
+  {
+    "question": "Choose the correct translation for 'pencil'.",
+    "options": ["buku", "pensil", "tas", "meja"],
+    "answer": "pensil"
+  },
+  {
+    "question": "What does 'rain' mean?",
+    "options": ["awan", "angin", "hujan", "petir"],
+    "answer": "hujan"
+  },
+  {
+    "question": "What is the meaning of 'tree'?",
+    "options": ["rumput", "pohon", "bunga", "daun"],
+    "answer": "pohon"
+  },
+  {
+    "question": "Choose the correct meaning of 'flower'.",
+    "options": ["akar", "buah", "bunga", "daun"],
+    "answer": "bunga"
+  },
+  {
+    "question": "What does 'bird' mean?",
+    "options": ["ikan", "burung", "ayam", "kucing"],
+    "answer": "burung"
+  },
+  {
+    "question": "What is the meaning of 'fish'?",
+    "options": ["ikan", "udang", "kepiting", "ayam"],
+    "answer": "ikan"
+  },
+  {
+    "question": "Choose the correct translation for 'love'.",
+    "options": ["benci", "cinta", "takut", "marah"],
+    "answer": "cinta"
+  },
+  {
+    "question": "What does 'smile' mean?",
+    "options": ["tertawa", "menangis", "senyum", "berteriak"],
+    "answer": "senyum"
+  },
+  {
+    "question": "What is the meaning of 'clean'?",
+    "options": ["kotor", "bersih", "rusak", "gelap"],
+    "answer": "bersih"
+  },
+  {
+    "question": "Choose the correct meaning of 'beautiful'.",
+    "options": ["jelek", "indah", "besar", "kecil"],
+    "answer": "indah"
+  }
+]
