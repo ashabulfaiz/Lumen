@@ -256,7 +256,7 @@ export async function syncLearningProgressFromDB() {
 
     saveLearningProgress(
       localProgress.chosenLevel || dbHighestUnlocked,
-      dbHighestUnlocked, 
+      Math.max(localProgress.highestUnlocked, dbHighestUnlocked),
       isPlacementCompleted,
       localProgress.completedLessons
     );
