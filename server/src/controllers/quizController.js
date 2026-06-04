@@ -2,46 +2,48 @@ const path = require('path');
 const fs = require('fs');
 const QuizModel = require('../models/QuizModel');
 const ProgressModel = require('../models/ProgressModel');
+const LearningModel = require('../models/LearningModel');
 
 const generateQuiz = async (req, res) => {
     try {
-        const { level_name, lesson_id, kategori_topik } = req.body; 
+        const { level_name, lesson_id } = req.body;
 
-        if (!level_name || !lesson_id || !kategori_topik) {
-            return res.status(400).json({ message: "level_name, lesson_id, and topic_category are required fields!" });
+        if (!level_name || !lesson_id) {
+            return res.status(400).json({ message: "level_name and lesson_id are required fields!" });
         }
 
-        const levelLower = level_name.toLowerCase();
-        const quizFileName = `${levelLower}_quiz.json`;
-        const jsonPath = path.join(__dirname, `../data/quizzes/${quizFileName}`);
-        
+        const targetLesson = await LearningModel.getLessonById(lesson_id);
+
+        if (!targetLesson) {
+            return res.status(404).json({ message: "Lesson tidak ditemukan di database." });
+        }
+
+        const topikId = targetLesson.kuis_topik_id || targetLesson.judul_lesson;
+        const jsonPath = path.join(__dirname, `../data/dummy_quizzes.json`);
+
         if (!fs.existsSync(jsonPath)) {
-            return res.status(404).json({ message: `Quiz dataset for level ${level_name} is not found.` });
+            return res.status(404).json({ message: `File dummy_quizzes.json tidak ditemukan.` });
         }
 
         const rawData = fs.readFileSync(jsonPath, 'utf8');
-        const allTopics = JSON.parse(rawData);
-        const targetTopic = allTopics.find(t => t.kategori_topik === kategori_topik);
+        const allQuizzesData = JSON.parse(rawData);
+        const activeQuizTemplate = allQuizzesData[topikId];
 
-        if (!targetTopic) {
-            return res.status(404).json({ message: "Topic not found in the dataset." });
+        if (!activeQuizTemplate) {
+            return res.status(404).json({ message: `Topic not found in dummy_quizzes.json: ${topikId}` });
         }
 
-        const quizId = await QuizModel.getOrCreateQuiz(lesson_id, targetTopic.judul_asli);
+        const quizId = await QuizModel.getOrCreateQuiz(lesson_id, activeQuizTemplate.judul_kuis);
+        const shuffledQuestions = [...activeQuizTemplate.daftar_soal].sort(() => 0.5 - Math.random());
+        const limitedQuestions = shuffledQuestions.slice(0, 10);
+        const soalFormat = [];
 
-        const safeQuestionsForFrontend = [];
-
-        for (let q of targetTopic.daftar_soal) {
-            if (!Array.isArray(q.pilihan) || q.pilihan.length === 0) {
-                continue;
-            }
-
-            const questionId = await QuizModel.saveQuestionCache(quizId, q.pertanyaan, q.jawaban_benar);
-
-            safeQuestionsForFrontend.push({
+        for (const rawSoal of limitedQuestions) {
+            const questionId = await QuizModel.saveQuestionCache(quizId, rawSoal.pertanyaan, rawSoal.jawaban_benar);
+            soalFormat.push({
                 question_id: questionId,
-                pertanyaan: q.pertanyaan,
-                pilihan: q.pilihan
+                pertanyaan: rawSoal.pertanyaan,
+                pilihan: rawSoal.pilihan
             });
         }
 
@@ -50,15 +52,14 @@ const generateQuiz = async (req, res) => {
             message: "Successfully prepared the quiz.",
             data: {
                 quiz_id: quizId,
-                judul_kuis: targetTopic.judul_asli,
-                jumlah_soal: targetTopic.jumlah_soal,
+                judul_kuis: activeQuizTemplate.judul_kuis,
                 pass_threshold: ProgressModel.QUIZ_PASS_PERCENT,
-                soal: safeQuestionsForFrontend
+                soal: soalFormat
             }
         });
 
     } catch (error) {
-        console.error("Error fetching quiz from Data Science:", error);
+        console.error("Error generating quiz:", error);
         res.status(500).json({ message: "An error occurred while generating the quiz.", error: error.message });
     }
 };
@@ -66,15 +67,17 @@ const generateQuiz = async (req, res) => {
 const submitQuiz = async (req, res) => {
     try {
         const userId = req.user.id;
-        const { quiz_id, user_answers } = req.body; 
+        const { quiz_id, user_answers } = req.body;
 
         let correctCount = 0;
         const totalQuestions = user_answers.length;
 
+        await QuizModel.clearUserAnswersByQuiz(userId, quiz_id);
+
         for (let answer of user_answers) {
             const dbQuestion = await QuizModel.getCorrectAnswer(answer.question_id);
             const isCorrect = dbQuestion && dbQuestion.jawaban_benar === answer.jawaban;
-            
+
             if (isCorrect) {
                 correctCount++;
             }

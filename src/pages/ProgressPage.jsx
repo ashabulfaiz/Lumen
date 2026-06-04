@@ -44,7 +44,7 @@ export default function ProgressPage() {
       setLoading(true)
       try {
         const fetchedTracks = []
-        let fetchedCompletedIds = []
+        let fetchedModuleStatus = {} // map of slug -> array of statuses
 
         await Promise.all(LEVEL_TRACKS.map(async (track) => {
             const coursesRes = await api.get(`/learning/courses/${track.slug}`)
@@ -58,9 +58,9 @@ export default function ProgressPage() {
             fetchedTracks.push({ ...track, lessons: trackLessons })
 
             try {
-                const progRes = await api.get(`/progress/completed/${track.slug}`)
+                const progRes = await api.get(`/progress/module-status/${track.slug}`)
                 if (progRes.data.data) {
-                    fetchedCompletedIds.push(...progRes.data.data)
+                    fetchedModuleStatus[track.slug] = progRes.data.data
                 }
             } catch (e) {
                 console.error(`Gagal memuat progres level ${track.num}`, e)
@@ -70,7 +70,7 @@ export default function ProgressPage() {
         fetchedTracks.sort((a, b) => a.num - b.num)
 
         setTracks(fetchedTracks)
-        setCompletedLessonIds(fetchedCompletedIds)
+        setCompletedLessonIds(fetchedModuleStatus) // Now stores the detailed status map
       } catch (error) {
         console.error("Gagal memuat data dari database:", error)
       } finally {
@@ -84,13 +84,29 @@ export default function ProgressPage() {
   const processedData = useMemo(() => {
     if (tracks.length === 0) return { highestUnlockedLevel: 1, processedTracks: [] }
 
-    const allLessonsFlat = tracks.flatMap(t => t.lessons)
+    const allLessonsFlat = tracks.flatMap(t => {
+      const slug = t.slug;
+      return t.lessons.map(l => ({ ...l, slug }));
+    });
+    
     let highestUnlockedLevel = 1
 
     const processedTracks = tracks.map((track) => {
+        const statuses = completedLessonIds[track.slug] || [];
+        
         const lessonsWithStatus = track.lessons.map((lesson) => {
-            const globalIndex = allLessonsFlat.findIndex(l => l.id === lesson.id)
-            const isCompleted = completedLessonIds.includes(lesson.id)
+            const globalIndex = allLessonsFlat.findIndex(l => l.id === lesson.id && l.slug === track.slug)
+            
+            // Find status for this lesson
+            const lessonStatusInfo = statuses.find(s => s.lesson_id === lesson.id) || {};
+            const isCompleted = Boolean(lessonStatusInfo.module_completed);
+            const quizCompleted = Boolean(lessonStatusInfo.quiz_completed);
+            const essayCompleted = Boolean(lessonStatusInfo.essay_completed);
+            
+            let percent = 0;
+            if (isCompleted) percent = 100;
+            else if (quizCompleted && essayCompleted) percent = 100;
+            else if (quizCompleted || essayCompleted) percent = 50;
             
             let isAvailable = false
             if (globalIndex === 0) {
@@ -99,8 +115,12 @@ export default function ProgressPage() {
                 isAvailable = true 
             } else {
                 const prevLesson = allLessonsFlat[globalIndex - 1]
-                if (prevLesson && completedLessonIds.includes(prevLesson.id)) {
-                    isAvailable = true
+                if (prevLesson) {
+                    const prevStatuses = completedLessonIds[prevLesson.slug] || [];
+                    const prevLessonStatus = prevStatuses.find(s => s.lesson_id === prevLesson.id);
+                    if (prevLessonStatus && prevLessonStatus.module_completed) {
+                        isAvailable = true;
+                    }
                 }
             }
 
@@ -110,7 +130,8 @@ export default function ProgressPage() {
 
             return {
                 ...lesson,
-                status: isCompleted ? 'completed' : (isAvailable ? 'available' : 'locked')
+                status: isCompleted ? 'completed' : (isAvailable ? 'available' : 'locked'),
+                percent: percent
             }
         })
 
@@ -210,7 +231,7 @@ export default function ProgressPage() {
 
                 <div className="flex flex-col" aria-label={`${track.title} progress list`}>
                   {visibleLessons.map((lesson) => {
-                    const percent = percentFromStatus(lesson.status)
+                    const percent = lesson.percent ?? percentFromStatus(lesson.status)
                     const isLocked = lesson.status === 'locked'
                     const isCompleted = lesson.status === 'completed'
                     

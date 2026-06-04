@@ -45,17 +45,20 @@ const getLessonsByCourse = async (req, res) => {
 
 const getLessonById = async (req, res) => {
     try {
-        const lessonId = parseInt(req.params.lesson_id, 10);
+        const db = require('../config/database');
+        const lessonId = req.params.lessonId; 
+        
         if (!lessonId) {
-            return res.status(400).json({ message: 'lesson_id is required' });
+            return res.status(400).json({ message: "lesson_id is required" });
         }
-        const lesson = await LearningModel.getLessonById(lessonId);
-        if (!lesson) {
-            return res.status(404).json({ message: 'Lesson not found' });
-        }
-        res.status(200).json({ status: 'success', data: lesson });
+
+        const [rows] = await db.query('SELECT * FROM lessons WHERE id = ?', [lessonId]);
+        
+        if (rows.length === 0) return res.status(404).json({ message: "Lesson not found" });
+        
+        res.status(200).json({ status: "success", data: rows[0] });
     } catch (error) {
-        res.status(500).json({ message: 'Gagal mengambil data lesson', error: error.message });
+        res.status(500).json({ message: "Error fetching lesson details", error: error.message });
     }
 };
 

@@ -57,7 +57,7 @@ const login = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user.id, email: user.email, role: user.role, level: user.current_level },
+            { id: user.id, email: user.email, role: user.role, level: user.current_level, is_onboarding_complete: user.is_onboarding_complete },
             process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
@@ -71,7 +71,8 @@ const login = async (req, res) => {
                 nama_lengkap: user.nama_lengkap,
                 email: user.email,
                 current_level: user.current_level,
-                role: user.role
+                role: user.role,
+                is_onboarding_complete: user.is_onboarding_complete
             }
         });
 
@@ -88,7 +89,7 @@ const getMe = async (req, res) => {
         }
         res.status(200).json({
             status: "success",
-            data: { id: user.id, nama_lengkap: user.nama_lengkap, email: user.email, role: user.role }
+            data: { id: user.id, nama_lengkap: user.nama_lengkap, email: user.email, role: user.role, is_onboarding_complete: user.is_onboarding_complete }
         });
     } catch (error) {
         res.status(500).json({ message: "An error occurred on the server.", error: error.message });

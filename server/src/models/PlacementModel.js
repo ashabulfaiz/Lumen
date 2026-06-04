@@ -44,6 +44,24 @@ class PlacementModel {
         );
         return result;
     }
+
+    static async getPlacementScore(userId) {
+        const [rows] = await db.query(
+            'SELECT skor FROM quiz_scores WHERE user_id = ? AND quiz_type = "placement" ORDER BY id DESC LIMIT 1',
+            [userId]
+        );
+        return rows.length > 0 ? rows[0].skor : null;
+    }
+
+    static async getUserPlacementAnswers(userId) {
+        const [rows] = await db.query(`
+            SELECT pq.id, pq.pertanyaan as prompt, pq.pilihan_a, pq.pilihan_b, pq.pilihan_c, pq.pilihan_d, pq.jawaban_benar as answer, ua.jawaban_teks as user_answer
+            FROM user_answers ua
+            JOIN placement_questions pq ON ua.placement_question_id = pq.id
+            WHERE ua.user_id = ?
+        `, [userId]);
+        return rows;
+    }
 }
 
 module.exports = PlacementModel;

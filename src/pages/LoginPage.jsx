@@ -72,6 +72,34 @@ export default function LoginPage() {
 
       localStorage.clear();
       localStorage.setItem('lumen_token', response.data.token);
+
+      const userData = response.data.data;
+
+      if (userData.is_onboarding_complete) {
+          const restoredProgress = {
+              placementCompleted: true,
+              chosenLevel: userData.current_level,
+              highestUnlocked: userData.current_level === 'Advanced' ? 3 : (userData.current_level === 'Intermediate' ? 2 : 1)
+          };
+          localStorage.setItem('lumen_learning_progress', JSON.stringify(restoredProgress));
+
+          try {
+              const placementRes = await api.get('/placement/my-result', {
+                  headers: { Authorization: `Bearer ${response.data.token}` }
+              });
+              if (placementRes.data && placementRes.data.data) {
+                  localStorage.setItem('lumen_placement_result', JSON.stringify({
+                      result: placementRes.data.data.result,
+                      selectedOptions: placementRes.data.data.selectedOptions
+                  }));
+              }
+          } catch (e) {
+              console.error("Failed to restore placement result", e);
+          }
+      } else {
+          localStorage.removeItem('lumen_learning_progress');
+          localStorage.removeItem('lumen_placement_result');
+      }
       
       window.location.href = '/dashboard';
     } catch (err) {

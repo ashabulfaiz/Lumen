@@ -1,0 +1,98 @@
+[
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Saying Hello & Goodbye (Formal vs Informal)",
+    "objective": "Di materi ini, kamu akan belajar berbagai variasi cara menyapa dan mengucapkan selamat tinggal, serta memahami kapan harus menggunakan bahasa formal (resmi) dan informal (santai).",
+    "vocabulary": [
+      { "term": "Good morning / afternoon / evening", "meaning": "Selamat pagi / siang / malam (Formal)" },
+      { "term": "Hello / Hi / Hey", "meaning": "Halo (Informal)" },
+      { "term": "Goodbye / Have a nice day", "meaning": "Selamat tinggal / Semoga harimu menyenangkan (Formal)" },
+      { "term": "Bye / Catch you later", "meaning": "Dadah / Sampai ketemu lagi nanti (Informal)" }
+    ],
+    "concept": "Gunakan sapaan formal di tempat kerja, sekolah (kepada guru), atau saat berbicara dengan orang yang belum dikenal. Gunakan sapaan informal untuk teman sebaya atau keluarga. Kesalahan Umum: Jangan pernah menggunakan 'Good night' untuk menyapa seseorang di malam hari. 'Good night' hanya digunakan sebagai ucapan selamat tinggal atau selamat tidur.",
+    "example_dialogue": "[Formal]\nA: Good evening, Mr. Davis.\nB: Good evening, Anna. Have a safe trip home.\n\n[Informal]\nA: Hey, Mark! What's up?\nB: Hi, John! Not much. I have to go now. Catch you later!"
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Asking 'How are you?'",
+    "objective": "Kamu akan belajar berbagai cara menanyakan kabar dan meresponsnya, dari kondisi sangat baik hingga kurang baik.",
+    "vocabulary": [
+      { "term": "How are you? / How is it going?", "meaning": "Apa kabar? / Bagaimana kabarmu?" },
+      { "term": "I'm doing well / Great", "meaning": "Saya baik-baik saja / Luar biasa" },
+      { "term": "Not bad / So-so", "meaning": "Lumayan / Biasa saja" },
+      { "term": "And you? / How about you?", "meaning": "Dan kamu? / Bagaimana denganmu?" }
+    ],
+    "concept": "Dalam budaya Barat, 'How are you?' sering kali hanya basa-basi ramah (small talk). Orang biasanya mengharapkan jawaban singkat dan positif. Aturan kesopanan: Selalu tambahkan 'Thank you' setelah menjawab, lalu tanyakan kembali kabar lawan bicara.",
+    "example_dialogue": "A: Hi, Sarah. How is it going?\nB: Not bad, thanks! How about you?\nA: I'm doing well, just a bit tired today."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Introducing Yourself",
+    "objective": "Kamu akan belajar merangkai kalimat lengkap untuk menceritakan identitas diri, asal, umur, dan pekerjaan atau statusmu.",
+    "vocabulary": [
+      { "term": "First name / Last name", "meaning": "Nama depan / Nama belakang" },
+      { "term": "Live in... / Come from...", "meaning": "Tinggal di... / Berasal dari..." },
+      { "term": "Years old", "meaning": "Tahun (untuk menyebutkan umur)" },
+      { "term": "Pleased to meet you", "meaning": "Senang bertemu denganmu" }
+    ],
+    "concept": "Gunakan 'I am from [Negara/Kota]' untuk asal kelahiran, dan 'I live in [Kota]' untuk tempat tinggal saat ini. Aturan Umur: Dalam bahasa Inggris, kita menggunakan kata kerja To Be (am/is/are) untuk umur, BUKAN have. (Benar: I am 20 years old. Salah: I have 20 years).",
+    "example_dialogue": "Hello everyone. Let me introduce myself. My name is Kevin. I am from Indonesia, but I live in Tokyo now. I am 22 years old and I am a university student. Pleased to meet you all."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Introducing Others",
+    "objective": "Kamu akan belajar cara menjadi perantara yang sopan saat memperkenalkan dua orang yang belum saling kenal.",
+    "vocabulary": [
+      { "term": "This is...", "meaning": "Ini adalah..." },
+      { "term": "I'd like you to meet...", "meaning": "Saya ingin kamu bertemu dengan..." },
+      { "term": "Colleague / Coworker", "meaning": "Rekan kerja" },
+      { "term": "Classmate", "meaning": "Teman sekelas" }
+    ],
+    "concept": "Gunakan 'This is [Nama]'. Jika kamu menunjuk temanmu dan berkata 'She is Maria' saat orangnya ada di depanmu, itu dianggap kurang sopan secara tata bahasa. Selalu beri tahu hubunganmu dengan orang tersebut agar perkenalan lebih hangat.",
+    "example_dialogue": "A: Hi, David. I'd like you to meet my coworker, Lisa.\nDavid: Hello, Lisa. Nice to meet you.\nLisa: Nice to meet you too, David. I've heard a lot about you."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Using Titles Correctly",
+    "objective": "Kamu akan belajar cara menggunakan gelar panggilan bahasa Inggris dengan benar agar tidak menyinggung lawan bicara.",
+    "vocabulary": [
+      { "term": "Mr. (Mister)", "meaning": "Untuk pria dewasa (menikah atau belum)" },
+      { "term": "Mrs. (Missus) / Miss", "meaning": "Untuk wanita menikah / Untuk wanita belum menikah" },
+      { "term": "Ms. (Mizz)", "meaning": "Untuk wanita (netral, tidak perlu tahu status pernikahannya)" },
+      { "term": "Sir / Ma'am", "meaning": "Pak / Bu (Panggilan hormat jika tidak tahu namanya)" }
+    ],
+    "concept": "Gelar (Mr./Mrs./Ms./Miss) HARUS diikuti oleh Nama Belakang (Last Name), bukan nama depan. Jika namanya Budi Santoso, panggil dia Mr. Santoso. Di negara berbahasa Inggris, siswa TIDAK memanggil gurunya dengan sebutan 'Teacher', melainkan menggunakan gelar dan nama belakang.",
+    "example_dialogue": "[Di sebuah restoran]\nWaiter: Excuse me, Sir. Is this your bag?\n\n[Di sekolah]\nStudent: Good morning, Mrs. Robinson. How are you?\nTeacher: Good morning. Please take a seat."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Subject Pronouns (Dasar Grammar)",
+    "objective": "Memahami kata ganti orang sebagai subjek (pelaku) dalam sebuah kalimat. Ini adalah fondasi mutlak sebelum membuat kalimat apapun.",
+    "vocabulary": [
+      { "term": "I / You", "meaning": "Saya / Kamu (atau Kalian)" },
+      { "term": "He / She / It", "meaning": "Dia (Laki-laki) / Dia (Perempuan) / Itu (Benda, Hewan, Cuaca)" },
+      { "term": "We / They", "meaning": "Kami (atau Kita) / Mereka" }
+    ],
+    "concept": "Subject pronoun selalu diletakkan di awal kalimat, sebelum kata kerja. 'It' juga dipakai untuk waktu dan cuaca (It is raining). Jangan mengira 'They' hanya untuk manusia. Jika ada dua ekor anjing atau tiga buku, kamu tetap merujuk pada mereka dengan 'They'.",
+    "example_dialogue": "I like apples.\nMy brother is tall. He is a basketball player.\nLook at the cat. It is very cute.\nSarah and I are friends. We study together."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Reading Practice (A Simple Conversation)",
+    "objective": "Mempraktikkan semua kosakata, konsep, dan tata bahasa dari Sub 1 hingga Sub 6 dalam sebuah teks percakapan utuh.",
+    "vocabulary": [
+      { "term": "Welcome to...", "meaning": "Selamat datang di..." },
+      { "term": "Everyone", "meaning": "Semua orang" },
+      { "term": "Excellent", "meaning": "Luar biasa / Bagus sekali" }
+    ],
+    "concept": "[Review Konsep] Teks ini menggabungkan penggunaan sapaan formal (kepada guru) dan informal (antar teman), pola menyebutkan asal negara, penggunaan gelar formal diikuti nama belakang, serta penerapan subject pronouns.",
+    "example_dialogue": "Lisa: Hi there! I am Lisa. What's your name?\nOmar: Hello, Lisa. My name is Omar. I am from Egypt. And you?\nLisa: I come from Canada, but I live in New York now.\n[Seorang guru masuk ke kelas]\nMr. Miller: Good morning, everyone. My name is Robert Miller. Please call me Mr. Miller. How is everyone doing today?\nLisa & Omar: Good morning, Mr. Miller. We are doing great, thank you!"
+  }
+]
