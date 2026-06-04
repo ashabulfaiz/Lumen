@@ -19,20 +19,22 @@ def get_performance(user_id: int) -> dict:
     Menghasilkan laporan performa lengkap untuk satu siswa.
     """
 
-    # --- 1. Ambil semua riwayat skor kuis siswa ---
+    # --- 1. Ambil semua riwayat skor kuis modul siswa ---
+    # Path join sesuai skema: quiz_scores -> quizzes -> lessons -> courses -> levels.
+    # (quizzes terhubung ke lesson_id, bukan course_id; kolom waktu pakai completed_at.)
     scores = query("""
         SELECT
             qs.skor,
-            qs.waktu_pengerjaan,
-            qs.created_at,
+            qs.completed_at,
             c.judul_course,
-            l.nama_level
+            lv.nama_level
         FROM quiz_scores qs
-        JOIN quizzes     q  ON qs.quiz_id   = q.id
-        JOIN courses     c  ON q.course_id   = c.id
-        JOIN levels      l  ON c.level_id    = l.id
+        JOIN quizzes  q  ON qs.quiz_id  = q.id
+        JOIN lessons  l  ON q.lesson_id = l.id
+        JOIN courses  c  ON l.course_id = c.id
+        JOIN levels   lv ON c.level_id  = lv.id
         WHERE qs.user_id = %s
-        ORDER BY qs.created_at ASC
+        ORDER BY qs.completed_at ASC
     """, (user_id,))
 
     # --- 2. Ambil materi yang sudah diselesaikan ---

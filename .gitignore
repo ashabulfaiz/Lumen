@@ -49,9 +49,6 @@ server/node_modules
 ds-service/**/__pycache__/
 ds-service/.venv/
 
-# AI — chat
-ai/chat/.env
-
 # AI — grammar trained artifacts (reports JSON/txt may be committed)
 ai/grammar/models/*.keras
 ai/grammar/models/saved_model/

@@ -14,12 +14,12 @@ Tugas utama:
 from utils.db import query
 
 
-# Estimasi menit per tipe konten (bisa disesuaikan tim DS)
-DURASI_PER_TIPE = {
-    "Text" : 10,  # menit
-    "Video": 20,
-    "Audio": 15,
-}
+# Estimasi durasi belajar per lesson (menit). Skema `lessons` saat ini tidak
+# menyimpan tipe konten, jadi dipakai durasi default yang seragam.
+DEFAULT_LESSON_MINUTES = 10
+
+# Tabel `levels` tidak punya kolom urutan, jadi urutannya ditentukan di sini.
+LEVEL_ORDER = {"Beginner": 1, "Intermediate": 2, "Advanced": 3}
 
 
 def get_curriculum(nama_level: str) -> dict:
@@ -38,20 +38,21 @@ def get_curriculum(nama_level: str) -> dict:
             "error": f"Level '{nama_level}' tidak valid. Gunakan: Beginner, Intermediate, atau Advanced."
         }
 
-    # 1. Ambil data level dari DB
+    # 1. Ambil data level dari DB (tabel `levels` tidak punya kolom urutan,
+    #    jadi urutan diambil dari mapping LEVEL_ORDER).
     level_rows = query(
-        "SELECT id, nama_level, urutan FROM levels WHERE nama_level = %s LIMIT 1",
+        "SELECT id, nama_level FROM levels WHERE nama_level = %s LIMIT 1",
         (nama_level_title,)
     )
     if not level_rows:
         return {"error": f"Level '{nama_level_title}' belum dikonfigurasi di database."}
 
     level_id    = level_rows[0]["id"]
-    level_urutan = level_rows[0]["urutan"]
+    level_urutan = LEVEL_ORDER.get(nama_level_title, 0)
 
     # 2. Ambil semua courses di level ini
     courses = query("""
-        SELECT id, judul_course, konten_introduction, urutan
+        SELECT id, judul_course, deskripsi, urutan
         FROM courses
         WHERE level_id = %s
         ORDER BY urutan ASC
@@ -75,28 +76,26 @@ def get_curriculum(nama_level: str) -> dict:
 
     for course in courses:
         lessons = query("""
-            SELECT id, judul_lesson, tipe_konten
+            SELECT id, judul_lesson, urutan
             FROM lessons
             WHERE course_id = %s
-            ORDER BY id ASC
+            ORDER BY urutan ASC, id ASC
         """, (course["id"],))
 
-        menit_course = sum(
-            DURASI_PER_TIPE.get(l["tipe_konten"], 10) for l in lessons
-        )
+        # Skema `lessons` tidak menyimpan tipe konten, jadi pakai durasi default.
+        menit_course = len(lessons) * DEFAULT_LESSON_MINUTES
 
         modul.append({
             "urutan"           : course["urutan"],
             "judul_course"     : course["judul_course"],
-            "deskripsi"        : course["konten_introduction"],
+            "deskripsi"        : course["deskripsi"],
             "jumlah_lesson"    : len(lessons),
             "estimasi_menit"   : menit_course,
             "lessons"          : [
                 {
                     "id"          : l["id"],
                     "judul"       : l["judul_lesson"],
-                    "tipe_konten" : l["tipe_konten"],
-                    "durasi_menit": DURASI_PER_TIPE.get(l["tipe_konten"], 10)
+                    "durasi_menit": DEFAULT_LESSON_MINUTES,
                 }
                 for l in lessons
             ]

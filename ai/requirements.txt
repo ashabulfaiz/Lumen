@@ -1,0 +1,3 @@
+# Railway deploys the AI service with Root Directory = ai (so ai/essay is included).
+# Actual dependencies live in grammar/requirements.txt.
+-r grammar/requirements.txt

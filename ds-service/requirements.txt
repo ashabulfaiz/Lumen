@@ -5,3 +5,5 @@ mysql-connector-python
 scikit-learn
 numpy
 pandas
+# Production WSGI server (Railway start command: gunicorn app:app)
+gunicorn

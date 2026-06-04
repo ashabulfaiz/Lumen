@@ -71,11 +71,13 @@ def recommend_level(user_id: int) -> dict:
     level_id = level_rows[0]["id"]
 
     # 3. Ambil data skor kuis siswa di level ini
+    #    Path join sesuai skema: quiz_scores -> quizzes -> lessons -> courses.
     scores_rows = query("""
         SELECT qs.skor
         FROM quiz_scores qs
-        JOIN quizzes     q  ON qs.quiz_id  = q.id
-        JOIN courses     c  ON q.course_id = c.id
+        JOIN quizzes  q  ON qs.quiz_id  = q.id
+        JOIN lessons  l  ON q.lesson_id = l.id
+        JOIN courses  c  ON l.course_id = c.id
         WHERE qs.user_id = %s AND c.level_id = %s
     """, (user_id, level_id))
 

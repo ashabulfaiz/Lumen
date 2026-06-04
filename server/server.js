@@ -25,21 +25,8 @@ app.get('/', (req, res) => {
     res.json({ status: 'success', message: 'Selamat datang di LUMEN API!' });
 });
 
-app.get('/api/test-db', async (req, res) => {
-    try {
-        const [rows] = await db.query('SELECT nama_lengkap, email FROM users');
-        res.json({
-            status: 'success',
-            message: 'Database berhasil diakses!',
-            data_users: rows,
-        });
-    } catch (error) {
-        res.status(500).json({
-            status: 'error',
-            message: 'Gagal mengambil data',
-            error: error.message,
-        });
-    }
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok', service: 'lumen-api' });
 });
 
 app.use('/api/auth', authRoutes);

@@ -5,6 +5,8 @@ Training metrics (accuracy, MAE) stay offline in reports/ only.
 """
 from __future__ import annotations
 
+import json
+import os
 import sys
 from pathlib import Path
 
@@ -40,6 +42,129 @@ app.add_middleware(
 )
 
 app.include_router(essay_router)
+
+
+# ---------------------------------------------------------------------------
+# Chat + Groq assist — merged from the former ai/chat Flask service.
+# Imports are guarded so the grammar/essay endpoints keep working even if the
+# optional `groq` package or GROQ_API_KEY is missing.
+# ---------------------------------------------------------------------------
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except Exception:
+    pass
+
+try:
+    from groq import Groq
+except ImportError:
+    Groq = None
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+try:
+    if Groq is None:
+        raise ImportError("groq package not installed")
+    if not GROQ_API_KEY:
+        raise ValueError("GROQ_API_KEY not found in environment")
+    groq_client = Groq(api_key=GROQ_API_KEY)
+    print("Groq client ready for LUMEN chat (merged into grammar service).")
+except Exception as e:
+    print(f"Warning: Groq connection failed — {e}")
+    groq_client = None
+
+
+class ChatRequest(BaseModel):
+    message: str = Field(default="")
+    language: str = Field(default="id")
+
+
+class CorrectRequest(BaseModel):
+    text: str = Field(default="")
+
+
+@app.post("/api/check-semantic")
+def check_semantic():
+    return {
+        "similarity_score": 0.88,
+        "status": "Correct",
+        "feedback": "Backend connection OK.",
+    }
+
+
+@app.post("/api/chat")
+def chat_assistant(request: ChatRequest):
+    """Tutor chatbot (Groq). Called by the Node backend at /api/chat."""
+    user_message = (request.message or "").lower()
+    bot_language = request.language or "id"
+
+    if not user_message:
+        raise HTTPException(status_code=400, detail="Message cannot be empty.")
+
+    if groq_client:
+        try:
+            if bot_language == "en":
+                system_instruction = (
+                    "You are LUMEN-bot, a Native English Tutor. "
+                    "You MUST reply STRICTLY in English. Be friendly, helpful, and concise."
+                )
+            else:
+                system_instruction = (
+                    "You are LUMEN-bot, an English learning assistant. "
+                    "Reply briefly and warmly in Indonesian or mixed Indonesian/English."
+                )
+
+            chat_completion = groq_client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": user_message},
+                ],
+                model="llama-3.3-70b-versatile",
+            )
+            return {"reply": chat_completion.choices[0].message.content}
+        except Exception as e:
+            print(f"Warning: Groq chat error — {e}")
+
+    reply = (
+        "Sorry, the AI system is currently busy."
+        if bot_language == "en"
+        else "Maaf, sistem AI sedang sibuk."
+    )
+    return {"reply": reply}
+
+
+@app.post("/api/ai/correct")
+def ai_correct(request: CorrectRequest):
+    """Groq-based grammar correction. Called by the Node backend at /api/ai/correct."""
+    text = request.text or ""
+    if not text:
+        raise HTTPException(status_code=400, detail="Text cannot be empty.")
+
+    if groq_client:
+        try:
+            system_instruction = (
+                "You are an English Grammar Correction expert. Analyze the user's input. "
+                "Provide the fully corrected sentence in the 'corrected' field. "
+                "In the 'matches' field, provide an array of objects detailing the errors. Each object must contain: "
+                "'message' (explanation of error), 'replacements' (array of suggestions), 'offset' (character start index), "
+                "and 'length' (length of wrong word). Return the response strictly as a JSON object, no markdown."
+            )
+
+            chat_completion = groq_client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": text},
+                ],
+                model="llama-3.3-70b-versatile",
+                response_format={"type": "json_object"},
+            )
+            return json.loads(chat_completion.choices[0].message.content)
+        except Exception as e:
+            print(f"Warning: Groq grammar correction error — {e}")
+            raise HTTPException(status_code=500, detail=f"AI processing failed: {e}") from e
+
+    return {"corrected": text, "matches": []}
 
 
 class GrammarRequest(BaseModel):
@@ -160,6 +285,8 @@ def root():
             "GET /essay/question": "random essay prompt per course (level, course_key|order|title, seed)",
             "POST /essay/grade": "rubric scores: grammar, vocabulary, relevance, coherence",
             "GET /essay/rubric": "rubric bands and weights",
+            "POST /api/chat": "tutor chatbot (Groq) — {message, language}",
+            "POST /api/ai/correct": "Groq grammar correction — {text}",
             "GET /health": "service status",
         },
         "writing_levels": ["Beginner", "Intermediate", "Advanced"],

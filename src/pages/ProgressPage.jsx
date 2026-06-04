@@ -38,6 +38,7 @@ export default function ProgressPage() {
   const [tracks, setTracks] = useState([])
   const [completedLessonIds, setCompletedLessonIds] = useState([])
   const [loading, setLoading] = useState(true)
+  const [analytics, setAnalytics] = useState(null)
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -79,6 +80,20 @@ export default function ProgressPage() {
     }
 
     fetchAllData()
+  }, [])
+
+  // Learning analytics from the Data Science service (via the Node proxy).
+  // Optional: if the DS service is offline, the page still renders without it.
+  useEffect(() => {
+    let active = true
+    api.get('/progress/analytics')
+      .then((res) => {
+        if (active && res.data?.status === 'success') {
+          setAnalytics(res.data.data || null)
+        }
+      })
+      .catch(() => { /* DS service unavailable — skip analytics */ })
+    return () => { active = false }
   }, [])
 
   const processedData = useMemo(() => {
@@ -180,6 +195,43 @@ export default function ProgressPage() {
             <p className="m-0 text-[15px] text-slate-600">Your learning progress throughout the program.</p>
           </div>
         </header>
+
+        {analytics?.performa && (
+          <section className="mb-6 rounded-[20px] border border-indigo-100 bg-indigo-50/40 p-6 md:p-7" aria-label="Learning analytics">
+            <h2 className="mb-4 text-[18px] font-bold text-slate-900">Your Learning Insights</h2>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-[12px] font-medium text-slate-500">Average score</p>
+                <p className="mt-1 text-[22px] font-bold text-slate-900">{analytics.performa.rata_rata_skor ?? 0}</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-[12px] font-medium text-slate-500">Quizzes taken</p>
+                <p className="mt-1 text-[22px] font-bold text-slate-900">{analytics.performa.total_quiz_dikerjakan ?? 0}</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-[12px] font-medium text-slate-500">Lessons completed</p>
+                <p className="mt-1 text-[22px] font-bold text-slate-900">{analytics.performa.total_materi_selesai ?? 0}</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-[12px] font-medium text-slate-500">Trend</p>
+                <p className="mt-1 text-[15px] font-semibold capitalize text-slate-900">{(analytics.performa.tren || '—').replace(/_/g, ' ')}</p>
+              </div>
+            </div>
+            {analytics.performa.rekomendasi && (
+              <p className="mt-4 text-[14px] leading-relaxed text-slate-700">{analytics.performa.rekomendasi}</p>
+            )}
+            {analytics.rekomendasi?.alasan && (
+              <div className="mt-3 rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-[13px] font-semibold text-slate-800">
+                  {analytics.rekomendasi.siap_naik_level
+                    ? `Ready to move up to ${analytics.rekomendasi.level_rekomendasi}!`
+                    : `Keep going at ${analytics.rekomendasi.level_saat_ini} level`}
+                </p>
+                <p className="mt-1 text-[13px] leading-relaxed text-slate-600">{analytics.rekomendasi.alasan}</p>
+              </div>
+            )}
+          </section>
+        )}
 
         <div className="flex flex-col gap-5" aria-label="Course progress by level">
           {processedTracks.map((track) => {

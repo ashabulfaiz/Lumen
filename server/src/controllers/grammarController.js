@@ -1,6 +1,9 @@
 const axios = require('axios');
 const GrammarModel = require('../models/GrammarModel');
 
+// Unified AI service (grammar + essay + chat). Defaults to the local dev port.
+const AI_SERVICE_URL = (process.env.AI_SERVICE_URL || 'http://localhost:5003').replace(/\/$/, '');
+
 const checkGrammar = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -15,7 +18,7 @@ const checkGrammar = async (req, res) => {
 
         let aiResponse;
         try {
-            aiResponse = await axios.post('http://localhost:5001/api/ai/correct', {
+            aiResponse = await axios.post(`${AI_SERVICE_URL}/api/ai/correct`, {
                 text: text
             });
         } catch (aiError) {

@@ -18,12 +18,10 @@
       { "pertanyaan": "When you meet someone for the first time, you can also say...", "pilihan": ["Pleased to meet you", "Go away", "I am hungry", "See you later"], "jawaban_benar": "Pleased to meet you" },
       { "pertanyaan": "Which of these is a polite way to get a stranger's attention?", "pilihan": ["Excuse me", "Hey you", "Stop", "Listen"], "jawaban_benar": "Excuse me" },
       { "pertanyaan": "If someone asks 'Where are you from?', you should answer:", "pilihan": ["I am from Indonesia", "I am fine", "My name is Budi", "I am 20 years old"], "jawaban_benar": "I am from Indonesia" },
-      { "pertanyaan": "What is a casual way to say 'Goodbye' to a friend?", "pilihan": ["See you later", "Good morning", "Welcome", "Hello"], "jawaban_benar": "See you later" },
-      { "pertanyaan": "Write a short paragraph introducing yourself. Include your name, your age, where you are from, and your hobby.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a short dialogue (2-3 lines) between two people meeting for the very first time.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Imagine you are introducing your best friend to your parents. Write exactly what you would say.", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "What is a casual way to say 'Goodbye' to a friend?", "pilihan": ["See you later", "Good morning", "Welcome", "Hello"], "jawaban_benar": "See you later" }
     ]
   },
+
   "Personal Information": {
     "judul_kuis": "Personal Information Quiz",
     "daftar_soal": [
@@ -43,12 +41,10 @@
       { "pertanyaan": "Read the answer: 'I live with my parents.' What is the question?", "pilihan": ["Who do you live with?", "Where do you live?", "Why do you live?", "When do you live?"], "jawaban_benar": "Who do you live with?" },
       { "pertanyaan": "Which of these is a correct date of birth format?", "pilihan": ["London, UK", "Teacher", "12th August 1998", "555-9012"], "jawaban_benar": "12th August 1998" },
       { "pertanyaan": "What does 'zip code' or 'postal code' refer to?", "pilihan": ["A phone number", "A series of letters and numbers for mail delivery", "An email password", "A date of birth"], "jawaban_benar": "A series of letters and numbers for mail delivery" },
-      { "pertanyaan": "Complete the sentence: 'My ___ is Budi, but my friends call me Bud.'", "pilihan": ["surname", "age", "first name", "hobby"], "jawaban_benar": "first name" },
-      { "pertanyaan": "Write a short paragraph (3-4 sentences) describing your morning routine before you start studying or working.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Imagine you are meeting a new colleague at work. Write 3 questions you would ask to know their personal information.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a short biography introducing your best friend (include their name, age, job, and where they live).", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "Complete the sentence: 'My ___ is Budi, but my friends call me Bud.'", "pilihan": ["surname", "age", "first name", "hobby"], "jawaban_benar": "first name" }
     ]
-  },
+    },
+
   "Numbers and Time": {
     "judul_kuis": "Numbers and Time Quiz",
     "daftar_soal": [
@@ -68,11 +64,9 @@
       { "pertanyaan": "Which day comes between Tuesday and Thursday?", "pilihan": ["Monday", "Friday", "Wednesday", "Saturday"], "jawaban_benar": "Wednesday" },
       { "pertanyaan": "How do you write the number 15 in words?", "pilihan": ["Fifty", "Five-teen", "Fifteen", "Fiveteen"], "jawaban_benar": "Fifteen" },
       { "pertanyaan": "If today is Friday, what day was yesterday?", "pilihan": ["Thursday", "Saturday", "Wednesday", "Sunday"], "jawaban_benar": "Thursday" },
-      { "pertanyaan": "Fill in the blank: 'I was born ___ 1995.'", "pilihan": ["in", "on", "at", "by"], "jawaban_benar": "in" },
-      { "pertanyaan": "Describe your daily schedule. Write 5 to 6 sentences about what you do at different times of the day (e.g., 'At 7:00 AM, I wake up...').", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a paragraph about your favorite day of the week and explain why you like it.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Explain how you would read these times aloud: 07:15, 12:30, and 19:45. Write them in full English sentences.", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "Fill in the blank: 'I was born ___ 1995.'", "pilihan": ["in", "on", "at", "by"], "jawaban_benar": "in" }
     ]
+
   },
   "Present Continuous": {
     "judul_kuis": "Present Continuous Quiz",
@@ -93,10 +87,7 @@
       { "pertanyaan": "___ they ___ for the train on platform 3?", "pilihan": ["Is / waiting", "Are / waiting", "Do / wait", "Does / waiting"], "jawaban_benar": "Are / waiting" },
       { "pertanyaan": "The dog ___ loudly at the mailman.", "pilihan": ["barks", "barking", "is barking", "are barking"], "jawaban_benar": "is barking" },
       { "pertanyaan": "I can't talk right now, I ___.", "pilihan": ["am driving", "drive", "driving", "is driving"], "jawaban_benar": "am driving" },
-      { "pertanyaan": "What ___ you ___ right now?", "pilihan": ["do / do", "are / doing", "is / doing", "does / do"], "jawaban_benar": "are / doing" },
-      { "pertanyaan": "Look around you and write 3 sentences describing what 3 different people (or pets) are doing right now.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a short paragraph describing what your family members are likely doing at this exact moment.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Explain the difference between 'I work' and 'I am working' using your own examples.", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "What ___ you ___ right now?", "pilihan": ["do / do", "are / doing", "is / doing", "does / do"], "jawaban_benar": "are / doing" }
     ]
   },
   "Past Simple": {
@@ -118,10 +109,7 @@
       { "pertanyaan": "I ___ to work yesterday because I was sick.", "pilihan": ["didn't go", "don't go", "wasn't go", "didn't went"], "jawaban_benar": "didn't go" },
       { "pertanyaan": "The train ___ at 8 AM sharp.", "pilihan": ["leave", "leaves", "left", "leaving"], "jawaban_benar": "left" },
       { "pertanyaan": "We ___ lunch at a nice restaurant last Sunday.", "pilihan": ["have", "has", "had", "having"], "jawaban_benar": "had" },
-      { "pertanyaan": "___ she call you last night?", "pilihan": ["Did", "Does", "Was", "Is"], "jawaban_benar": "Did" },
-      { "pertanyaan": "Write a short paragraph about what you did last weekend. Make sure to use at least 4 past simple verbs.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Describe a memorable holiday you took in the past. Where did you go and what did you do?", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "What would you do if you won 1 million dollars? Write 3 sentences using the second conditional (If I won..., I would...).", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "___ she call you last night?", "pilihan": ["Did", "Does", "Was", "Is"], "jawaban_benar": "Did" }
     ]
   },
   "Present Perfect": {
@@ -143,10 +131,7 @@
       { "pertanyaan": "I ___ my phone. Can you call it?", "pilihan": ["have dropped", "has dropped", "dropped", "drop"], "jawaban_benar": "have dropped" },
       { "pertanyaan": "They have been married ___ 10 years.", "pilihan": ["for", "since", "in", "from"], "jawaban_benar": "for" },
       { "pertanyaan": "Have you finished your dinner ___?", "pilihan": ["yet", "already", "just", "ever"], "jawaban_benar": "yet" },
-      { "pertanyaan": "He has ___ been a fan of classical music.", "pilihan": ["always", "yet", "since", "for"], "jawaban_benar": "always" },
-      { "pertanyaan": "Describe a memorable experience you have had. Write 4 to 5 sentences using the Present Perfect tense.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write about three things you have accomplished this year.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Explain the difference in meaning between 'I lived in London for 2 years' and 'I have lived in London for 2 years'.", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "He has ___ been a fan of classical music.", "pilihan": ["always", "yet", "since", "for"], "jawaban_benar": "always" }
     ]
   },
   "Advanced Grammar": {
@@ -168,10 +153,8 @@
       { "pertanyaan": "___ having a lot of experience, she didn't get the job.", "pilihan": ["Although", "In spite of", "Even though", "However"], "jawaban_benar": "In spite of" },
       { "pertanyaan": "I'd rather you ___ smoke in here.", "pilihan": ["didn't", "don't", "not", "won't"], "jawaban_benar": "didn't" },
       { "pertanyaan": "It's high time you ___ a job.", "pilihan": ["get", "got", "getting", "gotten"], "jawaban_benar": "got" },
-      { "pertanyaan": "Hardly had we arrived ___ the show began.", "pilihan": ["than", "when", "then", "that"], "jawaban_benar": "when" },
-      { "pertanyaan": "Write a short, formal email to your manager asking for a deadline extension on your current project.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Rewrite this sentence in the passive voice: 'The committee will announce the new policy tomorrow.'", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a paragraph expressing your opinion on artificial intelligence in education. Use at least two advanced linking words (e.g., furthermore, consequently).", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "Hardly had we arrived ___ the show began.", "pilihan": ["than", "when", "then", "that"], "jawaban_benar": "when" }
+      
     ]
   },
   "Academic Vocabulary": {
@@ -193,10 +176,7 @@
       { "pertanyaan": "The methodology used in the research was highly ___.", "pilihan": ["simple", "rigorous", "lazy", "fast"], "jawaban_benar": "rigorous" },
       { "pertanyaan": "A synonym for 'important' in an academic context is ___.", "pilihan": ["crucial", "big", "nice", "okay"], "jawaban_benar": "crucial" },
       { "pertanyaan": "The study aims to ___ the impact of pollution on health.", "pilihan": ["assess", "ignore", "forget", "miss"], "jawaban_benar": "assess" },
-      { "pertanyaan": "The two concepts are completely ___.", "pilihan": ["same", "distinct", "one", "together"], "jawaban_benar": "distinct" },
-      { "pertanyaan": "Rewrite the following informal sentence into academic English: 'The boss said we need to fix the problem fast because it's costing us a lot of money.'", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a short paragraph explaining a complex concept from your field of study, using formal academic vocabulary.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Choose three academic transition words (e.g., nevertheless, subsequently, moreover) and write one sentence for each to demonstrate correct usage.", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "The two concepts are completely ___.", "pilihan": ["same", "distinct", "one", "together"], "jawaban_benar": "distinct" }
     ]
   },
   "Academic Writing": {
@@ -218,10 +198,7 @@
       { "pertanyaan": "Which pronoun should generally be avoided in formal academic writing?", "pilihan": ["They", "He", "She", "You"], "jawaban_benar": "You" },
       { "pertanyaan": "What is the primary goal of an argumentative essay?", "pilihan": ["To tell a story", "To describe a scene", "To persuade the reader of a specific viewpoint", "To explain a process"], "jawaban_benar": "To persuade the reader of a specific viewpoint" },
       { "pertanyaan": "A 'hook' in an essay introduction is designed to ___.", "pilihan": ["catch the reader's attention", "conclude the essay", "cite a source", "summarize the paragraphs"], "jawaban_benar": "catch the reader's attention" },
-      { "pertanyaan": "If you use exact words from a source, you must use ___.", "pilihan": ["italic font", "quotation marks and a citation", "bold text", "a footnote only"], "jawaban_benar": "quotation marks and a citation" },
-      { "pertanyaan": "Do you agree that remote work is better than office work? Write a strong introductory paragraph for an argumentative essay supporting your view.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Write a thesis statement for an essay about the effects of social media on teenagers' mental health.", "pilihan": [], "jawaban_benar": "Essay" },
-      { "pertanyaan": "Read this claim: 'University education should be free for everyone.' Write a brief concluding paragraph summarizing this stance.", "pilihan": [], "jawaban_benar": "Essay" }
+      { "pertanyaan": "If you use exact words from a source, you must use ___.", "pilihan": ["italic font", "quotation marks and a citation", "bold text", "a footnote only"], "jawaban_benar": "quotation marks and a citation" }
     ]
   }
 }

@@ -21,6 +21,9 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import json
 
+# Direktori file ini — dipakai agar baca dataset JSON tidak bergantung pada CWD.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Import services DS
 from services.performance_service import get_performance
 from services.level_recommender   import recommend_level
@@ -157,8 +160,8 @@ def get_quiz(level):
     Membaca langsung dari file dataset JSON.
     """
     try:
-        file_path = f"{level}.json"
-        
+        file_path = os.path.join(BASE_DIR, f"{level}.json")
+
         if not os.path.exists(file_path):
             return jsonify({"status": "error", "message": f"Dataset kuis untuk level '{level}' tidak ditemukan."}), 404
             
@@ -173,8 +176,11 @@ def get_quiz(level):
 # ENTRY POINT
 # ================================================================
 if __name__ == '__main__':
-    port = int(os.getenv("DS_PORT", 5002))
-    print(f"[DS-Service] LUMEN Data Science Service berjalan di http://localhost:{port}")
+    # Railway/produksi menyuntikkan PORT; lokal pakai DS_PORT (default 5002).
+    # debug=False agar tidak menjalankan reloader/debugger di produksi.
+    port = int(os.getenv("PORT", os.getenv("DS_PORT", 5002)))
+    debug = os.getenv("FLASK_DEBUG", "false").lower() in ("1", "true", "yes")
+    print(f"[DS-Service] LUMEN Data Science Service berjalan di http://0.0.0.0:{port}")
     print(f"   Endpoints tersedia:")
     print(f"   GET  /api/ds/health")
     print(f"   POST /api/ds/performance")
@@ -182,4 +188,4 @@ if __name__ == '__main__':
     print(f"   GET  /api/ds/curriculum/<level>")
     print(f"   GET  /api/ds/curriculum/all")
     print(f"   GET  /api/ds/report/<user_id>")
-    app.run(debug=True, port=port)
+    app.run(host="0.0.0.0", port=port, debug=debug)

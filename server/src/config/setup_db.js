@@ -1,8 +1,4 @@
-const path = require('path');
-
-require('dotenv').config({
-  path: path.resolve(__dirname, '../../../.env')
-});
+require('./loadEnv');
 const mysql = require('mysql2/promise');
 
 async function setupDatabase() {

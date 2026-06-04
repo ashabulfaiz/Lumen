@@ -104,11 +104,6 @@
           "Stop!"
         ],
         "jawaban_benar": "Hello"
-      },
-      {
-        "pertanyaan": "Write a short paragraph introducing yourself. Include your name, your age, where you are from, and your hobby.",
-        "pilihan": [],
-        "jawaban_benar": "Essay"
       }
     ]
   },
@@ -167,11 +162,6 @@
         "pertanyaan": "How do you spell 'Smith'?",
         "pilihan": ["S-M-I-T-H", "S-M-I-T", "S-M-E-E-T-H", "S-M-I-T-T"],
         "jawaban_benar": "S-M-I-T-H"
-      },
-      {
-        "pertanyaan": "What do you usually do in the morning? Write 3 to 4 sentences describing your morning routine.",
-        "pilihan": [],
-        "jawaban_benar": "Essay"
       }
     ]
   },
@@ -230,11 +220,6 @@
         "pertanyaan": "How do you ask for the time?",
         "pilihan": ["What time is it?", "How much time?", "Where is the time?", "When is the clock?"],
         "jawaban_benar": "What time is it?"
-      },
-      {
-        "pertanyaan": "Describe your daily schedule. Write 5 to 6 sentences about what you do at different times of the day.",
-        "pilihan": [], 
-        "jawaban_benar": "Essay" 
       }
     ]
   }

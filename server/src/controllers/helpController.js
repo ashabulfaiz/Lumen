@@ -1,6 +1,9 @@
 const HelpModel = require('../models/HelpModel');
 const axios = require('axios');
 
+// Unified AI service (grammar + essay + chat). Defaults to the local dev port.
+const AI_SERVICE_URL = (process.env.AI_SERVICE_URL || 'http://localhost:5003').replace(/\/$/, '');
+
 const sendChatMessage = async (req, res) => {
     try {
         const userId = req.user.id; 
@@ -13,7 +16,7 @@ const sendChatMessage = async (req, res) => {
         let respons_ai = "";
 
         try {
-            const aiResponse = await axios.post('http://localhost:5001/api/chat', {
+            const aiResponse = await axios.post(`${AI_SERVICE_URL}/api/chat`, {
                 message: pesan_user,
                 language: language
             });

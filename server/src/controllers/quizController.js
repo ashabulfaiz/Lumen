@@ -19,14 +19,13 @@ const generateQuiz = async (req, res) => {
         }
 
         const topikId = targetLesson.kuis_topik_id || targetLesson.judul_lesson;
-        const jsonPath = path.join(__dirname, `../data/dummy_quizzes.json`);
+        const jsonPath = path.join(__dirname, '../data/dummy_quizzes.json');
 
         if (!fs.existsSync(jsonPath)) {
-            return res.status(404).json({ message: `File dummy_quizzes.json tidak ditemukan.` });
+            return res.status(404).json({ message: 'File dummy_quizzes.json tidak ditemukan.' });
         }
 
-        const rawData = fs.readFileSync(jsonPath, 'utf8');
-        const allQuizzesData = JSON.parse(rawData);
+        const allQuizzesData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
         const activeQuizTemplate = allQuizzesData[topikId];
 
         if (!activeQuizTemplate) {

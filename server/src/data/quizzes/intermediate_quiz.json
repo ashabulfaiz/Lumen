@@ -104,11 +104,6 @@
           "Option D"
         ],
         "jawaban_benar": "Option A"
-      },
-      {
-        "pertanyaan": "Write a short paragraph about what you did last weekend. Make sure to use the Past Simple tense.",
-        "pilihan": [],
-        "jawaban_benar": "Essay"
       }
     ]
   },
@@ -217,11 +212,6 @@
           "Option D"
         ],
         "jawaban_benar": "Option A"
-      },
-      {
-        "pertanyaan": "What would you do if you won 1 million dollars? Write 3 sentences using the second conditional (If I won..., I would...).",
-        "pilihan": [],
-        "jawaban_benar": "Essay"
       }
     ]
   },
@@ -330,12 +320,7 @@
           "Option D"
         ],
         "jawaban_benar": "Option A"
-      },
-      {
-        "pertanyaan": "Describe a memorable experience you have had. Write 4 to 5 sentences using the Present Perfect tense.",
-        "pilihan": [],
-        "jawaban_benar": "Essay"
-       }
+      }
     ]
   }
 ]

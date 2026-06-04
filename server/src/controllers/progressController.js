@@ -1,5 +1,9 @@
+const axios = require('axios');
 const ProgressModel = require('../models/ProgressModel');
 const { resolveLevelId } = require('../utils/resolveLevelId');
+
+// Data Science service (analytics + level recommendation). Defaults to local dev port.
+const DS_SERVICE_URL = (process.env.DS_SERVICE_URL || 'http://localhost:5002').replace(/\/$/, '');
 
 const markLessonComplete = async (req, res) => {
     try {
@@ -206,6 +210,23 @@ const getUnlockedLevel = async (req, res) => {
     }
 };
 
+// Proxy ke Data Science service: performa + rekomendasi level untuk user login.
+const getLearningAnalytics = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const response = await axios.get(`${DS_SERVICE_URL}/api/ds/report/${userId}`, {
+            timeout: 8000,
+        });
+        return res.status(200).json(response.data);
+    } catch (error) {
+        console.error("DS analytics service error:", error.message);
+        return res.status(502).json({
+            status: "error",
+            message: "Layanan analitik (Data Science) sedang tidak tersedia.",
+        });
+    }
+};
+
 module.exports = {
     markLessonComplete,
     submitQuizScore,
@@ -217,4 +238,5 @@ module.exports = {
     getEssaySubmission,
     resetProgress,
     getUnlockedLevel,
+    getLearningAnalytics,
 };

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { learningLevels, markLessonCompleted, syncLearningProgressFromDB } from '../data/learningData.js'
+import { markLessonCompleted, syncLearningProgressFromDB } from '../data/learningData.js'
 import api from '../lib/axiosInstance'
 import { Trophy, ArrowRight, RotateCcw, CheckCircle2, XCircle, ChevronLeft } from 'lucide-react'
 
@@ -23,6 +23,8 @@ export default function LessonPage() {
   const [savedAnswers, setSavedAnswers] = useState(null)
   const [isFinishedMode, setIsFinishedMode] = useState(false)
   const [essayCompleted, setEssayCompleted] = useState(false)
+  // Ordered lesson IDs for this level, fetched from DB (used for next-lesson nav).
+  const [levelLessonIds, setLevelLessonIds] = useState([])
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -51,7 +53,10 @@ export default function LessonPage() {
 
         try {
           const statusRes = await api.get(`/progress/module-status/${level}`);
-          const modStatus = statusRes.data?.data?.find(row => parseInt(row.lesson_id) === parseInt(lessonId));
+          const allStatuses = statusRes.data?.data || [];
+          // Store ordered lesson IDs from DB for correct next-lesson navigation.
+          setLevelLessonIds(allStatuses.map(row => parseInt(row.lesson_id)));
+          const modStatus = allStatuses.find(row => parseInt(row.lesson_id) === parseInt(lessonId));
           if (modStatus) {
             setEssayCompleted(Boolean(modStatus.essay_completed));
           }
@@ -105,15 +110,11 @@ export default function LessonPage() {
   const isFirstStep = currentIndex === 0
   const nextLessonId = useMemo(() => {
     const current = Number(lessonId)
-    if (!Number.isFinite(current)) return null
-    const lessons = learningLevels?.[level]?.lessons
-    if (!Array.isArray(lessons) || lessons.length === 0) return null
-    const idx = lessons.findIndex((l) => Number(l?.id) === current)
-    if (idx < 0) return null
-    const next = lessons[idx + 1]
-    const nextId = Number(next?.id)
-    return Number.isFinite(nextId) ? nextId : null
-  }, [level, lessonId])
+    if (!Number.isFinite(current) || levelLessonIds.length === 0) return null
+    const idx = levelLessonIds.indexOf(current)
+    if (idx < 0 || idx === levelLessonIds.length - 1) return null
+    return levelLessonIds[idx + 1]
+  }, [lessonId, levelLessonIds])
 
   const isLastStep = currentIndex === totalSteps - 1
   const nextLabel = isLastStep ? 'Submit & Finish' : 'Next'
@@ -268,14 +269,19 @@ export default function LessonPage() {
         </section>
 
         <div className="space-y-6">
-          {quizData.map((q, i) => {
-            const answerDetail = savedAnswers.find(a => a.question_id === q.question_id);
-            const userAns = answerDetail ? answerDetail.jawaban_teks : null;
-            const isCorrect = answerDetail ? !!answerDetail.is_correct : false;
-            const correctAnswer = answerDetail ? answerDetail.jawaban_benar : null;
+          {savedAnswers.map((answer, i) => {
+            // Use savedAnswers as the source of truth. Look up quizData only for
+            // pilihan (options) — quizData may have a different shuffle on revisit,
+            // so we never rely on it for correctness, only for display options.
+            const quizEntry = quizData.find(q => q.question_id === answer.question_id);
+            const userAns = answer.jawaban_teks;
+            const isCorrect = !!answer.is_correct;
+            const correctAnswer = answer.jawaban_benar;
+            const pertanyaan = answer.pertanyaan;
+            const pilihan = quizEntry?.pilihan ?? null;
 
             return (
-              <div key={q.question_id} className={`rounded-2xl border-2 bg-white p-5 sm:p-6 ${isCorrect ? 'border-emerald-200' : 'border-red-200'}`}>
+              <div key={answer.question_id} className={`rounded-2xl border-2 bg-white p-5 sm:p-6 ${isCorrect ? 'border-emerald-200' : 'border-red-200'}`}>
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
                     {isCorrect ? (
@@ -301,53 +307,76 @@ export default function LessonPage() {
                   </span>
                 </div>
 
-                <p className="mb-5 text-[15px] text-slate-700">{q.pertanyaan}</p>
+                <p className="mb-5 text-[15px] text-slate-700">{pertanyaan}</p>
 
-                <div className="space-y-3">
-                  {q.pilihan.map((opt) => {
-                    const isSelected = userAns === opt;
-                    const isRightAnswer = correctAnswer === opt;
+                {pilihan ? (
+                  <div className="space-y-3">
+                    {pilihan.map((opt) => {
+                      const isSelected = userAns === opt;
+                      const isRightAnswer = correctAnswer === opt;
 
-                    let borderClass = "border border-slate-200";
-                    let textClass = "text-slate-700";
-                    let rightIcon = null;
+                      let borderClass = "border border-slate-200";
+                      let textClass = "text-slate-700";
+                      let rightIcon = null;
 
-                    if (isRightAnswer) {
-                      borderClass = "border-2 border-emerald-500 bg-white";
-                      textClass = "text-emerald-800 font-medium";
-                      rightIcon = (
+                      if (isRightAnswer) {
+                        borderClass = "border-2 border-emerald-500 bg-white";
+                        textClass = "text-emerald-800 font-medium";
+                        rightIcon = (
+                          <div className="shrink-0 text-emerald-500">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                              <circle cx="12" cy="12" r="10" />
+                              <path d="M9 12l2 2 4-4" />
+                            </svg>
+                          </div>
+                        );
+                      } else if (isSelected && !isRightAnswer) {
+                        borderClass = "border-2 border-red-500 bg-white";
+                        textClass = "text-slate-900";
+                        rightIcon = (
+                          <div className="flex shrink-0 items-center gap-2">
+                            <span className="text-[13px] font-medium text-slate-500">Your answer</span>
+                            <div className="text-red-500">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="15" y1="9" x2="9" y2="15" />
+                                <line x1="9" y1="9" x2="15" y2="15" />
+                              </svg>
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div key={opt} className={`flex min-h-[52px] items-center justify-between gap-4 rounded-xl px-4 py-3 ${borderClass}`}>
+                          <span className={`text-[15px] ${textClass}`}>{opt}</span>
+                          {rightIcon}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  // Fallback when pilihan isn't available (question not in current shuffle)
+                  <div className="space-y-2">
+                    <div className={`flex min-h-[52px] items-center justify-between gap-4 rounded-xl border-2 px-4 py-3 ${isCorrect ? 'border-emerald-500 bg-white' : 'border-red-500 bg-white'}`}>
+                      <span className="text-[15px] text-slate-900">{userAns}</span>
+                      <span className={`text-[13px] font-medium ${isCorrect ? 'text-emerald-600' : 'text-slate-500'}`}>
+                        {isCorrect ? 'Your answer ✓' : 'Your answer'}
+                      </span>
+                    </div>
+                    {!isCorrect && (
+                      <div className="flex min-h-[52px] items-center justify-between gap-4 rounded-xl border-2 border-emerald-500 bg-white px-4 py-3">
+                        <span className="text-[15px] font-medium text-emerald-800">{correctAnswer}</span>
                         <div className="shrink-0 text-emerald-500">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M9 12l2 2 4-4" />
                           </svg>
                         </div>
-                      );
-                    } else if (isSelected && !isRightAnswer) {
-                      borderClass = "border-2 border-red-500 bg-white";
-                      textClass = "text-slate-900";
-                      rightIcon = (
-                        <div className="flex shrink-0 items-center gap-2">
-                          <span className="text-[13px] font-medium text-slate-500">Your answer</span>
-                          <div className="text-red-500">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-                              <circle cx="12" cy="12" r="10" />
-                              <line x1="15" y1="9" x2="9" y2="15" />
-                              <line x1="9" y1="9" x2="15" y2="15" />
-                            </svg>
-                          </div>
-                        </div>
-                      );
-                    }
-
-                    return (
-                      <div key={opt} className={`flex min-h-[52px] items-center justify-between gap-4 rounded-xl px-4 py-3 ${borderClass}`}>
-                        <span className={`text-[15px] ${textClass}`}>{opt}</span>
-                        {rightIcon}
                       </div>
-                    );
-                  })}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}

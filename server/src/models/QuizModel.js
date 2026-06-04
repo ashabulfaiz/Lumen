@@ -55,7 +55,8 @@ class QuizModel {
 
     static async getUserAnswers(userId, quizId) {
         const [rows] = await db.query(`
-            SELECT ua.question_id, ua.jawaban_teks, ua.is_correct, q.jawaban_benar 
+            SELECT ua.question_id, ua.jawaban_teks, ua.is_correct,
+                   q.jawaban_benar, q.pertanyaan
             FROM user_answers ua
             JOIN questions q ON ua.question_id = q.id
             WHERE ua.user_id = ? AND q.quiz_id = ?
