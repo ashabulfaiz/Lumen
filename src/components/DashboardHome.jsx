@@ -107,15 +107,15 @@ export default function DashboardHome() {
             })))
           }
 
-          let completedIds = []
+          let moduleStatuses = []
           try {
-            const progRes = await api.get(`/progress/completed/${track.slug}`)
-            completedIds = progRes.data.data || []
+            const progRes = await api.get(`/progress/module-status/${track.slug}`)
+            moduleStatuses = progRes.data.data || []
           } catch (e) {
             console.error(`Failed to load level progress ${track.id}`, e)
           }
 
-          return { track, trackLessons, completedIds }
+          return { track, trackLessons, moduleStatuses }
         }))
 
         let tempTotalCompleted = 0
@@ -124,23 +124,55 @@ export default function DashboardHome() {
         let fallbackLessonsPool = []
 
         // Process in LEVEL_TRACKS order (beginner → intermediate → advanced).
-        for (const { track, trackLessons, completedIds } of perTrack) {
+        for (const { track, trackLessons, moduleStatuses } of perTrack) {
           if (track.id === 1) fallbackLessonsPool = [...trackLessons]
 
+          let totalLevelPercent = 0
+          let fullyCompletedCount = 0
+
+          trackLessons.forEach((lesson, index) => {
+            const statusInfo = moduleStatuses.find(s => s.lesson_id === lesson.id) || {}
+            const isModuleCompleted = Boolean(statusInfo.module_completed)
+            const isQuizCompleted = Boolean(statusInfo.quiz_completed)
+            const isEssayCompleted = Boolean(statusInfo.essay_completed)
+
+            let lessonPercent = 0
+            if (isModuleCompleted) lessonPercent = 100
+            else if (isQuizCompleted && isEssayCompleted) lessonPercent = 100
+            else if (isQuizCompleted || isEssayCompleted) lessonPercent = 50
+
+            if (lessonPercent === 100) fullyCompletedCount++
+            totalLevelPercent += lessonPercent
+
+            // For recommending lessons, a lesson is available if it's the first one OR the previous was fully completed.
+            // Wait, previous was fully completed? Or if the previous has module_completed?
+            // Actually, we use the same logic as ProgressPage.
+            let isAvailable = false;
+            if (index === 0) {
+              isAvailable = true;
+            } else {
+              const prevStatusInfo = moduleStatuses.find(s => s.lesson_id === trackLessons[index - 1].id) || {}
+              if (prevStatusInfo.module_completed) {
+                isAvailable = true;
+              }
+            }
+
+            if (isAvailable && lessonPercent < 100) {
+              availableLessonsPool.push({
+                ...lesson,
+                lockedForUser: track.id > highestUnlocked
+              })
+            }
+          })
+
           // Stats reflect every level regardless of which ones are unlocked.
-          tempTotalCompleted += completedIds.length
+          tempTotalCompleted += fullyCompletedCount
           tempProgressStats[track.id] = trackLessons.length > 0
-            ? Math.round((completedIds.length / trackLessons.length) * 100)
+            ? Math.round(totalLevelPercent / trackLessons.length)
             : 0
 
           // Only recommend lessons from levels the learner has unlocked via placement.
           if (track.id > highestUnlocked) continue
-
-          trackLessons.forEach((lesson, index) => {
-            const isCompleted = completedIds.includes(lesson.id)
-            const isAvailable = index === 0 || completedIds.includes(trackLessons[index - 1].id)
-            if (isAvailable && !isCompleted) availableLessonsPool.push(lesson)
-          })
         }
 
         setProgressStats(tempProgressStats)
@@ -185,7 +217,7 @@ export default function DashboardHome() {
           Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">{firstName}</span>!
         </h1>
         <p className="text-[16px] leading-relaxed text-slate-600 max-w-2xl">
-          {!isOnboardingComplete 
+          {!isOnboardingComplete
             ? 'Let\'s get started with your learning journey by completing the onboarding steps and taking the initial assessment.'
             : 'Keep improving your English skills. Every small session brings you closer to fluency.'
           }
@@ -200,10 +232,10 @@ export default function DashboardHome() {
             </span>
             <h2 id="progress-heading" className="text-xl font-extrabold text-slate-900 tracking-tight">Progress Summary</h2>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 py-4 md:justify-around rounded-2xl bg-white/50 p-4 border border-white/60">
-            <DonutChart 
-              percent={placementData ? placementData.score : 0} strokeColor="#ea580c" label="Placement" 
+            <DonutChart
+              percent={placementData ? placementData.score : 0} strokeColor="#ea580c" label="Placement"
               customText={placementData ? `${Math.round(placementData.score / 10)}/10` : '0/10'}
             />
             {LEVEL_TRACKS.map(track => (
@@ -212,7 +244,7 @@ export default function DashboardHome() {
           </div>
 
           <div className="my-6 h-px bg-slate-200" role="presentation" />
-          
+
           <ul className="grid grid-cols-2 gap-4 m-0 p-0 text-sm font-medium text-slate-700">
             <li className="flex flex-col p-3 rounded-xl bg-white border border-slate-100 shadow-sm">
               <span className="text-2xl font-black text-indigo-600 mb-1">{totalLessonsCompleted}</span>
@@ -264,7 +296,7 @@ export default function DashboardHome() {
             </h2>
           </div>
         </div>
-        
+
         {!isOnboardingComplete && (
           <div className="mb-5 p-4 rounded-2xl border border-amber-200 bg-amber-50/60 text-sm text-amber-900 flex flex-wrap items-center justify-between gap-3">
             <p className="m-0 font-medium">🔒 You are in review mode. Please complete the <strong>Placement Test</strong> before starting.</p>
@@ -277,7 +309,15 @@ export default function DashboardHome() {
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {recommendedLessons.length > 0 ? (
             recommendedLessons.map((lesson) => {
-              const targetUrl = isOnboardingComplete ? `/learning/${lesson.levelSlug}/lesson/${lesson.id}` : `/learning`;
+              const activeLesson = recommendedLessons.find(l => !l.lockedForUser) || lesson;
+              let targetUrl = `/learning`;
+              if (isOnboardingComplete) {
+                if (lesson.lockedForUser) {
+                  targetUrl = `/learning/${activeLesson.levelSlug}`; // Direct to the main curriculum page of the current level
+                } else {
+                  targetUrl = `/learning/${lesson.levelSlug}/lesson/${lesson.id}`;
+                }
+              }
 
               return (
                 <Link
@@ -292,7 +332,7 @@ export default function DashboardHome() {
                       {stripHtml(lesson.konten_teks) || 'This module is ready for you to start.'}
                     </p>
                   </div>
-                  
+
                   <div className="mt-auto">
                     <div className="mb-4 flex flex-wrap gap-2">
                       <span className="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-600">

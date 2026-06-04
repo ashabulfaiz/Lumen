@@ -234,26 +234,28 @@ export default function EssayPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-        <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
+        <div className="mb-6 flex flex-col gap-4">
+          <div className="flex items-center">
+            <Link
+              to={`/learning/${level}`}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-[14px] font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              Back to Curriculum
+            </Link>
+          </div>
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-indigo-600">Writing practice</p>
             <h1 className="mt-1 text-2xl font-bold text-slate-900">
               {context?.lesson?.judul_lesson || 'Essay'}
             </h1>
-            <p className="mt-1 text-sm text-slate-600">
-              {context?.course?.judul_course} · {level.charAt(0).toUpperCase() + level.slice(1)}
+            <p className="mt-1 text-[15px] font-medium text-slate-600">
+              {context?.course?.judul_course} <span className="text-slate-300 mx-1">•</span> <span className="text-indigo-600 font-semibold">{level.charAt(0).toUpperCase() + level.slice(1)}</span>
             </p>
-            <p className="mt-2 text-xs text-slate-500">
-              Grammar score must be at least {GRAMMAR_PASS_PERCENT}% on one submission to complete writing for this module.
-              You can open the quiz anytime.
+            <p className="mt-3 text-sm leading-relaxed text-slate-500 rounded-lg bg-slate-50 p-3 border border-slate-100">
+              <span className="font-semibold text-slate-700">Goal:</span> Grammar score must be at least {GRAMMAR_PASS_PERCENT}% on one submission to complete writing for this module. You can open the quiz anytime.
             </p>
           </div>
-          <Link
-            to={`/learning/${level}`}
-            className="text-sm font-semibold text-slate-600 hover:text-slate-900"
-          >
-            ← Back to curriculum
-          </Link>
         </div>
 
         {prompt ? (
