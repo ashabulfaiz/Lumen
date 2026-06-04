@@ -1,0 +1,341 @@
+[
+  {
+    "judul_asli": "Advanced Grammar Quiz",
+    "kategori_topik": "Advanced Grammar",
+    "jumlah_soal": 10,
+    "sumber_url": "https://learnenglish.britishcouncil.org/",
+    "daftar_soal": [
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 1: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 2: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 3: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 4: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 5: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 6: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 7: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 8: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 9: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Advanced Grammar] Sample Question 10: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "Write a short, formal email to your manager asking for a deadline extension on your current project.",
+        "pilihan": [],
+        "jawaban_benar": "Essay"
+      }
+    ]
+  },
+  {
+    "judul_asli": "Academic Vocabulary Quiz",
+    "kategori_topik": "Academic Vocabulary",
+    "jumlah_soal": 10,
+    "sumber_url": "https://learnenglish.britishcouncil.org/",
+    "daftar_soal": [
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 1: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 2: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 3: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 4: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 5: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 6: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 7: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 8: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 9: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Vocabulary] Sample Question 10: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "Write a short, formal email to your manager asking for a deadline extension on your current project.",
+        "pilihan": [],
+        "jawaban_benar": "Essay"
+      }
+    ]
+  },
+  {
+    "judul_asli": "Academic Writing Quiz",
+    "kategori_topik": "Academic Writing",
+    "jumlah_soal": 10,
+    "sumber_url": "https://learnenglish.britishcouncil.org/",
+    "daftar_soal": [
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 1: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 2: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 3: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 4: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 5: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 6: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 7: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 8: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 9: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "[Academic Writing] Sample Question 10: Choose the correct answer.",
+        "pilihan": [
+          "Option A",
+          "Option B",
+          "Option C",
+          "Option D"
+        ],
+        "jawaban_benar": "Option A"
+      },
+      {
+        "pertanyaan": "Do you agree that remote work is better than office work? Write a strong introductory paragraph for an argumentative essay supporting your view.",
+        "pilihan": [],
+        "jawaban_benar": "Essay"
+      }
+    ]
+  }
+]

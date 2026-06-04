@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { IconFlame } from '../components/Icons.jsx'
-import api from '../lib/axiosInstance';
+import api from '../lib/axiosInstance'
 import {
   INVALID_EMAIL_MESSAGE,
   PASSWORD_TOO_SHORT_MESSAGE,
@@ -47,8 +48,9 @@ export default function RegisterPage() {
     e.preventDefault()
     const cleanEmail = sanitizeEmailInput(email)
     setEmail(cleanEmail)
+
     if (!name.trim() || !cleanEmail.trim() || !password) {
-      setError('Nama, email, dan password wajib diisi.')
+      setError('Name, email, and password are required.')
       return
     }
     if (!isValidEmail(cleanEmail)) {
@@ -62,46 +64,58 @@ export default function RegisterPage() {
       return
     }
     if (password !== confirm) {
-      setError('Konfirmasi password tidak cocok.')
+      setError('Password confirmation does not match.')
       return
     }
+
     setError('')
     setEmailError('')
     setPasswordError('')
 
     try {
       await api.post('/auth/register', {
-        nama_lengkap: name, 
+        nama_lengkap: name,
         email: cleanEmail,
-        password: password,
-        current_level: "Beginner"
-      });
+        password,
+        current_level: 'Beginner',
+      })
+      
+      localStorage.clear();
+            
+      await Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'Please login to start learning.',
+        confirmButtonColor: '#4f46e5',
+        confirmButtonText: 'OK, Login Now',
+        customClass: {
+          popup: 'rounded-2xl font-sans',
+          confirmButton: 'rounded-xl px-6 py-2.5 text-sm font-semibold shadow-md'
+        }
+      })
 
-      alert("Registrasi Berhasil! Silakan login untuk melanjutkan.");
-    
       navigate('/login', { replace: true })
-
+      
     } catch (err) {
-      setError(err.response?.data?.message || "Terjadi kesalahan pada server saat registrasi.");
+      console.error("Detail Error:", err);
+      setError(err.response?.data?.message || 'An error occurred on the server during registration.')
     }
   }
 
   const inputError = (hasErr) =>
     hasErr
       ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
-      : 'border-slate-200 focus:border-blue-400 focus:ring-blue-200'
+      : 'border-slate-200 focus:border-indigo-400 focus:ring-indigo-200'
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-slate-50 px-5 py-12 font-sans">
-      <Link to="/" className="mb-5 max-w-[420px] self-start text-sm text-slate-600 no-underline hover:text-blue-600 md:mx-auto md:w-full">
+      <Link to="/" className="mb-5 max-w-[420px] self-start text-sm text-slate-600 no-underline hover:text-indigo-600 md:mx-auto md:w-full">
         ← Back to home
       </Link>
 
       <div className="w-full max-w-[420px] rounded-2xl border border-slate-200 bg-white p-8 shadow-lg">
         <div className="mb-5 flex items-center gap-2.5">
-          <span className="flex h-8 w-8 text-blue-600" aria-hidden>
-            <IconFlame />
-          </span>
+          <span className="flex h-8 w-8 text-indigo-600" aria-hidden><IconFlame /></span>
           <span className="text-[17px] font-bold tracking-wide text-slate-900">LUMEN</span>
         </div>
         <h1 className="mb-1.5 text-2xl font-bold text-slate-900">Sign up</h1>
@@ -113,92 +127,51 @@ export default function RegisterPage() {
               {error}
             </p>
           )}
-          <label className="mt-2 text-[13px] font-semibold text-slate-600 first:mt-0" htmlFor="reg-name">
-            Full name
-          </label>
+
+          <label className="mt-2 text-[13px] font-semibold text-slate-600 first:mt-0" htmlFor="reg-name">Full name</label>
           <input
-            id="reg-name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            className="mb-1 rounded-[10px] border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-200"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Alex Johnson"
+            id="reg-name" name="name" type="text" autoComplete="name"
+            className="mb-1 rounded-[10px] border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-200"
+            value={name} onChange={(e) => setName(e.target.value)} placeholder="Alex Johnson"
           />
 
-          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="reg-email">
-            Email
-          </label>
+          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="reg-email">Email</label>
           <input
-            id="reg-email"
-            name="email"
-            type="text"
-            inputMode="email"
-            autoComplete="email"
-            spellCheck={false}
+            id="reg-email" name="email" type="text" inputMode="email" autoComplete="email" spellCheck={false}
             aria-invalid={emailError ? 'true' : 'false'}
             aria-describedby={emailError ? 'reg-email-hint' : undefined}
             className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!emailError)}`}
-            value={email}
-            onChange={(e) => applyEmail(e.target.value)}
-            placeholder="nama@gmail.com"
+            value={email} onChange={(e) => applyEmail(e.target.value)} placeholder="you@example.com"
           />
-          {emailError ? (
-            <p id="reg-email-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">
-              {emailError}
-            </p>
-          ) : null}
+          {emailError && <p id="reg-email-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">{emailError}</p>}
 
-          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="reg-password">
-            Password
-          </label>
+          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="reg-password">Password</label>
           <input
-            id="reg-password"
-            name="password"
-            type="password"
-            autoComplete="new-password"
+            id="reg-password" name="password" type="password" autoComplete="new-password"
             aria-invalid={passwordError ? 'true' : 'false'}
             aria-describedby={passwordError ? 'reg-password-hint' : undefined}
             className={`mb-1 rounded-[10px] border bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:bg-white focus:ring-2 ${inputError(!!passwordError)}`}
-            value={password}
-            onChange={(e) => applyPassword(e.target.value)}
-            placeholder="Minimal 6 karakter"
+            value={password} onChange={(e) => applyPassword(e.target.value)} placeholder="At least 6 characters"
           />
-          {passwordError ? (
-            <p id="reg-password-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">
-              {passwordError}
-            </p>
-          ) : null}
+          {passwordError && <p id="reg-password-hint" className="mb-1 text-[13px] font-medium text-red-600" role="alert">{passwordError}</p>}
 
-          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="reg-confirm">
-            Confirm password
-          </label>
+          <label className="mt-2 text-[13px] font-semibold text-slate-600" htmlFor="reg-confirm">Confirm password</label>
           <input
-            id="reg-confirm"
-            name="confirm"
-            type="password"
-            autoComplete="new-password"
-            className="mb-1 rounded-[10px] border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-200"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            placeholder="Ulangi password"
+            id="reg-confirm" name="confirm" type="password" autoComplete="new-password"
+            className="mb-1 rounded-[10px] border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[15px] text-slate-900 outline-none focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-200"
+            value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="Repeat password"
           />
 
           <button
-            type="submit"
-            disabled={submitBlocked}
-            className="mt-5 w-full rounded-xl bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            type="submit" disabled={submitBlocked}
+            className="mt-5 w-full cursor-pointer rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Create account
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-slate-600">
-          Already have an account?{' '}
-          <Link to="/login" className="font-semibold text-blue-600 no-underline hover:underline">
-            Log in
-          </Link>
+          Already have an account? <Link to="/login" className="font-semibold text-indigo-600 no-underline hover:underline">Log in</Link>
         </p>
       </div>
     </div>

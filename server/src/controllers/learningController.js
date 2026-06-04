@@ -1,45 +1,64 @@
-const db = require('../config/database');
+const LearningModel = require('../models/LearningModel');
+const { resolveLevelId } = require('../utils/resolveLevelId');
 
-// 1. Mengambil semua bahasa yang tersedia
 const getLanguages = async (req, res) => {
     try {
-        const [languages] = await db.query('SELECT * FROM languages');
+        const languages = await LearningModel.getAllLanguages();
         res.status(200).json({ status: "success", data: languages });
     } catch (error) {
         res.status(500).json({ message: "Gagal mengambil data bahasa", error: error.message });
     }
 };
 
-// 2. Mengambil level berdasarkan ID bahasa
 const getLevelsByLanguage = async (req, res) => {
     try {
         const { language_id } = req.params;
-        const [levels] = await db.query('SELECT * FROM levels WHERE language_id = ? ORDER BY urutan ASC', [language_id]);
+        const levels = await LearningModel.getLevelsByLanguage(language_id);
         res.status(200).json({ status: "success", data: levels });
     } catch (error) {
         res.status(500).json({ message: "Gagal mengambil data level", error: error.message });
     }
 };
 
-// 3. Mengambil courses (materi utama) berdasarkan ID level
 const getCoursesByLevel = async (req, res) => {
     try {
-        const { level_id } = req.params;
-        const [courses] = await db.query('SELECT * FROM courses WHERE level_id = ? ORDER BY urutan ASC', [level_id]);
-        res.status(200).json({ status: "success", data: courses });
+        const levelId = await resolveLevelId(req.params.level_ref);
+        if (!levelId) {
+            return res.status(404).json({ message: 'Level not found' });
+        }
+        const courses = await LearningModel.getCoursesByLevel(levelId);
+        res.status(200).json({ status: 'success', data: courses, level_id: levelId });
     } catch (error) {
-        res.status(500).json({ message: "Gagal mengambil data course", error: error.message });
+        res.status(500).json({ message: 'Gagal mengambil data course', error: error.message });
     }
 };
 
-// 4. Mengambil detail lessons berdasarkan ID course
 const getLessonsByCourse = async (req, res) => {
     try {
         const { course_id } = req.params;
-        const [lessons] = await db.query('SELECT * FROM lessons WHERE course_id = ?', [course_id]);
+        const lessons = await LearningModel.getLessonsByCourse(course_id);
         res.status(200).json({ status: "success", data: lessons });
     } catch (error) {
         res.status(500).json({ message: "Gagal mengambil data lesson", error: error.message });
+    }
+};
+
+const getLessonById = async (req, res) => {
+    try {
+        const db = require('../config/database');
+        const lessonId = req.params.lessonId; 
+        
+        if (!lessonId) {
+            return res.status(400).json({ message: "lesson_id is required" });
+        }
+
+        const [rows] = await db.query('SELECT * FROM lessons WHERE id = ?', [lessonId]);
+        
+        if (rows.length === 0) return res.status(404).json({ message: "Lesson not found" });
+        
+        res.status(200).json({ status: "success", data: rows[0] });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching lesson details", error: error.message });
     }
 };
 
@@ -47,5 +66,6 @@ module.exports = {
     getLanguages,
     getLevelsByLanguage,
     getCoursesByLevel,
-    getLessonsByCourse
+    getLessonsByCourse,
+    getLessonById,
 };

@@ -16,3 +16,12 @@ body {
 #root {
   min-height: 100svh;
 }
+
+/* Global button pointer cursor */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+input[type="button"]:not(:disabled),
+input[type="submit"]:not(:disabled) {
+  cursor: pointer;
+}
+

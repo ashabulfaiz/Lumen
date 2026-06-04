@@ -9,7 +9,7 @@ export function sanitizeEmailInput(raw) {
 }
 
 export const INVALID_EMAIL_MESSAGE =
-  'Email tidak valid. Harus ada @gmail.com.'
+  'Please enter a valid email address.'
 
 const PASSWORD_MIN_LENGTH = 6
 
@@ -17,4 +17,4 @@ export function isPasswordLongEnough(password) {
   return String(password || '').length >= PASSWORD_MIN_LENGTH
 }
 
-export const PASSWORD_TOO_SHORT_MESSAGE = `Password minimal ${PASSWORD_MIN_LENGTH} karakter.`
+export const PASSWORD_TOO_SHORT_MESSAGE = `Password must be at least ${PASSWORD_MIN_LENGTH} characters.`

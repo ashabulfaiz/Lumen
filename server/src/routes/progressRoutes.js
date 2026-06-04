@@ -1,14 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const { markLessonComplete, submitQuizScore, getDashboardStats } = require('../controllers/progressController');
+const {
+    markLessonComplete,
+    submitQuizScore,
+    getDashboardStats,
+    getUserProgress,
+    getCompletedLessons,
+    getModuleStatus,
+    saveEssaySubmission,
+    getEssaySubmission,
+    resetProgress,
+    getUnlockedLevel,
+} = require('../controllers/progressController');
 const { verifyToken } = require('../middlewares/authMiddleware');
 
-// Terapkan verifyToken untuk semua rute di file ini secara otomatis
 router.use(verifyToken);
 
-// Endpoint API
-router.post('/lesson', markLessonComplete); // Menyelesaikan materi
-router.post('/quiz', submitQuizScore);      // Submit nilai kuis
-router.get('/dashboard', getDashboardStats); // Ambil data dashboard
+router.post('/lesson', markLessonComplete);
+router.post('/submit-quiz', submitQuizScore);
+router.get('/dashboard', getDashboardStats);
+router.get('/my-progress', getUserProgress);
+router.get('/completed/:level_ref', getCompletedLessons);
+router.get('/module-status/:level_ref', getModuleStatus);
+router.get('/essay/:lesson_id', getEssaySubmission);
+router.post('/essay', saveEssaySubmission);
+router.post('/reset', resetProgress);
+router.get('/unlocked-level', getUnlockedLevel);
 
 module.exports = router;

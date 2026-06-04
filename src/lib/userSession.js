@@ -1,6 +1,7 @@
 /** Local session keys — replace with real auth later */
 const LS_USERNAME = 'lumen_username'
 const LS_DISPLAY_NAME = 'lumen_display_name'
+const LS_EMAIL = 'lumen_email'
 export const LS_AVATAR = 'lumen_profile_avatar'
 
 function emailLocalPart(email) {
@@ -16,6 +17,7 @@ function deriveUsername(email) {
 
 export function persistLoginSession(email) {
   try {
+    localStorage.setItem(LS_EMAIL, email.trim())
     localStorage.setItem(LS_USERNAME, deriveUsername(email))
   } catch {
     /* ignore */
@@ -24,6 +26,7 @@ export function persistLoginSession(email) {
 
 export function persistRegisterSession(displayName, email) {
   try {
+    localStorage.setItem(LS_EMAIL, email.trim())
     localStorage.setItem(LS_USERNAME, deriveUsername(email))
     if (displayName.trim()) {
       localStorage.setItem(LS_DISPLAY_NAME, displayName.trim())
@@ -37,6 +40,7 @@ export function clearUserSession() {
   try {
     localStorage.removeItem(LS_USERNAME)
     localStorage.removeItem(LS_DISPLAY_NAME)
+    localStorage.removeItem(LS_EMAIL)
     localStorage.removeItem(LS_AVATAR)
   } catch {
     /* ignore */
@@ -54,6 +58,14 @@ export function readUsername() {
 export function readDisplayName() {
   try {
     return localStorage.getItem(LS_DISPLAY_NAME) || ''
+  } catch {
+    return ''
+  }
+}
+
+export function readEmail() {
+  try {
+    return localStorage.getItem(LS_EMAIL) || ''
   } catch {
     return ''
   }

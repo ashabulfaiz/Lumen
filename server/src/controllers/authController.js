@@ -1,51 +1,40 @@
-const db = require('../config/database');
+const AuthModel = require('../models/AuthModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
     try {
-        // 1. Tangkap data dari body request (dikirim oleh frontend/Postman)
         const { nama_lengkap, email, password, current_level } = req.body;
 
-        // 2. Validasi sederhana: Pastikan data penting tidak kosong
         if (!nama_lengkap || !email || !password) {
-            return res.status(400).json({ message: "Nama, email, dan password wajib diisi!" });
+            return res.status(400).json({ message: "Name, email, and password are required!" });
         }
 
-        // 3. Cek apakah email sudah terdaftar di database
-        const [existingUser] = await db.query('SELECT email FROM users WHERE email = ?', [email]);
-        if (existingUser.length > 0) {
-            return res.status(400).json({ message: "Email sudah terdaftar, silakan gunakan email lain." });
+        const existingUser = await AuthModel.findUserByEmail(email);
+        if (existingUser) {
+            return res.status(400).json({ message: "Email is already registered, please use another email." });
         }
 
-        // 4. Acak (Hash) Password menggunakan bcrypt
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-
-        // 5. Set level default jika tidak dipilih
         const level = current_level || 'Beginner';
+        const role = 'student';
+        const result = await AuthModel.createUser(nama_lengkap, email, hashedPassword, level, role);
 
-        // 6. Simpan data ke tabel users
-        const [result] = await db.query(
-            'INSERT INTO users (nama_lengkap, email, password_hash, current_level, role) VALUES (?, ?, ?, ?, ?)',
-            [nama_lengkap, email, hashedPassword, level, 'student']
-        );
-
-        // 7. Berikan respons sukses
         res.status(201).json({
             status: "success",
-            message: "Registrasi berhasil!",
+            message: "Registration successful! Please login.",
             data: {
                 id: result.insertId,
-                nama_lengkap,
-                email,
-                current_level: level
+                nama_lengkap: nama_lengkap,
+                email: email,
+                current_level: level,
+                role: role
             }
         });
 
     } catch (error) {
-        console.error("❌ Error pada fitur Register:", error);
-        res.status(500).json({ message: "Terjadi kesalahan internal pada server." });
+        res.status(500).json({ message: "An error occurred on the server.", error: error.message });
     }
 };
 
@@ -53,51 +42,58 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // 1. Validasi input
         if (!email || !password) {
-            return res.status(400).json({ message: "Email dan password wajib diisi!" });
+            return res.status(400).json({ message: "Email and password are required!" });
         }
 
-        // 2. Cari user berdasarkan email
-        const [users] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
-        const user = users[0]; // Ambil data user pertama
-
+        const user = await AuthModel.findUserByEmail(email);
         if (!user) {
-            return res.status(401).json({ message: "Email tidak ditemukan." });
+            return res.status(401).json({ message: "Email not found." });
         }
 
-        // 3. Cocokkan password yang diketik dengan password_hash di database
         const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-        
         if (!isPasswordValid) {
-            return res.status(401).json({ message: "Password salah!" });
+            return res.status(401).json({ message: "Invalid password." });
         }
 
-        // 4. Buat Token (JWT)
         const token = jwt.sign(
-            { id: user.id, email: user.email, role: user.role, level: user.current_level }, 
-            process.env.JWT_SECRET, 
-            { expiresIn: '1d' } // Token berlaku selama 1 hari
+            { id: user.id, email: user.email, role: user.role, level: user.current_level, is_onboarding_complete: user.is_onboarding_complete },
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
         );
 
-        // 5. Berikan respons sukses beserta token
         res.status(200).json({
             status: "success",
-            message: "Login berhasil!",
+            message: "Login successful!",
             token: token,
             data: {
                 id: user.id,
                 nama_lengkap: user.nama_lengkap,
                 email: user.email,
                 current_level: user.current_level,
-                role: user.role
+                role: user.role,
+                is_onboarding_complete: user.is_onboarding_complete
             }
         });
 
     } catch (error) {
-        console.error("❌ Error pada fitur Login:", error);
-        res.status(500).json({ message: "Terjadi kesalahan internal pada server." });
+        res.status(500).json({ message: "An error occurred while logging in.", error: error.message });
     }
 };
 
-module.exports = { register, login };
+const getMe = async (req, res) => {
+    try {
+        const user = await AuthModel.findUserByEmail(req.user.email);
+        if (!user) {
+            return res.status(404).json({ message: "Account not found. It might have been deleted." });
+        }
+        res.status(200).json({
+            status: "success",
+            data: { id: user.id, nama_lengkap: user.nama_lengkap, email: user.email, role: user.role, is_onboarding_complete: user.is_onboarding_complete }
+        });
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred on the server.", error: error.message });
+    }
+};
+
+module.exports = { register, login, getMe };

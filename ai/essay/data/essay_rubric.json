@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "pass_threshold": 60,
+  "dimensions": {
+    "grammar": {
+      "weight": 0.3,
+      "label": "Grammar",
+      "description": "Sentence structure, verb forms, articles, and agreement.",
+      "bands": [
+        {
+          "min": 85,
+          "label": "Excellent",
+          "criteria": "Few or no grammatical errors; sentences are well formed."
+        },
+        {
+          "min": 70,
+          "label": "Good",
+          "criteria": "Minor errors that do not block understanding."
+        },
+        {
+          "min": 50,
+          "label": "Fair",
+          "criteria": "Noticeable errors but the message is still clear."
+        },
+        {
+          "min": 0,
+          "label": "Needs work",
+          "criteria": "Frequent errors that make the writing hard to follow."
+        }
+      ]
+    },
+    "vocabulary": {
+      "weight": 0.25,
+      "label": "Vocabulary",
+      "description": "Range and appropriateness of words for the level and topic.",
+      "bands": [
+        {
+          "min": 85,
+          "label": "Excellent",
+          "criteria": "Varied, topic-appropriate words with little repetition."
+        },
+        {
+          "min": 70,
+          "label": "Good",
+          "criteria": "Adequate word choice with some variety."
+        },
+        {
+          "min": 50,
+          "label": "Fair",
+          "criteria": "Basic words only; limited range or heavy repetition."
+        },
+        {
+          "min": 0,
+          "label": "Needs work",
+          "criteria": "Very limited vocabulary; many repeated words."
+        }
+      ]
+    },
+    "relevance": {
+      "weight": 0.25,
+      "label": "Relevance",
+      "description": "The answer addresses the prompt and stays on topic.",
+      "bands": [
+        {
+          "min": 85,
+          "label": "Excellent",
+          "criteria": "Fully answers the prompt with appropriate detail."
+        },
+        {
+          "min": 70,
+          "label": "Good",
+          "criteria": "Mostly on topic; minor gaps in addressing the prompt."
+        },
+        {
+          "min": 50,
+          "label": "Fair",
+          "criteria": "Partially on topic or too short to judge fully."
+        },
+        {
+          "min": 0,
+          "label": "Needs work",
+          "criteria": "Off topic or does not answer the question."
+        }
+      ]
+    },
+    "coherence": {
+      "weight": 0.2,
+      "label": "Coherence",
+      "description": "Logical flow, sentence linking, and readable organization.",
+      "bands": [
+        {
+          "min": 85,
+          "label": "Excellent",
+          "criteria": "Clear flow; ideas connect smoothly with linking words."
+        },
+        {
+          "min": 70,
+          "label": "Good",
+          "criteria": "Generally organized; minor jumps between ideas."
+        },
+        {
+          "min": 50,
+          "label": "Fair",
+          "criteria": "Ideas are present but order or linking is weak."
+        },
+        {
+          "min": 0,
+          "label": "Needs work",
+          "criteria": "Hard to follow; fragmented or one long unstructured block."
+        }
+      ]
+    }
+  }
+}

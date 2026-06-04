@@ -1,0 +1,153 @@
+import { useEffect, useRef, useState } from 'react'
+import { Camera, ChevronUp, LogOut, User as UserIcon } from 'lucide-react'
+import { useUser } from '../lib/useUser.jsx'
+
+export default function UserProfileBadge({ onLogout }) {
+  const { user, loading } = useUser()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const ref = useRef(null)
+  const inputRef = useRef(null)
+  
+  // Perbaikan 1: Gunakan string langsung, bukan LS_AVATAR
+  const [avatar, setAvatar] = useState(() => {
+    try {
+      return localStorage.getItem('lumen_profile_avatar') || ''
+    } catch {
+      return ''
+    }
+  })
+
+  useEffect(() => {
+    function onDocMouseDown(e) {
+      if (ref.current && !ref.current.contains(e.target)) setIsMenuOpen(false)
+    }
+    function onDocKeyDown(e) {
+      if (e.key === 'Escape') setIsMenuOpen(false)
+    }
+    document.addEventListener('mousedown', onDocMouseDown)
+    document.addEventListener('keydown', onDocKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onDocMouseDown)
+      document.removeEventListener('keydown', onDocKeyDown)
+    }
+  }, [])
+
+  async function readAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(String(reader.result || ''))
+      reader.onerror = () => reject(new Error('Failed to read file'))
+      reader.readAsDataURL(file)
+    })
+  }
+
+  async function onPickFile(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    try {
+      const dataUrl = await readAsDataUrl(file)
+      setAvatar(dataUrl)
+      // Perbaikan 2: Gunakan string 'lumen_profile_avatar'
+      localStorage.setItem('lumen_profile_avatar', dataUrl)
+    } catch {
+      /* ignore */
+    } finally {
+      if (inputRef.current) inputRef.current.value = ''
+    }
+  }
+
+  // Perbaikan 3: Rombak total fungsi logout agar tidak pakai clearUserSession
+  function logout(e) {
+    if (e) e.preventDefault();
+    setIsMenuOpen(false)
+    localStorage.clear() // Bumihanguskan semua localStorage (termasuk token)
+    setAvatar('')
+    if (onLogout) onLogout()
+    window.location.href = '/login' // Refresh paksa ke halaman login
+  }
+
+  return (
+    <div className="relative" ref={ref}>
+      {isMenuOpen && (
+        <div className="absolute bottom-full left-0 right-0 z-50 mb-2 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+          <button
+            type="button"
+            className="flex w-full cursor-pointer items-center gap-2.5 px-4 py-3 text-left text-[15px] font-semibold text-red-500 transition hover:bg-red-50"
+            onClick={logout}
+          >
+            <LogOut className="h-5 w-5" />
+            Logout
+          </button>
+        </div>
+      )}
+
+      <button
+        type="button"
+        className="flex w-full cursor-pointer items-center gap-2.5 rounded-2xl bg-white px-2.5 py-2.5 text-left transition hover:bg-slate-50"
+        aria-expanded={isMenuOpen}
+        aria-haspopup="true"
+        onClick={() => setIsMenuOpen((v) => !v)}
+      >
+        <span className="relative shrink-0" aria-hidden>
+          <span className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-indigo-600 text-white shadow-sm">
+            {avatar ? (
+              <img src={avatar} alt="" className="h-full w-full object-cover" />
+            ) : (
+              <UserIcon className="h-5 w-5" />
+            )}
+          </span>
+          <span
+            className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border border-white bg-indigo-600 text-white shadow-sm transition hover:bg-indigo-700"
+            aria-label="Change profile photo"
+            role="button"
+            tabIndex={0}
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+            }}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              inputRef.current?.click()
+            }}
+            onKeyDown={(e) => {
+              if (e.key !== 'Enter' && e.key !== ' ') return
+              e.preventDefault()
+              e.stopPropagation()
+              inputRef.current?.click()
+            }}
+          >
+            <Camera className="h-3 w-3" />
+          </span>
+        </span>
+
+        <span className="min-w-0 flex-1">
+          {loading ? (
+            <span className="block h-4 w-36 animate-pulse rounded bg-slate-200" aria-hidden />
+          ) : (
+            <span className="block truncate text-[14px] font-bold text-slate-900">{user?.name || '—'}</span>
+          )}
+          {loading ? (
+            <span className="mt-2 block h-3 w-44 animate-pulse rounded bg-slate-200" aria-hidden />
+          ) : (
+            <span className="block break-all text-[12px] leading-tight font-medium text-slate-500">{user?.email || '—'}</span>
+          )}
+        </span>
+
+        <ChevronUp
+          className={`h-[18px] w-[18px] shrink-0 text-slate-400 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`}
+          aria-hidden
+        />
+      </button>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        className="sr-only"
+        onChange={onPickFile}
+        aria-label="Upload profile photo"
+      />
+    </div>
+  )
+}

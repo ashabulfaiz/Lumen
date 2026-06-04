@@ -1,0 +1,242 @@
+[
+  {
+    "epoch": 1,
+    "val_accuracy": 0.9653356492519378,
+    "val_mae": 0.21491755545139313,
+    "meets_accuracy": true,
+    "meets_mae": false,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 2,
+    "val_accuracy": 0.9684606492519379,
+    "val_mae": 0.04233497753739357,
+    "meets_accuracy": true,
+    "meets_mae": false,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 3,
+    "val_accuracy": 0.9684606492519379,
+    "val_mae": 0.02181417029350996,
+    "meets_accuracy": true,
+    "meets_mae": false,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 4,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.022072965744882822,
+    "meets_accuracy": true,
+    "meets_mae": false,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 5,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.021687003690749405,
+    "meets_accuracy": true,
+    "meets_mae": false,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 6,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.019036000734195112,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 7,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.019989997055381535,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 8,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.01881596790626645,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 9,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.018041833210736512,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 10,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.01803620797581971,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 11,
+    "val_accuracy": 0.9684606492519379,
+    "val_mae": 0.018217230401933193,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 12,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.017168395780026914,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 13,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.017141190031543373,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 14,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.017435056855902076,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 15,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.018505771178752184,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 16,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.017947264341637494,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 17,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.017846673633903264,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 18,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.017775559984147548,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 19,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.019494935404509306,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 20,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.01706612538546324,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": "D:\\Lumen\\ai\\grammar\\models\\checkpoints\\best_weights.weights.h5"
+  },
+  {
+    "epoch": 21,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.01693117469549179,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 22,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.01757861808873713,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 23,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.017202421370893718,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 24,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.01812166110612452,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 25,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.017516677919775247,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 26,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.01734304279088974,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 27,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.017303879652172328,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 28,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.018988390872254967,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 29,
+    "val_accuracy": 0.984375,
+    "val_mae": 0.01771854991093278,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  },
+  {
+    "epoch": 30,
+    "val_accuracy": 0.9840856492519379,
+    "val_mae": 0.01724669374525547,
+    "meets_accuracy": true,
+    "meets_mae": true,
+    "saved_checkpoint": null
+  }
+]

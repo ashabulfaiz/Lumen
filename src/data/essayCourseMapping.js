@@ -1,0 +1,47 @@
+export const essayCourseMapping = {
+  by_level_order: {
+    beginner: {
+      1: 'coreGrammar',
+      2: 'coreGrammar',
+      3: 'everydayVocabulary',
+    },
+    intermediate: {
+      1: 'readingShortTexts',
+      2: 'listeningForGist',
+    },
+    advanced: {
+      1: 'opinionEssays',
+      2: 'realWorldDialogues',
+    },
+  },
+  by_course_title: {
+    'basic english grammar': 'coreGrammar',
+    'daily vocabulary': 'everydayVocabulary',
+    'reading & listening': 'readingShortTexts',
+    'reading and listening': 'readingShortTexts',
+    'fluency & discussion': 'opinionEssays',
+    'fluency and discussion': 'opinionEssays',
+  },
+  by_lesson_title: {
+    'reading short texts': 'readingShortTexts',
+    'listening for gist': 'listeningForGist',
+    'verb tenses & consistency': 'readingShortTexts',
+    'verb tenses and consistency': 'readingShortTexts',
+    'commonly confused words': 'readingShortTexts',
+    'understanding phrasal verbs': 'readingShortTexts',
+    'opinion essays & linking words': 'opinionEssays',
+    'opinion essays and linking words': 'opinionEssays',
+    'real-world dialogues': 'realWorldDialogues',
+    'real world dialogues': 'realWorldDialogues',
+    'advanced conditionals': 'opinionEssays',
+    'punctuation & sentence structure': 'opinionEssays',
+    'punctuation and sentence structure': 'opinionEssays',
+    'noun clauses & connectors': 'opinionEssays',
+    'noun clauses and connectors': 'opinionEssays',
+    'to be & to have': 'everydayVocabulary',
+    'spelling & common words': 'everydayVocabulary',
+    'spelling and common words': 'everydayVocabulary',
+    'introduction to subjects & pronouns': 'coreGrammar',
+    'using articles (a, an, the)': 'coreGrammar',
+  },
+}
