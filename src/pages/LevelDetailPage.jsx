@@ -231,7 +231,7 @@ export default function LevelDetailPage() {
                            status.isAvailable ? themeConfig.statText : 
                            'text-slate-400'
                         }`}>
-                          Modul {stepNum}
+                          Module {stepNum}
                         </span>
                         
                         {/* Status Badges */}
@@ -265,10 +265,19 @@ export default function LevelDetailPage() {
                       )}
                       
                       {/* Konten dengan line-clamp agar tinggi card konsisten */}
-                      <div 
-                        className="text-sm leading-relaxed text-slate-600 line-clamp-3 mb-6"
-                        dangerouslySetInnerHTML={{ __html: lesson.konten_teks }}
-                      />
+                      <div className="text-sm leading-relaxed text-slate-600 line-clamp-3 mb-6">
+                        {(() => {
+                          try {
+                            const parsed = JSON.parse(lesson.konten_teks)
+                            if (Array.isArray(parsed) && parsed.length > 0) {
+                              return parsed[0].objective || "Interactive learning module covering essential vocabulary and concepts."
+                            }
+                          } catch {
+                            // Not JSON, render as HTML string
+                          }
+                          return <span dangerouslySetInnerHTML={{ __html: lesson.konten_teks }} />
+                        })()}
+                      </div>
                     </div>
 
                     {/* Bagian Bawah Kartu (Waktu & Tombol Aksi) */}
@@ -282,16 +291,10 @@ export default function LevelDetailPage() {
                         {!locked && !status.isCompleted && (
                           <>
                             <Link
-                              to={`/learning/${slug}/lesson/${lesson.id}/writing`}
-                              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-slate-300"
-                            >
-                              Writing
-                            </Link>
-                            <Link
-                              to={`/learning/${slug}/lesson/${lesson.id}`}
+                              to={`/learning/${slug}/lesson/${lesson.id}/material`}
                               className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition-colors ${themeConfig.badgeBg} ${themeConfig.badgeText} shadow-sm hover:opacity-90`}
                             >
-                              Quiz
+                              Start Learning
                               <IconArrowRight className="h-3 w-3" />
                             </Link>
                           </>
@@ -299,6 +302,12 @@ export default function LevelDetailPage() {
 
                         {!locked && status.isCompleted && (
                           <>
+                            <Link
+                              to={`/learning/${slug}/lesson/${lesson.id}/material`}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900"
+                            >
+                              Material
+                            </Link>
                             <Link
                               to={`/learning/${slug}/lesson/${lesson.id}/writing`}
                               className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900"

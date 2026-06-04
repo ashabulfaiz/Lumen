@@ -269,7 +269,17 @@ export default function ProgressPage() {
                             <div className="min-w-0 flex-1">
                               <h3 className="mb-1 text-[16px] font-bold text-slate-900">{lesson.judul_lesson}</h3>
                               <p className="mb-0 text-[14px] text-slate-500 line-clamp-1">
-                                  {stripHtml(lesson.konten_teks) || 'Materi pembelajaran modul ini.'}
+                                  {(() => {
+                                    try {
+                                      const parsed = JSON.parse(lesson.konten_teks)
+                                      if (Array.isArray(parsed) && parsed.length > 0) {
+                                        return parsed[0].objective || 'Learning material for this module.'
+                                      }
+                                    } catch {
+                                      // Not JSON
+                                    }
+                                    return stripHtml(lesson.konten_teks) || 'Learning material for this module.'
+                                  })()}
                               </p>
                             </div>
 

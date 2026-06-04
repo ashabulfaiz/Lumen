@@ -315,7 +315,7 @@ export default function DashboardHome() {
                 if (lesson.lockedForUser) {
                   targetUrl = `/learning/${activeLesson.levelSlug}`; // Direct to the main curriculum page of the current level
                 } else {
-                  targetUrl = `/learning/${lesson.levelSlug}/lesson/${lesson.id}`;
+                  targetUrl = `/learning/${lesson.levelSlug}/lesson/${lesson.id}/material`;
                 }
               }
 

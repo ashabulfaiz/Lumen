@@ -298,19 +298,19 @@ export default function LearningPathStepPage() {
             
             <div className="space-y-5 text-sm leading-relaxed text-slate-600 md:text-[15px]">
               <p>
-                Selamat datang di LUMEN! Kami hadir untuk menemani perjalanan Anda dalam menguasai bahasa Inggris dengan cara yang menyenangkan, terarah, dan adaptif.
+                Welcome to LUMEN! We are here to accompany your journey in mastering English in a fun, structured, and adaptive way.
               </p>
               <p>
-                Di era globalisasi saat ini, kemampuan berkomunikasi dalam bahasa Inggris bukan lagi sekadar nilai tambah, melainkan kebutuhan mendasar. Baik untuk kebutuhan akademis, pengembangan karir, maupun interaksi sehari-hari, bahasa Inggris membuka gerbang ke berbagai peluang global tanpa batas.
+                In today's globalized world, the ability to communicate in English is no longer just a bonus, but a fundamental necessity. Whether for academic needs, career development, or daily interaction, English opens doors to limitless global opportunities.
               </p>
               <p>
-                LUMEN membantu Anda menguasai tata bahasa (grammar), memperluas kosakata (vocabulary), hingga melatih kelancaran berbicara melalui modul pembelajaran yang terstruktur. Didukung oleh teknologi kecerdasan buatan (AI Tutor), Anda akan mendapatkan umpan balik langsung secara instan dan personal.
+                LUMEN helps you master grammar, expand vocabulary, and practice speaking fluency through structured learning modules. Powered by AI Tutor technology, you will receive instant and personalized feedback.
               </p>
               <p>
-                Apakah Anda siap untuk meningkatkan kemampuan bahasa Inggris Anda secara terstruktur dan percaya diri?
+                Are you ready to improve your English skills structurally and confidently?
               </p>
               <p>
-                Nah, kali ini kita akan belajar secara bertahap materi-materi tata bahasa dari tingkat dasar hingga tingkat mahir yang kami ambil secara representatif dari database kurikulum LUMEN:
+                Let's explore the grammar materials step-by-step from beginner to advanced levels, representatively taken from the LUMEN curriculum database:
               </p>
               
               <div className="my-6 rounded-xl bg-slate-50 border border-slate-200 p-5 space-y-4">
