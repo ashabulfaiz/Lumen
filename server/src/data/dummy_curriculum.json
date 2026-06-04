@@ -11,19 +11,865 @@
             "judul_lesson": "Greetings and Introductions",
             "konten_teks": "[\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Saying Hello & Goodbye (Formal vs Informal)\",\r\n    \"objective\": \"In this lesson, you will learn various ways to say hello and goodbye, and understand when to use formal and informal language.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"Good morning / afternoon / evening\", \"meaning\": \"Selamat pagi / siang / malam (Formal)\" },\r\n      { \"term\": \"Hello / Hi / Hey\", \"meaning\": \"Halo (Informal)\" },\r\n      { \"term\": \"Goodbye / Have a nice day\", \"meaning\": \"Selamat tinggal / Semoga harimu menyenangkan (Formal)\" },\r\n      { \"term\": \"Bye / Catch you later\", \"meaning\": \"Dadah / Sampai ketemu lagi nanti (Informal)\" }\r\n    ],\r\n    \"concept\": \"Use formal greetings at work, at school (to teachers), or when speaking with people you do not know. Use informal greetings for peers or family. Common mistake: Never use 'Good night' to greet someone in the evening. 'Good night' is only used as a farewell or right before sleeping.\",\r\n    \"example_dialogue\": \"[Formal]\\nA: Good evening, Mr. Davis.\\nB: Good evening, Anna. Have a safe trip home.\\n\\n[Informal]\\nA: Hey, Mark! What's up?\\nB: Hi, John! Not much. I have to go now. Catch you later!\"\r\n  },\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Asking 'How are you?'\",\r\n    \"objective\": \"You will learn various ways to ask how someone is doing and how to respond to it, from very good to not so good conditions.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"How are you? / How is it going?\", \"meaning\": \"Apa kabar? / Bagaimana kabarmu?\" },\r\n      { \"term\": \"I'm doing well / Great\", \"meaning\": \"Saya baik-baik saja / Luar biasa\" },\r\n      { \"term\": \"Not bad / So-so\", \"meaning\": \"Lumayan / Biasa saja\" },\r\n      { \"term\": \"And you? / How about you?\", \"meaning\": \"Dan kamu? / Bagaimana denganmu?\" }\r\n    ],\r\n    \"concept\": \"In Western culture, 'How are you?' is often just friendly small talk. People usually expect a short and positive answer. Politeness rule: Always add 'Thank you' after answering, then ask the same question back.\",\r\n    \"example_dialogue\": \"A: Hi, Sarah. How is it going?\\nB: Not bad, thanks! How about you?\\nA: I'm doing well, just a bit tired today.\"\r\n  },\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Introducing Yourself\",\r\n    \"objective\": \"You will learn how to form complete sentences to state your identity, origin, age, and occupation or status.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"First name / Last name\", \"meaning\": \"Nama depan / Nama belakang\" },\r\n      { \"term\": \"Live in... / Come from...\", \"meaning\": \"Tinggal di... / Berasal dari...\" },\r\n      { \"term\": \"Years old\", \"meaning\": \"Tahun (untuk menyebutkan umur)\" },\r\n      { \"term\": \"Pleased to meet you\", \"meaning\": \"Senang bertemu denganmu\" }\r\n    ],\r\n    \"concept\": \"Use 'I am from [Country/City]' for your place of origin, and 'I live in [City]' for your current residence. Age rule: In English, we use the verb 'To Be' (am/is/are) for age, NOT 'have'. (Correct: I am 20 years old. Incorrect: I have 20 years).\",\r\n    \"example_dialogue\": \"Hello everyone. Let me introduce myself. My name is Kevin. I am from Indonesia, but I live in Tokyo now. I am 22 years old and I am a university student. Pleased to meet you all.\"\r\n  },\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Introducing Others\",\r\n    \"objective\": \"You will learn how to act as a polite intermediary when introducing two people who do not know each other.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"This is...\", \"meaning\": \"Ini adalah...\" },\r\n      { \"term\": \"I'd like you to meet...\", \"meaning\": \"Saya ingin kamu bertemu dengan...\" },\r\n      { \"term\": \"Colleague / Coworker\", \"meaning\": \"Rekan kerja\" },\r\n      { \"term\": \"Classmate\", \"meaning\": \"Teman sekelas\" }\r\n    ],\r\n    \"concept\": \"Use 'This is [Name]'. If you point at your friend and say 'She is Maria' while she is right in front of you, it is considered less polite grammatically. Always mention your relationship with the person to make the introduction warmer.\",\r\n    \"example_dialogue\": \"A: Hi, David. I'd like you to meet my coworker, Lisa.\\nDavid: Hello, Lisa. Nice to meet you.\\nLisa: Nice to meet you too, David. I've heard a lot about you.\"\r\n  },\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Using Titles Correctly\",\r\n    \"objective\": \"You will learn how to use English titles correctly so as not to offend the person you are speaking with.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"Mr. (Mister)\", \"meaning\": \"Untuk pria dewasa (menikah atau belum)\" },\r\n      { \"term\": \"Mrs. (Missus) / Miss\", \"meaning\": \"Untuk wanita menikah / Untuk wanita belum menikah\" },\r\n      { \"term\": \"Ms. (Mizz)\", \"meaning\": \"Untuk wanita (netral, tidak perlu tahu status pernikahannya)\" },\r\n      { \"term\": \"Sir / Ma'am\", \"meaning\": \"Pak / Bu (Panggilan hormat jika tidak tahu namanya)\" }\r\n    ],\r\n    \"concept\": \"Titles (Mr./Mrs./Ms./Miss) MUST be followed by the Last Name, not the first name. If his name is Budi Santoso, call him Mr. Santoso. In English-speaking countries, students DO NOT call their teacher by saying 'Teacher', but rather use the title and their last name.\",\r\n    \"example_dialogue\": \"[At a restaurant]\\nWaiter: Excuse me, Sir. Is this your bag?\\n\\n[At school]\\nStudent: Good morning, Mrs. Robinson. How are you?\\nTeacher: Good morning. Please take a seat.\"\r\n  },\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Subject Pronouns (Basic Grammar)\",\r\n    \"objective\": \"Understand personal pronouns as the subject (doer) in a sentence. This is an absolute foundation before making any sentences.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"I / You\", \"meaning\": \"Saya / Kamu (atau Kalian)\" },\r\n      { \"term\": \"He / She / It\", \"meaning\": \"Dia (Laki-laki) / Dia (Perempuan) / Itu (Benda, Hewan, Cuaca)\" },\r\n      { \"term\": \"We / They\", \"meaning\": \"Kami (atau Kita) / Mereka\" }\r\n    ],\r\n    \"concept\": \"A subject pronoun is always placed at the beginning of a sentence, before the verb. 'It' is also used for time and weather (e.g., It is raining). Do not assume 'They' is only for humans. If there are two dogs or three books, you still refer to them with 'They'.\",\r\n    \"example_dialogue\": \"I like apples.\\nMy brother is tall. He is a basketball player.\\nLook at the cat. It is very cute.\\nSarah and I are friends. We study together.\"\r\n  },\r\n  {\r\n    \"level\": \"Beginner\",\r\n    \"module_name\": \"Greetings and Introductions\",\r\n    \"sub_topic_title\": \"Reading Practice (A Simple Conversation)\",\r\n    \"objective\": \"Practice all the vocabulary, concepts, and grammar from Sub 1 to Sub 6 in a complete conversational text.\",\r\n    \"vocabulary\": [\r\n      { \"term\": \"Welcome to...\", \"meaning\": \"Selamat datang di...\" },\r\n      { \"term\": \"Everyone\", \"meaning\": \"Semua orang\" },\r\n      { \"term\": \"Excellent\", \"meaning\": \"Luar biasa / Bagus sekali\" }\r\n    ],\r\n    \"concept\": \"[Concept Review] This text combines the use of formal greetings (to a teacher) and informal ones (between friends), the pattern of mentioning one's country of origin, the use of formal titles followed by last names, and the application of subject pronouns.\",\r\n    \"example_dialogue\": \"Lisa: Hi there! I am Lisa. What's your name?\\nOmar: Hello, Lisa. My name is Omar. I am from Egypt. And you?\\nLisa: I come from Canada, but I live in New York now.\\n[A teacher enters the classroom]\\nMr. Miller: Good morning, everyone. My name is Robert Miller. Please call me Mr. Miller. How is everyone doing today?\\nLisa & Omar: Good morning, Mr. Miller. We are doing great, thank you!\"\r\n  }\r\n]",
             "kuis_topik_id": "Greetings and Introductions",
-            "urutan": 1
+            "urutan": 1,
+            "kuis": {
+              "judul_asli": "Greetings and Introductions Quiz",
+              "jumlah_soal": 61,
+              "sumber_url": "https://learnenglish.britishcouncil.org/",
+              "daftar_soal": [
+                {
+                  "pertanyaan": "Which of the following is a greeting?",
+                  "pilihan": [
+                    "Hello",
+                    "Table",
+                    "Book",
+                    "Chair"
+                  ],
+                  "jawaban_benar": "Hello"
+                },
+                {
+                  "pertanyaan": "What do you say in the morning?",
+                  "pilihan": [
+                    "Good Morning",
+                    "Good Night",
+                    "Goodbye",
+                    "See you"
+                  ],
+                  "jawaban_benar": "Good Morning"
+                },
+                {
+                  "pertanyaan": "Which phrase is used when meeting someone?",
+                  "pilihan": [
+                    "Nice to meet you",
+                    "Close the door",
+                    "Sit down",
+                    "Be quiet"
+                  ],
+                  "jawaban_benar": "Nice to meet you"
+                },
+                {
+                  "pertanyaan": "What does 'Hello' mean?",
+                  "pilihan": [
+                    "Halo",
+                    "Selamat tinggal",
+                    "Terima kasih",
+                    "Maaf"
+                  ],
+                  "jawaban_benar": "Halo"
+                },
+                {
+                  "pertanyaan": "Which greeting can be used anytime?",
+                  "pilihan": [
+                    "Hi",
+                    "Good Night",
+                    "Good Afternoon only",
+                    "None"
+                  ],
+                  "jawaban_benar": "Hi"
+                },
+                {
+                  "pertanyaan": "What does 'Goodbye' mean?",
+                  "pilihan": [
+                    "Selamat tinggal",
+                    "Selamat pagi",
+                    "Apa kabar",
+                    "Halo"
+                  ],
+                  "jawaban_benar": "Selamat tinggal"
+                },
+                {
+                  "pertanyaan": "Which is a self-introduction?",
+                  "pilihan": [
+                    "My name is John.",
+                    "Open the book.",
+                    "Close the window.",
+                    "Sit here."
+                  ],
+                  "jawaban_benar": "My name is John."
+                },
+                {
+                  "pertanyaan": "What does 'Nice to meet you' mean?",
+                  "pilihan": [
+                    "Senang bertemu denganmu",
+                    "Sampai jumpa",
+                    "Selamat malam",
+                    "Apa kabar"
+                  ],
+                  "jawaban_benar": "Senang bertemu denganmu"
+                },
+                {
+                  "pertanyaan": "Which word means nama?",
+                  "pilihan": [
+                    "Name",
+                    "Friend",
+                    "City",
+                    "Age"
+                  ],
+                  "jawaban_benar": "Name"
+                },
+                {
+                  "pertanyaan": "What is a polite greeting?",
+                  "pilihan": [
+                    "Hello",
+                    "Move!",
+                    "Go away!",
+                    "Stop!"
+                  ],
+                  "jawaban_benar": "Hello"
+                },
+                {
+                  "pertanyaan": "Write a short paragraph introducing yourself. Include your name, your age, where you are from, and your hobby.",
+                  "pilihan": [],
+                  "jawaban_benar": "Essay"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'apple'?",
+                  "pilihan": [
+                    "apel",
+                    "meja",
+                    "kursi",
+                    "lampu"
+                  ],
+                  "jawaban_benar": "apel"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'teacher'.",
+                  "pilihan": [
+                    "guru",
+                    "dokter",
+                    "petani",
+                    "polisi"
+                  ],
+                  "jawaban_benar": "guru"
+                },
+                {
+                  "pertanyaan": "What does 'happy' mean?",
+                  "pilihan": [
+                    "marah",
+                    "sedih",
+                    "senang",
+                    "takut"
+                  ],
+                  "jawaban_benar": "senang"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'school'?",
+                  "pilihan": [
+                    "rumah",
+                    "kantor",
+                    "sekolah",
+                    "pasar"
+                  ],
+                  "jawaban_benar": "sekolah"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'book'.",
+                  "pilihan": [
+                    "pensil",
+                    "tas",
+                    "buku",
+                    "sepatu"
+                  ],
+                  "jawaban_benar": "buku"
+                },
+                {
+                  "pertanyaan": "What does 'water' mean?",
+                  "pilihan": [
+                    "air",
+                    "api",
+                    "tanah",
+                    "angin"
+                  ],
+                  "jawaban_benar": "air"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'friend'?",
+                  "pilihan": [
+                    "musuh",
+                    "teman",
+                    "tetangga",
+                    "keluarga"
+                  ],
+                  "jawaban_benar": "teman"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'family'.",
+                  "pilihan": [
+                    "keluarga",
+                    "teman",
+                    "guru",
+                    "murid"
+                  ],
+                  "jawaban_benar": "keluarga"
+                },
+                {
+                  "pertanyaan": "What does 'dog' mean?",
+                  "pilihan": [
+                    "kucing",
+                    "anjing",
+                    "ikan",
+                    "burung"
+                  ],
+                  "jawaban_benar": "anjing"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'cat'?",
+                  "pilihan": [
+                    "ayam",
+                    "sapi",
+                    "kucing",
+                    "kuda"
+                  ],
+                  "jawaban_benar": "kucing"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'chair'.",
+                  "pilihan": [
+                    "meja",
+                    "kursi",
+                    "lemari",
+                    "pintu"
+                  ],
+                  "jawaban_benar": "kursi"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'table'?",
+                  "pilihan": [
+                    "kursi",
+                    "tas",
+                    "meja",
+                    "sepatu"
+                  ],
+                  "jawaban_benar": "meja"
+                },
+                {
+                  "pertanyaan": "What does 'drink' mean?",
+                  "pilihan": [
+                    "makan",
+                    "tidur",
+                    "minum",
+                    "berlari"
+                  ],
+                  "jawaban_benar": "minum"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'food'.",
+                  "pilihan": [
+                    "minuman",
+                    "buah",
+                    "makanan",
+                    "obat"
+                  ],
+                  "jawaban_benar": "makanan"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'music'?",
+                  "pilihan": [
+                    "gambar",
+                    "musik",
+                    "film",
+                    "game"
+                  ],
+                  "jawaban_benar": "musik"
+                },
+                {
+                  "pertanyaan": "What does 'phone' mean?",
+                  "pilihan": [
+                    "radio",
+                    "televisi",
+                    "telepon",
+                    "kamera"
+                  ],
+                  "jawaban_benar": "telepon"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'house'?",
+                  "pilihan": [
+                    "jalan",
+                    "taman",
+                    "rumah",
+                    "gedung"
+                  ],
+                  "jawaban_benar": "rumah"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'read'.",
+                  "pilihan": [
+                    "menulis",
+                    "membaca",
+                    "bermain",
+                    "berjalan"
+                  ],
+                  "jawaban_benar": "membaca"
+                },
+                {
+                  "pertanyaan": "What does 'write' mean?",
+                  "pilihan": [
+                    "membaca",
+                    "menulis",
+                    "menggambar",
+                    "berlari"
+                  ],
+                  "jawaban_benar": "menulis"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'walk'?",
+                  "pilihan": [
+                    "melompat",
+                    "berlari",
+                    "berjalan",
+                    "duduk"
+                  ],
+                  "jawaban_benar": "berjalan"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'sleep'.",
+                  "pilihan": [
+                    "belajar",
+                    "makan",
+                    "tidur",
+                    "mandi"
+                  ],
+                  "jawaban_benar": "tidur"
+                },
+                {
+                  "pertanyaan": "What does 'study' mean?",
+                  "pilihan": [
+                    "bermain",
+                    "berenang",
+                    "belajar",
+                    "berjalan"
+                  ],
+                  "jawaban_benar": "belajar"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'work'?",
+                  "pilihan": [
+                    "bermain",
+                    "belanja",
+                    "bekerja",
+                    "berlibur"
+                  ],
+                  "jawaban_benar": "bekerja"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'play'.",
+                  "pilihan": [
+                    "membaca",
+                    "makan",
+                    "bermain",
+                    "belajar"
+                  ],
+                  "jawaban_benar": "bermain"
+                },
+                {
+                  "pertanyaan": "What does 'morning' mean?",
+                  "pilihan": [
+                    "malam",
+                    "siang",
+                    "pagi",
+                    "sore"
+                  ],
+                  "jawaban_benar": "pagi"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'night'?",
+                  "pilihan": [
+                    "pagi",
+                    "siang",
+                    "malam",
+                    "sore"
+                  ],
+                  "jawaban_benar": "malam"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'sun'.",
+                  "pilihan": [
+                    "bulan",
+                    "bintang",
+                    "matahari",
+                    "awan"
+                  ],
+                  "jawaban_benar": "matahari"
+                },
+                {
+                  "pertanyaan": "What does 'moon' mean?",
+                  "pilihan": [
+                    "matahari",
+                    "awan",
+                    "bulan",
+                    "langit"
+                  ],
+                  "jawaban_benar": "bulan"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'car'?",
+                  "pilihan": [
+                    "motor",
+                    "mobil",
+                    "sepeda",
+                    "bus"
+                  ],
+                  "jawaban_benar": "mobil"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'bike'.",
+                  "pilihan": [
+                    "mobil",
+                    "kereta",
+                    "sepeda",
+                    "pesawat"
+                  ],
+                  "jawaban_benar": "sepeda"
+                },
+                {
+                  "pertanyaan": "What does 'shirt' mean?",
+                  "pilihan": [
+                    "celana",
+                    "sepatu",
+                    "baju",
+                    "topi"
+                  ],
+                  "jawaban_benar": "baju"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'shoes'?",
+                  "pilihan": [
+                    "tas",
+                    "sepatu",
+                    "kaos kaki",
+                    "jaket"
+                  ],
+                  "jawaban_benar": "sepatu"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'market'.",
+                  "pilihan": [
+                    "pasar",
+                    "sekolah",
+                    "kantor",
+                    "rumah"
+                  ],
+                  "jawaban_benar": "pasar"
+                },
+                {
+                  "pertanyaan": "What does 'hospital' mean?",
+                  "pilihan": [
+                    "bank",
+                    "rumah sakit",
+                    "hotel",
+                    "kantor"
+                  ],
+                  "jawaban_benar": "rumah sakit"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'doctor'?",
+                  "pilihan": [
+                    "guru",
+                    "dokter",
+                    "polisi",
+                    "petani"
+                  ],
+                  "jawaban_benar": "dokter"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'student'.",
+                  "pilihan": [
+                    "murid",
+                    "guru",
+                    "dokter",
+                    "polisi"
+                  ],
+                  "jawaban_benar": "murid"
+                },
+                {
+                  "pertanyaan": "What does 'computer' mean?",
+                  "pilihan": [
+                    "radio",
+                    "kamera",
+                    "komputer",
+                    "televisi"
+                  ],
+                  "jawaban_benar": "komputer"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'window'?",
+                  "pilihan": [
+                    "pintu",
+                    "atap",
+                    "jendela",
+                    "lantai"
+                  ],
+                  "jawaban_benar": "jendela"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'door'.",
+                  "pilihan": [
+                    "pintu",
+                    "lemari",
+                    "kursi",
+                    "meja"
+                  ],
+                  "jawaban_benar": "pintu"
+                },
+                {
+                  "pertanyaan": "What does 'bag' mean?",
+                  "pilihan": [
+                    "tas",
+                    "dompet",
+                    "sepatu",
+                    "jaket"
+                  ],
+                  "jawaban_benar": "tas"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'pen'?",
+                  "pilihan": [
+                    "pensil",
+                    "penghapus",
+                    "pulpen",
+                    "buku"
+                  ],
+                  "jawaban_benar": "pulpen"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'pencil'.",
+                  "pilihan": [
+                    "buku",
+                    "pensil",
+                    "tas",
+                    "meja"
+                  ],
+                  "jawaban_benar": "pensil"
+                },
+                {
+                  "pertanyaan": "What does 'rain' mean?",
+                  "pilihan": [
+                    "awan",
+                    "angin",
+                    "hujan",
+                    "petir"
+                  ],
+                  "jawaban_benar": "hujan"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'tree'?",
+                  "pilihan": [
+                    "rumput",
+                    "pohon",
+                    "bunga",
+                    "daun"
+                  ],
+                  "jawaban_benar": "pohon"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'flower'.",
+                  "pilihan": [
+                    "akar",
+                    "buah",
+                    "bunga",
+                    "daun"
+                  ],
+                  "jawaban_benar": "bunga"
+                },
+                {
+                  "pertanyaan": "What does 'bird' mean?",
+                  "pilihan": [
+                    "ikan",
+                    "burung",
+                    "ayam",
+                    "kucing"
+                  ],
+                  "jawaban_benar": "burung"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'fish'?",
+                  "pilihan": [
+                    "ikan",
+                    "udang",
+                    "kepiting",
+                    "ayam"
+                  ],
+                  "jawaban_benar": "ikan"
+                },
+                {
+                  "pertanyaan": "Choose the correct translation for 'love'.",
+                  "pilihan": [
+                    "benci",
+                    "cinta",
+                    "takut",
+                    "marah"
+                  ],
+                  "jawaban_benar": "cinta"
+                },
+                {
+                  "pertanyaan": "What does 'smile' mean?",
+                  "pilihan": [
+                    "tertawa",
+                    "menangis",
+                    "senyum",
+                    "berteriak"
+                  ],
+                  "jawaban_benar": "senyum"
+                },
+                {
+                  "pertanyaan": "What is the meaning of 'clean'?",
+                  "pilihan": [
+                    "kotor",
+                    "bersih",
+                    "rusak",
+                    "gelap"
+                  ],
+                  "jawaban_benar": "bersih"
+                },
+                {
+                  "pertanyaan": "Choose the correct meaning of 'beautiful'.",
+                  "pilihan": [
+                    "jelek",
+                    "indah",
+                    "besar",
+                    "kecil"
+                  ],
+                  "jawaban_benar": "indah"
+                }
+              ]
+            }
           },
           {
             "judul_lesson": "Personal Information",
             "konten_teks": "This lesson covers Personal Information. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
             "kuis_topik_id": "Personal Information",
-            "urutan": 2
+            "urutan": 2,
+            "kuis": {
+              "judul_asli": "Personal Information Quiz",
+              "jumlah_soal": 10,
+              "sumber_url": "https://learnenglish.britishcouncil.org/",
+              "daftar_soal": [
+                {
+                  "pertanyaan": "How do you politely ask for someone's phone number?",
+                  "pilihan": [
+                    "Give me your number.",
+                    "What is your phone number?",
+                    "You have phone?",
+                    "Where is phone?"
+                  ],
+                  "jawaban_benar": "What is your phone number?"
+                },
+                {
+                  "pertanyaan": "Read the answer: 'I am 25 years old.' What is the correct question?",
+                  "pilihan": [
+                    "How many years you?",
+                    "How old are you?",
+                    "What age you have?",
+                    "When are you old?"
+                  ],
+                  "jawaban_benar": "How old are you?"
+                },
+                {
+                  "pertanyaan": "Which of the following is an email address?",
+                  "pilihan": [
+                    "123 Main Street",
+                    "john.doe@email.com",
+                    "555-1234",
+                    "London, UK"
+                  ],
+                  "jawaban_benar": "john.doe@email.com"
+                },
+                {
+                  "pertanyaan": "Fill in the blank: 'Where ___ you from?'",
+                  "pilihan": [
+                    "is",
+                    "am",
+                    "are",
+                    "do"
+                  ],
+                  "jawaban_benar": "are"
+                },
+                {
+                  "pertanyaan": "If someone asks 'What do you do?', they want to know about your...",
+                  "pilihan": [
+                    "Hobby",
+                    "Job",
+                    "Name",
+                    "Age"
+                  ],
+                  "jawaban_benar": "Job"
+                },
+                {
+                  "pertanyaan": "Fill in the blank: 'I am ___ Italy.'",
+                  "pilihan": [
+                    "at",
+                    "on",
+                    "from",
+                    "in"
+                  ],
+                  "jawaban_benar": "from"
+                },
+                {
+                  "pertanyaan": "What is the correct response to 'Are you a student?'",
+                  "pilihan": [
+                    "Yes, I am.",
+                    "Yes, I do.",
+                    "No, I not.",
+                    "Yes, I student."
+                  ],
+                  "jawaban_benar": "Yes, I am."
+                },
+                {
+                  "pertanyaan": "Which word is a surname (last name)?",
+                  "pilihan": [
+                    "David",
+                    "Sarah",
+                    "Smith",
+                    "Michael"
+                  ],
+                  "jawaban_benar": "Smith"
+                },
+                {
+                  "pertanyaan": "Complete the sentence: 'She ___ a doctor.'",
+                  "pilihan": [
+                    "am",
+                    "are",
+                    "is",
+                    "be"
+                  ],
+                  "jawaban_benar": "is"
+                },
+                {
+                  "pertanyaan": "How do you spell 'Smith'?",
+                  "pilihan": [
+                    "S-M-I-T-H",
+                    "S-M-I-T",
+                    "S-M-E-E-T-H",
+                    "S-M-I-T-T"
+                  ],
+                  "jawaban_benar": "S-M-I-T-H"
+                },
+                {
+                  "pertanyaan": "What do you usually do in the morning? Write 3 to 4 sentences describing your morning routine.",
+                  "pilihan": [],
+                  "jawaban_benar": "Essay"
+                }
+              ]
+            }
           },
           {
             "judul_lesson": "Numbers and Time",
             "konten_teks": "This lesson covers Numbers and Time. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
             "kuis_topik_id": "Numbers and Time",
-            "urutan": 3
+            "urutan": 3,
+            "kuis": {
+              "judul_asli": "Numbers and Time Quiz",
+              "jumlah_soal": 10,
+              "sumber_url": "https://learnenglish.britishcouncil.org/",
+              "daftar_soal": [
+                {
+                  "pertanyaan": "What number comes after twelve?",
+                  "pilihan": [
+                    "Eleven",
+                    "Thirteen",
+                    "Twenty",
+                    "Fifteen"
+                  ],
+                  "jawaban_benar": "Thirteen"
+                },
+                {
+                  "pertanyaan": "How do you write the number 50 in words?",
+                  "pilihan": [
+                    "Fifteen",
+                    "Five zero",
+                    "Fifty",
+                    "Fivety"
+                  ],
+                  "jawaban_benar": "Fifty"
+                },
+                {
+                  "pertanyaan": "If it is 14:00, what time is it?",
+                  "pilihan": [
+                    "2:00 AM",
+                    "2:00 PM",
+                    "4:00 PM",
+                    "12:00 PM"
+                  ],
+                  "jawaban_benar": "2:00 PM"
+                },
+                {
+                  "pertanyaan": "What is the English word for the day after Monday?",
+                  "pilihan": [
+                    "Sunday",
+                    "Wednesday",
+                    "Thursday",
+                    "Tuesday"
+                  ],
+                  "jawaban_benar": "Tuesday"
+                },
+                {
+                  "pertanyaan": "Fill in the blank: 'The meeting is ___ 10 o'clock.'",
+                  "pilihan": [
+                    "in",
+                    "on",
+                    "at",
+                    "by"
+                  ],
+                  "jawaban_benar": "at"
+                },
+                {
+                  "pertanyaan": "Which month comes before December?",
+                  "pilihan": [
+                    "January",
+                    "October",
+                    "November",
+                    "September"
+                  ],
+                  "jawaban_benar": "November"
+                },
+                {
+                  "pertanyaan": "How do you say 'It is 8:30'?",
+                  "pilihan": [
+                    "It is half past eight.",
+                    "It is quarter to eight.",
+                    "It is eight thirty past.",
+                    "It is half to eight."
+                  ],
+                  "jawaban_benar": "It is half past eight."
+                },
+                {
+                  "pertanyaan": "What is 100 in words?",
+                  "pilihan": [
+                    "One thousand",
+                    "One hundred",
+                    "Ten ten",
+                    "A hundreds"
+                  ],
+                  "jawaban_benar": "One hundred"
+                },
+                {
+                  "pertanyaan": "Complete the phrase: 'There are seven days in a ___.'",
+                  "pilihan": [
+                    "month",
+                    "year",
+                    "week",
+                    "hour"
+                  ],
+                  "jawaban_benar": "week"
+                },
+                {
+                  "pertanyaan": "How do you ask for the time?",
+                  "pilihan": [
+                    "What time is it?",
+                    "How much time?",
+                    "Where is the time?",
+                    "When is the clock?"
+                  ],
+                  "jawaban_benar": "What time is it?"
+                },
+                {
+                  "pertanyaan": "Describe your daily schedule. Write 5 to 6 sentences about what you do at different times of the day.",
+                  "pilihan": [],
+                  "jawaban_benar": "Essay"
+                }
+              ]
+            }
           }
         ]
       }
