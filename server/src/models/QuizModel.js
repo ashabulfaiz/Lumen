@@ -31,6 +31,16 @@ class QuizModel {
         return rows[0];
     }
 
+    static async clearUserAnswersByQuiz(userId, quizId) {
+        const [result] = await db.query(
+            `DELETE ua FROM user_answers ua 
+             JOIN questions q ON ua.question_id = q.id 
+             WHERE ua.user_id = ? AND q.quiz_id = ?`, 
+            [userId, quizId]
+        );
+        return result;
+    }
+
     static async saveUserAnswer(userId, questionId, jawabanTeks, isCorrect) {
         await db.query(
             'DELETE FROM user_answers WHERE user_id = ? AND question_id = ?',

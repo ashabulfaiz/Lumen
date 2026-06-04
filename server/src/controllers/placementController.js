@@ -65,4 +65,45 @@ const savePlacementResult = async (req, res) => {
     }
 };
 
-module.exports = { getPlacementQuestions, savePlacementResult };
+const getMyPlacementResult = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const score = await PlacementModel.getPlacementScore(userId);
+        
+        if (score === null) {
+            return res.status(404).json({ message: "Placement test belum diambil." });
+        }
+
+        const rawAnswers = await PlacementModel.getUserPlacementAnswers(userId);
+        
+        const selectedOptions = {};
+        const placementQuestions = rawAnswers.map(ans => {
+            selectedOptions[ans.id] = ans.user_answer;
+            return {
+                id: ans.id,
+                prompt: ans.prompt,
+                options: [ans.pilihan_a, ans.pilihan_b, ans.pilihan_c, ans.pilihan_d].filter(Boolean),
+                answer: ans.answer,
+                explanation: "The correct answer is: " + ans.answer
+            };
+        });
+
+        let recommendedLevel = 1;
+        if (score >= 70) recommendedLevel = 3;
+        else if (score >= 50) recommendedLevel = 2;
+
+        res.status(200).json({
+            status: "success",
+            data: {
+                result: { score, correctAnswers: rawAnswers.filter(a => a.user_answer === a.answer).length, recommendedLevel },
+                selectedOptions,
+                placementQuestions
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching placement results:", error);
+        res.status(500).json({ message: "Internal server error." });
+    }
+};
+
+module.exports = { getPlacementQuestions, savePlacementResult, getMyPlacementResult };

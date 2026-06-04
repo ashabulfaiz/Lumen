@@ -72,6 +72,19 @@ export default function LoginPage() {
 
       localStorage.clear();
       localStorage.setItem('lumen_token', response.data.token);
+
+      const userData = response.data.data;
+
+      if (userData.is_onboarding_complete) {
+          const restoredProgress = {
+              placementCompleted: true,
+              chosenLevel: userData.current_level,
+              highestUnlocked: userData.current_level === 'Advanced' ? 3 : (userData.current_level === 'Intermediate' ? 2 : 1)
+          };
+          localStorage.setItem('lumen_learning_progress', JSON.stringify(restoredProgress));
+      } else {
+          localStorage.removeItem('lumen_learning_progress');
+      }
       
       window.location.href = '/dashboard';
     } catch (err) {

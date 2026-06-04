@@ -3,46 +3,27 @@
     "nama_level": "Beginner",
     "courses": [
       {
-        "judul_course": "Basic English Grammar",
-        "deskripsi": "Core grammar for everyday English — articles, pronouns, and essential verbs.",
+        "judul_course": "Beginner Foundations",
+        "deskripsi": "Essential English concepts for beginners.",
         "urutan": 1,
         "lessons": [
           {
-            "judul_lesson": "Using Articles (A, An, The)",
-            "konten_teks": "<p>An <b>Article</b> is a word used to modify a noun (person, place, object, or idea). There are two main types of articles in English:</p><ol><li><b>Indefinite Articles (A / An):</b> Used for non-specific singular nouns.<ul><li>Use <i>A</i> before consonant sounds: <i>a car, a house, a university</i> (sounds like 'yoo-').</li><li>Use <i>An</i> before vowel sounds: <i>an apple, an hour</i> (silent 'h').</li></ul></li><li><b>Definite Article (The):</b> Used for specific or unique nouns.<ul><li><i>\"I saw a cat. <b>The</b> cat was sleeping.\"</i></li><li><i>\"<b>The</b> sun rises in the east.\"</i> (Unique object)</li></ul></li></ol>",
-            "kuis_topik_id": "Article Or No Article",
+            "judul_lesson": "Greetings and Introductions",
+            "konten_teks": "This lesson covers Greetings and Introductions. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Greetings and Introductions",
             "urutan": 1
           },
           {
-            "judul_lesson": "Introduction to Subjects & Pronouns",
-            "konten_teks": "<p>A <b>pronoun</b> is a word that replaces a noun to avoid repeating it. Pronouns change form based on whether they are subjects, objects, or possessive.</p><ul><li><b>Subject Pronouns:</b> The person or thing performing the action.<ul><li><i>I, You, He, She, It, We, They</i>.</li><li>Example: <i>\"<b>She</b> is a doctor.\"</i></li></ul></li><li><b>Object Pronouns:</b> The person or thing receiving the action.<ul><li><i>me, you, him, her, it, us, them</i>.</li><li>Example: <i>\"John called <b>her</b> yesterday.\"</i></li></ul></li><li><b>Pronoun Case Rule:</b> Never use a subject pronoun where an object pronoun is required, or vice versa (e.g., say <i>\"between you and me\"</i>, not <i>\"between you and I\"</i>).</li></ul>",
-            "kuis_topik_id": "Pronoun Case",
+            "judul_lesson": "Personal Information",
+            "konten_teks": "This lesson covers Personal Information. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Personal Information",
             "urutan": 2
           },
           {
-            "judul_lesson": "To Be and To Have",
-            "konten_teks": "<p>Learn when to use <b>to be</b> (am, is, are, was, were) and <b>to have</b> (have, has, had) in simple sentences.</p>",
-            "kuis_topik_id": "To Be Or To Have",
+            "judul_lesson": "Numbers and Time",
+            "konten_teks": "This lesson covers Numbers and Time. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for beginner learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Numbers and Time",
             "urutan": 3
-          }
-        ]
-      },
-      {
-        "judul_course": "Daily Vocabulary",
-        "deskripsi": "Common words for everyday conversations.",
-        "urutan": 2,
-        "lessons": [
-          {
-            "judul_lesson": "Greetings & Introductions",
-            "konten_teks": "<p>Learn how to start a conversation, introduce yourself, and greet others politely in English:</p><ul><li><b>Greetings (Formal vs Informal):</b><ul><li>Formal: <i>\"Hello\"</i>, <i>\"Good morning/afternoon\"</i>, <i>\"How do you do?\"</i></li><li>Informal: <i>\"Hi\"</i>, <i>\"Hey\"</i>, <i>\"What's up?\"</i>, <i>\"How is it going?\"</i></li></ul></li><li><b>Self-Introductions:</b><ul><li>State your name: <i>\"Hello, my name is John.\"</i> / <i>\"Hi, I'm Sarah.\"</i></li><li>State origin/hobbies: <i>\"I am from Canada.\"</i> / <i>\"I like playing basketball.\"</i></li></ul></li><li><b>Asking How Someone is Doing:</b><ul><li>Question: <i>\"How are you?\"</i> / <i>\"How have you been?\"</i></li><li>Response: <i>\"I am fine, thank you.\"</i> / <i>\"Great, thanks!\"</i></li></ul></li></ul>",
-            "kuis_topik_id": "Capitalization",
-            "urutan": 1
-          },
-          {
-            "judul_lesson": "Spelling & Common Words",
-            "konten_teks": "<p>In English, spelling can be tricky because many words are not spelled the way they sound. Here are some key spelling rules and commonly misspelled words:</p><ul><li><b>The 'I before E except after C' rule:</b> Use <i>ie</i> in words like <i>believe, chief, friend</i>, but use <i>ei</i> after <i>c</i> in words like <i>receive, ceiling, deceive</i>.</li><li><b>Commonly Misspelled Words:</b><ul><li><i>Definitely</i> (not definately)</li><li><i>Separate</i> (not seperate)</li><li><i>Necessary</i> (not neccessary - remember: 1 Collar, 2 Sleeves!)</li><li><i>Embarrass</i> (not embaras)</li></ul></li></ul><p>Paying attention to these patterns will significantly improve your writing accuracy.</p>",
-            "kuis_topik_id": "Frequently Misspelled Words",
-            "urutan": 2
           }
         ]
       }
@@ -52,39 +33,27 @@
     "nama_level": "Intermediate",
     "courses": [
       {
-        "judul_course": "Reading & Listening",
-        "deskripsi": "Build comprehension with short texts and listening-style grammar practice.",
+        "judul_course": "Intermediate Grammar & Usage",
+        "deskripsi": "Building on basic concepts for intermediate learners.",
         "urutan": 1,
         "lessons": [
           {
-            "judul_lesson": "Reading short texts",
-            "konten_teks": "<p>Reading comprehension is about identifying main ideas, key facts, and tone. Follow these tips to read short texts successfully:</p><ul><li><b>Skimming:</b> Quickly run your eyes over the text to get the main idea or gist.</li><li><b>Scanning:</b> Look for specific information like numbers, names, dates, or keywords.</li><li><b>Context Clues:</b> If you don't know a word, try to guess its meaning based on the surrounding sentences.</li><li><b>Summarizing:</b> After reading, try to express the core message in one or two simple sentences.</li></ul>",
-            "kuis_topik_id": "Mixed Verb Tenses",
+            "judul_lesson": "Present Continuous",
+            "konten_teks": "This lesson covers Present Continuous. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for intermediate learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Present Continuous",
             "urutan": 1
           },
           {
-            "judul_lesson": "Listening for gist",
-            "konten_teks": "<p>Listening for gist means understanding the overall main topic or purpose of a spoken conversation or announcement, rather than focusing on every single word.</p><ul><li><b>Identify the Context:</b> Listen to the setting (airport, restaurant, office) and the speakers' relationship (friends, colleagues, customer-clerk).</li><li><b>Listen for Intonation:</b> Intonation and tone of voice tell you about the speaker's feelings (angry, happy, worried).</li><li><b>Don't Panic:</b> If you miss a word, keep listening. The overall flow of the conversation will help you understand.</li></ul>",
-            "kuis_topik_id": "Auxiliary Verbs Be, Do, Have",
+            "judul_lesson": "Past Simple",
+            "konten_teks": "This lesson covers Past Simple. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for intermediate learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Past Simple",
             "urutan": 2
           },
           {
-            "judul_lesson": "Verb Tenses & Consistency",
-            "konten_teks": "<p>Maintaining <b>tense consistency</b> means keeping the same verb tense throughout a sentence or paragraph unless there is a clear reason to change it.</p><blockquote><p><b>Incorrect:</b> He <i>walked</i> into the room and <i>starts</i> to speak. (Mixed past and present)</p><p><b>Correct:</b> He <i>walked</i> into the room and <i>started</i> to speak. (Consistent past tense)</p></blockquote><p>Only shift tenses when you want to show a change in the time of actions. For example: <i>\"I love chocolate now, but when I was a child I hated it.\"</i></p>",
-            "kuis_topik_id": "Verb Tense Consistency",
+            "judul_lesson": "Present Perfect",
+            "konten_teks": "This lesson covers Present Perfect. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for intermediate learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Present Perfect",
             "urutan": 3
-          },
-          {
-            "judul_lesson": "Commonly Confused Words",
-            "konten_teks": "<p>English has many homophones (words that sound the same but have different spellings and meanings). Let's master the most common ones:</p><ol><li><b>Their vs. There vs. They're:</b><ul><li><i>Their:</i> Possession (e.g., \"It is <i>their</i> house.\")</li><li><i>There:</i> Location or existence (e.g., \"Go over <i>there</i>.\")</li><li><i>They're:</i> Contraction of 'they are' (e.g., \"<i>They're</i> coming today.\")</li></ul></li><li><b>Your vs. You're:</b><ul><li><i>Your:</i> Possession (e.g., \"Is this <i>your</i> pen?\")</li><li><i>You're:</i> Contraction of 'you are' (e.g., \"<i>You're</i> very welcome.\")</li></ul></li><li><b>Its vs. It's:</b><ul><li><i>Its:</i> Possession (e.g., \"The cat licked <i>its</i> paw.\")</li><li><i>It's:</i> Contraction of 'it is' or 'it has' (e.g., \"<i>It's</i> raining.\")</li></ul></li></ol>",
-            "kuis_topik_id": "Commonly Confused Words In English",
-            "urutan": 4
-          },
-          {
-            "judul_lesson": "Understanding Phrasal Verbs",
-            "konten_teks": "<p>A <b>phrasal verb</b> is a combination of a verb and a preposition or adverb (e.g., <i>get up, take off, look after</i>). The combination creates a completely new meaning!</p><ul><li><b>Separable Phrasal Verbs:</b> You can put the object in the middle.<ul><li><i>\"Turn off the light\"</i> OR <i>\"Turn the light off\"</i>.</li></ul></li><li><b>Inseparable Phrasal Verbs:</b> The parts must stay together.<ul><li><i>\"Look after your sister\"</i> (not \"Look your sister after\").</li></ul></li><li><b>Common Examples:</b><ul><li><i>Run out of:</i> Have none left (e.g., \"We ran out of milk.\")</li><li><i>Give up:</i> Stop trying (e.g., \"Don't give up on your dreams!\")</li></ul></li></ul>",
-            "kuis_topik_id": "Phrasal Verbs Mixed",
-            "urutan": 5
           }
         ]
       }
@@ -94,39 +63,27 @@
     "nama_level": "Advanced",
     "courses": [
       {
-        "judul_course": "Fluency & Discussion",
-        "deskripsi": "Complex grammar, punctuation, and structures for longer discussions and writing.",
+        "judul_course": "Advanced Academic English",
+        "deskripsi": "Mastery of English for academic and professional purposes.",
         "urutan": 1,
         "lessons": [
           {
-            "judul_lesson": "Opinion essays & linking words",
-            "konten_teks": "<p>An opinion essay is a formal piece of writing where you state your opinion clearly and support it with arguments and examples.</p><ul><li><b>Structure:</b><ol><li><b>Introduction:</b> State your opinion clearly (thesis statement).</li><li><b>Body Paragraphs:</b> Present arguments, each supported by facts or examples.</li><li><b>Conclusion:</b> Summarize your main points and restate your opinion in different words.</li></ol></li><li><b>Linking Words (Connectors):</b> Use these to structure your arguments:<ul><li>For listing: <i>Firstly, Secondly, Finally</i></li><li>For adding ideas: <i>Furthermore, In addition, Moreover</i></li><li>For contrasting: <i>However, On the other hand, Although</i></li></ul></li></ul>",
-            "kuis_topik_id": "The Second Conditional",
+            "judul_lesson": "Advanced Grammar",
+            "konten_teks": "This lesson covers Advanced Grammar. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for advanced learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Advanced Grammar",
             "urutan": 1
           },
           {
-            "judul_lesson": "Real-world dialogues",
-            "konten_teks": "<p>Real-world conversations are fast, dynamic, and use idiomatic expressions, fillers, and contraction forms. Master these concepts for natural flow:</p><ul><li><b>Contractions:</b> Native speakers use contractions (e.g., <i>don't, I'm, we've</i>) instead of full forms in spoken English.</li><li><b>Fillers & Backchanneling:</b> Words like <i>\"well\", \"uh-huh\", \"right\", \"I see\", \"really?\"</i> keep the conversation alive and show that you are listening.</li><li><b>Nuances:</b> Pay attention to polite requests (e.g., <i>\"Could you please...\"</i> vs <i>\"Give me...\"</i>) to sound polite and respectful in different social contexts.</li></ul>",
-            "kuis_topik_id": "Transitive And Intransitive Verbs",
+            "judul_lesson": "Academic Vocabulary",
+            "konten_teks": "This lesson covers Academic Vocabulary. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for advanced learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Academic Vocabulary",
             "urutan": 2
           },
           {
-            "judul_lesson": "Advanced Conditionals",
-            "konten_teks": "<p>The <b>Third Conditional</b> is used to express imaginary or hypothetical situations in the <i>past</i>, and their hypothetical past results.</p><p><b>Structure:</b> If + past perfect, would have + past participle</p><blockquote><p><i>\"If I <b>had studied</b> harder, I <b>would have passed</b> the exam.\"</i></p><p>(Reality: I did not study hard, and I failed the exam.)</p></blockquote><p>Use the third conditional to express regret, criticism, or relief about past events.</p>",
-            "kuis_topik_id": "The Third Conditional",
+            "judul_lesson": "Academic Writing",
+            "konten_teks": "This lesson covers Academic Writing. Students learn core concepts, practical usage, examples, vocabulary, and guided exercises. The material is designed for advanced learners and can be expanded later with multimedia content and additional practice activities. Learners should complete the lesson and quiz before continuing to the next module.",
+            "kuis_topik_id": "Academic Writing",
             "urutan": 3
-          },
-          {
-            "judul_lesson": "Punctuation & Sentence Structure",
-            "konten_teks": "<p>Mastering punctuation is key to writing clear, professional English. Let's focus on commas and semicolons:</p><ul><li><b>The Semicolon (;):</b> Connects two closely related independent clauses without a conjunction.<ul><li><i>\"She loves reading; he prefers watching films.\"</i></li></ul></li><li><b>The Comma (,):</b> Used for lists, introductory phrases, or separating clauses with coordinating conjunctions (FANBOYS: for, and, nor, but, or, yet, so).<ul><li><i>\"I bought apples, bananas, and oranges.\"</i></li><li><i>\"Although it was raining, we went for a walk.\"</i></li></ul></li><li><b>Avoiding Comma Splices:</b> Do not join two independent clauses with only a comma. Use a semicolon or a conjunction instead.</li></ul>",
-            "kuis_topik_id": "Punctuation: Comma Or Semicolon",
-            "urutan": 4
-          },
-          {
-            "judul_lesson": "Noun Clauses & Connectors",
-            "konten_teks": "<p>A <b>noun clause</b> is a dependent clause that functions as a noun. It can be the subject or object of a sentence.</p><p>Noun clauses usually start with connectors like <i>that, what, who, whether, how, why, where</i>.</p><ul><li><b>As Object:</b> <i>\"I know <b>what you did</b>.\"</i></li><li><b>As Subject:</b> <i>\"<b>Whether we succeed</b> depends on our efforts.\"</i></li><li><b>In Indirect Questions:</b> <i>\"Can you tell me <b>where the station is</b>?\"</i> (Notice: word order is subject + verb, not verb + subject!)</li></ul>",
-            "kuis_topik_id": "Noun Clauses",
-            "urutan": 5
           }
         ]
       }
