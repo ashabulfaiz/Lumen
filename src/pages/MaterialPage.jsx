@@ -29,8 +29,10 @@ export default function MaterialPage() {
   if (loading) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-8 font-sans">
-        <div className="flex min-h-[400px] items-center justify-center rounded-3xl border-2 border-slate-100 bg-white">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600"></div>
+        <div className="flex min-h-[400px] flex-col items-center justify-center rounded-3xl border-2 border-slate-100 bg-white">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600 mb-4"></div>
+          <p className="text-lg font-bold text-slate-800">Loading Material</p>
+          <p className="mt-1 text-sm text-slate-500">Preparing your reading material...</p>
         </div>
       </div>
     )

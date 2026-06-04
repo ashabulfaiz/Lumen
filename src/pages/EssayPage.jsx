@@ -209,8 +209,12 @@ export default function EssayPage() {
 
   if (loading) {
     return (
-      <div className="flex h-64 items-center justify-center font-sans">
-        <p className="text-lg font-medium text-slate-500">Loading writing practice…</p>
+      <div className="mx-auto max-w-3xl px-4 py-8 font-sans">
+        <div className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600 mb-4"></div>
+          <p className="text-lg font-bold text-slate-800">Preparing Writing Practice</p>
+          <p className="mt-1 text-sm text-slate-500">Generating prompt and setting up your workspace...</p>
+        </div>
       </div>
     )
   }
