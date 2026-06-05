@@ -5,11 +5,26 @@
     "sub_topic_title": "Form and Usage of Present Continuous",
     "objective": "Understand how to form the present continuous tense and when to use it for actions happening at the moment of speaking.",
     "vocabulary": [
-      { "term": "Currently", "meaning": "Saat ini" },
-      { "term": "Nowadays", "meaning": "Zaman sekarang / Saat ini" },
-      { "term": "Temporary", "meaning": "Sementara" },
-      { "term": "Annoying habits", "meaning": "Kebiasaan yang mengganggu (menggunakan 'always')" },
-      { "term": "In progress", "meaning": "Sedang berlangsung" }
+      {
+        "term": "Currently",
+        "meaning": "Saat ini"
+      },
+      {
+        "term": "Nowadays",
+        "meaning": "Zaman sekarang / Saat ini"
+      },
+      {
+        "term": "Temporary",
+        "meaning": "Sementara"
+      },
+      {
+        "term": "Annoying habits",
+        "meaning": "Kebiasaan yang mengganggu (menggunakan 'always')"
+      },
+      {
+        "term": "In progress",
+        "meaning": "Sedang berlangsung"
+      }
     ],
     "concept": "The present continuous is formed with 'to be' (am/is/are) + Verb-ing. Use it for actions happening right now (e.g., 'I am reading'), temporary situations (e.g., 'She is staying with her friend this week'), and trends (e.g., 'Prices are rising'). We can also use it with 'always' to express annoyance (e.g., 'He is always complaining').",
     "example_dialogue": "A: Are you working on the new project right now?\nB: Yes, I am currently writing the report. It is taking longer than expected.\nA: I know. The requirements are changing constantly.\nB: Exactly! And the client is always asking for new features."
@@ -20,11 +35,26 @@
     "sub_topic_title": "State Verbs vs Action Verbs",
     "objective": "Learn to distinguish between action verbs (which can be used in continuous form) and state verbs (which generally cannot).",
     "vocabulary": [
-      { "term": "Action verb", "meaning": "Kata kerja aksi (contoh: run, eat, play)" },
-      { "term": "State verb", "meaning": "Kata kerja keadaan (contoh: know, like, belong)" },
-      { "term": "Understand", "meaning": "Memahami" },
-      { "term": "Believe", "meaning": "Percaya" },
-      { "term": "Realize", "meaning": "Menyadari" }
+      {
+        "term": "Action verb",
+        "meaning": "Kata kerja aksi (contoh: run, eat, play)"
+      },
+      {
+        "term": "State verb",
+        "meaning": "Kata kerja keadaan (contoh: know, like, belong)"
+      },
+      {
+        "term": "Understand",
+        "meaning": "Memahami"
+      },
+      {
+        "term": "Believe",
+        "meaning": "Percaya"
+      },
+      {
+        "term": "Realize",
+        "meaning": "Menyadari"
+      }
     ],
     "concept": "Action verbs describe physical actions and can take the continuous form. State verbs describe emotions, possession, senses, or thoughts, and are NOT used in the continuous form. (Correct: 'I know him'. Incorrect: 'I am knowing him'). Some verbs can be both, with different meanings. For example, 'I think it's a good idea' (opinion = state), but 'I am thinking about my holiday' (mental process = action).",
     "example_dialogue": "A: Do you understand the new instructions for the assignment?\nB: Yes, I do. But I am still figuring out the specific details.\nA: Good. I believe you can finish it by Friday. Does this laptop belong to you?\nB: No, I am just using it for today. It belongs to Sarah."
@@ -35,10 +65,22 @@
     "sub_topic_title": "Present Continuous for Future Arrangements",
     "objective": "Learn how to use the present continuous tense to talk about planned future events.",
     "vocabulary": [
-      { "term": "Arrangement", "meaning": "Rencana / Susunan acara yang sudah pasti" },
-      { "term": "Schedule", "meaning": "Jadwal" },
-      { "term": "Appointment", "meaning": "Janji temu" },
-      { "term": "Fixed", "meaning": "Tetap / Sudah dipastikan" }
+      {
+        "term": "Arrangement",
+        "meaning": "Rencana / Susunan acara yang sudah pasti"
+      },
+      {
+        "term": "Schedule",
+        "meaning": "Jadwal"
+      },
+      {
+        "term": "Appointment",
+        "meaning": "Janji temu"
+      },
+      {
+        "term": "Fixed",
+        "meaning": "Tetap / Sudah dipastikan"
+      }
     ],
     "concept": "The present continuous can be used to talk about future plans that have already been confirmed or arranged. Time words like 'tomorrow', 'next week', or 'on Monday' are usually added. Example: 'I am meeting the doctor tomorrow at 3 PM' (The appointment is booked).",
     "example_dialogue": "A: What are you doing this weekend?\nB: I am flying to London on Saturday morning. I already bought the tickets.\nA: That's exciting! Are you staying there for a long time?\nB: No, I am returning on Tuesday. I am having a business meeting on Monday."
@@ -49,11 +91,26 @@
     "sub_topic_title": "Regular and Irregular Verbs in Past Simple",
     "objective": "Master the formation of past simple tense using both regular (-ed) and irregular verbs to talk about completed actions.",
     "vocabulary": [
-      { "term": "Yesterday", "meaning": "Kemarin" },
-      { "term": "Last week / Last year", "meaning": "Minggu lalu / Tahun lalu" },
-      { "term": "Ago", "meaning": "Yang lalu (contoh: 2 days ago)" },
-      { "term": "Completed", "meaning": "Selesai / Lengkap" },
-      { "term": "Occurred", "meaning": "Terjadi" }
+      {
+        "term": "Yesterday",
+        "meaning": "Kemarin"
+      },
+      {
+        "term": "Last week / Last year",
+        "meaning": "Minggu lalu / Tahun lalu"
+      },
+      {
+        "term": "Ago",
+        "meaning": "Yang lalu (contoh: 2 days ago)"
+      },
+      {
+        "term": "Completed",
+        "meaning": "Selesai / Lengkap"
+      },
+      {
+        "term": "Occurred",
+        "meaning": "Terjadi"
+      }
     ],
     "concept": "Use the Past Simple for actions that started and finished at a specific time in the past. Regular verbs add '-ed' (work -> worked). Irregular verbs change form completely (go -> went, buy -> bought). In negative sentences and questions, use the auxiliary 'did' + base verb (e.g., 'Did you go?', 'I didn't see it').",
     "example_dialogue": "A: Where did you go last weekend?\nB: I went to the mountains with my family. We hiked for three hours on Saturday.\nA: That sounds amazing! Did you see any wildlife during the hike?\nB: Yes, we saw a deer and many beautiful birds. We didn't see any bears, thankfully!"
@@ -64,10 +121,22 @@
     "sub_topic_title": "Past Habits (Used to vs Past Simple)",
     "objective": "Understand how to express past habits and routines that are no longer true in the present.",
     "vocabulary": [
-      { "term": "Used to", "meaning": "Dulu sering / Terbiasa di masa lalu" },
-      { "term": "Habit", "meaning": "Kebiasaan" },
-      { "term": "Routine", "meaning": "Rutinitas" },
-      { "term": "No longer", "meaning": "Tidak lagi" }
+      {
+        "term": "Used to",
+        "meaning": "Dulu sering / Terbiasa di masa lalu"
+      },
+      {
+        "term": "Habit",
+        "meaning": "Kebiasaan"
+      },
+      {
+        "term": "Routine",
+        "meaning": "Rutinitas"
+      },
+      {
+        "term": "No longer",
+        "meaning": "Tidak lagi"
+      }
     ],
     "concept": "'Used to' + base verb is used for habits, routines, or states that existed in the past but are not true now (e.g., 'I used to play tennis when I was young'). You can also use the Past Simple for this, but 'used to' emphasizes the contrast with the present. For negative sentences, use 'didn't use to' (e.g., 'She didn't use to like coffee').",
     "example_dialogue": "A: I didn't use to like vegetables when I was a kid.\nB: Really? I used to eat everything my mother cooked. Did you use to play any sports?\nA: Yes, I played soccer a lot. I used to be the captain of the school team.\nB: Wow! Do you still play?\nA: No, I stopped playing two years ago. I don't have the time anymore."
@@ -78,10 +147,22 @@
     "sub_topic_title": "Life Experiences and Unspecified Time",
     "objective": "Learn to use the present perfect tense to describe life experiences without mentioning a specific time.",
     "vocabulary": [
-      { "term": "Ever", "meaning": "Pernah (digunakan dalam pertanyaan)" },
-      { "term": "Never", "meaning": "Tidak pernah" },
-      { "term": "Before", "meaning": "Sebelumnya" },
-      { "term": "Experience", "meaning": "Pengalaman" }
+      {
+        "term": "Ever",
+        "meaning": "Pernah (digunakan dalam pertanyaan)"
+      },
+      {
+        "term": "Never",
+        "meaning": "Tidak pernah"
+      },
+      {
+        "term": "Before",
+        "meaning": "Sebelumnya"
+      },
+      {
+        "term": "Experience",
+        "meaning": "Pengalaman"
+      }
     ],
     "concept": "The present perfect is formed with 'have/has' + past participle (Verb 3). We use it to talk about experiences in our life up to now. The exact time is not important or not known. Words like 'ever' and 'never' are common. Example: 'I have visited Japan three times.'",
     "example_dialogue": "A: Have you ever eaten authentic Mexican food?\nB: Yes, I have. I tried it when I visited California. Have you?\nA: No, I have never tried it. I have always wanted to, though.\nB: We should go to the new Mexican restaurant downtown. I've heard it's fantastic."
@@ -92,10 +173,22 @@
     "sub_topic_title": "Actions Continuing up to the Present (Since / For)",
     "objective": "Understand how to describe states or actions that started in the past and continue into the present.",
     "vocabulary": [
-      { "term": "Since", "meaning": "Sejak (menunjukkan titik awal waktu)" },
-      { "term": "For", "meaning": "Selama (menunjukkan durasi waktu)" },
-      { "term": "Duration", "meaning": "Durasi" },
-      { "term": "Recently", "meaning": "Baru-baru ini" }
+      {
+        "term": "Since",
+        "meaning": "Sejak (menunjukkan titik awal waktu)"
+      },
+      {
+        "term": "For",
+        "meaning": "Selama (menunjukkan durasi waktu)"
+      },
+      {
+        "term": "Duration",
+        "meaning": "Durasi"
+      },
+      {
+        "term": "Recently",
+        "meaning": "Baru-baru ini"
+      }
     ],
     "concept": "We use the present perfect with 'for' and 'since' for situations that started in the past and are still true now. Use 'for' with a period of time (e.g., for ten years, for two months). Use 'since' with a specific point in time (e.g., since 2010, since last Monday).",
     "example_dialogue": "A: How long have you lived in this city?\nB: I have lived here for five years. What about you?\nA: I have been here since 2018. It's a great place to live.\nB: I agree. I have worked at my current company since I moved here, and I love it."
@@ -106,12 +199,274 @@
     "sub_topic_title": "Present Perfect vs Past Simple",
     "objective": "Master the difference between finished past time (Past Simple) and unfinished time (Present Perfect).",
     "vocabulary": [
-      { "term": "Finished time", "meaning": "Waktu yang sudah berakhir (misal: kemarin)" },
-      { "term": "Unfinished time", "meaning": "Waktu yang masih berlanjut (misal: hari ini, minggu ini)" },
-      { "term": "Just", "meaning": "Baru saja" },
-      { "term": "Impact", "meaning": "Dampak / Pengaruh" }
+      {
+        "term": "Finished time",
+        "meaning": "Waktu yang sudah berakhir (misal: kemarin)"
+      },
+      {
+        "term": "Unfinished time",
+        "meaning": "Waktu yang masih berlanjut (misal: hari ini, minggu ini)"
+      },
+      {
+        "term": "Just",
+        "meaning": "Baru saja"
+      },
+      {
+        "term": "Impact",
+        "meaning": "Dampak / Pengaruh"
+      }
     ],
     "concept": "Use Past Simple with finished time words (yesterday, last year, in 1999). Use Present Perfect with unfinished time words (today, this week, so far) or when a past action has a direct result in the present (e.g., 'I have lost my keys' -> I don't have them now).",
     "example_dialogue": "A: Did you see David yesterday?\nB: No, I didn't see him yesterday, but I have seen him this morning.\nA: Oh, good. Have you finished the financial report yet?\nB: Yes, I finished it last night. I have already sent it to the manager."
+  },
+  {
+    "level": "Intermediate",
+    "module_name": "Present Continuous",
+    "sub_topic_title": "Bonus Material: Intermediate Vocabulary",
+    "objective": "Enrichment material covering Intermediate Vocabulary based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "education",
+        "meaning": "pendidikan"
+      },
+      {
+        "term": "technology",
+        "meaning": "teknologi"
+      },
+      {
+        "term": "communication",
+        "meaning": "komunikasi"
+      },
+      {
+        "term": "information",
+        "meaning": "informasi"
+      },
+      {
+        "term": "knowledge",
+        "meaning": "pengetahuan"
+      },
+      {
+        "term": "development",
+        "meaning": "perkembangan"
+      },
+      {
+        "term": "environment",
+        "meaning": "lingkungan"
+      },
+      {
+        "term": "research",
+        "meaning": "penelitian"
+      },
+      {
+        "term": "system",
+        "meaning": "sistem"
+      },
+      {
+        "term": "language",
+        "meaning": "bahasa"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Intermediate Vocabulary. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Intermediate",
+    "module_name": "Past Simple",
+    "sub_topic_title": "Bonus Material: Intermediate Grammar",
+    "objective": "Enrichment material covering Intermediate Grammar based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Present Perfect",
+        "meaning": "I have finished my homework."
+      },
+      {
+        "term": "Past Tense",
+        "meaning": "I went to school."
+      },
+      {
+        "term": "Future Tense",
+        "meaning": "I will study tomorrow."
+      },
+      {
+        "term": "Modal Verbs",
+        "meaning": "I can swim."
+      },
+      {
+        "term": "Conditionals",
+        "meaning": "If I study, I will pass."
+      },
+      {
+        "term": "Passive Voice",
+        "meaning": "The book is read."
+      },
+      {
+        "term": "Gerund",
+        "meaning": "Swimming is fun."
+      },
+      {
+        "term": "Infinitive",
+        "meaning": "I want to learn."
+      },
+      {
+        "term": "Comparison",
+        "meaning": "She is taller than me."
+      },
+      {
+        "term": "Adverbs",
+        "meaning": "He runs quickly."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Intermediate Grammar. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Intermediate",
+    "module_name": "Present Perfect",
+    "sub_topic_title": "Bonus Material: Reading Comprehension",
+    "objective": "Enrichment material covering Reading Comprehension based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Technology",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Education System",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Environment",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Health",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Internet",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Science",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Culture",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Travel",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Work",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Future",
+        "meaning": "Reading Topic"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Reading Comprehension. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Technology is changing the world.\nEducation is important for future.\nWe must protect the environment.\nHealthy food is important.\nInternet connects people.\nScience helps us understand life.\nEvery country has its culture.\nTraveling is fun.\nWork is important in life.\nThe future is unknown."
+  },
+  {
+    "level": "Intermediate",
+    "module_name": "Present Continuous",
+    "sub_topic_title": "Bonus Material: Paragraph Writing",
+    "objective": "Enrichment material covering Paragraph Writing based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Exercise",
+        "meaning": "Write a paragraph about your hobby."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your school life."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your family."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your dream."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about technology."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your city."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about environment."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about education."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about food."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about travel."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Paragraph Writing. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Intermediate",
+    "module_name": "Past Simple",
+    "sub_topic_title": "Bonus Material: Communication Skills",
+    "objective": "Enrichment material covering Communication Skills based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Phrase",
+        "meaning": "Can you help me?"
+      },
+      {
+        "term": "Phrase",
+        "meaning": "What do you think?"
+      },
+      {
+        "term": "Phrase",
+        "meaning": "I agree with you."
+      },
+      {
+        "term": "Phrase",
+        "meaning": "I don’t understand."
+      },
+      {
+        "term": "Phrase",
+        "meaning": "Can you repeat that?"
+      },
+      {
+        "term": "Phrase",
+        "meaning": "That sounds good."
+      },
+      {
+        "term": "Phrase",
+        "meaning": "Let’s work together."
+      },
+      {
+        "term": "Phrase",
+        "meaning": "I have a question."
+      },
+      {
+        "term": "Phrase",
+        "meaning": "Thank you for your help."
+      },
+      {
+        "term": "Phrase",
+        "meaning": "See you tomorrow."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Communication Skills. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
   }
 ]

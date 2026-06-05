@@ -5,10 +5,22 @@
     "sub_topic_title": "Saying Hello & Goodbye (Formal vs Informal)",
     "objective": "In this lesson, you will learn various ways to say hello and goodbye, and understand when to use formal and informal language.",
     "vocabulary": [
-      { "term": "Good morning / afternoon / evening", "meaning": "Selamat pagi / siang / malam (Formal)" },
-      { "term": "Hello / Hi / Hey", "meaning": "Halo (Informal)" },
-      { "term": "Goodbye / Have a nice day", "meaning": "Selamat tinggal / Semoga harimu menyenangkan (Formal)" },
-      { "term": "Bye / Catch you later", "meaning": "Dadah / Sampai ketemu lagi nanti (Informal)" }
+      {
+        "term": "Good morning / afternoon / evening",
+        "meaning": "Selamat pagi / siang / malam (Formal)"
+      },
+      {
+        "term": "Hello / Hi / Hey",
+        "meaning": "Halo (Informal)"
+      },
+      {
+        "term": "Goodbye / Have a nice day",
+        "meaning": "Selamat tinggal / Semoga harimu menyenangkan (Formal)"
+      },
+      {
+        "term": "Bye / Catch you later",
+        "meaning": "Dadah / Sampai ketemu lagi nanti (Informal)"
+      }
     ],
     "concept": "Use formal greetings at work, at school (to teachers), or when speaking with people you do not know. Use informal greetings for peers or family. Common mistake: Never use 'Good night' to greet someone in the evening. 'Good night' is only used as a farewell or right before sleeping.",
     "example_dialogue": "[Formal]\nA: Good evening, Mr. Davis.\nB: Good evening, Anna. Have a safe trip home.\n\n[Informal]\nA: Hey, Mark! What's up?\nB: Hi, John! Not much. I have to go now. Catch you later!"
@@ -19,10 +31,22 @@
     "sub_topic_title": "Asking 'How are you?'",
     "objective": "You will learn various ways to ask how someone is doing and how to respond to it, from very good to not so good conditions.",
     "vocabulary": [
-      { "term": "How are you? / How is it going?", "meaning": "Apa kabar? / Bagaimana kabarmu?" },
-      { "term": "I'm doing well / Great", "meaning": "Saya baik-baik saja / Luar biasa" },
-      { "term": "Not bad / So-so", "meaning": "Lumayan / Biasa saja" },
-      { "term": "And you? / How about you?", "meaning": "Dan kamu? / Bagaimana denganmu?" }
+      {
+        "term": "How are you? / How is it going?",
+        "meaning": "Apa kabar? / Bagaimana kabarmu?"
+      },
+      {
+        "term": "I'm doing well / Great",
+        "meaning": "Saya baik-baik saja / Luar biasa"
+      },
+      {
+        "term": "Not bad / So-so",
+        "meaning": "Lumayan / Biasa saja"
+      },
+      {
+        "term": "And you? / How about you?",
+        "meaning": "Dan kamu? / Bagaimana denganmu?"
+      }
     ],
     "concept": "In Western culture, 'How are you?' is often just friendly small talk. People usually expect a short and positive answer. Politeness rule: Always add 'Thank you' after answering, then ask the same question back.",
     "example_dialogue": "A: Hi, Sarah. How is it going?\nB: Not bad, thanks! How about you?\nA: I'm doing well, just a bit tired today."
@@ -33,10 +57,22 @@
     "sub_topic_title": "Introducing Yourself",
     "objective": "You will learn how to form complete sentences to state your identity, origin, age, and occupation or status.",
     "vocabulary": [
-      { "term": "First name / Last name", "meaning": "Nama depan / Nama belakang" },
-      { "term": "Live in... / Come from...", "meaning": "Tinggal di... / Berasal dari..." },
-      { "term": "Years old", "meaning": "Tahun (untuk menyebutkan umur)" },
-      { "term": "Pleased to meet you", "meaning": "Senang bertemu denganmu" }
+      {
+        "term": "First name / Last name",
+        "meaning": "Nama depan / Nama belakang"
+      },
+      {
+        "term": "Live in... / Come from...",
+        "meaning": "Tinggal di... / Berasal dari..."
+      },
+      {
+        "term": "Years old",
+        "meaning": "Tahun (untuk menyebutkan umur)"
+      },
+      {
+        "term": "Pleased to meet you",
+        "meaning": "Senang bertemu denganmu"
+      }
     ],
     "concept": "Use 'I am from [Country/City]' for your place of origin, and 'I live in [City]' for your current residence. Age rule: In English, we use the verb 'To Be' (am/is/are) for age, NOT 'have'. (Correct: I am 20 years old. Incorrect: I have 20 years).",
     "example_dialogue": "Hello everyone. Let me introduce myself. My name is Kevin. I am from Indonesia, but I live in Tokyo now. I am 22 years old and I am a university student. Pleased to meet you all."
@@ -47,10 +83,22 @@
     "sub_topic_title": "Introducing Others",
     "objective": "You will learn how to act as a polite intermediary when introducing two people who do not know each other.",
     "vocabulary": [
-      { "term": "This is...", "meaning": "Ini adalah..." },
-      { "term": "I'd like you to meet...", "meaning": "Saya ingin kamu bertemu dengan..." },
-      { "term": "Colleague / Coworker", "meaning": "Rekan kerja" },
-      { "term": "Classmate", "meaning": "Teman sekelas" }
+      {
+        "term": "This is...",
+        "meaning": "Ini adalah..."
+      },
+      {
+        "term": "I'd like you to meet...",
+        "meaning": "Saya ingin kamu bertemu dengan..."
+      },
+      {
+        "term": "Colleague / Coworker",
+        "meaning": "Rekan kerja"
+      },
+      {
+        "term": "Classmate",
+        "meaning": "Teman sekelas"
+      }
     ],
     "concept": "Use 'This is [Name]'. If you point at your friend and say 'She is Maria' while she is right in front of you, it is considered less polite grammatically. Always mention your relationship with the person to make the introduction warmer.",
     "example_dialogue": "A: Hi, David. I'd like you to meet my coworker, Lisa.\nDavid: Hello, Lisa. Nice to meet you.\nLisa: Nice to meet you too, David. I've heard a lot about you."
@@ -61,10 +109,22 @@
     "sub_topic_title": "Using Titles Correctly",
     "objective": "You will learn how to use English titles correctly so as not to offend the person you are speaking with.",
     "vocabulary": [
-      { "term": "Mr. (Mister)", "meaning": "Untuk pria dewasa (menikah atau belum)" },
-      { "term": "Mrs. (Missus) / Miss", "meaning": "Untuk wanita menikah / Untuk wanita belum menikah" },
-      { "term": "Ms. (Mizz)", "meaning": "Untuk wanita (netral, tidak perlu tahu status pernikahannya)" },
-      { "term": "Sir / Ma'am", "meaning": "Pak / Bu (Panggilan hormat jika tidak tahu namanya)" }
+      {
+        "term": "Mr. (Mister)",
+        "meaning": "Untuk pria dewasa (menikah atau belum)"
+      },
+      {
+        "term": "Mrs. (Missus) / Miss",
+        "meaning": "Untuk wanita menikah / Untuk wanita belum menikah"
+      },
+      {
+        "term": "Ms. (Mizz)",
+        "meaning": "Untuk wanita (netral, tidak perlu tahu status pernikahannya)"
+      },
+      {
+        "term": "Sir / Ma'am",
+        "meaning": "Pak / Bu (Panggilan hormat jika tidak tahu namanya)"
+      }
     ],
     "concept": "Titles (Mr./Mrs./Ms./Miss) MUST be followed by the Last Name, not the first name. If his name is Budi Santoso, call him Mr. Santoso. In English-speaking countries, students DO NOT call their teacher by saying 'Teacher', but rather use the title and their last name.",
     "example_dialogue": "[At a restaurant]\nWaiter: Excuse me, Sir. Is this your bag?\n\n[At school]\nStudent: Good morning, Mrs. Robinson. How are you?\nTeacher: Good morning. Please take a seat."
@@ -75,9 +135,18 @@
     "sub_topic_title": "Subject Pronouns (Basic Grammar)",
     "objective": "Understand personal pronouns as the subject (doer) in a sentence. This is an absolute foundation before making any sentences.",
     "vocabulary": [
-      { "term": "I / You", "meaning": "Saya / Kamu (atau Kalian)" },
-      { "term": "He / She / It", "meaning": "Dia (Laki-laki) / Dia (Perempuan) / Itu (Benda, Hewan, Cuaca)" },
-      { "term": "We / They", "meaning": "Kami (atau Kita) / Mereka" }
+      {
+        "term": "I / You",
+        "meaning": "Saya / Kamu (atau Kalian)"
+      },
+      {
+        "term": "He / She / It",
+        "meaning": "Dia (Laki-laki) / Dia (Perempuan) / Itu (Benda, Hewan, Cuaca)"
+      },
+      {
+        "term": "We / They",
+        "meaning": "Kami (atau Kita) / Mereka"
+      }
     ],
     "concept": "A subject pronoun is always placed at the beginning of a sentence, before the verb. 'It' is also used for time and weather (e.g., It is raining). Do not assume 'They' is only for humans. If there are two dogs or three books, you still refer to them with 'They'.",
     "example_dialogue": "I like apples.\nMy brother is tall. He is a basketball player.\nLook at the cat. It is very cute.\nSarah and I are friends. We study together."
@@ -88,11 +157,270 @@
     "sub_topic_title": "Reading Practice (A Simple Conversation)",
     "objective": "Practice all the vocabulary, concepts, and grammar from Sub 1 to Sub 6 in a complete conversational text.",
     "vocabulary": [
-      { "term": "Welcome to...", "meaning": "Selamat datang di..." },
-      { "term": "Everyone", "meaning": "Semua orang" },
-      { "term": "Excellent", "meaning": "Luar biasa / Bagus sekali" }
+      {
+        "term": "Welcome to...",
+        "meaning": "Selamat datang di..."
+      },
+      {
+        "term": "Everyone",
+        "meaning": "Semua orang"
+      },
+      {
+        "term": "Excellent",
+        "meaning": "Luar biasa / Bagus sekali"
+      }
     ],
     "concept": "[Concept Review] This text combines the use of formal greetings (to a teacher) and informal ones (between friends), the pattern of mentioning one's country of origin, the use of formal titles followed by last names, and the application of subject pronouns.",
     "example_dialogue": "Lisa: Hi there! I am Lisa. What's your name?\nOmar: Hello, Lisa. My name is Omar. I am from Egypt. And you?\nLisa: I come from Canada, but I live in New York now.\n[A teacher enters the classroom]\nMr. Miller: Good morning, everyone. My name is Robert Miller. Please call me Mr. Miller. How is everyone doing today?\nLisa & Omar: Good morning, Mr. Miller. We are doing great, thank you!"
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Personal Information",
+    "sub_topic_title": "Bonus Material: Daily Vocabulary",
+    "objective": "Enrichment material covering Daily Vocabulary based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "apple",
+        "meaning": "apel"
+      },
+      {
+        "term": "book",
+        "meaning": "buku"
+      },
+      {
+        "term": "school",
+        "meaning": "sekolah"
+      },
+      {
+        "term": "water",
+        "meaning": "air"
+      },
+      {
+        "term": "food",
+        "meaning": "makanan"
+      },
+      {
+        "term": "home",
+        "meaning": "rumah"
+      },
+      {
+        "term": "car",
+        "meaning": "mobil"
+      },
+      {
+        "term": "cat",
+        "meaning": "kucing"
+      },
+      {
+        "term": "dog",
+        "meaning": "anjing"
+      },
+      {
+        "term": "sun",
+        "meaning": "matahari"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Daily Vocabulary. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "I eat an apple every day.\nThis is my book.\nI go to school.\nI drink water.\nI like food.\nI go home.\nThis is a car.\nThe cat is cute.\nThe dog is friendly.\nThe sun is bright."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Greetings and Introductions",
+    "sub_topic_title": "Bonus Material: Daily Expressions",
+    "objective": "Enrichment material covering Daily Expressions based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "How are you?",
+        "meaning": "Apa kabar?"
+      },
+      {
+        "term": "Good morning",
+        "meaning": "Selamat pagi"
+      },
+      {
+        "term": "Nice to meet you",
+        "meaning": "Senang bertemu denganmu"
+      },
+      {
+        "term": "Thank you",
+        "meaning": "Terima kasih"
+      },
+      {
+        "term": "You're welcome",
+        "meaning": "Sama-sama"
+      },
+      {
+        "term": "I am fine",
+        "meaning": "Saya baik-baik saja"
+      },
+      {
+        "term": "See you later",
+        "meaning": "Sampai jumpa"
+      },
+      {
+        "term": "Excuse me",
+        "meaning": "Permisi"
+      },
+      {
+        "term": "I am sorry",
+        "meaning": "Maaf"
+      },
+      {
+        "term": "What is your name?",
+        "meaning": "Siapa namamu?"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Daily Expressions. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Personal Information",
+    "sub_topic_title": "Bonus Material: Basic Grammar",
+    "objective": "Enrichment material covering Basic Grammar based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Simple Present Tense",
+        "meaning": "I eat every day."
+      },
+      {
+        "term": "Verb to be",
+        "meaning": "I am a student."
+      },
+      {
+        "term": "Subject Verb Object",
+        "meaning": "I read a book."
+      },
+      {
+        "term": "Plural Nouns",
+        "meaning": "Cats are cute."
+      },
+      {
+        "term": "Articles a/an/the",
+        "meaning": "I have a book."
+      },
+      {
+        "term": "Pronouns",
+        "meaning": "He is my friend."
+      },
+      {
+        "term": "Possessive",
+        "meaning": "This is my book."
+      },
+      {
+        "term": "Questions",
+        "meaning": "What is this?"
+      },
+      {
+        "term": "Negation",
+        "meaning": "I do not like it."
+      },
+      {
+        "term": "Adjectives",
+        "meaning": "She is beautiful."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Basic Grammar. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Numbers and Time",
+    "sub_topic_title": "Bonus Material: Reading Basics",
+    "objective": "Enrichment material covering Reading Basics based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "My Family",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My School",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My Day",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My Friend",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My House",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My Hobby",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My Pet",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My City",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My Food",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "My Dream",
+        "meaning": "Reading Topic"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Reading Basics. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "I have a small family. My father works in an office.\nI study at a big school.\nI wake up early and go to school.\nMy friend is very kind.\nMy house is small but clean.\nI like reading books.\nI have a cute cat.\nMy city is beautiful.\nI like rice and chicken.\nI want to be successful."
+  },
+  {
+    "level": "Beginner",
+    "module_name": "Numbers and Time",
+    "sub_topic_title": "Bonus Material: Writing Basics",
+    "objective": "Enrichment material covering Writing Basics based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Exercise",
+        "meaning": "Write 5 sentences about yourself."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your family."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your school."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your hobby."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your friend."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your house."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your favorite food."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your daily activity."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your dream."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write about your pet."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Writing Basics. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
   }
 ]

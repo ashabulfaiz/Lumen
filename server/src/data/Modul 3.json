@@ -5,10 +5,22 @@
     "sub_topic_title": "Mixed Conditionals",
     "objective": "Master complex conditional structures to express hypothetical situations linking past conditions to present results.",
     "vocabulary": [
-      { "term": "Hypothetical", "meaning": "Bersifat hipotesis / dugaan tak nyata" },
-      { "term": "Condition / Result", "meaning": "Kondisi / Hasil" },
-      { "term": "Contrary to fact", "meaning": "Bertentangan dengan fakta" },
-      { "term": "Consequently", "meaning": "Akibatnya" }
+      {
+        "term": "Hypothetical",
+        "meaning": "Bersifat hipotesis / dugaan tak nyata"
+      },
+      {
+        "term": "Condition / Result",
+        "meaning": "Kondisi / Hasil"
+      },
+      {
+        "term": "Contrary to fact",
+        "meaning": "Bertentangan dengan fakta"
+      },
+      {
+        "term": "Consequently",
+        "meaning": "Akibatnya"
+      }
     ],
     "concept": "Mixed conditionals blend elements of 2nd and 3rd conditionals. The most common form mixes a past condition (If + Past Perfect) with a present result (would + base verb). Example: 'If I had studied harder (past), I would have a better job now (present).'",
     "example_dialogue": "A: Did you accept that startup job offer in Berlin last year?\nB: No, I turned it down. If I had accepted it, I would be living in Germany right now.\nA: That's a huge life change. Do you regret it?\nB: Not really. If I weren't happy with my current career, I might have regretted it, but I love my current team."
@@ -19,10 +31,22 @@
     "sub_topic_title": "The Subjunctive Mood",
     "objective": "Understand the nuances of the subjunctive mood in formal English and academic writing.",
     "vocabulary": [
-      { "term": "Subjunctive", "meaning": "Modus pengandaian/keharusan formal" },
-      { "term": "Imperative", "meaning": "Sangat penting / Mengharuskan" },
-      { "term": "Mandatory", "meaning": "Wajib" },
-      { "term": "Crucial", "meaning": "Sangat krusial / penting" }
+      {
+        "term": "Subjunctive",
+        "meaning": "Modus pengandaian/keharusan formal"
+      },
+      {
+        "term": "Imperative",
+        "meaning": "Sangat penting / Mengharuskan"
+      },
+      {
+        "term": "Mandatory",
+        "meaning": "Wajib"
+      },
+      {
+        "term": "Crucial",
+        "meaning": "Sangat krusial / penting"
+      }
     ],
     "concept": "The subjunctive mood is used after verbs of urgency, recommendation, or demand (recommend, suggest, insist) and adjectives like 'essential' or 'crucial'. It requires the base form of the verb, ignoring subject-verb agreement rules. Example: 'It is essential that she arrive (not arrives) on time.'",
     "example_dialogue": "A: The board recommended that the CEO step down immediately.\nB: I agree. It is crucial that the company restructure its leadership before the next quarter.\nA: Exactly. The investors insist that a new strategy be implemented as soon as possible."
@@ -33,10 +57,22 @@
     "sub_topic_title": "Inversion for Emphasis",
     "objective": "Learn how to use subject-auxiliary inversion to add dramatic emphasis and formality to your writing.",
     "vocabulary": [
-      { "term": "Inversion", "meaning": "Pembalikan struktur kalimat" },
-      { "term": "Emphasis", "meaning": "Penekanan" },
-      { "term": "Rarely / Seldom", "meaning": "Jarang" },
-      { "term": "Under no circumstances", "meaning": "Dalam keadaan apapun tidak..." }
+      {
+        "term": "Inversion",
+        "meaning": "Pembalikan struktur kalimat"
+      },
+      {
+        "term": "Emphasis",
+        "meaning": "Penekanan"
+      },
+      {
+        "term": "Rarely / Seldom",
+        "meaning": "Jarang"
+      },
+      {
+        "term": "Under no circumstances",
+        "meaning": "Dalam keadaan apapun tidak..."
+      }
     ],
     "concept": "In formal or literary English, when a negative or restrictive adverb (like never, rarely, seldom, not only) is placed at the beginning of a sentence, the subject and the auxiliary verb are inverted. Example: 'Never have I seen such a brilliant performance.' (Instead of 'I have never seen...')",
     "example_dialogue": "A: The recent economic summit was unprecedented.\nB: Indeed. Rarely do we witness such unanimous agreement among global leaders.\nA: Not only did they agree on climate targets, but they also committed significant funding.\nB: Under no circumstances should this momentum be lost."
@@ -47,10 +83,22 @@
     "sub_topic_title": "Formal Language and Hedging",
     "objective": "Enhance academic writing by utilizing advanced vocabulary and learning the technique of 'hedging' to make objective statements.",
     "vocabulary": [
-      { "term": "To some extent", "meaning": "Sampai batas tertentu" },
-      { "term": "Indicate / Suggest", "meaning": "Menunjukkan / Mengisyaratkan" },
-      { "term": "Predominantly", "meaning": "Sebagian besar / Terutama" },
-      { "term": "Ambiguous", "meaning": "Ambigu / Bermakna ganda" }
+      {
+        "term": "To some extent",
+        "meaning": "Sampai batas tertentu"
+      },
+      {
+        "term": "Indicate / Suggest",
+        "meaning": "Menunjukkan / Mengisyaratkan"
+      },
+      {
+        "term": "Predominantly",
+        "meaning": "Sebagian besar / Terutama"
+      },
+      {
+        "term": "Ambiguous",
+        "meaning": "Ambigu / Bermakna ganda"
+      }
     ],
     "concept": "In academic contexts, claims must be made carefully. 'Hedging' uses modal verbs (could, might), adjectives (probable), or adverbs (perhaps, likely) to soften claims. Avoid absolute words like 'always' or 'prove', and instead use words like 'frequently' or 'indicate'.",
     "example_dialogue": "A: In my essay, I wrote: 'The data proves that this new policy is 100% effective.'\nB: That might be too strong of a claim for an academic paper. You should hedge it: 'The data strongly indicates that this policy is likely effective.'\nA: I see. It makes the argument more objective, defensible, and less arrogant."
@@ -61,10 +109,22 @@
     "sub_topic_title": "Nominalization (Turning Verbs into Nouns)",
     "objective": "Learn to use nominalization to make sentences more concise, objective, and academically appropriate.",
     "vocabulary": [
-      { "term": "Nominalization", "meaning": "Pembendaan (mengubah kata kerja/sifat menjadi kata benda)" },
-      { "term": "Implementation", "meaning": "Implementasi / Pelaksanaan (dari kata 'implement')" },
-      { "term": "Assessment", "meaning": "Penilaian (dari kata 'assess')" },
-      { "term": "Fluctuation", "meaning": "Fluktuasi / Naik turun (dari kata 'fluctuate')" }
+      {
+        "term": "Nominalization",
+        "meaning": "Pembendaan (mengubah kata kerja/sifat menjadi kata benda)"
+      },
+      {
+        "term": "Implementation",
+        "meaning": "Implementasi / Pelaksanaan (dari kata 'implement')"
+      },
+      {
+        "term": "Assessment",
+        "meaning": "Penilaian (dari kata 'assess')"
+      },
+      {
+        "term": "Fluctuation",
+        "meaning": "Fluktuasi / Naik turun (dari kata 'fluctuate')"
+      }
     ],
     "concept": "Nominalization is the process of forming nouns from verbs or adjectives. This makes writing more abstract and formal, shifting the focus from the 'doer' of the action to the action itself. Instead of 'We investigated the problem thoroughly', write 'A thorough investigation of the problem was conducted.'",
     "example_dialogue": "A: Can you review my paragraph? I wrote: 'The government decided to expand the highway, which caused the citizens to protest.'\nB: It's grammatically correct, but you can use nominalization to elevate the style. Try: 'The government's decision regarding the highway expansion led to widespread citizen protests.'\nA: Wow, that sounds much more professional and academic."
@@ -75,10 +135,22 @@
     "sub_topic_title": "Cohesion, Coherence, and Complex Transitions",
     "objective": "Learn to structure complex academic essays logically and smoothly connect ideas using sophisticated transition devices.",
     "vocabulary": [
-      { "term": "Nevertheless", "meaning": "Meskipun demikian" },
-      { "term": "Furthermore", "meaning": "Selanjutnya / Lebih jauh lagi" },
-      { "term": "Conversely", "meaning": "Sebaliknya" },
-      { "term": "Notwithstanding", "meaning": "Meskipun (Formal)" }
+      {
+        "term": "Nevertheless",
+        "meaning": "Meskipun demikian"
+      },
+      {
+        "term": "Furthermore",
+        "meaning": "Selanjutnya / Lebih jauh lagi"
+      },
+      {
+        "term": "Conversely",
+        "meaning": "Sebaliknya"
+      },
+      {
+        "term": "Notwithstanding",
+        "meaning": "Meskipun (Formal)"
+      }
     ],
     "concept": "Coherence refers to the logical flow of ideas, while cohesion refers to the linguistic links (transitions) that connect sentences and paragraphs. Use advanced transitions like 'conversely' (for contrast), 'furthermore' (for addition), and 'subsequently' (for sequence) to guide the reader through complex arguments.",
     "example_dialogue": "A: I wrote that the economy is growing rapidly. Then I wrote inflation is rising. How do I connect them smoothly in an essay?\nB: You can use a contrastive transition to show the relationship. For instance: 'The economy is growing rapidly; conversely, inflation rates are rising at an alarming pace.'\nA: That sounds much more cohesive than just putting two separate sentences together."
@@ -89,12 +161,274 @@
     "sub_topic_title": "Synthesizing Multiple Sources",
     "objective": "Master the skill of combining information from various academic sources to build a strong, unified argument.",
     "vocabulary": [
-      { "term": "Synthesize", "meaning": "Mensintesis / Menggabungkan berbagai elemen" },
-      { "term": "Corroborate", "meaning": "Membenarkan / Memperkuat bukti" },
-      { "term": "Contradict", "meaning": "Bertentangan dengan" },
-      { "term": "Consensus", "meaning": "Kesepakatan bersama" }
+      {
+        "term": "Synthesize",
+        "meaning": "Mensintesis / Menggabungkan berbagai elemen"
+      },
+      {
+        "term": "Corroborate",
+        "meaning": "Membenarkan / Memperkuat bukti"
+      },
+      {
+        "term": "Contradict",
+        "meaning": "Bertentangan dengan"
+      },
+      {
+        "term": "Consensus",
+        "meaning": "Kesepakatan bersama"
+      }
     ],
     "concept": "Synthesis involves comparing, contrasting, and integrating ideas from multiple authors. Rather than summarizing sources one by one (A says this. B says this), group them by theme. Example: 'While Smith (2020) argues for X, both Jones (2021) and Lee (2022) contradict this view, suggesting that Y is more significant.'",
     "example_dialogue": "A: I have three articles about renewable energy. Should I summarize them in three different paragraphs?\nB: No, that's just a summary. You need to synthesize. Group them by their arguments. If two authors agree on solar power, mention them together to corroborate your point.\nA: Ah, so I use them to support my own thesis, rather than just repeating what they said.\nB: Exactly. That demonstrates advanced critical thinking."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Vocabulary",
+    "sub_topic_title": "Bonus Material: Advanced Vocabulary",
+    "objective": "Enrichment material covering Advanced Vocabulary based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "methodology",
+        "meaning": "metodologi"
+      },
+      {
+        "term": "hypothesis",
+        "meaning": "hipotesis"
+      },
+      {
+        "term": "implementation",
+        "meaning": "implementasi"
+      },
+      {
+        "term": "interpretation",
+        "meaning": "interpretasi"
+      },
+      {
+        "term": "analysis",
+        "meaning": "analisis"
+      },
+      {
+        "term": "evaluation",
+        "meaning": "evaluasi"
+      },
+      {
+        "term": "framework",
+        "meaning": "kerangka"
+      },
+      {
+        "term": "optimization",
+        "meaning": "optimalisasi"
+      },
+      {
+        "term": "integration",
+        "meaning": "integrasi"
+      },
+      {
+        "term": "architecture",
+        "meaning": "arsitektur"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Advanced Vocabulary. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Advanced Grammar",
+    "sub_topic_title": "Bonus Material: Advanced Grammar",
+    "objective": "Enrichment material covering Advanced Grammar based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Conditional Type 3",
+        "meaning": "If I had studied, I would have passed."
+      },
+      {
+        "term": "Inversion",
+        "meaning": "Never have I seen that."
+      },
+      {
+        "term": "Cleft Sentence",
+        "meaning": "It is John who did it."
+      },
+      {
+        "term": "Reported Speech",
+        "meaning": "He said he was tired."
+      },
+      {
+        "term": "Mixed Conditionals",
+        "meaning": "If I were rich, I would have traveled."
+      },
+      {
+        "term": "Subjunctive",
+        "meaning": "I suggest that he go."
+      },
+      {
+        "term": "Passive Advanced",
+        "meaning": "The report has been completed."
+      },
+      {
+        "term": "Nominalization",
+        "meaning": "The destruction of the city."
+      },
+      {
+        "term": "Ellipsis",
+        "meaning": "I can, and I will."
+      },
+      {
+        "term": "Advanced Modals",
+        "meaning": "You should have done it."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Advanced Grammar. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Writing",
+    "sub_topic_title": "Bonus Material: Academic Reading",
+    "objective": "Enrichment material covering Academic Reading based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Artificial Intelligence",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Machine Learning",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Data Science",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Neural Networks",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Deep Learning",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Big Data",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Cloud Computing",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Cybersecurity",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Blockchain",
+        "meaning": "Reading Topic"
+      },
+      {
+        "term": "Robotics",
+        "meaning": "Reading Topic"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Academic Reading. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "AI is transforming industries globally.\nML is a subset of AI.\nData science uses statistics and programming.\nInspired by human brain.\nUses multiple layers of learning.\nLarge scale data analysis.\nRemote data processing.\nProtecting systems from attacks.\nDistributed ledger technology.\nMachines that perform tasks."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Writing",
+    "sub_topic_title": "Bonus Material: Essay Writing",
+    "objective": "Enrichment material covering Essay Writing based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about technology."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about education."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about environment."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about AI."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about future."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about globalization."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about health."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about economy."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about science."
+      },
+      {
+        "term": "Exercise",
+        "meaning": "Write an essay about society."
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Essay Writing. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Vocabulary",
+    "sub_topic_title": "Bonus Material: Professional Communication",
+    "objective": "Enrichment material covering Professional Communication based on the ds-service dataset.",
+    "vocabulary": [
+      {
+        "term": "Business Email Writing",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Formal Communication",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Presentation Skills",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Negotiation Language",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Report Writing",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Meeting Discussion",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Project Communication",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Corporate Vocabulary",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Client Communication",
+        "meaning": "Important topic"
+      },
+      {
+        "term": "Workplace English",
+        "meaning": "Important topic"
+      }
+    ],
+    "concept": "This section introduces additional vocabulary and concepts related to Professional Communication. Focus on practicing these in your daily conversations.",
+    "example_dialogue": "Please review the vocabulary list and try to use them in sentences."
   }
 ]
