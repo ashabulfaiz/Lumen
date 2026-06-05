@@ -27,6 +27,19 @@ const stripHtml = (html) => {
   return html.replace(/<[^>]*>?/gm, '');
 }
 
+const getLessonDescription = (konten_teks) => {
+  if (!konten_teks) return '';
+  try {
+    const parsed = JSON.parse(konten_teks);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      return parsed[0].objective || parsed[0].concept || `This lesson covers ${parsed[0].module_name || 'key concepts'}.`;
+    }
+  } catch {
+    // Not JSON, treat as HTML/plain text
+  }
+  return stripHtml(konten_teks);
+}
+
 function DonutChart({ percent, strokeColor, label, customText }) {
   const size = 112
   const stroke = 10
@@ -326,7 +339,7 @@ export default function DashboardHome() {
                       {lesson.judul_lesson}
                     </h3>
                     <p className="mb-5 text-[13px] leading-relaxed text-slate-600 line-clamp-2">
-                      {stripHtml(lesson.konten_teks) || 'This module is ready for you to start.'}
+                      {getLessonDescription(lesson.konten_teks) || 'This module is ready for you to start.'}
                     </p>
                   </div>
 
