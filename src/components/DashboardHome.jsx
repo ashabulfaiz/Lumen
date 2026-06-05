@@ -138,7 +138,9 @@ export default function DashboardHome() {
 
         // Process in LEVEL_TRACKS order (beginner → intermediate → advanced).
         for (const { track, trackLessons, moduleStatuses } of perTrack) {
-          if (track.id === 1) fallbackLessonsPool = [...trackLessons]
+          if (trackLessons.length > 0) {
+            fallbackLessonsPool.push(trackLessons[0])
+          }
 
           let totalLevelPercent = 0
           let fullyCompletedCount = 0
@@ -170,7 +172,7 @@ export default function DashboardHome() {
               }
             }
 
-            if (isAvailable && lessonPercent < 100 && track.id <= highestUnlocked) {
+            if (isAvailable && lessonPercent < 100 && track.id === highestUnlocked) {
               availableLessonsPool.push({
                 ...lesson,
                 lockedForUser: false
