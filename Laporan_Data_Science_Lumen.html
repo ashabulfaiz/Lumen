@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Data Science - LUMEN</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+            page-break-after: avoid;
+        }
+
+        p,
+        ul,
+        ol {
+            page-break-inside: avoid;
+        }
+
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+            font-size: 14px;
+            border: 1px solid #e9ecef;
+            page-break-inside: avoid;
+        }
+
+        .output-block {
+            background-color: #eef2f5;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 13px;
+            page-break-inside: avoid;
+        }
+
+        .highlight {
+            background-color: #eafaf1;
+            padding: 10px;
+            border-left: 4px solid #2ecc71;
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 15px 0;
+            page-break-inside: avoid;
+            display: block;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            @page { margin: 2cm; }
+            body { max-width: 100%; padding: 0; margin: 0; font-size: 12pt; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .code-block, .output-block, .highlight { border: 1px solid #ccc !important; box-shadow: none !important; }
+            h1 { font-size: 18pt; }
+            h2 { font-size: 16pt; margin-top: 20px; }
+            .code-block { background-color: #f8f9fa !important; }
+            .output-block { background-color: #eef2f5 !important; border-left: 4px solid #3498db !important; }
+            .highlight { background-color: #eafaf1 !important; border-left: 4px solid #2ecc71 !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 20px; margin-bottom: 30px;">
+        <h1>Laporan Teknis Komprehensif Data Science</h1>
+        <h2>Proyek: LUMEN (Learning Management System)</h2>
+    </div>
+
+    <h2>1. Problem Discovery & Business Questions</h2>
+    <p>Tujuan utama dari analisis data science pada proyek LUMEN ini adalah untuk menganalisis performa siswa di
+        berbagai tingkatan (Beginner, Intermediate, Advanced) dan mengidentifikasi faktor utama yang menentukan
+        kelulusan mereka. Selain itu, kami juga menguji dampak fitur <strong>Rekomendasi Level</strong> terhadap
+        peningkatan nilai siswa.</p>
+
+    <div class="highlight">
+        <strong>Pertanyaan Bisnis (Terukur):</strong>
+        <ol>
+            <li>Bagaimana distribusi skor kuis siswa di tiap tingkatan?</li>
+            <li>Apakah siswa yang menggunakan 'Fitur Rekomendasi' mendapatkan nilai yang lebih tinggi secara signifikan
+                dibandingkan yang tidak menggunakannya?</li>
+            <li>Fitur apa yang paling memengaruhi kemungkinan seorang siswa lulus (mendapatkan nilai >= 75)?</li>
+        </ol>
+    </div>
+
+    <h2>2. Data Wrangling (End-to-End)</h2>
+    <p>Data mentah dikumpulkan dari riwayat performa kuis siswa (disimulasikan dari log backend). Proses <em>Data
+            Wrangling</em> manual dilakukan untuk membersihkan data yang kotor (mengandung <em>missing values</em> dan
+        duplikasi).</p>
+
+    <div class="code-block">
+        # Drop duplikat secara manual
+        df_clean = df_raw.drop_duplicates()
+
+        # Isi missing value skor dengan rata-rata grup levelnya
+        df_clean['quiz_score'] = df_clean.groupby('current_level')['quiz_score'].transform(lambda x:
+        x.fillna(x.median()))
+
+        # Isi missing value time_spent dengan median keseluruhan
+        df_clean['time_spent_mins'] = df_clean['time_spent_mins'].fillna(df_clean['time_spent_mins'].median())
+    </div>
+
+    <div class="output-block">Missing Values sebelum cleaning: quiz_score (15), time_spent_mins (10)
+        Missing Values setelah cleaning: quiz_score (0), time_spent_mins (0)
+        Shape data bersih: (200, 5)</div>
+
+    <h2>3. Exploratory Data Analysis (EDA) & Visualisasi</h2>
+    <p>Untuk menjawab pertanyaan bisnis pertama, kami melakukan visualisasi distribusi skor menggunakan
+        <em>Boxplot</em>.</p>
+    <img src="ds-service/Lumen_Data_Science/eda_boxplot.png" alt="Distribusi Skor Berdasarkan Level">
+    <div class="highlight">
+        <strong>Explanatory Analysis:</strong> Berdasarkan grafik boxplot di atas, siswa tingkat <em>Beginner</em>
+        cenderung memiliki skor rata-rata yang lebih tinggi dengan variasi yang lebih sempit dibandingkan kelompok
+        <em>Advanced</em>. Hal ini mengindikasikan bahwa siswa <em>Advanced</em> menghadapi materi yang tingkat
+        kesulitannya jauh lebih bervariasi, sehingga persebaran skornya lebih luas (standar deviasi tinggi).
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>4. A/B Testing menggunakan Python</h2>
+    <p>Untuk menjawab pertanyaan bisnis kedua, kami melakukan uji A/B Testing menggunakan Uji Hipotesis (Independent
+        T-Test).</p>
+    <ul>
+        <li><strong>Grup A (Control):</strong> Siswa tanpa Fitur Rekomendasi Level.</li>
+        <li><strong>Grup B (Variant):</strong> Siswa menggunakan Fitur Rekomendasi Level.</li>
+    </ul>
+
+    <div class="code-block">
+        from scipy import stats
+
+        t_stat, p_val = stats.ttest_ind(group_b, group_a, alternative='greater')
+        print(f"T-Statistic: {t_stat:.2f}, P-Value: {p_val:.4f}")
+    </div>
+
+    <div class="output-block">Rata-rata Grup A (Tanpa Fitur): 73.15
+        Rata-rata Grup B (Dengan Fitur) : 77.82
+        T-Statistic: 2.14, P-Value: 0.0168</div>
+
+    <div class="highlight">
+        <strong>Kesimpulan A/B Testing:</strong> Karena P-Value (0.0168) lebih kecil dari Alpha (0.05), kita menolak H0.
+        Terdapat cukup bukti empiris bahwa <strong>Fitur Rekomendasi terbukti MENINGKATKAN skor siswa secara
+            signifikan.</strong>
+    </div>
+
+    <h2>5. Feature Engineering & Machine Learning (Pencegahan Data Leakage)</h2>
+    <p>Untuk menjawab pertanyaan ketiga, kami melatih model Machine Learning <em>Decision Tree</em> untuk memprediksi
+        kelulusan siswa. Untuk mencegah keborocan data (<strong>Data Leakage</strong>), kami membuang kolom target
+        numerik asli (`quiz_score`) sebelum proses <em>training</em>.</p>
+
+    <div class="code-block">
+        # Feature Engineering: Menentukan Target Biner
+        df_clean['is_passed'] = (df_clean['quiz_score'] >= 75).astype(int)
+
+        # Encoding variabel kategorikal
+        df_model = pd.get_dummies(df_clean, columns=['current_level', 'ab_test_group'], drop_first=True)
+
+        # PENCEGAHAN DATA LEAKAGE: Membuang kolom quiz_score dan is_passed dari X
+        X = df_model.drop(columns=['student_id', 'quiz_score', 'is_passed'])
+        y = df_model['is_passed']
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        model = DecisionTreeClassifier(max_depth=3).fit(X_train, y_train)
+    </div>
+
+    <div class="output-block">Akurasi Model: 87.5%
+        Classification Report:
+        precision recall f1-score support
+        0 0.85 0.89 0.87 19
+        1 0.90 0.86 0.88 21
+        accuracy 0.88 40</div>
+
+    <div class="highlight">
+        <strong>Kesimpulan:</strong> Model berhasil memprediksi kelulusan dengan akurasi 87.5%. Berdasarkan <em>Feature
+            Importance</em> dari model pohon keputusan, faktor paling berpengaruh terhadap kelulusan adalah keaktifan
+        fitur rekomendasi dan waktu belajar.
+    </div>
+
+    <hr style="margin-top: 40px;">
+    <p style="text-align: center; color: #7f8c8d; font-size: 12px;">Laporan ini di-*generate* secara otomatis untuk
+        melengkapi persyaratan tugas Data Science LUMEN.</p>
+
+</body>
+
+</html>
