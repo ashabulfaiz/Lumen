@@ -1,0 +1,279 @@
+{
+  "project": "LUMEN",
+  "type": "materials",
+  "total_modules": 15,
+
+  "modules": [
+
+    {
+      "module_id": 1,
+      "class": "Beginner",
+      "module_name": "Daily Vocabulary",
+      "materials": [
+        {"word": "apple", "translation": "apel", "example": "I eat an apple every day."},
+        {"word": "book", "translation": "buku", "example": "This is my book."},
+        {"word": "school", "translation": "sekolah", "example": "I go to school."},
+        {"word": "water", "translation": "air", "example": "I drink water."},
+        {"word": "food", "translation": "makanan", "example": "I like food."},
+        {"word": "home", "translation": "rumah", "example": "I go home."},
+        {"word": "car", "translation": "mobil", "example": "This is a car."},
+        {"word": "cat", "translation": "kucing", "example": "The cat is cute."},
+        {"word": "dog", "translation": "anjing", "example": "The dog is friendly."},
+        {"word": "sun", "translation": "matahari", "example": "The sun is bright."}
+      ]
+    },
+
+    {
+      "module_id": 2,
+      "class": "Beginner",
+      "module_name": "Daily Expressions",
+      "materials": [
+        {"sentence": "How are you?", "translation": "Apa kabar?"},
+        {"sentence": "Good morning", "translation": "Selamat pagi"},
+        {"sentence": "Nice to meet you", "translation": "Senang bertemu denganmu"},
+        {"sentence": "Thank you", "translation": "Terima kasih"},
+        {"sentence": "You're welcome", "translation": "Sama-sama"},
+        {"sentence": "I am fine", "translation": "Saya baik-baik saja"},
+        {"sentence": "See you later", "translation": "Sampai jumpa"},
+        {"sentence": "Excuse me", "translation": "Permisi"},
+        {"sentence": "I am sorry", "translation": "Maaf"},
+        {"sentence": "What is your name?", "translation": "Siapa namamu?"}
+      ]
+    },
+
+    {
+      "module_id": 3,
+      "class": "Beginner",
+      "module_name": "Basic Grammar",
+      "materials": [
+        {"topic": "Simple Present Tense", "example": "I eat every day."},
+        {"topic": "Verb to be", "example": "I am a student."},
+        {"topic": "Subject Verb Object", "example": "I read a book."},
+        {"topic": "Plural Nouns", "example": "Cats are cute."},
+        {"topic": "Articles a/an/the", "example": "I have a book."},
+        {"topic": "Pronouns", "example": "He is my friend."},
+        {"topic": "Possessive", "example": "This is my book."},
+        {"topic": "Questions", "example": "What is this?"},
+        {"topic": "Negation", "example": "I do not like it."},
+        {"topic": "Adjectives", "example": "She is beautiful."}
+      ]
+    },
+
+    {
+      "module_id": 4,
+      "class": "Beginner",
+      "module_name": "Reading Basics",
+      "materials": [
+        {"title": "My Family", "text": "I have a small family. My father works in an office."},
+        {"title": "My School", "text": "I study at a big school."},
+        {"title": "My Day", "text": "I wake up early and go to school."},
+        {"title": "My Friend", "text": "My friend is very kind."},
+        {"title": "My House", "text": "My house is small but clean."},
+        {"title": "My Hobby", "text": "I like reading books."},
+        {"title": "My Pet", "text": "I have a cute cat."},
+        {"title": "My City", "text": "My city is beautiful."},
+        {"title": "My Food", "text": "I like rice and chicken."},
+        {"title": "My Dream", "text": "I want to be successful."}
+      ]
+    },
+
+    {
+      "module_id": 5,
+      "class": "Beginner",
+      "module_name": "Writing Basics",
+      "materials": [
+        {"instruction": "Write 5 sentences about yourself."},
+        {"instruction": "Write about your family."},
+        {"instruction": "Write about your school."},
+        {"instruction": "Write about your hobby."},
+        {"instruction": "Write about your friend."},
+        {"instruction": "Write about your house."},
+        {"instruction": "Write about your favorite food."},
+        {"instruction": "Write about your daily activity."},
+        {"instruction": "Write about your dream."},
+        {"instruction": "Write about your pet."}
+      ]
+    },
+
+    {
+      "module_id": 6,
+      "class": "Intermediate",
+      "module_name": "Intermediate Vocabulary",
+      "materials": [
+        {"word": "education", "translation": "pendidikan"},
+        {"word": "technology", "translation": "teknologi"},
+        {"word": "communication", "translation": "komunikasi"},
+        {"word": "information", "translation": "informasi"},
+        {"word": "knowledge", "translation": "pengetahuan"},
+        {"word": "development", "translation": "perkembangan"},
+        {"word": "environment", "translation": "lingkungan"},
+        {"word": "research", "translation": "penelitian"},
+        {"word": "system", "translation": "sistem"},
+        {"word": "language", "translation": "bahasa"}
+      ]
+    },
+
+    {
+      "module_id": 7,
+      "class": "Intermediate",
+      "module_name": "Intermediate Grammar",
+      "materials": [
+        {"topic": "Present Perfect", "example": "I have finished my homework."},
+        {"topic": "Past Tense", "example": "I went to school."},
+        {"topic": "Future Tense", "example": "I will study tomorrow."},
+        {"topic": "Modal Verbs", "example": "I can swim."},
+        {"topic": "Conditionals", "example": "If I study, I will pass."},
+        {"topic": "Passive Voice", "example": "The book is read."},
+        {"topic": "Gerund", "example": "Swimming is fun."},
+        {"topic": "Infinitive", "example": "I want to learn."},
+        {"topic": "Comparison", "example": "She is taller than me."},
+        {"topic": "Adverbs", "example": "He runs quickly."}
+      ]
+    },
+
+    {
+      "module_id": 8,
+      "class": "Intermediate",
+      "module_name": "Reading Comprehension",
+      "materials": [
+        {"title": "Technology", "text": "Technology is changing the world."},
+        {"title": "Education System", "text": "Education is important for future."},
+        {"title": "Environment", "text": "We must protect the environment."},
+        {"title": "Health", "text": "Healthy food is important."},
+        {"title": "Internet", "text": "Internet connects people."},
+        {"title": "Science", "text": "Science helps us understand life."},
+        {"title": "Culture", "text": "Every country has its culture."},
+        {"title": "Travel", "text": "Traveling is fun."},
+        {"title": "Work", "text": "Work is important in life."},
+        {"title": "Future", "text": "The future is unknown."}
+      ]
+    },
+
+    {
+      "module_id": 9,
+      "class": "Intermediate",
+      "module_name": "Paragraph Writing",
+      "materials": [
+        {"instruction": "Write a paragraph about your hobby."},
+        {"instruction": "Write about your school life."},
+        {"instruction": "Write about your family."},
+        {"instruction": "Write about your dream."},
+        {"instruction": "Write about technology."},
+        {"instruction": "Write about your city."},
+        {"instruction": "Write about environment."},
+        {"instruction": "Write about education."},
+        {"instruction": "Write about food."},
+        {"instruction": "Write about travel."}
+      ]
+    },
+
+    {
+      "module_id": 10,
+      "class": "Intermediate",
+      "module_name": "Communication Skills",
+      "materials": [
+        {"dialogue": "Can you help me?"},
+        {"dialogue": "What do you think?"},
+        {"dialogue": "I agree with you."},
+        {"dialogue": "I don’t understand."},
+        {"dialogue": "Can you repeat that?"},
+        {"dialogue": "That sounds good."},
+        {"dialogue": "Let’s work together."},
+        {"dialogue": "I have a question."},
+        {"dialogue": "Thank you for your help."},
+        {"dialogue": "See you tomorrow."}
+      ]
+    },
+
+    {
+      "module_id": 11,
+      "class": "Advanced",
+      "module_name": "Advanced Vocabulary",
+      "materials": [
+        {"word": "methodology", "translation": "metodologi"},
+        {"word": "hypothesis", "translation": "hipotesis"},
+        {"word": "implementation", "translation": "implementasi"},
+        {"word": "interpretation", "translation": "interpretasi"},
+        {"word": "analysis", "translation": "analisis"},
+        {"word": "evaluation", "translation": "evaluasi"},
+        {"word": "framework", "translation": "kerangka"},
+        {"word": "optimization", "translation": "optimalisasi"},
+        {"word": "integration", "translation": "integrasi"},
+        {"word": "architecture", "translation": "arsitektur"}
+      ]
+    },
+
+    {
+      "module_id": 12,
+      "class": "Advanced",
+      "module_name": "Advanced Grammar",
+      "materials": [
+        {"topic": "Conditional Type 3", "example": "If I had studied, I would have passed."},
+        {"topic": "Inversion", "example": "Never have I seen that."},
+        {"topic": "Cleft Sentence", "example": "It is John who did it."},
+        {"topic": "Reported Speech", "example": "He said he was tired."},
+        {"topic": "Mixed Conditionals", "example": "If I were rich, I would have traveled."},
+        {"topic": "Subjunctive", "example": "I suggest that he go."},
+        {"topic": "Passive Advanced", "example": "The report has been completed."},
+        {"topic": "Nominalization", "example": "The destruction of the city."},
+        {"topic": "Ellipsis", "example": "I can, and I will."},
+        {"topic": "Advanced Modals", "example": "You should have done it."}
+      ]
+    },
+
+    {
+      "module_id": 13,
+      "class": "Advanced",
+      "module_name": "Academic Reading",
+      "materials": [
+        {"title": "Artificial Intelligence", "text": "AI is transforming industries globally."},
+        {"title": "Machine Learning", "text": "ML is a subset of AI."},
+        {"title": "Data Science", "text": "Data science uses statistics and programming."},
+        {"title": "Neural Networks", "text": "Inspired by human brain."},
+        {"title": "Deep Learning", "text": "Uses multiple layers of learning."},
+        {"title": "Big Data", "text": "Large scale data analysis."},
+        {"title": "Cloud Computing", "text": "Remote data processing."},
+        {"title": "Cybersecurity", "text": "Protecting systems from attacks."},
+        {"title": "Blockchain", "text": "Distributed ledger technology."},
+        {"title": "Robotics", "text": "Machines that perform tasks."}
+      ]
+    },
+
+    {
+      "module_id": 14,
+      "class": "Advanced",
+      "module_name": "Essay Writing",
+      "materials": [
+        {"instruction": "Write an essay about technology."},
+        {"instruction": "Write an essay about education."},
+        {"instruction": "Write an essay about environment."},
+        {"instruction": "Write an essay about AI."},
+        {"instruction": "Write an essay about future."},
+        {"instruction": "Write an essay about globalization."},
+        {"instruction": "Write an essay about health."},
+        {"instruction": "Write an essay about economy."},
+        {"instruction": "Write an essay about science."},
+        {"instruction": "Write an essay about society."}
+      ]
+    },
+
+    {
+      "module_id": 15,
+      "class": "Advanced",
+      "module_name": "Professional Communication",
+      "materials": [
+        {"topic": "Business Email Writing"},
+        {"topic": "Formal Communication"},
+        {"topic": "Presentation Skills"},
+        {"topic": "Negotiation Language"},
+        {"topic": "Report Writing"},
+        {"topic": "Meeting Discussion"},
+        {"topic": "Project Communication"},
+        {"topic": "Corporate Vocabulary"},
+        {"topic": "Client Communication"},
+        {"topic": "Workplace English"}
+      ]
+    }
+
+  ]
+}
