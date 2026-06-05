@@ -293,7 +293,7 @@ export default function LearningPathStepPage() {
         ) : (
           <section className="mb-7 rounded-[2rem] bg-white border border-slate-200 p-6 text-slate-700 shadow-sm md:p-10 font-sans">
             <h2 className="mb-6 text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
-              Memulai Pembelajaran Bahasa Inggris bersama LUMEN
+              Starting Your English Learning Journey with LUMEN
             </h2>
             
             <div className="space-y-5 text-sm leading-relaxed text-slate-600 md:text-[15px]">
@@ -319,7 +319,7 @@ export default function LearningPathStepPage() {
                     Beginner
                   </span>
                   <p className="text-slate-600 text-xs md:text-sm m-0">
-                    Fokus pada pemahaman <strong>Articles</strong> (seperti <em>Article or No Article</em>, <em>Indefinite Articles A/An</em>, dan <em>Articles with Geographic Names</em>) untuk membangun fondasi kalimat yang tepat.
+                    Focus on understanding <strong>Articles</strong> (such as <em>Article or No Article</em>, <em>Indefinite Articles A/An</em>, and <em>Articles with Geographic Names</em>) to build a proper sentence foundation.
                   </p>
                 </div>
                 <div className="border-t border-slate-200/80 my-3"></div>
@@ -328,7 +328,7 @@ export default function LearningPathStepPage() {
                     Intermediate
                   </span>
                   <p className="text-slate-600 text-xs md:text-sm m-0">
-                    Mempelajari <strong>Irregular Verbs</strong> (kata kerja tidak beraturan pada <em>Past Tenses</em>) serta penggunaan kata bantu <strong>Mixed Modals</strong> seperti <em>Should, Can</em>, dan <em>Must</em> dalam percakapan sehari-hari.
+                    Learn <strong>Irregular Verbs</strong> (irregular verbs in <em>Past Tenses</em>) as well as the use of <strong>Mixed Modals</strong> helper words such as <em>Should, Can</em>, and <em>Must</em> in daily conversation.
                   </p>
                 </div>
                 <div className="border-t border-slate-200/80 my-3"></div>
@@ -337,16 +337,16 @@ export default function LearningPathStepPage() {
                     Advanced
                   </span>
                   <p className="text-slate-600 text-xs md:text-sm m-0">
-                    Menguasai kalimat pengandaian tingkat lanjut seperti <strong>Conditionals</strong> (<em>First, Second, &amp; Third Conditional</em>) serta pembagian <strong>Transitive &amp; Intransitive Verbs</strong> untuk ekspresi yang lebih bervariasi.
+                    Master advanced conditional sentences such as <strong>Conditionals</strong> (<em>First, Second, &amp; Third Conditional</em>) and the classification of <strong>Transitive &amp; Intransitive Verbs</strong> for more varied expressions.
                   </p>
                 </div>
               </div>
 
               <p>
-                Keren kan materinya? Tujuan akhir dari materi ini adalah untuk memahami bagaimana menentukan kebutuhan pembelajaran bahasa Anda dan menguasai spesifikasi kompetensi tata bahasa sebagai fondasi karir Anda di era global. Jadi tunggu apalagi.
+                Interesting materials, right? The ultimate goal of this course is to understand how to determine your language learning needs and master grammar competency specifications as the foundation of your career in the global era. So, what are you waiting for?
               </p>
               <p className="font-bold text-slate-800 text-[16px] mt-6">
-                Yuk, kita mulai belajar.
+                Let's start learning!
               </p>
             </div>
           </section>

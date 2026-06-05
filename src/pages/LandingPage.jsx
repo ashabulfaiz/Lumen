@@ -322,130 +322,13 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
-        {/* --- SECTION 7: ENTERPRISE (Background Soft Orange Solid) --- */}
-        <section id="sales-marketing" className="w-full bg-orange-50 border-b border-orange-100 py-20 overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row-reverse items-center gap-16 relative z-10">
-            <div className="flex-1 w-full relative">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80"
-                alt="Executive Boardroom"
-                className="w-full h-[400px] object-cover rounded-[2.5rem] border border-white shadow-xl shadow-orange-200/60"
-              />
-            </div>
-            
-            <div className="flex-1">
-              <div className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 mb-6 shadow-sm">
-                <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                <span className="text-[12px] font-bold text-orange-600 uppercase tracking-widest">Enterprise Track</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-slate-800 leading-[1.15] mb-6">
-                Specialized in <br/><span className="text-orange-500">Sales & Marketing.</span>
-              </h2>
-              <p className="text-slate-600 text-lg leading-relaxed mb-8 max-w-lg">
-                Your communication is your greatest asset. Our Enterprise module is engineered to help professionals close deals, write high-converting pitches, and command boardrooms with soft yet absolute authority.
-              </p>
-              
-              <div className="grid grid-cols-1 gap-4 mb-8">
-                <div className="flex items-center gap-5 bg-white p-4 rounded-2xl border border-orange-200 shadow-sm">
-                  <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 border border-orange-100">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  </div>
-                  <p className="m-0 font-bold text-slate-800 text-[16px]">Persuasive Product Pitching</p>
-                </div>
-                <div className="flex items-center gap-5 bg-white p-4 rounded-2xl border border-orange-200 shadow-sm">
-                  <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 border border-orange-100">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  </div>
-                  <p className="m-0 font-bold text-slate-800 text-[16px]">Drafting Executive Emails</p>
-                </div>
-              </div>
-
-              <Link to="/register" className="inline-block bg-orange-500 text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-md shadow-orange-200 text-[16px]">
-                Unlock Enterprise Modules
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* --- SECTION 8: FEEDBACK (Background Putih) --- */}
-        <section id="feedback" className="w-full bg-white py-24 border-b border-slate-200">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">Shape the Future of LUMEN</h2>
-            <p className="text-slate-600 mb-12 text-lg">We build for you. Have a brilliant feature request? Let us know in the gentlest way possible.</p>
-            
-            <form className="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-200 text-left shadow-md" onSubmit={(e) => e.preventDefault()}>
-              <div className="mb-6">
-                <label className="block text-sm font-bold text-slate-700 mb-3">Your Name</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-indigo-500">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                  </div>
-                  <input type="text" placeholder="John Doe" className="w-full pl-12 pr-5 py-4 rounded-2xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all bg-white shadow-sm text-[15px]" />
-                </div>
-              </div>
-              <div className="mb-8">
-                <label className="block text-sm font-bold text-slate-700 mb-3">Your Insight</label>
-                <textarea rows="4" placeholder="I think LUMEN would be even better if..." className="w-full px-5 py-4 rounded-2xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all resize-none bg-white shadow-sm text-[15px]"></textarea>
-              </div>
-              <button className="w-full bg-indigo-500 text-white font-bold py-4 rounded-2xl hover:bg-indigo-600 transition-colors shadow-md shadow-indigo-200 text-[16px]">
-                Submit Insight
-              </button>
-            </form>
-          </div>
-        </section>
-
-        {/* --- SECTION 9: CONTACT & FOOTER (Background Soft Slate) --- */}
-        <footer id="contact" className="w-full bg-slate-100 pt-20 pb-12">
-          <div className="mx-auto max-w-7xl px-6 md:px-12">
-            <div className="grid md:grid-cols-2 gap-16 mb-12">
-              
-              {/* Brand */}
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-indigo-500 border border-slate-200 shadow-sm">
-                    <IconFlame className="w-8 h-8" />
-                  </span>
-                  <span className="text-4xl font-black text-slate-800 tracking-tight">LUMEN</span>
-                </div>
-                <p className="text-slate-600 text-[16px] max-w-sm leading-relaxed">
-                  The premier EdTech platform bridging the gap between basic English and soft, elegant professional fluency.
-                </p>
-              </div>
-
-              {/* Contact Person */}
-              <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-md">
-                <h3 className="text-slate-800 text-xl font-bold mb-6">Contact & Inquiries</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-5 bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <div className="w-12 h-12 bg-white text-indigo-600 rounded-xl flex items-center justify-center shrink-0 border border-indigo-100">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                    </div>
-                    <div>
-                      <p className="text-slate-800 font-bold text-[16px] m-0">Dicoding Indonesia</p>
-                      <p className="text-[14px] text-slate-600 m-0 mt-0.5">contact@dicoding.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-5 bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <div className="w-12 h-12 bg-white text-indigo-600 rounded-xl flex items-center justify-center shrink-0 border border-indigo-100">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </div>
-                    <div>
-                      <p className="text-slate-800 font-bold text-[16px] m-0">Headquarters</p>
-                      <p className="text-[14px] text-slate-600 m-0 mt-0.5">Jakarta Global University, Depok</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-slate-300 pt-8 text-[14px] text-slate-500">
-              <p className="m-0 font-medium">© {new Date().getFullYear()} LUMEN Capstone Project. All rights reserved.</p>
-              <div className="flex gap-8 font-medium">
-                <a href="#" className="hover:text-indigo-600 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-indigo-600 transition-colors">Terms of Service</a>
-              </div>
+        {/* --- SIMPLE FOOTER --- */}
+        <footer className="w-full bg-slate-50 py-8 border-t border-slate-200">
+          <div className="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[14px] text-slate-500">
+            <p className="m-0 font-medium">© {new Date().getFullYear()} LUMEN Capstone Project. All rights reserved.</p>
+            <div className="flex gap-8 font-medium">
+              <a href="#" className="hover:text-indigo-600 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-indigo-600 transition-colors">Terms of Service</a>
             </div>
           </div>
         </footer>
