@@ -1,8 +1,8 @@
 const path = require('path');
 const dotenv = require('dotenv');
 
-// loadEnv.js lives in server/src/config → repo root is three levels up.
-const ROOT = path.resolve(__dirname, '../../..');
+// loadEnv.js lives in server/src/config → server root is two levels up.
+const ROOT = path.resolve(__dirname, '../..');
 
 // Load the base .env (your production reference / shared defaults), then let
 // .env.local override it for LOCAL development. Neither file is committed, so

@@ -1,0 +1,100 @@
+[
+  {
+    "level": "Advanced",
+    "module_name": "Advanced Grammar",
+    "sub_topic_title": "Mixed Conditionals",
+    "objective": "Master complex conditional structures to express hypothetical situations linking past conditions to present results.",
+    "vocabulary": [
+      { "term": "Hypothetical", "meaning": "Bersifat hipotesis / dugaan tak nyata" },
+      { "term": "Condition / Result", "meaning": "Kondisi / Hasil" },
+      { "term": "Contrary to fact", "meaning": "Bertentangan dengan fakta" },
+      { "term": "Consequently", "meaning": "Akibatnya" }
+    ],
+    "concept": "Mixed conditionals blend elements of 2nd and 3rd conditionals. The most common form mixes a past condition (If + Past Perfect) with a present result (would + base verb). Example: 'If I had studied harder (past), I would have a better job now (present).'",
+    "example_dialogue": "A: Did you accept that startup job offer in Berlin last year?\nB: No, I turned it down. If I had accepted it, I would be living in Germany right now.\nA: That's a huge life change. Do you regret it?\nB: Not really. If I weren't happy with my current career, I might have regretted it, but I love my current team."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Advanced Grammar",
+    "sub_topic_title": "The Subjunctive Mood",
+    "objective": "Understand the nuances of the subjunctive mood in formal English and academic writing.",
+    "vocabulary": [
+      { "term": "Subjunctive", "meaning": "Modus pengandaian/keharusan formal" },
+      { "term": "Imperative", "meaning": "Sangat penting / Mengharuskan" },
+      { "term": "Mandatory", "meaning": "Wajib" },
+      { "term": "Crucial", "meaning": "Sangat krusial / penting" }
+    ],
+    "concept": "The subjunctive mood is used after verbs of urgency, recommendation, or demand (recommend, suggest, insist) and adjectives like 'essential' or 'crucial'. It requires the base form of the verb, ignoring subject-verb agreement rules. Example: 'It is essential that she arrive (not arrives) on time.'",
+    "example_dialogue": "A: The board recommended that the CEO step down immediately.\nB: I agree. It is crucial that the company restructure its leadership before the next quarter.\nA: Exactly. The investors insist that a new strategy be implemented as soon as possible."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Advanced Grammar",
+    "sub_topic_title": "Inversion for Emphasis",
+    "objective": "Learn how to use subject-auxiliary inversion to add dramatic emphasis and formality to your writing.",
+    "vocabulary": [
+      { "term": "Inversion", "meaning": "Pembalikan struktur kalimat" },
+      { "term": "Emphasis", "meaning": "Penekanan" },
+      { "term": "Rarely / Seldom", "meaning": "Jarang" },
+      { "term": "Under no circumstances", "meaning": "Dalam keadaan apapun tidak..." }
+    ],
+    "concept": "In formal or literary English, when a negative or restrictive adverb (like never, rarely, seldom, not only) is placed at the beginning of a sentence, the subject and the auxiliary verb are inverted. Example: 'Never have I seen such a brilliant performance.' (Instead of 'I have never seen...')",
+    "example_dialogue": "A: The recent economic summit was unprecedented.\nB: Indeed. Rarely do we witness such unanimous agreement among global leaders.\nA: Not only did they agree on climate targets, but they also committed significant funding.\nB: Under no circumstances should this momentum be lost."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Vocabulary",
+    "sub_topic_title": "Formal Language and Hedging",
+    "objective": "Enhance academic writing by utilizing advanced vocabulary and learning the technique of 'hedging' to make objective statements.",
+    "vocabulary": [
+      { "term": "To some extent", "meaning": "Sampai batas tertentu" },
+      { "term": "Indicate / Suggest", "meaning": "Menunjukkan / Mengisyaratkan" },
+      { "term": "Predominantly", "meaning": "Sebagian besar / Terutama" },
+      { "term": "Ambiguous", "meaning": "Ambigu / Bermakna ganda" }
+    ],
+    "concept": "In academic contexts, claims must be made carefully. 'Hedging' uses modal verbs (could, might), adjectives (probable), or adverbs (perhaps, likely) to soften claims. Avoid absolute words like 'always' or 'prove', and instead use words like 'frequently' or 'indicate'.",
+    "example_dialogue": "A: In my essay, I wrote: 'The data proves that this new policy is 100% effective.'\nB: That might be too strong of a claim for an academic paper. You should hedge it: 'The data strongly indicates that this policy is likely effective.'\nA: I see. It makes the argument more objective, defensible, and less arrogant."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Vocabulary",
+    "sub_topic_title": "Nominalization (Turning Verbs into Nouns)",
+    "objective": "Learn to use nominalization to make sentences more concise, objective, and academically appropriate.",
+    "vocabulary": [
+      { "term": "Nominalization", "meaning": "Pembendaan (mengubah kata kerja/sifat menjadi kata benda)" },
+      { "term": "Implementation", "meaning": "Implementasi / Pelaksanaan (dari kata 'implement')" },
+      { "term": "Assessment", "meaning": "Penilaian (dari kata 'assess')" },
+      { "term": "Fluctuation", "meaning": "Fluktuasi / Naik turun (dari kata 'fluctuate')" }
+    ],
+    "concept": "Nominalization is the process of forming nouns from verbs or adjectives. This makes writing more abstract and formal, shifting the focus from the 'doer' of the action to the action itself. Instead of 'We investigated the problem thoroughly', write 'A thorough investigation of the problem was conducted.'",
+    "example_dialogue": "A: Can you review my paragraph? I wrote: 'The government decided to expand the highway, which caused the citizens to protest.'\nB: It's grammatically correct, but you can use nominalization to elevate the style. Try: 'The government's decision regarding the highway expansion led to widespread citizen protests.'\nA: Wow, that sounds much more professional and academic."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Writing",
+    "sub_topic_title": "Cohesion, Coherence, and Complex Transitions",
+    "objective": "Learn to structure complex academic essays logically and smoothly connect ideas using sophisticated transition devices.",
+    "vocabulary": [
+      { "term": "Nevertheless", "meaning": "Meskipun demikian" },
+      { "term": "Furthermore", "meaning": "Selanjutnya / Lebih jauh lagi" },
+      { "term": "Conversely", "meaning": "Sebaliknya" },
+      { "term": "Notwithstanding", "meaning": "Meskipun (Formal)" }
+    ],
+    "concept": "Coherence refers to the logical flow of ideas, while cohesion refers to the linguistic links (transitions) that connect sentences and paragraphs. Use advanced transitions like 'conversely' (for contrast), 'furthermore' (for addition), and 'subsequently' (for sequence) to guide the reader through complex arguments.",
+    "example_dialogue": "A: I wrote that the economy is growing rapidly. Then I wrote inflation is rising. How do I connect them smoothly in an essay?\nB: You can use a contrastive transition to show the relationship. For instance: 'The economy is growing rapidly; conversely, inflation rates are rising at an alarming pace.'\nA: That sounds much more cohesive than just putting two separate sentences together."
+  },
+  {
+    "level": "Advanced",
+    "module_name": "Academic Writing",
+    "sub_topic_title": "Synthesizing Multiple Sources",
+    "objective": "Master the skill of combining information from various academic sources to build a strong, unified argument.",
+    "vocabulary": [
+      { "term": "Synthesize", "meaning": "Mensintesis / Menggabungkan berbagai elemen" },
+      { "term": "Corroborate", "meaning": "Membenarkan / Memperkuat bukti" },
+      { "term": "Contradict", "meaning": "Bertentangan dengan" },
+      { "term": "Consensus", "meaning": "Kesepakatan bersama" }
+    ],
+    "concept": "Synthesis involves comparing, contrasting, and integrating ideas from multiple authors. Rather than summarizing sources one by one (A says this. B says this), group them by theme. Example: 'While Smith (2020) argues for X, both Jones (2021) and Lee (2022) contradict this view, suggesting that Y is more significant.'",
+    "example_dialogue": "A: I have three articles about renewable energy. Should I summarize them in three different paragraphs?\nB: No, that's just a summary. You need to synthesize. Group them by their arguments. If two authors agree on solar power, mention them together to corroborate your point.\nA: Ah, so I use them to support my own thesis, rather than just repeating what they said.\nB: Exactly. That demonstrates advanced critical thinking."
+  }
+]
