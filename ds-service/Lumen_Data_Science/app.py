@@ -1,9 +1,13 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.tree import DecisionTreeClassifier
+
+# Direktori file ini agar pembacaan dataset tidak bergantung pada CWD
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Konfigurasi Halaman
 st.set_page_config(page_title="LUMEN DS Dashboard", layout="wide")
@@ -14,7 +18,7 @@ st.markdown("Dashboard ini menampilkan hasil analisis eksplorasi (EDA), performa
 # Load Data
 @st.cache_data
 def load_data():
-    return pd.read_csv('clean_student_data.csv')
+    return pd.read_csv(os.path.join(BASE_DIR, 'clean_student_data.csv'))
 
 try:
     df = load_data()
@@ -35,7 +39,7 @@ with tab1:
     with col1:
         # Menampilkan gambar dari proses sebelumnya
         try:
-            st.image('eda_boxplot.png', caption='Boxplot Distribusi Skor', use_container_width=True)
+            st.image(os.path.join(BASE_DIR, 'eda_boxplot.png'), caption='Boxplot Distribusi Skor', use_container_width=True)
         except:
             # Fallback jika gambar tidak ada, buat secara realtime
             fig, ax = plt.subplots(figsize=(8, 5))
