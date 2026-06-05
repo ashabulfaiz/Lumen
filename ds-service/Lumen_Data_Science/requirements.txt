@@ -5,3 +5,4 @@ matplotlib
 seaborn
 scikit-learn
 scipy
+Pillow>=10.1.0
