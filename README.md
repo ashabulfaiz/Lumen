@@ -210,3 +210,4 @@ Notes:
 
 - **AI service** (grammar, essay, chatbot): [`ai/README.md`](ai/README.md)
 - **Grammar training data** format: [`ai/grammar/data/README.md`](ai/grammar/data/README.md)
+- **Data Science Dashboard (Streamlit)**: [https://h8xqnocsecukktwd4z4y6p.streamlit.app/](https://h8xqnocsecukktwd4z4y6p.streamlit.app/)
