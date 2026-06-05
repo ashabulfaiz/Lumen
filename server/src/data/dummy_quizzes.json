@@ -18,7 +18,24 @@
       { "pertanyaan": "When you meet someone for the first time, you can also say...", "pilihan": ["Pleased to meet you", "Go away", "I am hungry", "See you later"], "jawaban_benar": "Pleased to meet you" },
       { "pertanyaan": "Which of these is a polite way to get a stranger's attention?", "pilihan": ["Excuse me", "Hey you", "Stop", "Listen"], "jawaban_benar": "Excuse me" },
       { "pertanyaan": "If someone asks 'Where are you from?', you should answer:", "pilihan": ["I am from Indonesia", "I am fine", "My name is Budi", "I am 20 years old"], "jawaban_benar": "I am from Indonesia" },
-      { "pertanyaan": "What is a casual way to say 'Goodbye' to a friend?", "pilihan": ["See you later", "Good morning", "Welcome", "Hello"], "jawaban_benar": "See you later" }
+      { "pertanyaan": "What is a casual way to say 'Goodbye' to a friend?", "pilihan": ["See you later", "Good morning", "Welcome", "Hello"], "jawaban_benar": "See you later" },
+      { "pertanyaan": "What is the meaning of 'apple'?", "pilihan": ["apel", "meja", "kursi", "lampu"], "jawaban_benar": "apel" },
+      { "pertanyaan": "Choose the correct meaning of 'teacher'.", "pilihan": ["guru", "dokter", "petani", "polisi"], "jawaban_benar": "guru" },
+      { "pertanyaan": "What does 'happy' mean?", "pilihan": ["marah", "sedih", "senang", "takut"], "jawaban_benar": "senang" },
+      { "pertanyaan": "What is the meaning of 'school'?", "pilihan": ["rumah", "kantor", "sekolah", "pasar"], "jawaban_benar": "sekolah" },
+      { "pertanyaan": "Choose the correct translation for 'book'.", "pilihan": ["pensil", "tas", "buku", "sepatu"], "jawaban_benar": "buku" },
+      { "pertanyaan": "What does 'water' mean?", "pilihan": ["air", "api", "tanah", "angin"], "jawaban_benar": "air" },
+      { "pertanyaan": "What is the meaning of 'friend'?", "pilihan": ["musuh", "teman", "tetangga", "keluarga"], "jawaban_benar": "teman" },
+      { "pertanyaan": "Choose the correct meaning of 'family'.", "pilihan": ["keluarga", "teman", "guru", "murid"], "jawaban_benar": "keluarga" },
+      { "pertanyaan": "What does 'dog' mean?", "pilihan": ["kucing", "anjing", "ikan", "burung"], "jawaban_benar": "anjing" },
+      { "pertanyaan": "What is the meaning of 'cat'?", "pilihan": ["ayam", "sapi", "kucing", "kuda"], "jawaban_benar": "kucing" },
+      { "pertanyaan": "Choose the correct translation for 'chair'.", "pilihan": ["meja", "kursi", "lemari", "pintu"], "jawaban_benar": "kursi" },
+      { "pertanyaan": "What is the meaning of 'table'?", "pilihan": ["kursi", "tas", "meja", "sepatu"], "jawaban_benar": "meja" },
+      { "pertanyaan": "What does 'drink' mean?", "pilihan": ["makan", "tidur", "minum", "berlari"], "jawaban_benar": "minum" },
+      { "pertanyaan": "Choose the correct meaning of 'food'.", "pilihan": ["minuman", "buah", "makanan", "obat"], "jawaban_benar": "makanan" },
+      { "pertanyaan": "What is the meaning of 'music'?", "pilihan": ["gambar", "musik", "film", "game"], "jawaban_benar": "musik" },
+      { "pertanyaan": "What does 'phone' mean?", "pilihan": ["radio", "televisi", "telepon", "kamera"], "jawaban_benar": "telepon" },
+      { "pertanyaan": "What is the meaning of 'house'?", "pilihan": ["jalan", "taman", "rumah", "gedung"], "jawaban_benar": "rumah" }
     ]
   },
 
@@ -41,7 +58,24 @@
       { "pertanyaan": "Read the answer: 'I live with my parents.' What is the question?", "pilihan": ["Who do you live with?", "Where do you live?", "Why do you live?", "When do you live?"], "jawaban_benar": "Who do you live with?" },
       { "pertanyaan": "Which of these is a correct date of birth format?", "pilihan": ["London, UK", "Teacher", "12th August 1998", "555-9012"], "jawaban_benar": "12th August 1998" },
       { "pertanyaan": "What does 'zip code' or 'postal code' refer to?", "pilihan": ["A phone number", "A series of letters and numbers for mail delivery", "An email password", "A date of birth"], "jawaban_benar": "A series of letters and numbers for mail delivery" },
-      { "pertanyaan": "Complete the sentence: 'My ___ is Budi, but my friends call me Bud.'", "pilihan": ["surname", "age", "first name", "hobby"], "jawaban_benar": "first name" }
+      { "pertanyaan": "Complete the sentence: 'My ___ is Budi, but my friends call me Bud.'", "pilihan": ["surname", "age", "first name", "hobby"], "jawaban_benar": "first name" },
+      { "pertanyaan": "Choose the correct translation for 'read'.", "pilihan": ["menulis", "membaca", "bermain", "berjalan"], "jawaban_benar": "membaca" },
+      { "pertanyaan": "What does 'write' mean?", "pilihan": ["membaca", "menulis", "menggambar", "berlari"], "jawaban_benar": "menulis" },
+      { "pertanyaan": "What is the meaning of 'walk'?", "pilihan": ["melompat", "berlari", "berjalan", "duduk"], "jawaban_benar": "berjalan" },
+      { "pertanyaan": "Choose the correct meaning of 'sleep'.", "pilihan": ["belajar", "makan", "tidur", "mandi"], "jawaban_benar": "tidur" },
+      { "pertanyaan": "What does 'study' mean?", "pilihan": ["bermain", "berenang", "belajar", "berjalan"], "jawaban_benar": "belajar" },
+      { "pertanyaan": "What is the meaning of 'work'?", "pilihan": ["bermain", "belanja", "bekerja", "berlibur"], "jawaban_benar": "bekerja" },
+      { "pertanyaan": "Choose the correct translation for 'play'.", "pilihan": ["membaca", "makan", "bermain", "belajar"], "jawaban_benar": "bermain" },
+      { "pertanyaan": "What does 'morning' mean?", "pilihan": ["malam", "siang", "pagi", "sore"], "jawaban_benar": "pagi" },
+      { "pertanyaan": "What is the meaning of 'night'?", "pilihan": ["pagi", "siang", "malam", "sore"], "jawaban_benar": "malam" },
+      { "pertanyaan": "Choose the correct meaning of 'sun'.", "pilihan": ["bulan", "bintang", "matahari", "awan"], "jawaban_benar": "matahari" },
+      { "pertanyaan": "What does 'moon' mean?", "pilihan": ["matahari", "awan", "bulan", "langit"], "jawaban_benar": "bulan" },
+      { "pertanyaan": "What is the meaning of 'car'?", "pilihan": ["motor", "mobil", "sepeda", "bus"], "jawaban_benar": "mobil" },
+      { "pertanyaan": "Choose the correct translation for 'bike'.", "pilihan": ["mobil", "kereta", "sepeda", "pesawat"], "jawaban_benar": "sepeda" },
+      { "pertanyaan": "What does 'shirt' mean?", "pilihan": ["celana", "sepatu", "baju", "topi"], "jawaban_benar": "baju" },
+      { "pertanyaan": "What is the meaning of 'shoes'?", "pilihan": ["tas", "sepatu", "kaos kaki", "jaket"], "jawaban_benar": "sepatu" },
+      { "pertanyaan": "Choose the correct meaning of 'market'.", "pilihan": ["pasar", "sekolah", "kantor", "rumah"], "jawaban_benar": "pasar" },
+      { "pertanyaan": "What does 'hospital' mean?", "pilihan": ["bank", "rumah sakit", "hotel", "kantor"], "jawaban_benar": "rumah sakit" }
     ]
     },
 
@@ -64,7 +98,24 @@
       { "pertanyaan": "Which day comes between Tuesday and Thursday?", "pilihan": ["Monday", "Friday", "Wednesday", "Saturday"], "jawaban_benar": "Wednesday" },
       { "pertanyaan": "How do you write the number 15 in words?", "pilihan": ["Fifty", "Five-teen", "Fifteen", "Fiveteen"], "jawaban_benar": "Fifteen" },
       { "pertanyaan": "If today is Friday, what day was yesterday?", "pilihan": ["Thursday", "Saturday", "Wednesday", "Sunday"], "jawaban_benar": "Thursday" },
-      { "pertanyaan": "Fill in the blank: 'I was born ___ 1995.'", "pilihan": ["in", "on", "at", "by"], "jawaban_benar": "in" }
+      { "pertanyaan": "Fill in the blank: 'I was born ___ 1995.'", "pilihan": ["in", "on", "at", "by"], "jawaban_benar": "in" },
+      { "pertanyaan": "What is the meaning of 'doctor'?", "pilihan": ["guru", "dokter", "polisi", "petani"], "jawaban_benar": "dokter" },
+      { "pertanyaan": "Choose the correct translation for 'student'.", "pilihan": ["murid", "guru", "dokter", "polisi"], "jawaban_benar": "murid" },
+      { "pertanyaan": "What does 'computer' mean?", "pilihan": ["radio", "kamera", "komputer", "televisi"], "jawaban_benar": "komputer" },
+      { "pertanyaan": "What is the meaning of 'window'?", "pilihan": ["pintu", "atap", "jendela", "lantai"], "jawaban_benar": "jendela" },
+      { "pertanyaan": "Choose the correct meaning of 'door'.", "pilihan": ["pintu", "lemari", "kursi", "meja"], "jawaban_benar": "pintu" },
+      { "pertanyaan": "What does 'bag' mean?", "pilihan": ["tas", "dompet", "sepatu", "jaket"], "jawaban_benar": "tas" },
+      { "pertanyaan": "What is the meaning of 'pen'?", "pilihan": ["pensil", "penghapus", "pulpen", "buku"], "jawaban_benar": "pulpen" },
+      { "pertanyaan": "Choose the correct translation for 'pencil'.", "pilihan": ["buku", "pensil", "tas", "meja"], "jawaban_benar": "pensil" },
+      { "pertanyaan": "What does 'rain' mean?", "pilihan": ["awan", "angin", "hujan", "petir"], "jawaban_benar": "hujan" },
+      { "pertanyaan": "What is the meaning of 'tree'?", "pilihan": ["rumput", "pohon", "bunga", "daun"], "jawaban_benar": "pohon" },
+      { "pertanyaan": "Choose the correct meaning of 'flower'.", "pilihan": ["akar", "buah", "bunga", "daun"], "jawaban_benar": "bunga" },
+      { "pertanyaan": "What does 'bird' mean?", "pilihan": ["ikan", "burung", "ayam", "kucing"], "jawaban_benar": "burung" },
+      { "pertanyaan": "What is the meaning of 'fish'?", "pilihan": ["ikan", "udang", "kepiting", "ayam"], "jawaban_benar": "ikan" },
+      { "pertanyaan": "Choose the correct translation for 'love'.", "pilihan": ["benci", "cinta", "takut", "marah"], "jawaban_benar": "cinta" },
+      { "pertanyaan": "What does 'smile' mean?", "pilihan": ["tertawa", "menangis", "senyum", "berteriak"], "jawaban_benar": "senyum" },
+      { "pertanyaan": "What is the meaning of 'clean'?", "pilihan": ["kotor", "bersih", "rusak", "gelap"], "jawaban_benar": "bersih" },
+      { "pertanyaan": "Choose the correct meaning of 'beautiful'.", "pilihan": ["jelek", "indah", "besar", "kecil"], "jawaban_benar": "indah" }
     ]
 
   },
